@@ -1,0 +1,15 @@
+:root{
+    --success-gradient: linear-gradient(90deg, #75EEA8, #36C773);
+    --primary-gradient: linear-gradient(90deg, #84CFFC, #39ACF1);
+}
+
+.success-gradient{
+    background: var(--success-gradient);
+    color:white;
+    font-weight: 900;
+}
+.primary-gradient{
+    background: var(--primary-gradient);
+    color:white;
+    font-weight: 900;
+}

@@ -1,0 +1,9 @@
+.send-feedback-container, .reviews-container{
+    width: clamp(340px , 70vw, 50vw);
+    margin: 0 auto;
+}
+.review-lines {
+    border: 1px solid rgba(70, 130, 180, 0.5);
+    padding: 16px;
+    margin-top: 16px;
+}

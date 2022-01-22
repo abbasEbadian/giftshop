@@ -1,11 +1,14 @@
 import Head from 'next/head'
 
+
+
 export default function Home() {
   return (
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"/>
       </Head>
 
       <main>

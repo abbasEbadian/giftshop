@@ -1,0 +1,73 @@
+import React from 'react';
+import { useRouter } from 'next/router'
+import {cards} from '../../data'
+import Card from '../../components/Card'
+import SimilarCards from '../../components/SimilarCards'
+import SendFeedback from '../../components/SendFeedback'
+import Reviews from '../../components/Reviews'
+import Image from 'next/image'
+import logos from '../../img/card/logos.png'
+function Product() {
+    const router = useRouter()
+    const pid = router.query.slug
+    const [product, setProduct] = React.useState(undefined)
+    const [count, setCount] = React.useState(1)
+    React.useEffect(() => {
+        const p = cards.filter(i=>i.id === +pid)
+        if(p) setProduct(p[0])
+    }, [cards, pid]);
+    
+    return <div className="container">
+        <h1 className="text-center">کارت {" "}<span className="text-danger">انتخابی</span></h1>
+        {product? <div className="row mt-5">
+            <div className="col-12 col-md-4">
+                <Card data={product} favoriteAndRate/>
+
+            </div>
+            <div className="col-12 col-md-8 p-3">
+                <h2>{product.name}</h2>
+                <div className="row my-4">
+                    <div className="col-6 col-md-3 mb-2">
+                        <span className="text-primary  fs-5">قیمت</span><br/>
+                        <span className="pt-3 mt-3">{product.price}{" تومان"}</span>
+                    </div>
+                    <div className="col-6 col-md-3 mb-2">
+                        <span className="text-primary mb-3 fs-5">کشور</span><br/>
+                        <span className="pt-3 mt-3">{product.country}</span>
+                    </div>
+                    <div className="col-6 col-md-3 mb-2">
+                        <span className="text-primary mb-3 fs-5">دسته بندی</span><br/>
+                        <span className="pt-3 mt-3">{product.category}</span>
+                    </div>
+                    <div className="col-6 col-md-3 mb-2">
+                        <span className="text-primary mb-3 fs-5">امتیاز مشتریان</span><br/>
+                        <span className="pt-3 mt-3">{product.rate} {"(6)"}</span>
+                    </div>
+                </div>
+                <p className="mt-3">
+                توضیحات در مورد کارت و موارد استفاده از آن توضیحات در مورد کارت و موارد استفاده از آن توضیحات در مورد کارت و موارد استفاده از آن توضیحات در مورد کارت و موارد استفاده از آن مورد 
+                </p>
+                <div className="add-to-card-container d-flex justify-content-between align-items-center">
+                    <div dir="ltr" className="counter">
+                        <span onClick={e=>setCount(c=>c += 1)}>+</span>
+                        <span className="border-bottom mx-2 " >{count}</span>
+                        <span onClick={e=>setCount(c=>Math.max(1, c - 1))}>-</span>
+                    </div>
+                    <span className="border rounded p-2">{product.price} {" تومان "} </span>
+                    <button className="success-gradient px-3">افزودن به سبد</button>
+                </div>
+            </div>
+        </div>: ""}
+
+
+        <SimilarCards product={product}/>
+        <div className="my-5">
+            <Image src={logos} className="d-none d-md-flex" />
+        </div>
+
+        <SendFeedback product={product}/>
+        <Reviews />
+    </div>
+}
+
+export default Product;
