@@ -9,7 +9,7 @@ import cardFolding from '../img/icon/Cards - Folding.png'
 import pie from '../img/icon/Group 3452.png'
 import income from '../img/icon/Income - Iconic.png'
 
-import collapse from '../img/icon/collapse.png'
+import collapse from '../img/icon/Collapse.png'
 import why from '../img/other/why.png'
 
 import { ChevronLeft, Facebook, Instagram, Twitter, YouTube } from '@mui/icons-material'
