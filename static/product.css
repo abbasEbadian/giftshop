@@ -7,3 +7,8 @@
     padding: 16px;
     margin-top: 16px;
 }
+@media screen and (max-width: 768px) {
+    .single-product .single-card{
+        margin: 0 auto;
+    }
+}

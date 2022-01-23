@@ -22,7 +22,7 @@ function Footer() {
             </div>
           </div>
 
-          <div className="col-xs-6 col-md-2">
+          <div className="col-6 col-md-2">
             <h6>دسترسی سریع</h6>
             <ul className="footer-links">
               <li>
@@ -40,7 +40,7 @@ function Footer() {
             </ul>
           </div>
 
-          <div className="col-xs-6 col-md-2">
+          <div className="col-6 col-md-2">
             <h6>خدمات مشتریان</h6>
             <ul className="footer-links">
               <li>
@@ -87,7 +87,7 @@ function Footer() {
           </div>
 
           <div className="col-md-4 col-sm-6 col-xs-12">
-            <ul className="social-icons">
+            <ul className="social-icons p-0">
               <li>
                 <a className="facebook" href="#">
                   <i className="bi bi-facebook"></i>

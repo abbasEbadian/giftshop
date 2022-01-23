@@ -17,8 +17,8 @@ function Product() {
         if(p) setProduct(p[0])
     }, [cards, pid]);
     
-    return <div className="container">
-        <h1 className="text-center">کارت {" "}<span className="text-danger">انتخابی</span></h1>
+    return <div className="container single-product">
+        <h1 className="text-center mt-4">کارت {" "}<span className="text-secondary">انتخابی</span></h1>
         {product? <div className="row mt-5">
             <div className="col-12 col-md-4">
                 <Card data={product} favoriteAndRate/>
@@ -60,7 +60,9 @@ function Product() {
         </div>: ""}
 
 
-        <SimilarCards product={product}/>
+        <SimilarCards product={product} title={
+            <span>{"کارتهای"} <span className='text-secondary'>مشابه</span></span>
+        }/>
         <div className="my-5">
             <Image src={logos} className="d-none d-md-flex" />
         </div>

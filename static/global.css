@@ -1,7 +1,18 @@
 @import './colors.css';
-
+/* @import './fonts.css'; */
+@import './header.css';
+@import './footer.css';
+@import './home.css';
+@import './responsive.css';
 html{
     font-size: 90%;
+}
+body a{
+    text-decoration: none;
+    color: var(--primary-dark);
+}
+.mcontainer{
+    padding-inline: clamp(16px, 4vw, 128px);
 }
 .line-height-64{
     line-height: 64px;

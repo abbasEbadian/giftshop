@@ -1,15 +1,65 @@
 :root{
+
+    --primary: #39ACF1;
+    --primary-dark: #142F43;
+    --secondary: #FE6648;
+
     --success-gradient: linear-gradient(90deg, #75EEA8, #36C773);
     --primary-gradient: linear-gradient(90deg, #84CFFC, #39ACF1);
+    --secondary-gradient: linear-gradient(90deg, #FD9367, #FE6648);
+    --secondary-gradient-90: linear-gradient(-90deg, #FD9367, #FE6648);
+
+    --color-black: hsl(0, 0%, 10%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-blue: #39acf1;
+    --color-purple: #142f43;
+    --color-orange: #fe6648;
+    --color-yellow: #ffc60b;
+}
+
+
+body .text-primary{
+    color: var(--primary) !important;
+}
+body .text-secondary{
+    color: var(--secondary) !important;
 }
 
 .success-gradient{
     background: var(--success-gradient);
-    color:white;
+    color:white !important;
+    font-weight: 900;
+}
+.success-outline{
+    background: transparent;
+    color:var(--success) !important;
+    border: 1px solid var(--success);
+    font-weight: 900;
+}
+body .primary-outline{
+    background: transparent;
+    color:var(--primary) !important;
+    border: 1px solid var(--primary);
+    font-weight: 900;
+}
+.secondary-outline{
+    background: transparent;
+    color:var(--secondary) !important;
+    border: 1px solid var(--secondary);
     font-weight: 900;
 }
 .primary-gradient{
     background: var(--primary-gradient);
-    color:white;
+    color:white !important;
+    font-weight: 900;
+}
+.secondary-gradient{
+    background: var(--secondary-gradient);
+    color:white !important;
+    font-weight: 900;
+}
+.secondary-gradient-90{
+    background: var(--secondary-gradient-90);
+    color:white !important;
     font-weight: 900;
 }

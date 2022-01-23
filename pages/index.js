@@ -1,212 +1,146 @@
+import React from 'react'
 import Head from 'next/head'
+import card from '../img/other/Card.png'
+import Image from 'next/image'
+import mouse from '../img/icon/Mouse-alt.png'
+import arrows from '../img/icon/Arrows.svg'
+import off from '../img/icon/Shopping - Iconic.png'
+import cardFolding from '../img/icon/Cards - Folding.png'
+import pie from '../img/icon/Group 3452.png'
+import income from '../img/icon/Income - Iconic.png'
 
+import collapse from '../img/icon/collapse.png'
+import why from '../img/other/why.png'
 
+import { ChevronLeft, Facebook, Instagram, Twitter, YouTube } from '@mui/icons-material'
+import SimilarCards from '../components/SimilarCards'
+import HomeUtilities from '../components/subHome/HomeUtilities'
+import Link from 'next/link'
 
 export default function Home() {
+  const [active, setActive] = React.useState("day")
   return (
-    <div className="container">
+    <>
+    <div className="mcontainer">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"/>
       </Head>
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
+      <main className="main-page flex-wrap">
+        <div className="content d-flex flex-column justify-content-center col-12 col-md-4">
+            <h1 className='fs-1 '>
+              گیفت {" "} 
+              <Image src={card} width={36} height={24}/> {" "} 
+              کارت های مدرن
+            </h1>
+            <h3 className='fs-3 mt-4 mb-5 text-nowrap'>
+              خرید {" "}
+              <span className="text-secondary">سریع</span> {" و "}
+              <span className="text-secondary">آسان</span> {" و "}
+              همراه با {" "} 
+              <span className="text-secondary">امنیت بالا</span> 
+            </h3>
             <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+            بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون 
             </p>
-          </a>
+            <button className="btn success-gradient d-flex justify-content-between py-3 mt-3">
+              جستجوی سریع و خرید کارت
+              <ChevronLeft />
+            </button>
+        </div>
+        <div className="col-md-2 col-0"></div>
+        <div className="images col-md-6 col-12">
+          <div className="row">
+            <div className="col-md-4 col-6 d-flex align-items-center"><Image src={off}/></div>
+            <div className="col-8"><Image src={cardFolding}/></div>
+            <div className="col-6">
+              <div className='varity-image d-grid place-items-center position-relative'>
+                <Image src={pie} width={180} height={180}/>
+                <span className='varity-span'>انواع <br />گیفت کارت</span>
+              </div>
+              </div>
+            <div className="col-6"><Image src={income}/></div>
+            
+          </div>
+        </div>
+
+        <div className="col-12 footing d-flex align-items-end justify-content-between mt-auto pb-2">
+          <span></span>
+          <button className='scroll-down d-flex align-items-center justify-content-center flex-column'>
+            <span calssName="mb-2"><Image src={mouse} alt="mouse" /></span>
+            <Image src={arrows} alt="arrows" />
+          </button>
+          <div className="socials d-flex align-items-cetnter flex-column justify-content-center">
+            <YouTube />
+            <span className='my-2'><Instagram/></span>
+            <Twitter />
+          </div>
         </div>
       </main>
+      <HomeUtilities />
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className="logo" />
-        </a>
-      </footer>
+      <SimilarCards addToCard product={undefined} title={
+            <span>{"پرفروش ترین"} <span className='text-secondary'>گیفت </span> کارتها</span>
+        }>
+          <div className="row mb-3 mt-5">
+            <div className="col-6 col-md-3">
+              <button 
+              onClick={e=>setActive("day")}
+              className={"btn w-100 " + (active!=="day"? "primary-outline": "primary-gradient")}>امروز</button>
+            </div>
+            <div className="col-6 col-md-3">
+              <button 
+              onClick={e=>setActive("week")}
+              className={"btn w-100 " +( active!=="week"? "primary-outline": "primary-gradient")}>هفته اخیر</button>
+            </div>
+            <div className="col-6 col-md-3">
+              <button 
+              onClick={e=>setActive("month")}
+              className={"btn w-100 " + (active!=="month"? "primary-outline": "primary-gradient")}>ماه گذشته</button>
+            </div>
+            <div className="col-6 col-md-3">
+              <button 
+              onClick={e=>setActive("6month")}
+              className={"btn w-100 " + (active!=="6month"? "primary-outline": "primary-gradient")}>شش ماه اخیر</button>
+            </div>
+          </div>
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+        </SimilarCards>
+      <div className="my-5 d-flex"></div>
+      <SimilarCards product={undefined} title={
+            <span>{"محصولات"} <span className='text-secondary'>فروشگاه </span></span>
+        }/>
+        <div className="d-flex justify-content-end mb-3">
+        <Link href="/shop">
+          <a  className="btn primary-gradient  ">مشاهده همه محصولات</a>
+        </Link>
+        </div>
 
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
     </div>
+    <div className="whyus secondary-gradient-90 py-4">
+        <div className="mcontainer">
+          <h3 className='text-center mb-md-0 mb-5'><Image src={collapse}/> <b className='mx-2'>چرا گیفت شاپ؟</b> </h3>
+            <div className="d-flex align-items-center justify-content-between flex-wrap">
+              <div className='col-12 col-md-5'>
+                <h4>بدون محدودیت با عرضه انواع</h4>
+                <h4>بدون محدودیت با عرضه انواع</h4>
+
+                <p className='pt-5 pb-4'>بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون </p>
+                <p>بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون </p>
+                <button className="btn shadow bg-white d-flex justify-content-between py-3 mt-3">
+                  جستجوی سریع و خرید کارت
+                  <ChevronLeft />
+                </button>
+              </div>
+
+              <div className="col-md-6 col-12 mt-md-0 mt-5">
+                <Image src={why}/>
+              </div>
+            </div>
+        </div>
+    </div>
+    </>
   )
 }
