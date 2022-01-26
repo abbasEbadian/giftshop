@@ -1,10 +1,10 @@
 import React from "react";
-import learnimg from "../../img/other/image 32.png";
-import learnimg1 from "../../img/other/image 34.png";
-import learnimg2 from "../../img/other/image 35.png";
-import learnimg3 from "../../img/other/image 36.png";
-import learnimg4 from "../../img/other/image 37.png";
-import learnimg5 from "../../img/other/image 38.png";
+import learnimg from "../../img/other/image32.png";
+import learnimg1 from "../../img/other/image34.png";
+import learnimg2 from "../../img/other/image35.png";
+import learnimg3 from "../../img/other/image36.png";
+import learnimg4 from "../../img/other/image37.png";
+import learnimg5 from "../../img/other/image38.png";
 import Image from 'next/image'
 function Learn() {
   return (
