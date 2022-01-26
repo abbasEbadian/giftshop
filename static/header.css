@@ -442,19 +442,20 @@ margin: 10px 0;
   align-items: center;
   height: 100%;
   justify-content: space-between;
-  padding-inline: clamp(16px, 6vw, 128px);
+  padding-inline: clamp(16px, 4vw, 128px);
 }
 .header-public .links{
-  width: 32vw;
+  width: 28vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin: 0 32px;
+  margin: 0 16px;
   margin-left: auto;
 }
 .header-public .links a{
   font-size: max(1.3vw, 16px);
   position: relative;
+  font-weight: 900;
 }
 .header-public .links a.active{
   color: var(--primary);

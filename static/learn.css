@@ -1,0 +1,33 @@
+.text-learn {
+    line-height: 2.4;
+}
+.text-learn p {
+    padding: 25px 0;
+}
+
+.text-learn img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.img-learn-photo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.img-learn-photo img {
+    max-width: 250px;
+}
+.danger-title-faqs a{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.7;
+}
+
+.text-learn:last-child {
+    padding: 25px 0;
+}
+.text-learn:last-child img {
+    max-width: 350px;
+    object-fit: cover;
+}

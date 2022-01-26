@@ -4,6 +4,14 @@
 @import './footer.css';
 @import './home.css';
 @import './responsive.css';
+@import './contactus.css';
+@import './aboutus.css';
+@import './terms.css';
+@import './learn.css';
+@import './faq.css';
+@import './blog.css';
+@import './singleBlog.css';
+@import './profile.css';
 html{
     font-size: 90%;
 }
@@ -28,4 +36,22 @@ button{
     border-bottom: 1px solid #f008;
     padding-bottom: 8px;
     margin-bottom: 8px;
+}
+.bottom-navigation .searcher {
+    transform: translateY(-30px);
+}
+.bottom-navigation div{
+    height: 60px;
+    background-color: #f7f7f7;
+}
+.bottom-navigation{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9;
+}
+@media screen and (max-width: 768px) {
+    body{
+        padding-bottom: 60px;
+    }
 }

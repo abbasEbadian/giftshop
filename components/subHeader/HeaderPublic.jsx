@@ -1,11 +1,10 @@
 import React from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
-import logo from '../../img/logo/GiftShop.png'
+import logo from '../../img/logo/GS-03.png'
 import HomIcon from '../../img/icon/HomeIcon'
 import SearchIcon from '../../img/icon/SearchIcon';
 import ShoppingIcon from '../../img/icon/ShoppingIcon';
-import { Container } from '@mui/material';
 import {Offcanvas} from 'react-bootstrap'
 function HeaderPublic() {
   const [menuopen, setMenuopen] = React.useState(false);
@@ -28,28 +27,29 @@ function HeaderPublic() {
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a href="#">فروشگاه</a>
+                    <Link href="/shop">
+                    <a >فروشگاه</a>
+                    </Link>
                   </li>
                   <li className="menu-item">
-                    <Link href="/Purchase-report">
+                    <Link href="/contanct-us">
                         <a>تماس با ما</a>
                     </Link>
                   </li>
                   <li className="menu-item menu-item-child">
-                    <a href="#" data-toggle="sub-menu">
+                    <Link href="/about-us">
+                    <a data-toggle="sub-menu">
                       چرا ما؟
-                      
                     </a>
+                    </Link>
                   </li>
+                 
                   <li className="menu-item menu-item-child">
-                    <a href="#" data-toggle="sub-menu">
-                      تماس با ما{" "}
-                    </a>
-                  </li>
-                  <li className="menu-item menu-item-child">
-                    <a href="#" data-toggle="sub-menu">
+                    <Link href="/blog">
+                    <a data-toggle="sub-menu">
                       بلاگ{" "}
                     </a>
+                    </Link>
                   </li>
                 </ul>
                 <div className="controls d-flex">
@@ -61,7 +61,7 @@ function HeaderPublic() {
               </Offcanvas.Body>
         </Offcanvas>
         <div className='main-container'>
-          <Image src={logo} />
+          <Image src={logo} height={"45px"} width={"200px"}/>
 
           <div className="links">
             <Link href="/">
@@ -72,10 +72,10 @@ function HeaderPublic() {
             <Link href="/shop">
               <a>فروشگاه</a>
             </Link>
-            <Link href={"/aboutus"}>
+            <Link href={"/about-us"}>
               <a>چرا ما؟</a>
             </Link>
-            <Link href="/contactus">
+            <Link href="/contact-us">
               <a>تماس با ما</a>
             </Link>
           </div>

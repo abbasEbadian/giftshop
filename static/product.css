@@ -8,7 +8,7 @@
     margin-top: 16px;
 }
 @media screen and (max-width: 768px) {
-    .single-product .single-card{
+    .single-card{
         margin: 0 auto;
     }
 }

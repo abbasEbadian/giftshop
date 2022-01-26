@@ -10,7 +10,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="container">
         <div className="row">
-          <div className="col-sm-12 col-md-5 p-0">
+          <div className="col-sm-12 col-md-5 ">
             <div className="col-md-9">
               <h6>درباره ما</h6>
               <p className="text-justify">

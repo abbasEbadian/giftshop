@@ -7,11 +7,15 @@ import SendFeedback from '../../components/SendFeedback'
 import Reviews from '../../components/Reviews'
 import Image from 'next/image'
 import logos from '../../img/card/logos.png'
+import { BottomNavigation, BottomNavigationAction } from '@mui/material';
+import { FavoriteIcon, LocationOnIcon} from '@mui/icons-material'
 function Product() {
     const router = useRouter()
     const pid = router.query.slug
     const [product, setProduct] = React.useState(undefined)
     const [count, setCount] = React.useState(1)
+
+    const [active, setActive] = React.useState("main")
     React.useEffect(() => {
         const p = cards.filter(i=>i.id === +pid)
         if(p) setProduct(p[0])
@@ -22,7 +26,6 @@ function Product() {
         {product? <div className="row mt-5">
             <div className="col-12 col-md-4">
                 <Card data={product} favoriteAndRate/>
-
             </div>
             <div className="col-12 col-md-8 p-3">
                 <h2>{product.name}</h2>
@@ -69,6 +72,15 @@ function Product() {
 
         <SendFeedback product={product}/>
         <Reviews />
+
+        <div className="fixed">
+            <div className='col-6 text-center' onClick={e=>setActive("filter")}>
+                فیلتر
+            </div>
+            <div className='col-6 text-center' onClick={e=>setActive("main")}> 
+                مشاهده محسول
+            </div>
+        </div>
     </div>
 }
 

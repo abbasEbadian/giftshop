@@ -20,7 +20,7 @@ function Reviews() {
         {Array.from({length: 5}).map((i, idx)=>{
             return <div key={idx} className="review-line d-flex align-items-center my-5">
                 <Image src={reviewer} />
-                <div className="content flex-grow-1 ps-2 pt-2">
+                <div className="content1 flex-grow-1 ps-2 pt-2">
                     <h6>زهرا احمدی | <span className="text-black-50">3 روز پیش</span></h6>
                     <p>این کارت عالی بود. این کارت عالی بود. این کارت عالی بود. این کارت عالی بود. </p>
                 </div>

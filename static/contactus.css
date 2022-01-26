@@ -1,0 +1,34 @@
+.mapouter {
+    position: relative;
+    text-align: right;
+  }
+  .gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+  }
+  #gmap_canvas {
+    width: 100%;
+    height: 45vh;
+  }
+  .form-contact > div {
+    margin: 20px 0;
+  }
+  .form-contact > div label {
+    margin: 5px 0;
+  }
+  .accept-pay {
+    background: linear-gradient(to bottom left, #36c773, #75eea8);
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .accept-pay a {
+    color: var(--color-white);
+    font-weight: 600;
+    display: block;
+    padding: 15px;
+  }
+  
+  .text-basket span {
+    color: var(--color-orange);
+  }

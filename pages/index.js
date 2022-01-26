@@ -4,14 +4,15 @@ import card from '../img/other/Card.png'
 import Image from 'next/image'
 import mouse from '../img/icon/Mouse-alt.png'
 import arrows from '../img/icon/Arrows.svg'
-import off from '../img/icon/Shopping - Iconic.png'
-import cardFolding from '../img/icon/Cards - Folding.png'
-import pie from '../img/icon/Group 3452.png'
-import income from '../img/icon/Income - Iconic.png'
+import off from '../img/icon/ShoppingIconic.png'
+import cardFolding from '../img/icon/CardsFolding.png'
+import pie from '../img/icon/Group3452.png'
+import income from '../img/icon/IncomeIconic.png'
 
+import logos from '../img/card/logos.png'
 import collapse from '../img/icon/Collapse.png'
 import why from '../img/other/why.png'
-
+import Box from  '@mui/material/Box'
 import { ChevronLeft, Facebook, Instagram, Twitter, YouTube } from '@mui/icons-material'
 import SimilarCards from '../components/SimilarCards'
 import HomeUtilities from '../components/subHome/HomeUtilities'
@@ -27,9 +28,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"/>
       </Head>
-
+      <style JSX>{`
+        .bgimage{
+          overflow: hidden;
+          z-index: -1;
+        }
+      `}</style>
       <main className="main-page flex-wrap">
-        <div className="content d-flex flex-column justify-content-center col-12 col-md-4">
+        <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4">
             <h1 className='fs-1 '>
               گیفت {" "} 
               <Image src={card} width={36} height={24}/> {" "} 
@@ -46,7 +52,7 @@ export default function Home() {
             بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون محدودیت با عرضه انواع مختلف گیفت کارت بدون 
             </p>
             <button className="btn success-gradient d-flex justify-content-between py-3 mt-3">
-              جستجوی سریع و خرید کارت
+              <Link href="/shop "><a className='text-white'>جستجوی سریع و خرید کارت</a></Link>
               <ChevronLeft />
             </button>
         </div>
@@ -113,9 +119,18 @@ export default function Home() {
             <span>{"محصولات"} <span className='text-secondary'>فروشگاه </span></span>
         }/>
         <div className="d-flex justify-content-end mb-3">
-        <Link href="/shop">
-          <a  className="btn primary-gradient  ">مشاهده همه محصولات</a>
-        </Link>
+          <div className="bgimage flex-grow-1 position-relative mx-2" >
+          <Image
+            alt="Mountains"
+            src={logos}
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+          />
+          </div>
+          <Link href="/shop">
+            <a  className="btn primary-gradient mr-2 ">مشاهده همه محصولات</a>
+          </Link>
         </div>
 
     </div>

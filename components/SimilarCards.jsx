@@ -17,13 +17,13 @@ function SimilarCards({children, product, title, addToCard=false}) {
         slidesPerView={4}
         breakpoints={{
             360:{
-                slidesPerView: 1.4
+                slidesPerView: 1.2
             },
             576:{
-                slidesPerView: 2.4,
+                slidesPerView: 2.2,
             },
             992:{
-                slidesPerView: 3.4,
+                slidesPerView: 3.2,
             },
             1200:{
                 slidesPerView: 4,
