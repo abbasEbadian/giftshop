@@ -35,7 +35,7 @@
 
 .header .menu > .menu-item > a {
   display: block;
-  font-family: inherit;
+  font-family: IRANSans ;
   font-size: 1rem;
   font-weight: 500;
   line-height: inherit;
@@ -120,7 +120,7 @@
 
 .header .menu > .menu-item > .sub-menu > .menu-item > a {
   display: block;
-  font-family: inherit;
+  font-family: IRANSans;
   font-size: 1rem;
   font-weight: 500;
   line-height: inherit;
@@ -435,7 +435,7 @@ margin: 10px 0;
 
 .header-public{
   height: 80px;
-  border-bottom: 1px solid #707070;
+  /* border-bottom: 1px solid #707070; */
 }
 .header-public .main-container{
   display: flex;
@@ -455,7 +455,7 @@ margin: 10px 0;
 .header-public .links a{
   font-size: max(1.3vw, 16px);
   position: relative;
-  font-weight: 900;
+  font-weight: 500;
 }
 .header-public .links a.active{
   color: var(--primary);

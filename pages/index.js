@@ -5,7 +5,7 @@ import Image from 'next/image'
 import mouse from '../img/icon/Mouse-alt.png'
 import arrows from '../img/icon/Arrows.svg'
 import off from '../img/icon/ShoppingIconic.png'
-import cardFolding from '../img/icon/CardsFolding.png'
+import cardFolding from '../img/icon/Cards-Folding.png'
 import pie from '../img/icon/Group3452.png'
 import income from '../img/icon/IncomeIconic.png'
 
@@ -35,7 +35,7 @@ export default function Home() {
         }
       `}</style>
       <main className="main-page flex-wrap">
-        <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4">
+        <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4 pe-5">
             <h1 className='fs-1 '>
               گیفت {" "} 
               <Image src={card} width={36} height={24}/> {" "} 
@@ -94,22 +94,22 @@ export default function Home() {
             <div className="col-6 col-md-3">
               <button 
               onClick={e=>setActive("day")}
-              className={"btn w-100 " + (active!=="day"? "primary-outline": "primary-gradient")}>امروز</button>
+              className={"btn w-100 " + (active!=="day"? "primary-outline py-3": "primary-gradient py-3")}>امروز</button>
             </div>
             <div className="col-6 col-md-3">
               <button 
               onClick={e=>setActive("week")}
-              className={"btn w-100 " +( active!=="week"? "primary-outline": "primary-gradient")}>هفته اخیر</button>
+              className={"btn w-100 " +( active!=="week"? "primary-outline py-3": "primary-gradient py-3")}>هفته اخیر</button>
             </div>
             <div className="col-6 col-md-3">
               <button 
               onClick={e=>setActive("month")}
-              className={"btn w-100 " + (active!=="month"? "primary-outline": "primary-gradient")}>ماه گذشته</button>
+              className={"btn w-100 " + (active!=="month"? "primary-outline py-3": "primary-gradient py-3")}>ماه گذشته</button>
             </div>
             <div className="col-6 col-md-3">
               <button 
               onClick={e=>setActive("6month")}
-              className={"btn w-100 " + (active!=="6month"? "primary-outline": "primary-gradient")}>شش ماه اخیر</button>
+              className={"btn w-100 " + (active!=="6month"? "primary-outline py-3": "primary-gradient py-3")}>شش ماه اخیر</button>
             </div>
           </div>
 
@@ -118,7 +118,7 @@ export default function Home() {
       <SimilarCards product={undefined} title={
             <span>{"محصولات"} <span className='text-secondary'>فروشگاه </span></span>
         }/>
-        <div className="d-flex justify-content-end mb-3">
+        <div className="d-flex justify-content-end my-5">
           <div className="bgimage flex-grow-1 position-relative mx-2" >
           <Image
             alt="Mountains"

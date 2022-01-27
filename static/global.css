@@ -1,5 +1,5 @@
 @import './colors.css';
-/* @import './fonts.css'; */
+@import './fonts.css';
 @import './header.css';
 @import './footer.css';
 @import './home.css';
@@ -14,6 +14,8 @@
 @import './profile.css';
 html{
     font-size: 90%;
+}
+body {
 }
 body a{
     text-decoration: none;

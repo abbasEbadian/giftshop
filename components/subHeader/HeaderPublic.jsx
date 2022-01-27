@@ -10,6 +10,12 @@ function HeaderPublic() {
   const [menuopen, setMenuopen] = React.useState(false);
 
   return <header className="header-public">
+    {/* <Link href="/shop">
+      <a>
+
+      </a>
+    </Link> */}
+    {/* <Image src={}alt={} width={"100%"} height={} /> */}
         <Offcanvas
               show={menuopen}
               onHide={(e) => setMenuopen(false)}
