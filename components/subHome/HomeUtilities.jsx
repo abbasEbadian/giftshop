@@ -17,7 +17,7 @@ function HomeUtilities() {
   return<article className='home-utilities py-5'>
     <div className="row justify-content-center w-100">
       {items.map((item, idx)=>{
-        return <div className="col-md-2 col-sm-4 col-6 item">
+        return <div className="col-md-2 col-sm-4 col-4 item">
           <div className="d-flex flex-column align-items-center justify-content-center">
           <div className="image-container"><Image src={item.image} width={60} height={60}/></div>
           <span className='mt-auto text-center'>

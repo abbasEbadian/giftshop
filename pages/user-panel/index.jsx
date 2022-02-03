@@ -7,7 +7,9 @@ function Products() {
     <>
       <div className="container">
         <div className="row">
-          <ProfileAside active="purchase_report" />
+          <div className="col-md-3" >
+            <ProfileAside active="purchase_report" />
+          </div>
           <div className="col-md-9">
             <h5 class="text-basket py-3">
               گزارش <span>خریدها</span>

@@ -1,4 +1,4 @@
-/* @font-face {
+@font-face {
 	font-family: IRANSans;
 	font-style: normal;
 	font-weight: 900;
@@ -9,7 +9,7 @@
 		 url('./fonts/iransans/ttf/IRANSansWeb_Black.ttf') format('truetype');
 }
 @font-face {
-	font-family: IRANSansBold;
+	font-family: IRANSans;
 	font-style: normal;
 	font-weight: bold;
 	src: url('./fonts/iransans/eot/IRANSansWeb_Bold.eot');
@@ -20,7 +20,7 @@
 }
 
 @font-face {
-	font-family: IRANSansLight;
+	font-family: IRANSans;
 	font-style: normal;
 	font-weight: 300;
 	src: url('./fonts/iransans/eot/IRANSansWeb_Light.eot');
@@ -30,7 +30,7 @@
 		 url('./fonts/iransans/ttf/IRANSansWeb_Light.ttf') format('truetype');
 }
 @font-face {
-	font-family: IRANSansUltraLight;
+	font-family: IRANSans;
 	font-style: normal;
 	font-weight: 200;
 	src: url('./fonts/iransans/eot/IRANSansWeb_UltraLight.eot');
@@ -40,7 +40,7 @@
 		 url('./fonts/iransans/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
 }
 @font-face {
-	font-family: IRANSans2;
+	font-family: IRANSans;
 	font-style: normal;
 	font-weight: normal;
 	src: url('./fonts/iransans/eot/IRANSansWeb.eot');
@@ -48,10 +48,10 @@
 		 url('./fonts/iransans/woff2/IRANSansWeb.woff2') format('woff2'),  
 		 url('./fonts/iransans/woff/IRANSansWeb.woff') format('woff'),  
 		 url('./fonts/iransans/ttf/IRANSansWeb.ttf') format('truetype');
-} */
+} 
 
-/* @font-face {
-	font-family: IRANSansMedium;
+ @font-face {
+	font-family: IRANSans;
 	font-style: normal;
 	font-weight: 500;
 	src: url('./fonts/iransans/eot/IRANSansWeb_Medium.eot');
@@ -62,5 +62,5 @@
 }
 *{
 	font-family: IRANSans !important;
-} */
-@import url('https://farsifont.github.io/css/iransans.css');
+}
+/* @import url('https://farsifont.github.io/css/iransans.css'); */

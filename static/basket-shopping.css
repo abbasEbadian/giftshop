@@ -1,0 +1,173 @@
+.text-basket {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .text-basket span {
+    color: var(--color-orange);
+  }
+  .content-shopping {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0px 4px 10px 5px #eee;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 25px 0;
+  }
+  .info-content-shoppping > div {
+    margin: 15px 0;
+  }
+  .bs-pr {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-blue);
+  }
+  .pr-cou {
+    display: flex;
+    justify-content: space-between;
+  }
+  .pr-cou .bi-star-fill {
+    color: var(--color-yellow);
+  }
+  .add-fav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .like {
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+  }
+  
+  .like__input {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+  }
+  
+  .like__img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+  
+  .like__img--default {
+    visibility: visible;
+    transition: 0.2s ease;
+  }
+  
+  .like:hover .like__img--default {
+    opacity: 0.7;
+  }
+  
+  .like__img--selected {
+    visibility: hidden;
+  }
+  
+  .like__input:checked ~ .like__img--default {
+    visibility: hidden;
+  }
+  
+  .like__input:checked ~ .like__img--selected {
+    visibility: visible;
+    animation: like_animation 0.3s;
+  }
+  
+  @keyframes like_animation {
+    from {
+      transform: scale(1.2);
+    }
+  }
+  .pr-count {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .counter-basket,
+  .counter-basket input {
+    width: 100px;
+    display: flex;
+    position: relative;
+    background-color: #f1f2f6;
+    border: none;
+    border-radius: 8px;
+    padding: 3px;
+    text-align: center;
+  }
+  .counter-basket input,
+  .counter-basket button {
+    border: none;
+    background-color: transparent;
+  }
+  /* .counter-basket input:focus {
+      border: 1px solid var(--color-blue);
+  } */
+  .counter-basket button:first-child {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    z-index: 10;
+  }
+  .counter-basket button:last-child {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    z-index: 10;
+  }
+  .show-pr {
+    border-radius: 8px;
+    border: 1px solid var(--color-purple);
+    padding: 5px;
+  }
+  
+  .delete-card {
+    border: 1px solid var(--color-orange);
+    border-radius: 8px;
+    color: var(--color-orange);
+    padding: 5px;
+    text-align: center;
+    width: 175px;
+  }
+  .delete-card a {
+    color: var(--color-orange);
+    font-weight: 400;
+    display: block;
+  }
+  
+  .accept-pay {
+    background: linear-gradient(to bottom left, #36c773, #75eea8);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .accept-pay a {
+    color: var(--color-white);
+    font-weight: 600;
+    display: block;
+    padding: 15px;
+  }
+  
+  .cancel-pay {
+    border: 2px solid var(--color-orange);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .cancel-pay a {
+    color: var(--color-orange);
+    font-weight: 600;
+    display: block;
+    padding: 15px;
+  }
+  .button-basket {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+  }

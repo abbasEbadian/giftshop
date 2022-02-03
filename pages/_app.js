@@ -11,9 +11,12 @@ import BottomNavigation from '../components/BottomNavigation'
 
 export default function MyApp({ Component, pageProps }) {
   const [value, setValue] = React.useState(0)
+  const [basket, setBasket] = React.useState([])
+
   return (<>
-    <Header />
-    <Component {...pageProps} />
+    <Header/>
+    <h1>{basket.length}</h1>
+    <Component {...pageProps} setBasket={setBasket}  />
     <Box sx={{ width: "100%" }}>
       <BottomNavigation/>
     </Box>

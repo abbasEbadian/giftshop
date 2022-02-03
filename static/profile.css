@@ -1,7 +1,7 @@
-#profile-aside li.active{
+.profile-aside .sidebar-item.active{
     background-color:rgba(147, 202, 245, 1);
 }
-#profile-aside li.active i{
+.profile-aside .sidebar-item.active i{
     color:#fff;
     opacity: 1;
 }

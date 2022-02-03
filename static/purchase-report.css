@@ -1,0 +1,56 @@
+.all-card-report {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.card-report {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    width: 31.333333% !important;
+    box-shadow: 0px 0px 5px 2px #eee;
+    padding: 0.5rem;
+    border-radius: 10px;
+    margin: 0 0 25px;
+}
+.card-profile-tab {
+    border: 1px solid var(--color-blue);
+    border-radius: 10px;
+}
+.card-profile-tab ul li  {
+    border-bottom: 1px solid var(--color-blue);
+    padding: 8px;
+}
+.card-profile-tab ul li:last-child  {
+    border-bottom: unset;
+}
+
+.card-profile-tab ul li a {
+    font-weight: bold;
+    margin-right: 4rem;
+    text-align: center;
+}
+
+.card-profile-tab ul li:active  {
+    background-color: var(--color-blue);
+}
+.card-profile-tab ul li i {
+    color: var(--color-blue);
+}
+
+.text-basket {
+    text-align: center;
+}
+
+  .info-card-report1 > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  .info-card-report1 > div p:first-child {
+    font-weight: 500;
+  }
+  .info-card-report1 {
+      width: 100%;
+  }

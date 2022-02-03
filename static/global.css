@@ -12,10 +12,14 @@
 @import './blog.css';
 @import './singleBlog.css';
 @import './profile.css';
+@import './purchase-report.css';
+@import './login.css';
+@import './basket-shopping.css';
 html{
     font-size: 90%;
 }
 body {
+    font-family: IRANsans , sans-serif;
 }
 body a{
     text-decoration: none;

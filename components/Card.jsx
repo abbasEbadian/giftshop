@@ -1,10 +1,10 @@
 import React from "react";
-import visaImage from "../img/card/visa.png";
-import visaImageLayered from "../img/card/visa-layered.png";
-import appleImage from "../img/card/apple.png";
-import appleImageLayered from "../img/card/apple-layered.png";
-import paypalImage from "../img/card/paypal.png";
-import paypalImageLayered from "../img/card/mastercard-layered.png";
+import visaImage from "../img/card/VisaCard.png";
+import visaImageLayered from "../img/card/VisaCard.png";
+import appleImage from "../img/card/Apple.png";
+import appleImageLayered from "../img/card/Apple.png";
+import paypalImage from "../img/card/Pubg.png";
+import paypalImageLayered from "../img/card/MasterCard.png";
 import Image from "next/image";
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
@@ -64,7 +64,7 @@ function Card({
                   <i></i>
                 )}
                 <span>
-                  {data.price} {" تومان "}{" "}
+                  {/* {data.price} {" تومان "}{" "} */}
                 </span>
                 <span></span>
               </div>
@@ -80,7 +80,7 @@ function Card({
             <span onClick={(e) => setCount((c) => Math.max(1, c - 1))}>-</span>
           </div>
           <span>
-            {data.price} {" تومان "}{" "}
+            {Number(data.price).toLocaleString()} {" تومان "}{" "}
           </span>
           <button className="success-gradient">افزودن به سبد</button>
         </div>
@@ -98,6 +98,7 @@ function Card({
             dir="ltr"
           >
             <Rating
+            className="star-color"
               name="simple-controlled"
               value={newRating}
               onChange={(event, newValue) => {

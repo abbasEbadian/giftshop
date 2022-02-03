@@ -3,7 +3,7 @@ import Slider from "@mui/material/Slider";
 import { Select, MenuItem, FormControl, Button } from "@mui/material";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-function ShopFilters({ min_value = 0, max_value, mainCards, setCards }) {
+function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategory }) {
   const minDistance = 10;
 
   const [value1, setValue1] = React.useState([min_value, max_value]);
@@ -35,10 +35,13 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards }) {
   };
   const toggleCategory = (name) => {
     if (selectedCategories.includes(name)) {
-      setSelectedCategories((c) => c.filter((i) => i !== name));
+      setSelectedCategories((state) => state.filter((i) => i !== name));
     } else {
       setSelectedCategories([...selectedCategories, name]);
     }
+    
+    if(selectedCategories.length === 0) setCategory(undefined)
+    else setCategory(selectedCategories[0])
   };
   const handleChange1 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {

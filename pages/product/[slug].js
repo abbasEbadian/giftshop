@@ -27,7 +27,7 @@ function Product() {
         کارت <span className="text-secondary">انتخابی</span>
       </h1>
       {product ? (
-        <div className="row mt-5">
+        <div className="row mt-5 product-list-gift">
           <div className="col-12 col-md-4">
             <Card data={product} favoriteAndRate />
           </div>
@@ -35,7 +35,7 @@ function Product() {
             <h2>{product.name}</h2>
             <div className="row my-4">
               <div className="col-6 col-md-3 mb-2">
-                <span className="text-primary  fs-5">قیمت</span>
+                <span className="text-primary  fs-5 d-block">قیمت</span>
                 <br />
                 <span className="pt-3 mt-3">
                   {product.price}
@@ -43,17 +43,17 @@ function Product() {
                 </span>
               </div>
               <div className="col-6 col-md-3 mb-2">
-                <span className="text-primary mb-3 fs-5">کشور</span>
+                <span className="text-primary fs-5 d-block">کشور</span>
                 <br />
                 <span className="pt-3 mt-3">{product.country}</span>
               </div>
               <div className="col-6 col-md-3 mb-2">
-                <span className="text-primary mb-3 fs-5">دسته بندی</span>
+                <span className="text-primary  fs-5 d-block">دسته بندی</span>
                 <br />
                 <span className="pt-3 mt-3">{product.category}</span>
               </div>
               <div className="col-6 col-md-3 mb-2">
-                <span className="text-primary mb-3 fs-5">امتیاز مشتریان</span>
+                <span className="text-primary  fs-5 d-block">امتیاز مشتریان</span>
                 <br />
                 <span className="pt-3 mt-3">
                   {product.rate} {"(6)"}
@@ -76,7 +76,7 @@ function Product() {
               <span className="border rounded p-2">
                 {product.price} {" تومان "}{" "}
               </span>
-              <button className="success-gradient px-3">افزودن به سبد</button>
+              <button className="success-gradient px-3">افزودن به سبد خرید</button>
             </div>
           </div>
         </div>
@@ -99,14 +99,7 @@ function Product() {
       <SendFeedback product={product} />
       <Reviews />
 
-      <div className="fixed">
-        <div className="col-6 text-center" onClick={(e) => setActive("filter")}>
-          فیلتر
-        </div>
-        <div className="col-6 text-center" onClick={(e) => setActive("main")}>
-          مشاهده محسول
-        </div>
-      </div>
+     
     </div>
   );
 }
