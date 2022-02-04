@@ -158,18 +158,19 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
             disableSwap
             marks
             isRtl={true}
-            step={50}
+            step={5000}
             min={0}
-            max={max_value}
+            max={max_value }
           />
 
-          <div className="drops d-flex align-items-center">
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+          <div className="drops d-flex align-items-center w-100">
+            <FormControl sx={{ m: 1, flexGrow: 1}}>
               <Select
                 value={value1[0]}
                 onChange={handleMinPriceChange}
                 displayEmpty
                 inputProps={{ "aria-label": "Without label" }}
+                sx={{ padding: 0 }}
               >
                 {values.length
                   ? values.map((i, idx) => {
@@ -183,7 +184,7 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
               </Select>
             </FormControl>
             {" تا "}
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <FormControl sx={{ m: 1, flexGrow: 1 }}>
               <Select
                 value={value1[1]}
                 onChange={handleMaxPriceChange}
@@ -213,7 +214,7 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
             valueLabelDisplay="auto"
             getAriaValueText={valuetext}
             disableSwap
-            marks={Array.from({ length: 5 }, (_, i) => i + 1).map((i) => {
+            marks={[1,2,3,4,5].map((i) => {
               return { value: i, label: i };
             })}
             isRtl={true}

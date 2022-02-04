@@ -2,34 +2,43 @@ import React from "react";
 import ShopFilters from "../../components/ShopFilters";
 import ShopCards from "../../components/ShopCards";
 import { cards } from "../../data";
-
+import axios from 'axios' 
 function Shop() {
   const [filteredCards, setFilteredCards] = React.useState([]);
+  const [cards, setCards] = React.useState([]);
   const [active, setActive] = React.useState(false);
   const [category, setCategory] = React.useState(undefined)
   React.useEffect(() => {
-    setFilteredCards(cards);
-  }, [cards]);
+    axios.get("http://130.185.78.233:8000/api/cards/all").then((response)=>{
+      const {data} = response
+      console.log(Array.isArray(data));
+      if(data.length >=-1 && typeof window !=="undefined"){
+
+        setCards(data || [])
+        setFilteredCards(data)
+      }
+    }).catch(err=>{console.log(err)})
+  }, [axios]);
 
   return (
     <div className="shop-main">
       <div className="row ">
         <div className="col-12 col-md-3">
-          <ShopFilters
+          {cards && cards.length > 0?<ShopFilters
             mainCards={cards}
             setCards={setFilteredCards}
             setCategory={setCategory}
             min_value={Math.min(
               ...cards.map((i) => {
-                return i.realPrice;
+                return i.price;
               })
             )}
             max_value={Math.max(
               ...cards.map((i) => {
-                return i.realPrice;
+                return i.price;
               })
             )}
-          />
+          />:null}
         </div>
 
         <div className="col-12 col-md-9">
@@ -43,14 +52,7 @@ function Shop() {
           </h1>
           <ShopCards cards={filteredCards} />
         </div>
-        <div className="fixed">
-        <div className="col-6 text-center" onClick={(e) => setActive("filter")}>
-          فیلتر
-        </div>
-        <div className="col-6 text-center" onClick={(e) => setActive("main")}>
-          مشاهده محسول
-        </div>
-      </div>
+        
       </div>
     </div>
   );

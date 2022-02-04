@@ -43,20 +43,21 @@ function Card({
     }
   };
   return (
-    <div className="single-card">
+    <div className="single-card px-3">
       <div className="data-container position-relative">
-        <Image src={get_image_src(data.category)} />
+        <Image src={get_image_src(data.brand_id.name)} />
         <Link href={{ pathname: "/product/[slug]", query: { slug: +data.id } }}>
           <a>
-            <div className="data position-absolute p-3 top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
-              <div className="d-flex align-items-center justify-content-between">
-                <span dir="ltr">
-                  ${Number(data.realPrice).toLocaleString()}
-                </span>
-                <span>{capit(data.category)} Card</span>
+            <div className="data position-absolute top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
+              <div className="d-none align-items-center p-4 px-5 justify-content-between">
+                
+                {/* <span>{capit(data.brand_id.name)} Card</span> */}
               </div>
+              <span dir="ltr" className="price">
+                  ${Number(data.real_price).toLocaleString()}
+                </span>
               <div className="d-flex align-items-center justify-content-between">
-                {showRate ? (
+                {showRate && false ? (
                   <span>
                     {data.rate} <StarIcon />
                   </span>

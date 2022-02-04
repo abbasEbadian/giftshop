@@ -15,7 +15,7 @@ export default function MyApp({ Component, pageProps }) {
 
   return (<>
     <Header/>
-    <h1>{basket.length}</h1>
+    
     <Component {...pageProps} setBasket={setBasket}  />
     <Box sx={{ width: "100%" }}>
       <BottomNavigation/>

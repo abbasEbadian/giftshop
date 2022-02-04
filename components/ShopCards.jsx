@@ -11,7 +11,7 @@ function ShopCards({ cards }) {
                   return (
                     <div
                       key={idx}
-                      className="col-xxl-3 col-xl-4 col-sm-2 col-12"
+                      className="col-xl-4 col-sm-6 col-12"
                     >
                       <Card data={i} addToCard showRate />
                     </div>

@@ -58,7 +58,7 @@
   display: none;
 }
 .MuiSelect-select {
-  padding-block: 10px;
+  padding: 10px;
 }
 .MuiSlider-markLabel {
   top: 42px;
@@ -72,8 +72,15 @@
   width: 100%;
   padding: 10px;
   margin: 25px 0 15px;
+  position: relative;
 }
+.single-card .price {
+  position: absolute;
+  font-size: clamp(18px,3vw, 24px) ;
+  right: 27%;
+  top: 30%;
 
+}
 .add-to-card-container {
   user-select: none;
   margin-top: 16px;
