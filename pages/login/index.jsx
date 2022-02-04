@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import LoginImage from "../../img/login/img-login.png"
 
-function index() {
+function Login() {
   const [active, setActive] = React.useState(false)
   return (
   <div class="login">
@@ -72,6 +72,6 @@ function index() {
 );
 }
 
-export default index;
+export default Login;
 
 

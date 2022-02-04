@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import VisaCard from "../../img/card/visacard.png";
 import ProfileAside from '../../components/ProfileAside'
-import {get_image_name} from '../utils'
+// import {get_image_name} from '../utils'
 
-function Products() {
+function PurchaseReport() {
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     setProducts([
@@ -60,7 +60,7 @@ function Products() {
                 products.map((item, idx) => {
                   return (
                     <div className="col-12 col-md-5 col-lg-4  card-report">
-                      <Image className=" " src={get_image_name(item.type)}></Image>
+                      {/* <Image className=" " src={get_image_name(item.type)}></Image> */}
                       <div className="info-card-report1">
                         <div>
                           <p className="fw-bold">{item.name}</p>
@@ -85,4 +85,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default PurchaseReport;

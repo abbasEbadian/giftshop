@@ -15,7 +15,7 @@ import googleplay from "../img/card/googleplay.png";
 import leagueoflegends from "../img/card/leagueoflegends.png";
 import netflix from "../img/card/netflix.png";
 import nintendo from "../img/card/nintendo.png";
-import playstaion from "../img/card/playstaion.png";
+import playstaion from "../img/card/playstation.png";
 import pubg from "../img/card/pubg.png";
 import roblex from "../img/card/roblex.png";
 import skype from "../img/card/skype.png";
