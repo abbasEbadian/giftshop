@@ -1,10 +1,24 @@
 import React from "react";
-import visaImage from "../img/card/VisaCard.png";
-import visaImageLayered from "../img/card/VisaCard.png";
-import appleImage from "../img/card/Apple.png";
-import appleImageLayered from "../img/card/Apple.png";
-import paypalImage from "../img/card/Pubg.png";
-import paypalImageLayered from "../img/card/MasterCard.png";
+import visaImage from "../img/card/visacard.png";
+import visaImageLayered from "../img/card/visacard.png";
+import appleImage from "../img/card/apple.png";
+import appleImageLayered from "../img/card/apple.png";
+import paypalImage from "../img/card/paypal.png";
+import mastercard from "../img/card/mastercard.png";
+import paypalImageLayered from "../img/card/mastercard.png";
+import amazon from "../img/card/amazon.png";
+import apex from "../img/card/apex.png";
+import applemusic from "../img/card/applemusic.png";
+import blizard from "../img/card/blizard.png";
+import gold from "../img/card/gold.png";
+import googleplay from "../img/card/googleplay.png";
+import leagueoflegends from "../img/card/leagueoflegends.png";
+import netflix from "../img/card/netflix.png";
+import nintendo from "../img/card/nintendo.png";
+import playstaion from "../img/card/playstaion.png";
+import pubg from "../img/card/pubg.png";
+import roblex from "../img/card/roblex.png";
+import skype from "../img/card/skype.png";
 import Image from "next/image";
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
@@ -28,15 +42,22 @@ function Card({
 
   const get_image_src = (type) => {
     switch (type) {
-      case "visa":
-        return layered ? visaImageLayered : visaImage;
-        break;
-      case "apple":
-        return layered ? appleImageLayered : appleImage;
-        break;
-      case "paypal":
-        return layered ? paypalImageLayered : paypalImage;
-        break;
+      case "visa": return layered ? visaImageLayered : visaImage;
+      case "apple": return layered ? appleImageLayered : appleImage;
+      case "paypal": return layered ? paypalImageLayered : paypalImage;
+      case "mastercard": return layered ? paypalImageLayered : mastercard;
+      case "amazon": return  amazon;
+      case "apex": return  apex;
+      case "leagueoflegends": return  leagueoflegends;
+      case "blizard": return  blizard;
+      case "gold": return  gold;
+      case "googleplay": return  googleplay;
+      case "netflix": return  netflix;
+      case "nintendo": return  nintendo;
+      case "playstaion": return  playstaion;
+      case "pubg": return  pubg;
+      case "roblex": return  roblex;
+      case "skype": return  skype;
       default:
         return layered ? visaImageLayered : visaImage;
         break;
