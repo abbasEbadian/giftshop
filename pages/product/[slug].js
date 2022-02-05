@@ -1,21 +1,18 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { cards } from "../../data";
 import Card from "../../components/Card";
 import SimilarCards from "../../components/SimilarCards";
 import SendFeedback from "../../components/SendFeedback";
 import Reviews from "../../components/Reviews";
 import Image from "next/image";
 import logos from "../../img/card/logos.png";
-import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import { FavoriteIcon, LocationOnIcon } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 function Product() {
   const router = useRouter();
   const pid = router.query.slug;
   const [product, setProduct] = React.useState(undefined);
   const [count, setCount] = React.useState(1);
-
-  const [active, setActive] = React.useState("main");
+  const cards = useSelector(state=>state.main.cards)
   React.useEffect(() => {
     const p = cards.filter((i) => i.id === +pid);
     if (p) setProduct(p[0]);
@@ -45,26 +42,22 @@ function Product() {
               <div className="col-6 col-md-3 mb-2">
                 <span className="text-primary fs-5 d-block">کشور</span>
                 <br />
-                <span className="pt-3 mt-3">{product.country}</span>
+                <span className="pt-3 mt-3">{product.country_id?.name}</span>
               </div>
               <div className="col-6 col-md-3 mb-2">
                 <span className="text-primary  fs-5 d-block">دسته بندی</span>
                 <br />
-                <span className="pt-3 mt-3">{product.category}</span>
+                <span className="pt-3 mt-3">{product.brand_id?.persian_name} ({product.brand_id?.name})</span>
               </div>
               <div className="col-6 col-md-3 mb-2">
                 <span className="text-primary  fs-5 d-block">امتیاز مشتریان</span>
                 <br />
                 <span className="pt-3 mt-3">
-                  {product.rate} {"(6)"}
+                  {product.rate} {"("+product.reviews_count+")"}
                 </span>
               </div>
             </div>
-            <p className="mt-3">
-              توضیحات در مورد کارت و موارد استفاده از آن توضیحات در مورد کارت و
-              موارد استفاده از آن توضیحات در مورد کارت و موارد استفاده از آن
-              توضیحات در مورد کارت و موارد استفاده از آن مورد
-            </p>
+            <p className="mt-3">{product.description}</p>
             <div className="add-to-card-container d-flex justify-content-between align-items-center">
               <div dir="ltr" className="counter">
                 <span onClick={(e) => setCount((c) => (c += 1))}>+</span>

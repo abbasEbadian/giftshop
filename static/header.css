@@ -449,7 +449,7 @@ header .burger-line:nth-child(4) {
   margin-left: auto;
 }
 .header-public .links a {
-  font-size: max(1.3vw, 16px);
+  font-size: clamp(15px, 1.3vw , 20px);
   position: relative;
   font-weight: 400;
   display: block;
@@ -510,15 +510,33 @@ header .burger-line:nth-child(4) {
   width: 540px;
   border-radius: 0;
   margin-top: 0px;
+  align-items: center;
+  justify-content: flex-start;
 }
+
 .mega-menu li.mega-menu-column {
   width: 18%;
 }
-
+.mega-menu li:hover a{
+  transform: translateX(-6px);
+}
+.mega-menu li svg{
+  width: 16px;
+}
+.mega-menu li:hover svg{
+    color: #e95950;
+}
+.mega-menu li * {
+  transition: 0.2s;
+}
 .mega-menu li {
   list-style: none;
   font-size: 0.94rem;
   padding: 3px 0px;
+  width: max(calc(100% / 5), 100px);
+  text-align: right;
+  display: flex;
+  align-items: center;
 }
 .dropdown .dropdown-menu .nav-header {
   padding-right: 20px;
@@ -539,7 +557,6 @@ header .burger-line:nth-child(4) {
   right: 0;
   left: 0;
   display: flex;
-  justify-content: space-between;
   transition: all 0.3s ease-in-out;
   z-index: 10000000;
   min-height: 300px;

@@ -3,28 +3,18 @@ import Slider from "@mui/material/Slider";
 import { Select, MenuItem, FormControl, Button } from "@mui/material";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategory }) {
-  const minDistance = 10;
+import { useSelector } from "react-redux";
+import Link from "next/link";
+function ShopFilters({ min_value = 0, max_value=50000, setCards, brand_name=null }) {
+  const minDistance = 5000;
 
   const [value1, setValue1] = React.useState([min_value, max_value]);
   const [rateValue, setRateValue] = React.useState([1, 5]);
   const [values, setValues] = React.useState([]);
   const [selectedCountries, setSelectedCountries] = React.useState([]);
-  const [selectedCategories, setSelectedCategories] = React.useState([]);
-  const countries = [
-    { name: "امارات", symbol: "UAE" },
-    { name: "آمریکا", symbol: "USA" },
-    { name: "آلمان", symbol: "GERMANY" },
-    { name: "چین", symbol: "CHINA" },
-    { name: "فرانسه", symbol: "FRANCE" },
-    { name: "روسیه", symbol: "RUSSIA" },
-  ];
-  const categories = [
-    { name: "Apple" },
-    { name: "Visa" },
-    { name: "Paypal" },
-    { name: "PlayStation" },
-  ];
+  const countries = useSelector(state=>state.main.countries)
+  const categories = useSelector(state=>state.main.brands)
+  const mainCards = useSelector(state=>state.main.cards)
 
   const toggleCountry = (symbol) => {
     if (selectedCountries.includes(symbol)) {
@@ -33,16 +23,7 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
       setSelectedCountries([...selectedCountries, symbol]);
     }
   };
-  const toggleCategory = (name) => {
-    if (selectedCategories.includes(name)) {
-      setSelectedCategories((state) => state.filter((i) => i !== name));
-    } else {
-      setSelectedCategories([...selectedCategories, name]);
-    }
-    
-    if(selectedCategories.length === 0) setCategory(undefined)
-    else setCategory(selectedCategories[0])
-  };
+  
   const handleChange1 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
       return;
@@ -82,31 +63,18 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
 
   const resetFilters = () => {
     setSelectedCountries([]);
-    setSelectedCategories([]);
-    setValue1([min_value, max_value]);
+    setValue1([0, max_value]);
     setRateValue([1, 5]);
   };
   React.useEffect(() => {
     let a = [];
-    for (let index = min_value; index <= max_value; index += 10) {
+    for (let index = 0; index <= max_value+10000; index += 10000) {
       a.push(index);
     }
     setValues(a);
   }, []);
 
-  React.useEffect(() => {
-    if (selectedCategories.length) {
-      setCards(
-        mainCards.filter((i) =>
-          selectedCategories
-            .map((i) => i.toLowerCase())
-            .includes(i.category.toLowerCase())
-        )
-      );
-    } else {
-      setCards(mainCards);
-    }
-  }, [selectedCategories]);
+  
 
   React.useEffect(() => {
     setCards(
@@ -117,7 +85,7 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
   React.useEffect(() => {
     setCards(
       mainCards.filter(
-        (i) => i.realPrice >= value1[0] && i.realPrice <= value1[1]
+        (i) => i.price >= value1[0] && i.price <= value1[1]
       )
     );
   }, [value1]);
@@ -128,7 +96,7 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
         mainCards.filter((i) =>
           selectedCountries
             .map((i) => i.toLowerCase())
-            .includes(i.country.toLowerCase())
+            .includes(i.country_id.symbol.toLowerCase())
         )
       );
     } else {
@@ -150,18 +118,18 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
       <div className="product-list-gift">
         <div className="filter filter-price mt-5">
           <span className="title">قیمت</span>
-          <Slider
+          {mainCards.length?<Slider
             getAriaLabel={() => "price"}
             value={value1}
             onChange={handleChange1}
             valueLabelDisplay="auto"
             disableSwap
             marks
-            isRtl={true}
-            step={5000}
+            isRtl
+            step={10000}
             min={0}
-            max={max_value }
-          />
+            max={values[values.length-1]}
+          />:null}
 
           <div className="drops d-flex align-items-center w-100">
             <FormControl sx={{ m: 1, flexGrow: 1}}>
@@ -248,21 +216,13 @@ function ShopFilters({ min_value = 0, max_value, mainCards, setCards, setCategor
           <div className="d-flex flex-wrap justify-content-evenly">
             {categories.map((i, idx) => {
               return (
-                <Button
+                <Link
                   key={idx}
                   component={"button"}
-                  endIcon={
-                    selectedCategories.includes(i.name) ? (
-                      <CheckBoxOutlinedIcon />
-                    ) : (
-                      <CheckBoxOutlineBlankIcon />
-                    )
-                  }
-                  onClick={(e) => toggleCategory(i.name)}
-                  className={"btn-transparent"}
-                >
+                  href={"/shop/"+i.slug_name}
+                ><a className={"btn-transparent category-item " + (i.slug_name === brand_name?"active": "")}>
                   {i.name}
-                </Button>
+                </a></Link>
               );
             })}
           </div>

@@ -1,24 +1,28 @@
 import React from "react";
-import visaImage from "../img/card/visacard.png";
-import visaImageLayered from "../img/card/visacard.png";
-import appleImage from "../img/card/apple.png";
-import appleImageLayered from "../img/card/apple.png";
-import paypalImage from "../img/card/paypal.png";
-import mastercard from "../img/card/mastercard.png";
-import paypalImageLayered from "../img/card/mastercard.png";
 import amazon from "../img/card/amazon.png";
 import apex from "../img/card/apex.png";
+import apple from "../img/card/apple.png";
 import applemusic from "../img/card/applemusic.png";
 import blizard from "../img/card/blizard.png";
 import gold from "../img/card/gold.png";
 import googleplay from "../img/card/googleplay.png";
 import leagueoflegends from "../img/card/leagueoflegends.png";
+import mastercard from "../img/card/mastercard.png";
 import netflix from "../img/card/netflix.png";
 import nintendo from "../img/card/nintendo.png";
-import playstaion from "../img/card/playstation.png";
+import paypal from "../img/card/paypal.png";
+import playstation from "../img/card/playstation.png";
 import pubg from "../img/card/pubg.png";
 import roblex from "../img/card/roblex.png";
 import skype from "../img/card/skype.png";
+import spotify from "../img/card/spotify.png";
+import steam from "../img/card/steam.png";
+import visacard from "../img/card/visacard.png";
+import warcraft from "../img/card/warcraft.png";
+import xbox from "../img/card/xbox.png";
+import visaImageLayered from "../img/card/visacard.png";
+import appleImageLayered from "../img/card/apple.png";
+import paypalImageLayered from "../img/card/mastercard.png";
 import Image from "next/image";
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
@@ -38,13 +42,14 @@ function Card({
   layered = false,
 }) {
   const [count, setCount] = React.useState(1);
-  const [newRating, setNewRating] = React.useState();
+  const [newRating, setNewRating] = React.useState(data.rate || 1);
 
   const get_image_src = (type) => {
     switch (type) {
-      case "visa": return layered ? visaImageLayered : visaImage;
-      case "apple": return layered ? appleImageLayered : appleImage;
-      case "paypal": return layered ? paypalImageLayered : paypalImage;
+      case "visacard": return layered ? visaImageLayered : visacard;
+      case "apple": return layered ? appleImageLayered : apple;
+      case "applemusic": return  applemusic;
+      case "paypal": return layered ? paypalImageLayered : paypal;
       case "mastercard": return layered ? paypalImageLayered : mastercard;
       case "amazon": return  amazon;
       case "apex": return  apex;
@@ -54,13 +59,16 @@ function Card({
       case "googleplay": return  googleplay;
       case "netflix": return  netflix;
       case "nintendo": return  nintendo;
-      case "playstaion": return  playstaion;
+      case "playstation": return  playstation;
       case "pubg": return  pubg;
       case "roblex": return  roblex;
       case "skype": return  skype;
+      case "spotify": return  spotify;
+      case "steam": return  steam;
+      case "warcraft": return  warcraft;
+      case "xbox": return  xbox;
       default:
-        return layered ? visaImageLayered : visaImage;
-        break;
+        return layered ? visaImageLayered : visacard;
     }
   };
   return (
@@ -120,12 +128,13 @@ function Card({
             dir="ltr"
           >
             <Rating
-            className="star-color"
+              className="star-color"
               name="simple-controlled"
               value={newRating}
               onChange={(event, newValue) => {
                 setNewRating(newValue);
               }}
+              readOnly
             />
             <span className="cursor-pointer">امتیاز دهید</span>
           </div>

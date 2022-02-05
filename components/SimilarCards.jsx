@@ -16,16 +16,16 @@ function SimilarCards({children, product, title, addToCard=false}) {
         spaceBetween={20}
         slidesPerView={4}
         breakpoints={{
-            360:{
+            300:{
                 slidesPerView: 1.2
             },
-            576:{
+            700:{
                 slidesPerView: 2.2,
             },
-            992:{
+            1200:{
                 slidesPerView: 3.2,
             },
-            1200:{
+            1600:{
                 slidesPerView: 4,
             }
         }}

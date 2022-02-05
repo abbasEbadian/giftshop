@@ -11,7 +11,8 @@ import income from "../img/icon/IncomeIconic.png";
 import logos from "../img/card/logos.png";
 import collapse from "../img/icon/Collapse.png";
 import why from "../img/other/why.png";
-import Box from "@mui/material/Box";
+
+
 import {
   ChevronLeft,
   Facebook,
@@ -25,9 +26,10 @@ import Link from "next/link";
 
 export default function Home() {
   const [active, setActive] = React.useState("day");
+  
   return (
     <>
-      <div className="mcontainer">
+      <div className="mcontainer mcontainer-bg">
         <Head>
           <title>GiftShop</title>
           <link rel="icon" href="/favicon.ico" />
@@ -58,9 +60,9 @@ export default function Home() {
               ویژه/پریمیوم، سهولت و کاهش هزینه‌ها در شارژ حساب‌های کاربری
               (پلی‌استیشن، آی‌تونز، گوگل‌پلی، اسپاتیفای،...) و کاربردهای دیگر
             </p>
-            <button className="btn success-gradient d-flex justify-content-between py-3 mt-3">
+            <button className="btn success-gradient d-flex justify-content-between  align-items-center mt-3">
               <Link href="/shop ">
-                <a className="text-white">جستجوی سریع و خرید کارت</a>
+                <a className="text-white py-3 w-75 text-end">جستجوی سریع و خرید کارت</a>
               </Link>
               <ChevronLeft />
             </button>

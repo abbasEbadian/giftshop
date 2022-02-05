@@ -14,12 +14,21 @@
   flex-wrap: wrap;
   padding: 0 16px;
 }
-.filter-category button {
+.shop-main .filter .drops .MuiSelect-select {
+  padding-right: 8px;
+}
+.filter-category .category-item.active {
+  border-right: 1px solid #ffc107;
+  background: linear-gradient(-90deg, rgba(255, 127,80, 0.2) 10%, transparent);
+}
+.filter-category .category-item {
   width: 100%;
   justify-content: space-between;
+  padding: 8px;
+  
 }
 
-.filter-category button span {
+.filter-category .category-item span {
   text-align: right;
 }
 .filter-country button.selected {

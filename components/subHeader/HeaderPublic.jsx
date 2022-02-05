@@ -6,48 +6,12 @@ import HomIcon from "../../img/icon/HomeIcon";
 import SearchIcon from "../../img/icon/SearchIcon";
 import ShoppingIcon from "../../img/icon/ShoppingIcon";
 import { Offcanvas } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 function HeaderPublic({basket}) {
   const [menuopen, setMenuopen] = React.useState(false);
   const [active, setActive] = React.useState(false);
-  const [catMegaMenu, setcatMegaMenu] = React.useState({
-    cat1: [
-      { nameCatMega: "گیفت کارت اپل" },
-      { nameCatMega: "گیفت کارت اپل" },
-      { nameCatMega: "گیفت کارت اپل" },
-      { nameCatMega: "گیفت کارت اپل" },
-      { nameCatMega: "گیفت کارت اپل" },
-    ],
-
-    cat2: [
-      { nameCatMega: "گیفت کارت اپل2" },
-      { nameCatMega: "گیفت کارت اپل2" },
-      { nameCatMega: "گیفت کارت اپل2" },
-      { nameCatMega: "گیفت کارت اپل2" },
-      { nameCatMega: "گیفت کارت اپل2" },
-    ],
-
-    cat3: [
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-    ],
-    cat4: [
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-    ],
-    cat5: [
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-      { nameCatMega: "گیفت کارت اپل3" },
-    ],
-  });
+  const brands = useSelector(state=>state.main.brands)
   return (
     <header className="header-public">
       {/* <Link href="/shop">
@@ -124,23 +88,14 @@ function HeaderPublic({basket}) {
               <a>فروشگاه</a>
               <div className={"list-show-menu" + (active ? " collapsed " : "")}>
                 <ul
-                  class="dropdown-menu mega-menu"
+                  class="dropdown-menu mega-menu d-flex flex-wrap"
                   // style={{ display: "block" }}
                 >
-                  {Object.keys(catMegaMenu).map((item, idx) => {
-                    return (
-                      <li class="mega-menu-column" key={idx}>
-                        <ul className="d-flex flex-column">
-                          {catMegaMenu[item].map((item2, idx) => {
-                            return (
-                              <li key={idx}>
-                                <a href="#">{item2.nameCatMega}</a>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </li>
-                    );
+                  {brands.map((item, idx)=>{
+                    return <li className="megamenu-item">
+                      <ArrowBackIosIcon />
+                    <Link href={"/shop/" + item.slug_name}><a className="megamenu-link">{item.persian_name}</a></Link>
+                    </li>
                   })}
                 </ul>
               </div>

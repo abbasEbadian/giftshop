@@ -8,19 +8,29 @@ import Box from '@mui/material/Box'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import BottomNavigation from '../components/BottomNavigation'
+import App from 'next/app'
+import {wrapper} from '../redux/store';
+import {get_initial_data} from '../redux/actions'
 
-export default function MyApp({ Component, pageProps }) {
-  const [value, setValue] = React.useState(0)
-  const [basket, setBasket] = React.useState([])
+import { useDispatch } from "react-redux";
+// static async getInitialProps({Component, ctx}){
+//   const appProps = Component.getInitialProps?   await Component.getInitialProps(ctx): {};
+//   console.log(appProps)
+//   return {appProps: appProps};
+// }
+const MyApp = ({Component, pageProps}) => {
+  const dispatch = useDispatch()
+  React.useEffect(()=>{
+    dispatch(get_initial_data())
+  }, [])
 
   return (<>
-    <Header/>
-    
-    <Component {...pageProps} setBasket={setBasket}  />
-    <Box sx={{ width: "100%" }}>
-      <BottomNavigation/>
-    </Box>
-    <Footer/>
-    </>
-  )
-}
+      <Header/>
+      <Component {...pageProps} />
+      <Box sx={{ width: "100%" }}>
+        <BottomNavigation/>
+      </Box>
+      <Footer/>
+  </>)
+};
+export default wrapper.withRedux(MyApp);

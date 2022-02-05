@@ -2,24 +2,33 @@ import React, { useEffect } from "react";
 import ShopFilters from "../../components/ShopFilters";
 import ShopCards from "../../components/ShopCards";
 import {useSelector} from 'react-redux'
+import { useRouter } from "next/router";
+import Head from "next/head";
 
 function Shop() {
-  const [filteredCards, setFilteredCards] = React.useState([]);
-  const [active, setActive] = React.useState(false);
-  const [category, setCategory] = React.useState(undefined)
-  
-  const cards = useSelector(state=>state.main.cards)
+  const router = useRouter();
 
-  useEffect(()=>{
-    setFilteredCards(cards)
-  },[cards])
+  const [filteredCards, setFilteredCards] = React.useState([]);
+  const [category, setCategory] = React.useState(undefined)
+  const brand_name = router.query.slug;
+
+  const cards = useSelector(state=>state.main.cards)
+  React.useEffect(() => {
+    const p = cards.filter((i) => i.brand_id.slug_name === brand_name);
+    setFilteredCards(p || []);
+  }, [cards, brand_name]);
+
+
   return (
     <div className="shop-main">
+       <Head>
+          <title>{brand_name} | GiftShop </title>
+        </Head>
       <div className="row ">
         <div className="col-12 col-md-3">
           <ShopFilters
             setCards={setFilteredCards}
-            setCategory={setCategory}
+            brand_name={brand_name}
             min_value={Math.min(
               ...cards.map((i) => {
                 return i.price;

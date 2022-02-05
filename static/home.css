@@ -1,11 +1,12 @@
+.mcontainer-bg{
+  background: linear-gradient(to left top, #eee, #fff);
+}
 main.main-page {
   position: relative;
   height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  background: linear-gradient(to left top, #eee, #fff);
-  margin: 0px -55px;
 }
 
 main.main-page .images div {
