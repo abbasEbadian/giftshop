@@ -1,7 +1,11 @@
 import React from 'react';
+import {Navigation, Pagination} from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {cards} from '../data'
 import Card from './Card'
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css';
 function SimilarCards({children, product, title, addToCard=false}) {
     const [products, setProducts] = React.useState([])
     React.useEffect(() => {
@@ -13,8 +17,11 @@ function SimilarCards({children, product, title, addToCard=false}) {
         <h1 className="text-center mt-5 mb-4">{title}</h1>
         {children}
         <Swiper
+        pagination={{ clickable: true }}
         spaceBetween={20}
         slidesPerView={4}
+        modules={[Navigation, Pagination]}
+        navigation
         breakpoints={{
             300:{
                 slidesPerView: 1.2

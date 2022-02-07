@@ -13,7 +13,7 @@ import SendIcon from "@mui/icons-material/Send";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
-
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 
 // function ProfileAside({active}) {
@@ -70,7 +70,10 @@ export default function ProfileAside({active}) {
   const  classes={selected: "active", root: "sidebar-item"}
   
   return (
-    <div className="col-md-3">
+    <div className="col-md-3 py-5">
+            <h4 className='font-weight-bold text-dark text-center pb-3 m-0'>
+            پنل کاربری
+                </h4>
       <List
        classes={{root: "profile-aside"}}
         sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
@@ -78,13 +81,13 @@ export default function ProfileAside({active}) {
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
-            Nested List Items
-          </ListSubheader>
+          
+            </ListSubheader>
         }
       >
         <ListItemButton component="a" href="/" selected={active==="purchase_report"} classes={classes}>
           <ListItemIcon>
-            <SendIcon />
+            <AccountBoxIcon />
           </ListItemIcon>
           <ListItemText primary="Sent mail" />
         </ListItemButton>

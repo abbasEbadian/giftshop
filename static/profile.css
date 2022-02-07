@@ -1,7 +1,13 @@
 .profile-aside .sidebar-item.active{
     background-color:rgba(147, 202, 245, 1);
+    border-radius: 15px 15px 0 0;
 }
 .profile-aside .sidebar-item.active i{
     color:#fff;
     opacity: 1;
+}
+.css-i7rae6-MuiList-root {
+    border: 1px solid var(--color-blue);
+    box-shadow: 0px 0 10px 2px #eee;
+    border-radius: 15px;
 }
