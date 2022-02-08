@@ -5,13 +5,14 @@ import logo from "../../img/logo/GS-03.png";
 import HomIcon from "../../img/icon/HomeIcon";
 import SearchIcon from "../../img/icon/SearchIcon";
 import ShoppingIcon from "../../img/icon/ShoppingIcon";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Offcanvas } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
-function HeaderPublic({basket}) {
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+function HeaderPublic({ basket }) {
   const [menuopen, setMenuopen] = React.useState(false);
   const [active, setActive] = React.useState(false);
-  const brands = useSelector(state=>state.main.brands)
+  const brands = useSelector((state) => state.main.brands);
   return (
     <header className="header-public">
       {/* <Link href="/shop">
@@ -38,7 +39,7 @@ function HeaderPublic({basket}) {
             </li>
             <li className="menu-item">
               <Link href="/shop">
-                <a>فروشگاه</a>
+                <a>گیفت کارت   </a>
               </Link>
             </li>
             <li className="menu-item">
@@ -48,7 +49,7 @@ function HeaderPublic({basket}) {
             </li>
             <li className="menu-item menu-item-child">
               <Link href="/about-us">
-                <a data-toggle="sub-menu">چرا ما؟</a>
+                <a data-toggle="sub-menu">درباره ما</a>
               </Link>
             </li>
 
@@ -71,8 +72,11 @@ function HeaderPublic({basket}) {
         </Offcanvas.Body>
       </Offcanvas>
       <div className="main-container">
-        <Image src={logo} height={"45px"} width={"200px"} />
-
+        <Link href="/">
+          <a>
+          <Image src={logo} height={"45px"} width={"200px"} />
+          </a>
+        </Link>
         <div className="links">
           <Link href="/">
             <a>
@@ -85,26 +89,28 @@ function HeaderPublic({basket}) {
               onMouseEnter={(e) => setActive(true)}
               onMouseLeave={(e) => setActive(false)}
             >
-              <a>فروشگاه</a>
+              <a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a>
               <div className={"list-show-menu" + (active ? " collapsed " : "")}>
                 <ul
                   class="dropdown-menu mega-menu d-flex flex-wrap"
                   // style={{ display: "block" }}
                 >
-                  {brands.map((item, idx)=>{
-                    return <li className="megamenu-item">
-                      <ArrowBackIosIcon />
-                    <Link href={"/shop/" + item.slug_name}><a className="megamenu-link">{item.persian_name}</a></Link>
-                    </li>
+                  {brands.map((item, idx) => {
+                    return (
+                      <li className="megamenu-item">
+                        <ArrowBackIosIcon />
+                        <Link href={"/shop/" + item.slug_name}>
+                          <a className="megamenu-link">{item.persian_name}</a>
+                        </Link>
+                      </li>
+                    );
                   })}
                 </ul>
               </div>
             </div>
           </Link>
           <Link href={"/about-us"}>
-            <a>چرا ما؟
-             
-            </a>
+            <a>درباره ما</a>
           </Link>
           <Link href="/contact-us">
             <a>تماس با ما</a>
@@ -112,7 +118,7 @@ function HeaderPublic({basket}) {
         </div>
 
         <div className="controls">
-          <input type="text" className="form-control" />
+          <input type="text" className="form-control" placeholder="جستجو کنید..." />
           <SearchIcon />
           <ShoppingIcon />
           <button className="btn primary-gradient rounded d-flex">

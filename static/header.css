@@ -441,7 +441,7 @@ header .burger-line:nth-child(4) {
   z-index: 999;
 }
 .header-public .links {
-  width: 28vw;
+  width: 25vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -449,11 +449,11 @@ header .burger-line:nth-child(4) {
   margin-left: auto;
 }
 .header-public .links a {
-  font-size: clamp(15px, 1.3vw , 20px);
+  font-size: clamp(15px, 1.3vw, 13px);
   position: relative;
   font-weight: 400;
   display: block;
-  padding: 10px;
+  padding: 10px 2px;
 }
 .header-public .links a.active {
   color: var(--primary);
@@ -486,23 +486,23 @@ header .burger-line:nth-child(4) {
   pointer-events: none;
   display: block;
   z-index: 99999;
-  transition: all 0.3s ;
+  transition: all 0.3s;
   background-color: white;
 }
 .header-public .list-show-menu.collapsed {
   opacity: 1;
   pointer-events: all;
-  transition: all 0.3s ;
+  transition: all 0.3s;
   background-color: white;
 }
 .header-public .list-show-menu:not(.collapsed) > ul {
   transform: translateY(60px);
-  transition:   0.3s ;
+  transition: 0.3s;
 }
 
 .header-public .list-show-menu.collapsed > ul {
-  transform: translateY(0px); 
-   transition:   0.3s ; 
+  transform: translateY(0px);
+  transition: 0.3s;
 }
 
 .mega-menu {
@@ -517,14 +517,14 @@ header .burger-line:nth-child(4) {
 .mega-menu li.mega-menu-column {
   width: 18%;
 }
-.mega-menu li:hover a{
+.mega-menu li:hover a {
   transform: translateX(-6px);
 }
-.mega-menu li svg{
+.mega-menu li svg {
   width: 16px;
 }
-.mega-menu li:hover svg{
-    color: #e95950;
+.mega-menu li:hover svg {
+  color: #e95950;
 }
 .mega-menu li * {
   transition: 0.2s;
@@ -561,4 +561,14 @@ header .burger-line:nth-child(4) {
   z-index: 10000000;
   min-height: 300px;
   background-color: white;
+}
+.giftcard-icon {
+  cursor: pointer;
+}
+.giftcard-icon .MuiSvgIcon-root {
+  transition: all .3s ease-in-out;
+}
+.giftcard-icon:hover .MuiSvgIcon-root {
+  transition: all .3s ease-in-out;
+  transform: rotate(180deg);
 }

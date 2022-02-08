@@ -45,7 +45,7 @@ function HeaderUser() {
                     </a>
                   </li>
                   <li className="menu-item">
-                    <a href="#">فروشگاه</a>
+                    <a href="#">گیفت کارت</a>
                   </li>
                   <li className="menu-item">
                     <Link href="/Purchase-report">
@@ -54,7 +54,7 @@ function HeaderUser() {
                   </li>
                   <li className="menu-item menu-item-child">
                     <a href="#" data-toggle="sub-menu">
-                      چرا ما؟
+                      درباره ما
                       
                     </a>
                   </li>
@@ -100,11 +100,11 @@ function HeaderUser() {
                   </a>
                 </li>
                 <li className="menu-item">
-                  <a href="#">فروشگاه</a>
+                  <a href="#">گیفت کارت</a>
                 </li>
                 <li className="menu-item menu-item-child">
                   <a href="#" data-toggle="sub-menu">
-                    چرا ما؟
+                    درباره ما
                     {/* <i className="expand"></i>  */}
                   </a>
                   {/* <ul className="sub-menu">

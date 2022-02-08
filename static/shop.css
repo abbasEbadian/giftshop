@@ -22,8 +22,8 @@
   background: linear-gradient(-90deg, rgba(255, 127,80, 0.2) 10%, transparent);
 }
 .filter-category .category-item {
-  width: 100%;
-  justify-content: space-between;
+  width: 50%;
+  /* justify-content: space-between; */
   padding: 8px;
   
 }

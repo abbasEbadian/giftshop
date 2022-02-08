@@ -46,10 +46,10 @@ export default function Home() {
       `}</style>
         <main className="main-page flex-wrap">
           <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4 pe-lg-5 p-0">
-            <h1 className="fs-1 ">
+            <h3 className="fs-2 ">
               گیفت <Image src={card} width={36} height={24} /> کارت های متنوع
-            </h1>
-            <h3 className="fs-3 mt-4 mb-5 text-nowrap">
+            </h3>
+            <h3 className="fs-3 mt-3 mb-5 text-nowrap">
               خرید <span className="text-secondary">سریع</span> {" و "}
               <span className="text-secondary">آسان</span> {" و "}
               همراه با <span className="text-secondary">امنیت بالا</span>
