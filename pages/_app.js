@@ -8,28 +8,30 @@ import Box from '@mui/material/Box'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import BottomNavigation from '../components/BottomNavigation'
-import {wrapper} from '../redux/store';
+import {useStore } from '../redux/store';
 import {get_initial_data} from '../redux/actions'
+import { Provider } from 'react-redux'
 import { useRouter } from 'next/router';
-import { useDispatch } from "react-redux";
 // static async getInitialProps({Component, ctx}){
 //   const appProps = Component.getInitialProps?   await Component.getInitialProps(ctx): {};
 //   console.log(appProps)
 //   return {appProps: appProps};
 // }
-const MyApp = ({Component, pageProps}) => {
+const MyApp = ({Component, pageProps}) => 
+{
+  const store = useStore(pageProps.initialReduxState)
   const router = useRouter();
-  const dispatch = useDispatch()
   const excludeUrls = [
     "/login",
     "/signup",
   ] 
   React.useEffect(()=>{
-    dispatch(get_initial_data())
+    store.dispatch(get_initial_data())
     
   }, [])
 
   return (<>
+    <Provider store={store}>
       <Header/>
       <Component {...pageProps} />
       {excludeUrls.includes(router.pathname)?null:<>
@@ -37,6 +39,7 @@ const MyApp = ({Component, pageProps}) => {
         <BottomNavigation/>
       </Box>
       <Footer/></>}
+      </Provider>
   </>)
 };
-export default wrapper.withRedux(MyApp);
+export default MyApp;

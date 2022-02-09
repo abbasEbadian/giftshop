@@ -22,7 +22,7 @@ function Login() {
 
               <div class="login__box">
                   <i class='bx bx-lock-alt login__icon'></i>
-                  <input type="password" placeholder="Password" class="login__input"/>
+                  <input type="password" placeholder="رمز عبور" class="login__input"/>
               </div>
 
               <a href="#" class="login__forgot">فراموشی رمز عبور</a>
