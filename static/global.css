@@ -16,6 +16,8 @@
 @import './login.css';
 @import './basket-shopping.css';
 @import './verifyCode.css';
+@import './ticket.css';
+@import './wallet.css';
 html{
     font-size: 90%;
 }

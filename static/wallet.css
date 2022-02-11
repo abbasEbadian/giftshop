@@ -1,0 +1,9 @@
+.CurrentBalance span , .IncreaseCredit-text {
+    color: var(--color-orange);
+    text-decoration: underline #000;
+    margin: 0 5px;
+}
+ .wallet {
+    box-shadow: 0px 0 10px 2px #eee;
+    border-radius: 10px;
+ }

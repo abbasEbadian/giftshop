@@ -8,14 +8,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import SendIcon from "@mui/icons-material/Send";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-
-
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import ChatIcon from '@mui/icons-material/Chat';
 // function ProfileAside({active}) {
 
 
@@ -89,28 +89,45 @@ export default function ProfileAside({active}) {
           <ListItemIcon>
             <AccountBoxIcon />
           </ListItemIcon>
-          <ListItemText primary="Sent mail" />
+          <ListItemText primary="مشخصات" />
         </ListItemButton>
         <ListItemButton classes={classes}>
           <ListItemIcon>
-            <DraftsIcon />
+            <BookmarkBorderIcon />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemText primary="مورد علاقه ها" />
         </ListItemButton>
+        <ListItemButton classes={classes}>
+          <ListItemIcon>
+            <AssignmentIcon />
+          </ListItemIcon>
+          <ListItemText primary="گزارش خریدها" />
+        </ListItemButton>
+        <ListItemButton classes={classes}>
+          <ListItemIcon>
+            <AccountBalanceWalletIcon />
+          </ListItemIcon>
+          <ListItemText primary="کیف پول" />
+        </ListItemButton>
+       
         <ListItemButton onClick={handleClick} classes={classes}>
           <ListItemIcon>
-            <InboxIcon />
+            <ChatIcon />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary="تیکت ها" />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItemButton sx={{ pl: 4 }} component="a" href="/" >
               <ListItemIcon>
-                <StarBorder />
               </ListItemIcon>
-              <ListItemText primary="Starred" />
+              <ListItemText primary="ایجاد تیکت جدید" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} component="a" href="/" >
+              <ListItemIcon>
+              </ListItemIcon>
+              <ListItemText primary="مشاهده تیکت ها" />
             </ListItemButton>
           </List>
         </Collapse>

@@ -1,0 +1,12 @@
+.send-ticket {
+    box-shadow: 0px 0 10px 2px #eee;
+    border-radius: 10px;
+}
+.send-ticket > .col-md-5 {
+    padding: 1rem 0;
+}
+.send-ticket label {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 5px 0;
+}
