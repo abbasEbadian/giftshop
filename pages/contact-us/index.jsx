@@ -1,7 +1,10 @@
+import Head from 'next/head'
 import React from 'react'
 function ContactUs() {
     return (
         <section>
+            <Head><title>تماس با ما | گیفت شاپ</title></Head>
+
             <div className="container mw-100 w-100">
                 <div className="row">
                     <div className="google-addres">

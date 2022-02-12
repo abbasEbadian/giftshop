@@ -5,14 +5,13 @@ import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-function ShopFilters({
-  min_value = 0,
-  max_value = 50000,
-  setCards,
+function ShopFilters({  
+  setFilters,
   brand_name = null,
 }) {
-  const minDistance = 5000;
-
+  const minDistance = 5;
+  const min_value = 0
+  const max_value = 300
   const [value1, setValue1] = React.useState([min_value, max_value]);
   const [rateValue, setRateValue] = React.useState([1, 5]);
   const [values, setValues] = React.useState([]);
@@ -73,36 +72,54 @@ function ShopFilters({
   };
   React.useEffect(() => {
     let a = [];
-    for (let index = 0; index <= max_value + 10000; index += 10000) {
+    for (let index = 1; index < 20; index += 1) {
+      a.push(index);
+    }
+    for (let index = 20; index < 100; index +=5) {
+      a.push(index);
+    }
+    for (let index = 100; index <= 300; index +=50) {
       a.push(index);
     }
     setValues(a);
   }, []);
 
   React.useEffect(() => {
-    setCards(
-      mainCards.filter((i) => i.rate >= rateValue[0] && i.rate <= rateValue[1])
-    );
+    // setCards(
+    //   mainCards.filter((i) => i.rate >= rateValue[0] && i.rate <= rateValue[1])
+    // );
+    setFilters(s=>{return {
+      ...s,
+      rate: rateValue[0] +","+ rateValue[1],
+    }})
   }, [rateValue]);
 
   React.useEffect(() => {
-    setCards(
-      mainCards.filter((i) => i.price >= value1[0] && i.price <= value1[1])
-    );
+    // setCards(
+    //   mainCards.filter((i) => i.real_price >= value1[0] && i.real_price <= value1[1])
+    // );
+    setFilters(s=>{return {
+      ...s,
+      real_price: value1[0] +","+ value1[1],
+    }})
   }, [value1]);
 
   React.useEffect(() => {
-    if (selectedCountries.length) {
-      setCards(
-        mainCards.filter((i) =>
-          selectedCountries
-            .map((i) => i.toLowerCase())
-            .includes(i.country_id.symbol.toLowerCase())
-        )
-      );
-    } else {
-      setCards(mainCards);
-    }
+    // if (selectedCountries.length) {
+    //   setCards(
+    //     mainCards.filter((i) =>
+    //       selectedCountries
+    //         .map((i) => i.toLowerCase())
+    //         .includes(i.country_id.symbol.toLowerCase())
+    //     )
+    //   );
+    // } else {
+    //   setCards(mainCards);
+    // }
+    setFilters(s=>{return {
+      ...s,
+      country: selectedCountries.join(','),
+    }})
   }, [selectedCountries]);
 
   return (
@@ -171,9 +188,9 @@ function ShopFilters({
               disableSwap
               marks
               isRtl
-              step={10000}
-              min={0}
-              max={values[values.length - 1]}
+              step={5}
+              min={1}
+              max={300}
             />
           ) : null}
 

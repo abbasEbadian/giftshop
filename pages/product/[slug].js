@@ -12,12 +12,14 @@ import { ADD_TO_CART, GET_CARD } from "../../redux/endpoints";
 import { Bars } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import { get_cart } from "../../redux/actions";
+import Head from "next/head";
 function Product() {
   const router = useRouter();
   const pid = router.query.slug;
   const [product, setProduct] = React.useState(undefined);
   const [count, setCount] = React.useState(1);
   const [loading, setLoading] = React.useState(true)   
+  const [similar, setSimilar] = React.useState(true)   
   // React.useEffect(() => {
   //   const p = cards.filter((i) => i.id === +pid);
   //   if (p) setProduct(p[0]);
@@ -28,7 +30,8 @@ function Product() {
     axios.get(GET_CARD + pid).then(res=>{
 
       const {data}  = res
-      setProduct(data)
+      setProduct(data.card)
+      setSimilar(data.similar)
     }).catch(err=>{
       console.log(err)
     })
@@ -53,6 +56,8 @@ function Product() {
   }
   return (
     <div className="container single-product">
+      <Head><title>صفحه محصول {pid} | گیفت شاپ</title></Head>
+
       <h1 className="text-center mt-4">
         کارت <span className="text-secondary">انتخابی</span>
       </h1>
@@ -113,7 +118,7 @@ function Product() {
       }</div>
 
       <SimilarCards
-        product={product}
+        _products={similar}
         title={
           <span>
             {"کارتهای"} <span className="text-secondary">مشابه</span>

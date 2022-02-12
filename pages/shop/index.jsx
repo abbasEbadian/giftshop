@@ -1,48 +1,62 @@
 import React, { useEffect } from "react";
 import ShopFilters from "../../components/ShopFilters";
 import ShopCards from "../../components/ShopCards";
-import {useSelector} from 'react-redux'
+import Head from "next/head";
+import axios from "axios";
+import {GET_TEMPLATES } from '../../redux/endpoints'
+import PaginationControlled from "../../components/Pagination";
 
 function Shop() {
-  const [filteredCards, setFilteredCards] = React.useState([]);
-  const [active, setActive] = React.useState(false);
-  const [category, setCategory] = React.useState(undefined)
   
-  const cards = useSelector(state=>state.main.cards)
+  const [filteredCards, setFilteredCards] = React.useState([]);
+  const [loading, setLoading] = React.useState(false)
+  const [filters, setFilters] = React.useState({})
+  const [cardsCount, setCardsCount] = React.useState({})
+  
+  const [page, setPage] = React.useState(1);
 
-  useEffect(()=>{
-    setFilteredCards(cards)
-  },[cards])
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+  
+  React.useEffect(() => {
+    let params = {}
+    Object.keys(filters).map(item=>{
+      if(item) params[item] = filters[item]
+    })
+    
+    params["page"] = page
+
+    axios.get(GET_TEMPLATES, {params})
+    .then(res=>{
+      const {data} = res
+      setFilteredCards(data.data || [])
+      setCardsCount(data.size)
+    })
+    .catch(err=>console.log(err))
+
+  }, [filters, page])
   return (
     <div className="shop-main">
+        <Head><title>فروشگاه | گیفت شاپ</title></Head>
+
       <div className="row ">
         <div className="col-12 col-md-3">
           <ShopFilters
-            setCards={setFilteredCards}
-            setCategory={setCategory}
-            min_value={Math.min(
-              ...cards.map((i) => {
-                return i.price;
-              })
-            )}
-            max_value={Math.max(
-              ...cards.map((i) => {
-                return i.price;
-              })
-            )}
+            setFilters={setFilters}
           />
         </div>
 
         <div className="col-12 col-md-9">
           <h1 className="text-center line-height-64">
-            {category? <span>
-              {"گیفت کارت های "} {category}</span>
-            :<>
+            
             محصولات <span className="text-danger">فروشگاه</span>
-            </>
-            }
+            
           </h1>
           <ShopCards cards={filteredCards} />
+          {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
+
         </div>
         
       </div>

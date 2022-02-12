@@ -4,54 +4,68 @@ import ShopCards from "../../components/ShopCards";
 import {useSelector} from 'react-redux'
 import { useRouter } from "next/router";
 import Head from "next/head";
+import axios from "axios";
+import {GET_TEMPLATES } from '../../redux/endpoints'
+import PaginationControlled from "../../components/Pagination";
 
 function Shop() {
   const router = useRouter();
 
   const [filteredCards, setFilteredCards] = React.useState([]);
-  const [category, setCategory] = React.useState(undefined)
   const brand_name = router.query.slug;
-
+  const [loading, setLoading] = React.useState(false)
+  const [filters, setFilters] = React.useState({brand_name})
+  const [cardsCount, setCardsCount] = React.useState({brand_name})
   const cards = useSelector(state=>state.main.cards)
+  
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+  
   React.useEffect(() => {
-    const p = cards.filter((i) => i.brand_id.slug_name === brand_name);
-    setFilteredCards(p || []);
-  }, [cards, brand_name]);
+    let params = {}
+    Object.keys(filters).map(item=>{
+      if(item) params[item] = filters[item]
+    })
+    
+    params["brand_name"] = brand_name
+    params["page"] = page
 
+    axios.get(GET_TEMPLATES, {params})
+    .then(res=>{
+      const {data} = res
+      setFilteredCards(data.data || [])
+      setCardsCount(data.size)
+    })
+    .catch(err=>console.log(err))
 
+  }, [filters, page, brand_name])
   return (
     <div className="shop-main">
        <Head>
-          <title>{brand_name} | GiftShop </title>
+          <title>{brand_name} | گیفت شاپ </title>
         </Head>
       <div className="row ">
         <div className="col-12 col-md-3">
           <ShopFilters
-            setCards={setFilteredCards}
+            setFilters={setFilters}
             brand_name={brand_name}
-            min_value={Math.min(
-              ...cards.map((i) => {
-                return i.price;
-              })
-            )}
-            max_value={Math.max(
-              ...cards.map((i) => {
-                return i.price;
-              })
-            )}
           />
         </div>
 
         <div className="col-12 col-md-9">
           <h1 className="text-center line-height-64">
-            {category? <span>
-              {"گیفت کارت های "} {category}</span>
+            {brand_name? <span>
+              {"گیفت کارت های "} {brand_name}</span>
             :<>
             محصولات <span className="text-danger">فروشگاه</span>
             </>
             }
           </h1>
           <ShopCards cards={filteredCards} />
+          {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
         </div>
         
       </div>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from 'next/image'
 import faqsimg from "../../img/other/image6.png";
 import abouthelp from "../../img/other/image3.png";
+import Head from "next/head";
 
 function Faqs() {
   const [selected, setSelected] = useState(null);
@@ -42,6 +43,7 @@ function Faqs() {
   return (
     <>
       <section>
+        <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
         <div className="container mw-100 w-100">
           <div className="row">
             <div className="aboutimg">

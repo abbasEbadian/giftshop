@@ -6,15 +6,16 @@ import { cards } from "../data";
 import Card from "./Card";
 import "swiper/css/navigation";
 import "swiper/css";
-function SimilarCards({ children, product, title, addToCard = false }) {
+function SimilarCards({ _products=[], children, product=undefined, title, addToCard = false }) {
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     if (product)
       setProducts(
         cards.filter((i) => Math.abs(i.realPrice - product.realPrice) < 500)
       );
+    else if(_products) setProducts(_products)
     else setProducts(cards.filter((i, x) => i.id < 10));
-  }, [cards, product]);
+  }, [cards, product, _products]);
 
   return (
     <div>
@@ -41,13 +42,13 @@ function SimilarCards({ children, product, title, addToCard = false }) {
           },
         }}
       >
-        {products.map((i) => {
+        {products&&typeof products ==="object"? products.map((i) => {
           return (
             <SwiperSlide key={i.id}>
               <Card data={i} layered addToCard={addToCard} />
             </SwiperSlide>
           );
-        })}
+        }):null}
       </Swiper>
     </div>
   );

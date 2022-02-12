@@ -4,6 +4,8 @@ import Image from 'next/image'
 function Terms() {
   return (
     <section>
+        <Head><title>قوانین | گیفت شاپ</title></Head>
+
       <div className="container mw-100 w-100">
         <div className="row">
           <div className="aboutimg">

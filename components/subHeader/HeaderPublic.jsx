@@ -10,6 +10,7 @@ import { Offcanvas } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import UserIcon from "./UserIcon";
+import { Button } from "@mui/material";
 
 function HeaderPublic({ authenticated }) {
 
@@ -126,11 +127,16 @@ function HeaderPublic({ authenticated }) {
 
         <div className="controls">
           <input type="text" className="form-control" placeholder="جستجو کنید..." />
-          <Link  href="#search">
-            <a>
-              <SearchIcon  width="20"/>
-            </a>
-          </Link>
+          <Button
+              className='px-0'
+            >
+            <Link  href="#search">
+              <a>
+                <SearchIcon  width="20"/>
+              </a>
+            </Link>
+          </Button>
+         
           <Link  href="/basket">
             <a className="badge-container">
               <span className="basket-badge bg-danger text-white rounded-circle p2">{basket&&basket.orderline_set?basket.orderline_set.length: 0}</span>

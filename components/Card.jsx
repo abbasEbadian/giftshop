@@ -23,20 +23,36 @@ import xbox from "../img/card/xbox.png";
 import visaImageLayered from "../img/card/visacard.png";
 import appleImageLayered from "../img/card/apple.png";
 import paypalImageLayered from "../img/card/mastercard.png";
+
+
+import USA from '../img/flags/USA.webp'
+import UAE from '../img/flags/UAE.webp'
+import RUSSIA from '../img/flags/RUSSIA.webp'
+import EUROPE from '../img/flags/EUROPE.webp'
+import ENGLAND from '../img/flags/ENGLAND.webp'
+import CHINA from '../img/flags/CHINA.webp'
+import CANADA from '../img/flags/CANADA.webp'
+import BRAZIL from '../img/flags/BRAZIL.webp'
+import ARS from '../img/flags/ARS.webp'
+import IR from '../img/flags/ir.webp'
+
+
 import Image from "next/image";
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
 import PropTypes from "prop-types";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import Rating from "@mui/material/Rating";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { get_cart } from "../redux/actions";
-const capit = function (text) {
-  if (!text) return "";
-  return text.charAt(0).toUpperCase() + text.slice(1);
-};
+import { useDispatch, useSelector } from "react-redux";
+import { get_cart ,profile} from "../redux/actions";
+
+import {ADD_TO_CART, TOGGLE_FAVORITES} from '../redux/endpoints'
+import { Typography } from "@mui/material";
+
+
 
 function Card({
   data,
@@ -47,6 +63,7 @@ function Card({
 }) {
   const [count, setCount] = React.useState(1);
   const [newRating, setNewRating] = React.useState(data.rate || 1);
+  const user = useSelector(s=>s.auth.user)
 
   const get_image_src = (type) => {
     switch (type) {
@@ -75,6 +92,31 @@ function Card({
         return layered ? visaImageLayered : visacard;
     }
   };
+  const get_flag_src = (type)=>{
+    switch (type) {
+      case "USA": 
+        return USA;
+      case "UAE": 
+        return UAE;
+      case "RUSSIA": 
+        return RUSSIA;
+      case "EUROPE": 
+        return EUROPE;
+      case "ENGLAND": 
+        return ENGLAND;
+      case "CHINA": 
+        return CHINA;
+      case "CANADA": 
+        return CANADA;
+      case "BRAZIL": 
+        return BRAZIL;
+      case "ARS": 
+        return ARS;
+    
+      default:
+        return IR;
+    }
+  } 
   const dispatch = useDispatch()
   const _addToCart = ()=>{
     axios.post(ADD_TO_CART, {
@@ -89,19 +131,36 @@ function Card({
       console.log(e)
     })
   }
+  const toggleFavorite = ()=>{
+    axios.post(TOGGLE_FAVORITES, {template_id: data.id})
+    .then(res=>{
+      const {data} = res
+      if(data.error === 0){
+        toast.success("با موفقیت ثبت شد")
+      }else{
+        toast.error("خطا هنگام ثبت")
+      }
+    }).catch(err=>{
+      toast.error("خطا در برقراری ارتباط")
+    })
+    .finally(f=>dispatch(profile()))
+  }
   return (
     <div className="single-card px-3">
       <div className="data-container position-relative">
         <Image src={get_image_src(data.brand_id.name)} />
+
+        
+
         <Link href={{ pathname: "/product/[slug]", query: { slug: +data.id } }}>
           <a>
             <div className="data position-absolute top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
-              <div className="d-none align-items-center p-4 px-5 justify-content-between">
-                
-                {/* <span>{capit(data.brand_id.name)} Card</span> */}
+            <div className="flag-cont">
+              {/* <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={90} height={20} /> */}
               </div>
-              <span dir="ltr" className="price">
+              <span dir="ltr" className="price text-center">
                   ${Number(data.real_price).toLocaleString()}
+                  <Typography sx={{fontSize: "10px"}}>{data.country_id.symbol}</Typography>
                 </span>
               <div className="d-flex align-items-center justify-content-between">
                 {showRate && false ? (
@@ -139,7 +198,13 @@ function Card({
             <span className="cursor-pointer">
               افزودن به کارت های مورد علاقه
             </span>
-            <BookmarkBorderIcon />
+            <span onClick={toggleFavorite}>
+              {user && user.favorite_set && user.favorite_set.filter(i=>i.template_id.id === data.id) && user.favorite_set.filter(i=>i.template_id.id === data.id).length? 
+                <BookmarkAddedIcon color={"success"}/>
+                :
+                <BookmarkBorderIcon />
+              }
+            </span>
           </div>
           <div
             className="d-flex align-items-center justify-content-evenly mt-3"
@@ -154,7 +219,7 @@ function Card({
               }}
               readOnly
             />
-            <span className="cursor-pointer">امتیاز دهید</span>
+            {/* <span className="cursor-pointer">امتیاز دهید</span> */}
           </div>
         </>
       ) : null}

@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import withAuth from "../../redux/withAuth";
+import Head from "next/head";
 const columns = [
   { id: "number", label: "شماره", minWidth: 100, align: "right" },
   { id: "date", label: "تاریخ", minWidth: 100, align: "right" },
@@ -134,6 +135,7 @@ const rows = [
 
   return (
     <div className="container">
+      <Head><title>سطح کاربری | گیفت شاپ</title></Head>
       <div className="row">
         <ProfileAside active="purchase_report" />
         <div className=" col-lg-9 col-12 py-5">

@@ -6,10 +6,13 @@ import aboutimg from "../../img/other/image2.png";
 import aboutimg1 from "../../img/other/image4.png";
 import aboutimg2 from "../../img/other/image5.png";
 import abouthelp from "../../img/other/image3.png";
+import Head from "next/head";
 
 function AboutUs() {
   return (
     <section>
+      <Head><title>درباره ما | گیفت شاپ</title></Head>
+
       <div className="container mw-100 w-100">
         <div className="row">
           <div className="aboutimg">

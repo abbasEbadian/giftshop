@@ -31,8 +31,10 @@ export default function Home() {
     <>
       <div className="mcontainer mcontainer-bg">
         <Head>
-          <title>GiftShop</title>
+          <title>GiftShop | گیفت شاپ</title>
           <link rel="icon" href="/favicon.ico" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="description" content="وبسایت مرجع خرید انواع گیفت کارت"/>
           <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"

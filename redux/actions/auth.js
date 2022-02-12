@@ -12,7 +12,7 @@ export const logout = (router)=>{
             localStorage.removeItem('token')
             dispatch({type:t.UPDATE_STATUS, payload: false})
             dispatch({type:t.UPDATE_USER, payload: {}})
-            // if(typeof window!== "undefined") document.location.href = "/"
+            if(typeof window!== "undefined") document.location.href = "/"
             router?.replace("/")
         })
     }

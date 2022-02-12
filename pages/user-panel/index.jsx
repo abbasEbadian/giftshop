@@ -2,10 +2,13 @@ import React from "react";
 import VisaCard from "../../img/card/visacard.png";
 import ProfileAside from "../../components/ProfileAside";
 import withAuth from "../../redux/withAuth";
+import Head from "next/head";
 
 function Products() {
   return (
     <>
+            <Head><title>حساب کاربری| گیفت شاپ</title></Head>
+
       <div className="container">
         <div className="row">
           <div className="col-md-3" >

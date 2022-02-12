@@ -4,12 +4,12 @@ import * as e from '../endpoints'
 
 
 
-export const get_cart = (template_id, count) =>{
+export const get_cart = () =>{
     return async (dispatch, getState)=>{
         console.log(getState)
         axios.get(e.GET_CART).then(res=>{
             const {data} = res
-            dispatch({type: t.SET_CART, data })
+            dispatch({type: t.UPDATE_BASKET,payload:  data })
         }).catch(e=>console.log(e))
     }
 }

@@ -4,18 +4,11 @@ import Card from "./Card";
 const locale = (yeGeimat)=>{
     return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString(): yeGeimat
 }
-function ProductRow({ product , setBasket}) {
-    const [count,setCount] = React.useState(1)
-    React.useEffect(()=>{
-        console.log(setBasket);
-    }, [])
+function ProductRow({ product , _count, change_count}) {
+    const [count,setCount] = React.useState(_count)
+    
 
-    const addToBasket = ()=>{
-        setBasket(b => {
-            let s = [...b, product.id]
-            return s
-        })
-    }
+    
   return (
     <div className="row mt-5 product-list-gift">
       <div className="col-12 col-md-4">
@@ -51,20 +44,18 @@ function ProductRow({ product , setBasket}) {
           </div>
         </div>
         <p className="mt-3">
-          توضیحات در مورد کارت و موارد استفاده از آن توضیحات در مورد کارت و
-          موارد استفاده از آن توضیحات در مورد کارت و موارد استفاده از آن توضیحات
-          در مورد کارت و موارد استفاده از آن مورد
+         توضیحات: {product.description}
         </p>
         <div className="add-to-card-container d-flex justify-content-between align-items-center">
           <div dir="ltr" className="counter">
             <span onClick={(e) => setCount((c) => (c += 1))}>+</span>
             <span className="border-bottom mx-2 ">{count}</span>
-            <span onClick={(e) => setCount((c) => Math.max(1, c - 1))}>-</span>
+            <span onClick={(e) => setCount((c) => Math.max(0, c - 1))}>-</span>
           </div>
           <span className="border rounded p-2">
             {locale(product.price)} {" تومان "}{" "}
           </span>
-          <button className="success-gradient px-3" onClick={addToBasket}>افزودن به سبد خرید</button>
+          <button className="success-gradient px-3" onClick={e=>change_count(product.id, count)}>اصلاح تعداد</button>
         </div>
       </div>
     </div>

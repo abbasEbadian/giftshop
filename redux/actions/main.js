@@ -10,6 +10,7 @@ export const get_initial_data = ()=>{
         dispatch(fetch_cards())
         dispatch(fetch_countries())
         dispatch(get_cart())
+        dispatch(profile())
     }
 }
 

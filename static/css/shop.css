@@ -85,11 +85,14 @@
   position: relative;
 }
 .single-card .price {
-  position: absolute;
-  font-size: clamp(18px,3vw, 24px) ;
-  right: 27%;
-  top: 30%;
-
+	position: absolute;
+	font-size: clamp(18px,3vw, 24px);
+	right: 27%;
+	top: 30%;
+	box-shadow: 0 0 10px #fff4;
+	padding: 5px;
+	border-radius: 12px;
+	background: #0001;
 }
 .add-to-card-container {
   user-select: none;
@@ -136,4 +139,9 @@
 
 .css-1c99szj-MuiRating-icon {
   color: var(--color-yellow);
+}
+.MuiPagination-ul{
+  justify-content: center;
+  margin-top: 32px;
+  direction: ltr;
 }
