@@ -18,6 +18,7 @@
 @import './verifyCode.css';
 @import './ticket.css';
 @import './wallet.css';
+@import './userLevel.css';
 html{
     font-size: 90%;
 }
