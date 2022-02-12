@@ -1,3 +1,14 @@
+@font-face {
+    font-family: IranYekan;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/iransans/eot/IRANSansWeb_Bold.eot');
+    src: url('../fonts/iransans/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ 
+	url('../fonts/iransans/woff2/IRANSansWeb_Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ 
+	url('../fonts/iransans/woff/IRANSansWeb_Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ 
+	url('../fonts/iransans/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+}
 
-@import url("https://farsifont.github.io/css/iransans-farsi-numbers.css");
-@import url("https://farsifont.github.io/css/iranyekan.css");
+* , [class*=Mui], [class*=Mui] *{
+    font-family: IranYekan !important;
+}

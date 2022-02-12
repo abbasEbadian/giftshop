@@ -21,3 +21,5 @@ export const PATCH_CART = _("/orders/delete_from_cart/")
 export const ADD_TO_CART = _("/orders/add_to_cart/")
 
 export const TOGGLE_FAVORITES = _("/favorites/toggle_favorite/")
+
+export const SEND_REVIEW = _("/reviews/add_review/")

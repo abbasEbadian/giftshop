@@ -51,6 +51,7 @@ import { get_cart ,profile} from "../redux/actions";
 
 import {ADD_TO_CART, TOGGLE_FAVORITES} from '../redux/endpoints'
 import { Typography } from "@mui/material";
+import LoaderButton from "./LoaderButton";
 
 
 
@@ -60,8 +61,10 @@ function Card({
   showRate = false,
   favoriteAndRate = false,
   layered = false,
+  ratable=false
 }) {
   const [count, setCount] = React.useState(1);
+  const [loading, setLoading] = React.useState(false);
   const [newRating, setNewRating] = React.useState(data.rate || 1);
   const user = useSelector(s=>s.auth.user)
 
@@ -119,6 +122,7 @@ function Card({
   } 
   const dispatch = useDispatch()
   const _addToCart = ()=>{
+    setLoading(true)
     axios.post(ADD_TO_CART, {
       template_id: data.id,
       count: count
@@ -129,6 +133,9 @@ function Card({
     })
     .catch(e=>{
       console.log(e)
+    })
+    .finally(e=>{
+      setLoading(false)
     })
   }
   const toggleFavorite = ()=>{
@@ -146,7 +153,7 @@ function Card({
     .finally(f=>dispatch(profile()))
   }
   return (
-    <div className="single-card px-3">
+    <div className="single-card px-3  ">
       <div className="data-container position-relative">
         <Image src={get_image_src(data.brand_id.name)} />
 
@@ -159,13 +166,13 @@ function Card({
               {/* <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={90} height={20} /> */}
               </div>
               <span dir="ltr" className="price text-center">
-                  ${Number(data.real_price).toLocaleString()}
+                  {data.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}
                   <Typography sx={{fontSize: "10px"}}>{data.country_id.symbol}</Typography>
                 </span>
-              <div className="d-flex align-items-center justify-content-between">
-                {showRate && false ? (
-                  <span>
-                    {data.rate} <StarIcon />
+              <div className="d-flex align-items-center justify-content-between pb-3 pe-3">
+                {showRate || true  ? (
+                  <span className="d-flex align-items-center">
+                    <Typography sx={{transform: "translateY(1px)", fontSize: "17px", fontWeight: "900"}}> {Number(data.rate)} </Typography><StarIcon />
                   </span>
                 ) : (
                   <i></i>
@@ -187,9 +194,11 @@ function Card({
             <span onClick={(e) => setCount((c) => Math.max(1, c - 1))}>-</span>
           </div>
           <span>
-            {Number(data.price).toLocaleString()} {" تومان "}{" "}
+            {Number(data.price).toLocaleString()} {" ت "}{" "}
           </span>
-          <button className="success-gradient" onClick={_addToCart}>افزودن به سبد</button>
+          
+          <LoaderButton text={"افزودن به سبد"} loading={loading} onClick={_addToCart}/>
+         
         </div>
       ) : undefined}
       {favoriteAndRate ? (
@@ -205,21 +214,6 @@ function Card({
                 <BookmarkBorderIcon />
               }
             </span>
-          </div>
-          <div
-            className="d-flex align-items-center justify-content-evenly mt-3"
-            dir="ltr"
-          >
-            <Rating
-              className="star-color"
-              name="simple-controlled"
-              value={newRating}
-              onChange={(event, newValue) => {
-                setNewRating(newValue);
-              }}
-              readOnly
-            />
-            {/* <span className="cursor-pointer">امتیاز دهید</span> */}
           </div>
         </>
       ) : null}

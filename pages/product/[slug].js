@@ -4,6 +4,7 @@ import Card from "../../components/Card";
 import SimilarCards from "../../components/SimilarCards";
 import SendFeedback from "../../components/SendFeedback";
 import Reviews from "../../components/Reviews";
+import LoaderButton from "../../components/LoaderButton";
 import Image from "next/image";
 import logos from "../../img/card/logos.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,12 +14,15 @@ import { Bars } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import { get_cart } from "../../redux/actions";
 import Head from "next/head";
+
+
 function Product() {
   const router = useRouter();
   const pid = router.query.slug;
   const [product, setProduct] = React.useState(undefined);
   const [count, setCount] = React.useState(1);
   const [loading, setLoading] = React.useState(true)   
+  const [loading1, setLoading1] = React.useState(false)   
   const [similar, setSimilar] = React.useState(true)   
   // React.useEffect(() => {
   //   const p = cards.filter((i) => i.id === +pid);
@@ -42,6 +46,8 @@ function Product() {
   }, [pid])
   const dispatch = useDispatch()
   const _addToCart = ()=>{
+    setLoading1(true)
+
     axios.post(ADD_TO_CART, {
       template_id: product.id,
       count: count
@@ -52,6 +58,9 @@ function Product() {
     })
     .catch(e=>{
       console.log(e)
+    })
+    .finally(e=>{
+      setLoading1(false)
     })
   }
   return (
@@ -108,7 +117,7 @@ function Product() {
               <span className="border rounded p-2">
                 {product.price} {" تومان "}{" "}
               </span>
-              <button className="success-gradient px-3" onClick={_addToCart}>افزودن به سبد خرید</button>
+              <LoaderButton text="افزودن به سبد خرید" className=" px-3" loading={ loading1} onClick={_addToCart}/>
             </div>
           </div>
           </>
@@ -130,7 +139,7 @@ function Product() {
       </div>
 
       <SendFeedback product={product} />
-      <Reviews />
+      <Reviews reviews={product&&product.review_set||[]} />
 
      
     </div>

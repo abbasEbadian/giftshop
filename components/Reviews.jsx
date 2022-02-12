@@ -3,9 +3,17 @@ import Image from 'next/image'
 import reviewer from '../img/card/reviewer.png'
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
-function Reviews() {
+import datetime  from  'persian-time-ago'
+function Reviews({reviews}) {
+    const get_time = (date)=>{
+        const d = new Date(date).toLocaleDateString("fa", {month: 'long',day: "numeric" ,numberingSystem: "geor"});
+        
+        return d
+
+    }
   return <div className="reviews-container pb-5 mt-5">
-    <div className="reviews-title d-flex align-items-center">
+    {reviews.filter(i=>i.accepted).length? <>
+    {/* <div className="reviews-title d-flex align-items-center">
         <h5 className="border-bottom-red">نظرات</h5>
         <div className="d-flex align-items-center justify-content-center pe-4 flex-grow-1">
             <button className="btn btn-outline-info mx-md-5 mx-2 text-nowrap">
@@ -15,14 +23,16 @@ function Reviews() {
                 محبوب ها
             </button>
         </div>
-    </div>
+    </div> */}
+
+
     <div className="review-lines  rounded ">
-        {Array.from({length: 5}).map((i, idx)=>{
-            return <div key={idx} className="review-line d-flex align-items-center my-5">
+        {  reviews.map((i, idx)=>{
+            return i.accepted && <div key={idx} className="review-line d-flex align-items-center my-5">
                 <Image src={reviewer} />
-                <div className="content1 flex-grow-1 ps-2 pt-2">
-                    <h6>زهرا احمدی | <span className="text-black-50">3 روز پیش</span></h6>
-                    <p>این کارت عالی بود. این کارت عالی بود. این کارت عالی بود. این کارت عالی بود. </p>
+                <div className="content1 flex-grow-1 px-2 pt-2">
+                    <h6>{i.user_id.first_name? i.user_id.first_name + " " + i.user_id.last_name: "کاربر گیفت شاپ" } | <span className="text-black-50">{get_time(i.created)}</span></h6>
+                    <p> {i.text} </p>
                 </div>
                 <div className="d-flex align-items-end">
                     <ThumbUpOffAltIcon className="cursor-pointer"/>
@@ -32,7 +42,8 @@ function Reviews() {
             </div>
         })}
     </div>
-    <button className="primary-gradient rounded py-2 mt-2 px-2 w-300 text-center d-flex justify-content-center mx-auto">نمایش بیشتر</button>
+    {/* <button className="primary-gradient rounded py-2 mt-2 px-2 w-300 text-center d-flex justify-content-center mx-auto">نمایش بیشتر</button> */}
+    </>:<div className="">نظری برای این کارت ثبت نشده است</div>}
     
   </div>
 }
