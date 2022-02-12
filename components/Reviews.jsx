@@ -28,7 +28,7 @@ function Reviews({reviews}) {
 
     <div className="review-lines  rounded ">
         {  reviews.map((i, idx)=>{
-            return i.accepted && <div key={idx} className="review-line d-flex align-items-center my-5">
+            return i.accepted && <div key={idx} className="review-line d-flex align-items-center my-2 flex-wrap">
                 <Image src={reviewer} />
                 <div className="content1 flex-grow-1 px-2 pt-2">
                     <h6>{i.user_id.first_name? i.user_id.first_name + " " + i.user_id.last_name: "کاربر گیفت شاپ" } | <span className="text-black-50">{get_time(i.created)}</span></h6>
@@ -39,6 +39,10 @@ function Reviews({reviews}) {
                     <span className="mx-2"></span>
                     <ThumbDownOffAltIcon />
                 </div>
+                {i.answer? <p className='border rounded p-2 w-100 mt-4'>
+                    پاسخ مدیر: <br />
+                    {i.answer}
+                </p>: i.answer}
             </div>
         })}
     </div>
