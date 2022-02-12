@@ -6,25 +6,59 @@ import SendFeedback from "../../components/SendFeedback";
 import Reviews from "../../components/Reviews";
 import Image from "next/image";
 import logos from "../../img/card/logos.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios'
+import { ADD_TO_CART, GET_CARD } from "../../redux/endpoints";
+import { Bars } from "react-loader-spinner";
+import { toast } from "react-toastify";
+import { get_cart } from "../../redux/actions";
 function Product() {
   const router = useRouter();
   const pid = router.query.slug;
   const [product, setProduct] = React.useState(undefined);
   const [count, setCount] = React.useState(1);
-  const cards = useSelector(state=>state.main.cards)
-  React.useEffect(() => {
-    const p = cards.filter((i) => i.id === +pid);
-    if (p) setProduct(p[0]);
-  }, [cards, pid]);
+  const [loading, setLoading] = React.useState(true)   
+  // React.useEffect(() => {
+  //   const p = cards.filter((i) => i.id === +pid);
+  //   if (p) setProduct(p[0]);
+  // }, [cards, pid]);
 
+
+  React.useEffect(()=>{
+    axios.get(GET_CARD + pid).then(res=>{
+
+      const {data}  = res
+      setProduct(data)
+    }).catch(err=>{
+      console.log(err)
+    })
+    .finally(f=>{
+      setTimeout(()=>{setLoading(false)}, 1000)
+    })
+
+  }, [pid])
+  const dispatch = useDispatch()
+  const _addToCart = ()=>{
+    axios.post(ADD_TO_CART, {
+      template_id: product.id,
+      count: count
+    }).then(res=>{
+      const {data}= res 
+      toast.success("با موفقیت افزوده شد.")
+      dispatch(get_cart())
+    })
+    .catch(e=>{
+      console.log(e)
+    })
+  }
   return (
     <div className="container single-product">
       <h1 className="text-center mt-4">
         کارت <span className="text-secondary">انتخابی</span>
       </h1>
-      {product ? (
+      
         <div className="row mt-5 product-list-gift">
+        {product ? <>
           <div className="col-12 col-md-4">
             <Card data={product} favoriteAndRate />
           </div>
@@ -69,13 +103,14 @@ function Product() {
               <span className="border rounded p-2">
                 {product.price} {" تومان "}{" "}
               </span>
-              <button className="success-gradient px-3">افزودن به سبد خرید</button>
+              <button className="success-gradient px-3" onClick={_addToCart}>افزودن به سبد خرید</button>
             </div>
           </div>
-        </div>
-      ) : (
-        ""
-      )}
+          </>
+        
+       : loading?<section className="w-75 py-5 my-5 d-flex justify-content-center mx-auto"><Bars/></section>:
+        <section className="w-75 alert alert-info my-5 mx-auto">محصول یافت نشد</section>
+      }</div>
 
       <SimilarCards
         product={product}

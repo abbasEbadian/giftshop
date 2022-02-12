@@ -29,6 +29,10 @@ import StarIcon from "@mui/icons-material/Star";
 import PropTypes from "prop-types";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import Rating from "@mui/material/Rating";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { get_cart } from "../redux/actions";
 const capit = function (text) {
   if (!text) return "";
   return text.charAt(0).toUpperCase() + text.slice(1);
@@ -71,6 +75,20 @@ function Card({
         return layered ? visaImageLayered : visacard;
     }
   };
+  const dispatch = useDispatch()
+  const _addToCart = ()=>{
+    axios.post(ADD_TO_CART, {
+      template_id: data.id,
+      count: count
+    }).then(res=>{
+      const {data}= res 
+      toast.success("با موفقیت افزوده شد.")
+      dispatch(get_cart())
+    })
+    .catch(e=>{
+      console.log(e)
+    })
+  }
   return (
     <div className="single-card px-3">
       <div className="data-container position-relative">
@@ -112,7 +130,7 @@ function Card({
           <span>
             {Number(data.price).toLocaleString()} {" تومان "}{" "}
           </span>
-          <button className="success-gradient">افزودن به سبد</button>
+          <button className="success-gradient" onClick={_addToCart}>افزودن به سبد</button>
         </div>
       ) : undefined}
       {favoriteAndRate ? (

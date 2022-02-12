@@ -429,6 +429,7 @@ header .burger-line:nth-child(4) {
 
 .header-public {
   height: 80px;
+  padding-block: 12px;
   /* border-bottom: 1px solid #707070; */
 }
 .header-public .main-container {
@@ -571,4 +572,23 @@ header .burger-line:nth-child(4) {
 .giftcard-icon:hover .MuiSvgIcon-root {
   transition: all .3s ease-in-out;
   transform: rotate(180deg);
+}
+.badge-container{
+  position: relative;
+}
+.basket-badge {
+	position: absolute;
+	top: -6px;
+	right: -6px;
+	font-size: 11px;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+}
+#__next{
+  display: flex;
+  flex-direction: column;
+}
+footer{
+  margin-top: auto;
 }

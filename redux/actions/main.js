@@ -1,19 +1,32 @@
 import axios from 'axios'
 import * as t from '../types'
+import * as e from '../endpoints'
+import { get_cart, profile } from '.'
 
 export const get_initial_data = ()=>{
     return dispatch =>{
+        dispatch(check_user())
         dispatch(fetch_brands())
         dispatch(fetch_cards())
         dispatch(fetch_countries())
+        dispatch(get_cart())
     }
 }
 
+export const check_user = ()=>{
+    return dispatch=>{
+        const token = localStorage.getItem("token")
+        if(token){
+            dispatch({type:t.UPDATE_STATUS, payload: true})
+            dispatch(profile())
+        }
+    }
+}
 export const fetch_brands = () =>{
     return async (dispatch, getState)=>{
         dispatch(update_fetching_brands(true))
         return (
-            axios.get(t.BASE_URL + "/api/brands/all")
+            axios.get(e.GET_BRANDS)
             .then(response=>{
                 const {data} = response
                 dispatch(update_brands(data))
@@ -28,7 +41,7 @@ export const fetch_brands = () =>{
 export const fetch_cards = () =>{
     return async (dispatch, getState)=>{
         dispatch(update_fetching_cards(true))
-        return axios.get(t.BASE_URL + "/api/cards/all")
+        return axios.get(e.GET_CARDS)
         .then((response)=>{
             const {data} = response
             dispatch(update_cards(data))
@@ -42,7 +55,7 @@ export const fetch_cards = () =>{
 export const fetch_countries = () =>{
     return async (dispatch, getState)=>{
         dispatch(update_fetching_countries(true))
-        return axios.get(t.BASE_URL + "/api/country/all")
+        return axios.get(e.GET_COUNTRIES)
         .then((response)=>{
             const {data} = response
             dispatch(update_countries(data))

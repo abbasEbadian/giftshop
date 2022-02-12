@@ -1,7 +1,7 @@
 import React from 'react'
-import '../static/global.css'
-import '../static/shop.css'
-import '../static/product.css'
+import '../static/css/global.css'
+import '../static/scss/master.scss'
+import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Box from '@mui/material/Box'
@@ -10,20 +10,21 @@ import Header from '../components/Header'
 import BottomNavigation from '../components/BottomNavigation'
 import {useStore } from '../redux/store';
 import {get_initial_data} from '../redux/actions'
+import {configure} from '../redux/axiosConfig'
 import { Provider } from 'react-redux'
 import { useRouter } from 'next/router';
-// static async getInitialProps({Component, ctx}){
-//   const appProps = Component.getInitialProps?   await Component.getInitialProps(ctx): {};
-//   console.log(appProps)
-//   return {appProps: appProps};
-// }
+import {ToastContainer} from 'react-toastify'
+
+
 const MyApp = ({Component, pageProps}) => 
 {
+  configure()
   const store = useStore(pageProps.initialReduxState)
   const router = useRouter();
   const excludeUrls = [
-    "/login",
-    "/signup",
+    "login",
+    "signup",
+    "logout"
   ] 
   React.useEffect(()=>{
     store.dispatch(get_initial_data())
@@ -34,11 +35,18 @@ const MyApp = ({Component, pageProps}) =>
     <Provider store={store}>
       <Header/>
       <Component {...pageProps} />
-      {excludeUrls.includes(router.pathname)?null:<>
+      {router.pathname.indexOf("auth")>-1?null:<>
       <Box sx={{ width: "100%" }}>
         <BottomNavigation/>
       </Box>
-      <Footer/></>}
+      <Footer/>
+     
+      </>}
+      <ToastContainer
+        position={"bottom-left"}
+        autoClose={3000}
+        rtl
+      />
       </Provider>
   </>)
 };

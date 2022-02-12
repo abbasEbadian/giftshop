@@ -1,6 +1,7 @@
 import React from "react";
 import VisaCard from "../../img/card/visacard.png";
 import ProfileAside from "../../components/ProfileAside";
+import withAuth from "../../redux/withAuth";
 
 function Products() {
   return (
@@ -29,4 +30,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default withAuth(Products);

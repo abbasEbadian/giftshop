@@ -9,10 +9,15 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Offcanvas } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-function HeaderPublic({ basket }) {
+import UserIcon from "./UserIcon";
+
+function HeaderPublic({ authenticated }) {
+
   const [menuopen, setMenuopen] = React.useState(false);
   const [active, setActive] = React.useState(false);
   const brands = useSelector((state) => state.main.brands);
+  const basket = useSelector((state) => state.order.basket);
+  
   return (
     <header className="header-public">
       {/* <Link href="/shop">
@@ -66,9 +71,11 @@ function HeaderPublic({ basket }) {
             </span>
             <ShoppingIcon />
           </div>
-          <button className="btn primary-gradient rounded d-flex mt-3">
-            ورود <span className="mx-1">|</span>عضویت
-          </button>
+          <Link href="/login">
+            <a className="btn primary-gradient rounded d-flex mt-3">
+              ورود <span className="mx-1">|</span>عضویت
+            </a>
+          </Link>
         </Offcanvas.Body>
       </Offcanvas>
       <div className="main-container">
@@ -119,11 +126,26 @@ function HeaderPublic({ basket }) {
 
         <div className="controls">
           <input type="text" className="form-control" placeholder="جستجو کنید..." />
-          <SearchIcon />
-          <ShoppingIcon />
-          <button className="btn primary-gradient rounded d-flex">
-            ورود <span className="mx-1">|</span>عضویت
-          </button>
+          <Link  href="#search">
+            <a>
+              <SearchIcon  width="20"/>
+            </a>
+          </Link>
+          <Link  href="/basket">
+            <a className="badge-container">
+              <span className="basket-badge bg-danger text-white rounded-circle p2">{basket&&basket.orderline_set?basket.orderline_set.length: 0}</span>
+              <ShoppingIcon  width="20"/>
+            </a>
+          </Link>
+          {
+            !authenticated?
+            <Link href="/auth/login"><a className="btn primary-gradient rounded d-flex">
+              ورود <span className="mx-1">|</span>عضویت
+            </a>
+            </Link>:
+            <UserIcon />
+          }
+          
         </div>
         <button
           type="button"

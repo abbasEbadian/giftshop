@@ -2,8 +2,9 @@ import React from "react";
 import Image from "next/image";
 import VisaCard from "../../img/card/visacard.png";
 import ProfileAside from '../../components/ProfileAside'
+import withAuth from "../../redux/withAuth";
 // import {get_image_name} from '../utils'
-
+withAuth
 function PurchaseReport() {
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
@@ -85,4 +86,4 @@ function PurchaseReport() {
   );
 }
 
-export default PurchaseReport;
+export default withAuth(PurchaseReport);

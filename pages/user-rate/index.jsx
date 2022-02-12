@@ -8,7 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-
+import withAuth from "../../redux/withAuth";
 const columns = [
   { id: "number", label: "شماره", minWidth: 100, align: "right" },
   { id: "date", label: "تاریخ", minWidth: 100, align: "right" },
@@ -119,7 +119,7 @@ const rows = [
   ),
 ];
 
-export default function StickyHeadTable() {
+ function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -208,3 +208,4 @@ export default function StickyHeadTable() {
     </div>
   );
 }
+export default withAuth(StickyHeadTable)
