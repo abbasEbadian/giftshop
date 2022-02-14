@@ -1,7 +1,7 @@
 import React from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import logo from "../../img/logo/GS-03.png";
-import  Link  from "next/link";
+import Link from "next/link";
 import Image from 'next/image'
 function HeaderUser() {
   const [menuopen, setMenuopen] = React.useState(false);
@@ -12,9 +12,9 @@ function HeaderUser() {
         <div className="wrapper d-flex justify-content-between align-items-center">
           <div className="right-menu">
             <Link href="/" className="brand">
-                <a>
-                    <Image src={logo} />
-                </a>
+              <a>
+                <Image src={logo} />
+              </a>
             </Link>
             <button
               type="button"
@@ -34,7 +34,7 @@ function HeaderUser() {
               placement={"end"}
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                <Offcanvas.Title>گیفت استاپ</Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <ul className="menu">
@@ -45,17 +45,20 @@ function HeaderUser() {
                     </a>
                   </li>
                   <li className="menu-item">
+                    <a href="#">صفحه اصلی</a>
+                  </li>
+                  <li className="menu-item">
                     <a href="#">گیفت کارت</a>
                   </li>
                   <li className="menu-item">
                     <Link href="/Purchase-report">
-                        <a>تماس با ما</a>
+                      <a>تماس با ما</a>
                     </Link>
                   </li>
                   <li className="menu-item menu-item-child">
                     <a href="#" data-toggle="sub-menu">
                       درباره ما
-                      
+
                     </a>
                   </li>
                   <li className="menu-item menu-item-child">
@@ -67,6 +70,11 @@ function HeaderUser() {
                     <a href="#" data-toggle="sub-menu">
                       بلاگ{" "}
                     </a>
+                  </li>
+                  <li className="menu-item">
+                    <Link href="/Purchase-report">
+                      <a>تیکت</a>
+                    </Link>
                   </li>
                 </ul>
                 <div className="left-mennu-res">
@@ -91,7 +99,7 @@ function HeaderUser() {
                 </div>
               </Offcanvas.Body>
             </Offcanvas>
-            <nav className={"navbar navbar-expand-lg navbar-light bg-light"} id="navbar">
+            <nav className={"navbar navbar-expand-lg navbar-light w-100"} id="navbar">
               <ul className="menu">
                 <li className="menu-item">
                   <a href="#">
@@ -99,6 +107,7 @@ function HeaderUser() {
                     <i className="bi bi-house-door-fill"></i>{" "}
                   </a>
                 </li>
+
                 <li className="menu-item">
                   <a href="#">گیفت کارت</a>
                 </li>

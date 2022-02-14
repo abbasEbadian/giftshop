@@ -15,7 +15,7 @@ function Footer() {
               <h6>درباره ما</h6>
               <p className="text-justify">
                 {" "}
-                کلیه حقوق این وب سایت متعلق به گیفت شاپ Giftshop.com و این قالب
+                کلیه حقوق این وب سایت متعلق به گیفت استاپ Giftshop.com و این قالب
                 ثبت شده در DMCA Report گوگل و یا همان قوانین کپی رایت آمریکا می
                 باشد.
               </p>
@@ -30,9 +30,6 @@ function Footer() {
               </li>
               <li>
                 <a href="#">درباره ما</a>
-              </li>
-              <li>
-                <a href="#">فروشگاه</a>
               </li>
               <li>
                 <a href="#">سوالات متداول</a>
@@ -51,9 +48,6 @@ function Footer() {
               </li>
               <li>
                 <a href="#">لیست محصولات</a>
-              </li>
-              <li>
-                <a href="#">حریم خصوصی</a>
               </li>
             </ul>
           </div>
@@ -79,7 +73,7 @@ function Footer() {
         <div className="row">
           <div className="col-md-8 col-sm-6 col-xs-12">
             <p className="copyright-text">
-              تمامی مطالب، عکس ها و... متعلق به سایت فروشگاهی گیفت شاپ می باشد.
+              تمامی مطالب، عکس ها و... متعلق به سایت فروشگاهی گیفت استاپ می باشد.
               <a href="#" className="text-muted">
                 طراحی شده توسط آرش زرندی
               </a>

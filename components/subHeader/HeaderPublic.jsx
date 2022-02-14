@@ -27,7 +27,7 @@ function HeaderPublic({ basket }) {
         placement={"end"}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>گیفت شاپ</Offcanvas.Title>
+          <Offcanvas.Title>گیفت استاپ</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ul className="menu">
@@ -43,7 +43,7 @@ function HeaderPublic({ basket }) {
               </Link>
             </li>
             <li className="menu-item">
-              <Link href="/contanct-us">
+              <Link href="/contact-us">
                 <a>تماس با ما</a>
               </Link>
             </li>
@@ -56,6 +56,17 @@ function HeaderPublic({ basket }) {
             <li className="menu-item menu-item-child">
               <Link href="/blog">
                 <a data-toggle="sub-menu">بلاگ </a>
+              </Link>
+            </li>
+
+            <li className="menu-item menu-item-child">
+              <Link href="/send-ticket">
+                <a data-toggle="sub-menu">تیکت </a>
+              </Link>
+            </li>
+            <li className="menu-item menu-item-child">
+              <Link href="/">
+                <a data-toggle="sub-menu">خروج </a>
               </Link>
             </li>
           </ul>
@@ -74,7 +85,7 @@ function HeaderPublic({ basket }) {
       <div className="main-container">
         <Link href="/">
           <a>
-          <Image src={logo} height={"45px"} width={"200px"} />
+            <Image src={logo} height={"45px"} width={"200px"} />
           </a>
         </Link>
         <div className="links">
@@ -93,7 +104,7 @@ function HeaderPublic({ basket }) {
               <div className={"list-show-menu" + (active ? " collapsed " : "")}>
                 <ul
                   class="dropdown-menu mega-menu d-flex flex-wrap"
-                  // style={{ display: "block" }}
+                // style={{ display: "block" }}
                 >
                   {brands.map((item, idx) => {
                     return (
@@ -114,6 +125,9 @@ function HeaderPublic({ basket }) {
           </Link>
           <Link href="/contact-us">
             <a>تماس با ما</a>
+          </Link>
+          <Link href="/send-ticket">
+            <a>تیکت</a>
           </Link>
         </div>
 

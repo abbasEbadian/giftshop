@@ -79,7 +79,7 @@ function Blog() {
       <section>
         <div className="bg-blog" style={bgBlog}>
           <div className="content-head-blog col-10 col-lg-5 col-md-5 m-auto">
-            <h2>وبلاگ گیفت شاپ</h2>
+            <h2>وبلاگ گیفت استاپ</h2>
             <p>
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
               استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در

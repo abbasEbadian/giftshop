@@ -24,7 +24,7 @@ function AboutUs() {
               درباره <span> ما</span>
             </h3>
           </div>
-          <div className="col-6 col-lg-5 col-md-6">
+          <div className="col-12 col-lg-5 col-md-6">
             <h6>داستان ما</h6>
             <p className="text-justify">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
@@ -50,7 +50,7 @@ function AboutUs() {
               <Image src={aboutimg2}></Image>
             </div>
           </div>
-          <div className="col-6 col-lg-5 col-md-6">
+          <div className="col-12 col-lg-5 col-md-6">
             <h6>انواع گیفت‌کارت</h6>
             <p className="text-justify">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با

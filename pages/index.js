@@ -91,7 +91,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-12 footing d-flex align-items-end justify-content-between mt-auto pb-2">
+          <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pt-2">
             <span></span>
             <button className="scroll-down d-flex align-items-center justify-content-center flex-column">
               <span calssName="mb-2">
@@ -99,13 +99,13 @@ export default function Home() {
               </span>
               <Image src={arrows} alt="arrows" />
             </button>
-            <div className="socials d-flex align-items-cetnter flex-column justify-content-center">
+            {/* <div className="socials d-flex align-items-cetnter flex-column justify-content-center">
               <YouTube />
               <span className="my-2">
                 <Instagram />
               </span>
               <Twitter />
-            </div>
+            </div> */}
           </div>
         </main>
         <HomeUtilities />

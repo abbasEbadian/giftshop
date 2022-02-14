@@ -130,10 +130,12 @@
     }
     .menu .menu-item {
       padding: 1rem;
+      list-style: none;
     }
     .menu .menu-item i {
       color: var(--color-blue);
       margin-left: .5rem;
+      font-size: 25px;
     }
     .menu .menu-item a {
       font-weight: 600;
