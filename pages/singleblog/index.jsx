@@ -92,7 +92,7 @@ function SingleBlog() {
               </div>
 
               <div className="review-section">
-                <Reviews />
+                <Reviews reviews={[]}/>
                 {/* <ReadMoreBlog /> */}
               </div>
             </div>

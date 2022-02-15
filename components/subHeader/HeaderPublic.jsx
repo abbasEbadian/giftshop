@@ -33,37 +33,42 @@ function HeaderPublic({ authenticated }) {
         placement={"end"}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>گیفت شاپ</Offcanvas.Title>
+          <Offcanvas.Title>گیفت استاپ</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ul className="menu">
             <li className="menu-item">
-              <a href="#">
-                {" "}
+              <a href="/" onClick={e=>setMenuopen(false)}>                {" "}
                 <i className="bi bi-house-door-fill"></i>{" "}
               </a>
             </li>
             <li className="menu-item">
               <Link href="/shop">
-                <a>گیفت کارت   </a>
+                <a onClick={e=>setMenuopen(false)}>گیفت کارت   </a>
               </Link>
             </li>
             <li className="menu-item">
-              <Link href="/contanct-us">
-                <a>تماس با ما</a>
+              <Link href="/contact-us">
+                <a onClick={e=>setMenuopen(false)}>تماس با ما</a>
               </Link>
             </li>
             <li className="menu-item menu-item-child">
-              <Link href="/about-us">
-                <a data-toggle="sub-menu">درباره ما</a>
+              <Link  href="/about-us">
+                <a onClick={e=>setMenuopen(false)} data-toggle="sub-menu">درباره ما</a>
               </Link>
             </li>
 
             <li className="menu-item menu-item-child">
               <Link href="/blog">
-                <a data-toggle="sub-menu">بلاگ </a>
+                <a onClick={e=>setMenuopen(false)} data-toggle="sub-menu">بلاگ </a>
               </Link>
             </li>
+            <li className="menu-item menu-item-child">
+              <Link href="/send-ticket">
+                <a onClick={e=>setMenuopen(false)}>تیکت </a>
+              </Link>
+            </li>
+
           </ul>
           <div className="controls d-flex">
             <input type="text" className="form-control" />
@@ -72,7 +77,7 @@ function HeaderPublic({ authenticated }) {
             </span>
             <ShoppingIcon />
           </div>
-          <Link href="/login">
+          <Link href="/auth">
             <a className="btn primary-gradient rounded d-flex mt-3">
               ورود <span className="mx-1">|</span>عضویت
             </a>
@@ -82,7 +87,7 @@ function HeaderPublic({ authenticated }) {
       <div className="main-container">
         <Link href="/">
           <a>
-          <Image src={logo} height={"45px"} width={"200px"} />
+            <Image src={logo} height={"45px"} width={"200px"} />
           </a>
         </Link>
         <div className="links">
@@ -101,7 +106,6 @@ function HeaderPublic({ authenticated }) {
               <div className={"list-show-menu" + (active ? " collapsed " : "")}>
                 <ul
                   class="dropdown-menu mega-menu d-flex flex-wrap"
-                  // style={{ display: "block" }}
                 >
                   {brands.map((item, idx) => {
                     return (
@@ -122,6 +126,9 @@ function HeaderPublic({ authenticated }) {
           </Link>
           <Link href="/contact-us">
             <a>تماس با ما</a>
+          </Link>
+          <Link href="/send-ticket">
+            <a>تیکت</a>
           </Link>
         </div>
 
@@ -145,7 +152,7 @@ function HeaderPublic({ authenticated }) {
           </Link>
           {
             !authenticated?
-            <Link href="/auth/login"><a className="btn primary-gradient rounded d-flex">
+            <Link href="/auth"><a className="btn primary-gradient rounded d-flex">
               ورود <span className="mx-1">|</span>عضویت
             </a>
             </Link>:

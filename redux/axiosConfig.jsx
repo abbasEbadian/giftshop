@@ -5,9 +5,9 @@ export const configure = ()=>{
         async config => {
             try{
                 const session = localStorage.getItem('token')
-                if (config.url&&config.url.indexOf("login") === -1
+                if (config.url&&config.url.indexOf("check_auth") === -1
                  && session  ) {
-                    config.headers['Authorization'] = 'Token ' + session;
+                    config.headers['Authorization'] = 'Bearer ' + session;
                 }
             }catch(err){
                 console.log(err);

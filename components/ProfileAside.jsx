@@ -8,56 +8,15 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import SendIcon from "@mui/icons-material/Send";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import ChatIcon from '@mui/icons-material/Chat';
 
-
-// function ProfileAside({active}) {
-
-
-
-
-//     return (
-//         <aside id="profile-aside">
-//             <style JSX>{`
-//             #profile-aside li.active{
-//                 background-color:rgba(147, 202, 245, 1);
-//             }
-//             #profile-aside li.active i{
-//                 color:#fff;
-//                 opacity: 1;
-//             }`}
-
-//             </style>
-//             <h5 className="text-center py-3">پنل کاربری</h5>
-//             <div className="card-profile-tab">
-//               <ul>
-//                 <li className={active==="proflie"? "active": ""}>
-//                   <i class="bi bi-person-square"></i>
-//                   <Link href="/">
-//                     <a >مشخصات</a></Link>
-//                 </li>
-//                 <li className={active==="favorite"? "active": ""}>
-//                   <i class="bi bi-bookmark"></i>
-//                   <Link href="/">
-//                     <a >مورد علاقه ها</a></Link>
-//                 </li>
-//                 <li className={active==="purchase_report"? "active": ""}>
-//                   <i class="bi bi-journal-text"></i>
-//                   <Link href="/purchase-report">
-//                     <a >گزارش خرید ها</a></Link>
-//                 </li>
-//               </ul>
-//             </div>
-//           </aside>
-//     )
-// }
-
-// export default ProfileAside
 
 
 
@@ -85,32 +44,55 @@ export default function ProfileAside({active}) {
             </ListSubheader>
         }
       >
-        <ListItemButton component="a" href="/" selected={active==="purchase_report"} classes={classes}>
+        <ListItemButton component="a" href="/panel/purchase-report" selected={active==="profile"} classes={classes}>
           <ListItemIcon>
             <AccountBoxIcon />
           </ListItemIcon>
-          <ListItemText primary="Sent mail" />
+          <ListItemText primary="مشخصات" />
         </ListItemButton>
-        <ListItemButton classes={classes}>
+        <ListItemButton component="a" href="/panel/favorites" selected={active==="favorites"} classes={classes}>
           <ListItemIcon>
-            <DraftsIcon />
+            <BookmarkBorderIcon />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemText primary="مورد علاقه ها" />
         </ListItemButton>
-        <ListItemButton onClick={handleClick} classes={classes}>
+        <ListItemButton component="a" href="/panel/purchase-report" selected={active==="purchase_report"} classes={classes}>
           <ListItemIcon>
-            <InboxIcon />
+            <AssignmentIcon />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary="گزارش خریدها" />
+        </ListItemButton>
+        <ListItemButton component="a" href="/panel/points" selected={active==="points"} classes={classes}>
+          <ListItemIcon>
+            <AssignmentIcon />
+          </ListItemIcon>
+          <ListItemText primary="امتیازات" />
+        </ListItemButton>
+        <ListItemButton component="a" href="/panel/wallet" selected={active==="wallet"} classes={classes}>
+          <ListItemIcon>
+            <AccountBalanceWalletIcon />
+          </ListItemIcon>
+          <ListItemText primary="کیف پول" />
+        </ListItemButton>
+       
+        <ListItemButton onClick={handleClick} >
+          <ListItemIcon>
+            <ChatIcon />
+          </ListItemIcon>
+          <ListItemText primary="تیکت ها" />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }} component="a" href="/" >
+            <ListItemButton sx={{ pl: 4 }} component="a" selected={active==="new_ticket"} href="/panel/send-ticket" >
               <ListItemIcon>
-                <StarBorder />
               </ListItemIcon>
-              <ListItemText primary="Starred" />
+              <ListItemText primary="ایجاد تیکت جدید" />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} component="a" selected={active==="tickets"} href="/panel/tickets" >
+              <ListItemIcon>
+              </ListItemIcon>
+              <ListItemText primary="مشاهده تیکت ها" />
             </ListItemButton>
           </List>
         </Collapse>

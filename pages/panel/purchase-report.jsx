@@ -3,6 +3,7 @@ import Image from "next/image";
 import VisaCard from "../../img/card/visacard.png";
 import ProfileAside from '../../components/ProfileAside'
 import withAuth from "../../redux/withAuth";
+import Head from "next/head";
 // import {get_image_name} from '../utils'
 withAuth
 function PurchaseReport() {
@@ -51,7 +52,9 @@ function PurchaseReport() {
 //   )
   return (
     <>
-      <div className="container">
+      <Head><title>گیفت استاپ | گزارش خرید</title></Head>
+
+      <section className="container">
         <div className="row">
           <ProfileAside active="purchase_report"/>
           <div className="col-md-9">
@@ -81,7 +84,7 @@ function PurchaseReport() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

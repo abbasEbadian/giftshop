@@ -15,10 +15,10 @@ function SimilarCards({ _products=[], children, product=undefined, title, addToC
       );
     else if(_products) setProducts(_products)
     else setProducts(cards.filter((i, x) => i.id < 10));
-  }, [cards, product, _products]);
+  }, [product]);
 
   return (
-    <div>
+    <div className={addToCard? "with-button": ""}>
       <h2 className="text-center mt-5 mb-4">{title}</h2>
       {children}
       <Swiper

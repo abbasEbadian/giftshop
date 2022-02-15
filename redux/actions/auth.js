@@ -5,16 +5,10 @@ import { get_cart } from '.'
 
 export const logout = (router)=>{
     return dispatch=>{
-        axios.post(e.LOGOUT)
-        .then((response)=>{})
-        .catch(e=>console.log(e))
-        .finally(f=>{
-            localStorage.removeItem('token')
-            dispatch({type:t.UPDATE_STATUS, payload: false})
-            dispatch({type:t.UPDATE_USER, payload: {}})
-            if(typeof window!== "undefined") document.location.href = "/"
-            router?.replace("/")
-        })
+        localStorage.removeItem('token')
+        dispatch({type:t.UPDATE_STATUS, payload: false})
+        dispatch({type:t.UPDATE_USER, payload: {}})
+        if(typeof window!== "undefined") document.location.href = "/"
     }
 }
 export const profile = ()=>{
@@ -39,7 +33,6 @@ export const login = (info, next)=>{
             .then((response)=>{
                 const {data} = response
                 if(response.status === 200){
-                    
                     localStorage.removeItem('token')
                     localStorage.setItem('token', data.token)
                     dispatch({type:t.UPDATE_STATUS, payload: true})
@@ -53,8 +46,8 @@ export const login = (info, next)=>{
             .catch(err=>{
                 console.log(err)
 
-                if(err.response.status === 401 || err.response.status === 400)
-                    return resolve({error: 1, message: "نام کاربری/رمز عبور اشتباه است."})
+                if(err.response?.status === 401 || err.response?.status === 400)
+                    return resolve({error: 1, message: err.response?.data?.message})
 
                 return resolve({error: 1, message: "خطا در برقراری ارتباط"})
             })

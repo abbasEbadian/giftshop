@@ -1,10 +1,13 @@
 import React from "react";
 import faqsimg from "../../img/other/image8.png";
 import Image from 'next/image'
+import Head from 'next/head'
 function Terms() {
   return (
     <section>
-        <Head><title>قوانین | گیفت شاپ</title></Head>
+      <Head>
+        <title>قوانین</title>
+      </Head>
 
       <div className="container mw-100 w-100">
         <div className="row">

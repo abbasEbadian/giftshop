@@ -133,11 +133,12 @@ const rows = [
     setPage(0);
   };
 
+  
   return (
-    <div className="container">
-      <Head><title>سطح کاربری | گیفت شاپ</title></Head>
+    <section className="container">
+      <Head><title>گیفت استاپ | امتیازات</title></Head>
       <div className="row">
-        <ProfileAside active="purchase_report" />
+        <ProfileAside active="points" />
         <div className=" col-lg-9 col-12 py-5">
         <h5 class="text-basket pb-3 m-0">گزارش <span>خریدها</span></h5>
           <Paper
@@ -207,7 +208,7 @@ const rows = [
           </Paper>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 export default withAuth(StickyHeadTable)

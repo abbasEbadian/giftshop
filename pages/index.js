@@ -37,7 +37,6 @@ export default function Home() {
           <meta name="description" content="وبسایت مرجع خرید انواع گیفت کارت"/>
           <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
           />
         </Head>
         <style JSX>{`
@@ -46,7 +45,8 @@ export default function Home() {
           z-index: -1;
         }
       `}</style>
-        <main className="main-page flex-wrap">
+        <section id="bg-header-new">
+          <main className="main-page flex-wrap">
           <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4 pe-lg-5 p-0">
             <h3 className="fs-2 ">
               گیفت <Image src={card} width={36} height={24} /> کارت های متنوع
@@ -101,15 +101,16 @@ export default function Home() {
               </span>
               <Image src={arrows} alt="arrows" />
             </button>
-            <div className="socials d-flex align-items-cetnter flex-column justify-content-center">
+            {/* <div className="socials d-flex align-items-cetnter flex-column justify-content-center">
               <YouTube />
               <span className="my-2">
                 <Instagram />
               </span>
               <Twitter />
-            </div>
+            </div> */}
           </div>
-        </main>
+          </main>
+        </section>
         <HomeUtilities />
 
         <SimilarCards
