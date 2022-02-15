@@ -21,7 +21,8 @@ import ChatIcon from '@mui/icons-material/Chat';
 
 
 export default function ProfileAside({active}) {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [navOpen, setNavOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -29,12 +30,12 @@ export default function ProfileAside({active}) {
   const  classes={selected: "active", root: "sidebar-item"}
   
   return (
-    <div className="col-md-3 py-5">
+    <div className="col-md-7 col-lg-3 col-12 m-auto py-5">
             <h4 className='font-weight-bold text-dark text-center pb-3 m-0'>
             پنل کاربری
                 </h4>
       <List
-       classes={{root: "profile-aside"}}
+       classes={{root: "profile-aside" + (navOpen?" collapsed": "")}}
         sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
         component="nav"
         aria-labelledby="nested-list-subheader"
@@ -44,6 +45,16 @@ export default function ProfileAside({active}) {
             </ListSubheader>
         }
       >
+        <ListItemButton component="div"  classes={{root : "mobile-menu-title"}} onClick={e=>setNavOpen(!navOpen)}>
+          <ListItemIcon>
+            {navOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItemIcon>
+          <ListItemText primary={
+            active==="profile"?"مشخصات":
+            active==="favorites"?"مورد علاقه ها":"test"
+
+          } />
+        </ListItemButton>
         <ListItemButton component="a" href="/panel/purchase-report" selected={active==="profile"} classes={classes}>
           <ListItemIcon>
             <AccountBoxIcon />

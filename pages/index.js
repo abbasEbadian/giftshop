@@ -8,10 +8,9 @@ import off from "../img/icon/ShoppingIconic.png";
 import cardFolding from "../img/icon/Cards-folding3.png";
 import pie from "../img/icon/Group3452.png";
 import income from "../img/icon/IncomeIconic.png";
-import logos from "../img/card/logos.png";
 import collapse from "../img/icon/Collapse.png";
 import why from "../img/other/why.png";
-
+import  BrandList from '../components/BrandList'
 
 import {
   ChevronLeft,
@@ -179,8 +178,7 @@ export default function Home() {
           </div>
         </SimilarCards>
         <div className="my-5 d-flex"></div>
-        <SimilarCards
-          product={undefined}
+        <BrandList
           title={
             <span>
               {"محصولات"} <span className="text-secondary">فروشگاه </span>
@@ -195,20 +193,7 @@ export default function Home() {
             </span>
           }
         />
-        <div className="d-flex justify-content-end my-5">
-          <div className="bgimage flex-grow-1 position-relative mx-2">
-            <Image
-              alt="Mountains"
-              src={logos}
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-            />
-          </div>
-          <Link href="/shop">
-            <a className="btn primary-gradient mr-2 ">مشاهده همه محصولات</a>
-          </Link>
-        </div>
+        
       </div>
       <div className="whyus secondary-gradient-90 py-4">
         <div className="mcontainer">

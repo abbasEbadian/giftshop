@@ -36,7 +36,7 @@ import Link from 'next/link'
         }}
       >
         <MenuItem >
-            <Link href="/user-panel">
+            <Link href="/panel/profile">
                 <a>
                 حساب کاربری 
                 </a>

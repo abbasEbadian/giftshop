@@ -6,18 +6,18 @@ import withAuth from "../../redux/withAuth";
 import { useDispatch, useSelector } from "react-redux";
 import * as _ from 'lodash'
 import { toast } from "react-toastify";
-import { get_cart} from "../../redux/actions";
-import {PATCH_CART} from '../../redux/endpoints'
+import { get_cart } from "../../redux/actions";
+import { PATCH_CART } from '../../redux/endpoints'
 import axios from "axios";
 
 import Head from 'next/head'
-function Basket({setBasket}) {
+function Basket({ setBasket }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const [products, setProducts] = React.useState({})
-  const basket = useSelector(s=>s.order.basket)
-  
-  React.useEffect(()=>{
+  const basket = useSelector(s => s.order.basket)
+
+  React.useEffect(() => {
     const x = _.groupBy(basket.orderline_set, c => c.template_id.id)
     setProducts(x)
   }, [basket])
@@ -31,17 +31,28 @@ function Basket({setBasket}) {
       <h1 className="text-center mt-4">
         کارت های <span className="text-secondary">انتخابی</span>
       </h1>
-      {Object.keys(products)?.length?
-        Object.keys(products).map(product=>{
-          return  <ProductRow product={products[product][0].template_id} _count={products[product].length}  />
-        }): <>
-        
-       <section className="alert alert-info w-75 my-5 mx-auto">سبد خرید شما خالیست</section>
+      {Object.keys(products)?.length ?
+        Object.keys(products).map(product => {
+          return <ProductRow product={products[product][0].template_id} _count={products[product].length} />
+        }) : <>
+
+          <section className="alert alert-info w-75 my-5 mx-auto">سبد خرید شما خالیست</section>
         </>
       }
 
-     
-     
+      <div class="col-10 button-basket py-5">
+        <div class="col-6 col-md-3">
+          <div class="accept-pay">
+            <a href="#">تایید و پرداخت</a>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="cancel-pay">
+            <a href="#">خالی کردن سبد</a>
+          </div>
+        </div>
+      </div>
+
 
     </section>
   );

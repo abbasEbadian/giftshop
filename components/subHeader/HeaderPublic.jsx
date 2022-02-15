@@ -64,7 +64,7 @@ function HeaderPublic({ authenticated }) {
               </Link>
             </li>
             <li className="menu-item menu-item-child">
-              <Link href="/send-ticket">
+              <Link href="/panel/send-ticket">
                 <a onClick={e=>setMenuopen(false)}>تیکت </a>
               </Link>
             </li>
@@ -127,7 +127,7 @@ function HeaderPublic({ authenticated }) {
           <Link href="/contact-us">
             <a>تماس با ما</a>
           </Link>
-          <Link href="/send-ticket">
+          <Link href="/panel/send-ticket">
             <a>تیکت</a>
           </Link>
         </div>

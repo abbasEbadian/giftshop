@@ -1,5 +1,7 @@
 .profile-aside .sidebar-item.active{
     background-color:rgba(147, 202, 245, 1);
+}
+.profile-aside .sidebar-item.active{
     border-radius: 15px 15px 0 0;
 }
 .profile-aside .sidebar-item.active i{
@@ -10,4 +12,17 @@
     border: 1px solid var(--color-blue);
     box-shadow: 0px 0 10px 2px #eee;
     border-radius: 15px;
+}
+
+.profile-aside {
+    max-height: 52px;
+    overflow: hidden;
+    transition: all .3s ease-in;
+    height: max-content;
+}
+
+.profile-aside.collapsed {
+    max-height: 500px;
+    
+    transition: all .3s ease-in;
 }
