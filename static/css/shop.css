@@ -98,7 +98,7 @@
 .single-card::before {
   content: "";
   position: absolute;
-  bottom: -10%;
+  bottom: -12%;
   left: 10%;
   width: 80%;
   height: 50px;

@@ -15,7 +15,7 @@ function PurchaseReport() {
         name: "ویزا کارت 20دلاری",
         price: "2300",
         expire: 1641640564431,
-        number: 20,
+        country: "USA",
         type: "paypal",
       },
       {
@@ -23,7 +23,7 @@ function PurchaseReport() {
         name: "Product 21",
         price: "2200",
         expire: 1641680004431,
-        number: 20,
+        country: "USA",
         type: "paypal",
       },
       {
@@ -31,7 +31,15 @@ function PurchaseReport() {
         name: "Product 21",
         price: "2200",
         expire: 1641680004431,
-        number: 20,
+        country: "USA",
+        type: "paypal",
+      },
+      {
+        id: 3,
+        name: "Product 21",
+        price: "2200",
+        expire: 1641680004431,
+        country: "USA",
         type: "paypal",
       },
     ]);
@@ -57,13 +65,13 @@ function PurchaseReport() {
       <section className="container">
         <div className="row">
           <ProfileAside active="purchase_report"/>
-          <div className="col-md-9">
+          <div className="col-lg-9 col-12">
           <h5 class="text-basket py-3">گزارش <span>خریدها</span></h5>
             <div className="all-card-report">
               {products &&
                 products.map((item, idx) => {
                   return (
-                    <div className="col-12 col-md-5 col-lg-4  card-report">
+                    <div className="col-12 col-md-5 col-lg-5  card-report">
                       {/* <Image className=" " src={get_image_name(item.type)}></Image> */}
                       <div className="info-card-report1">
                         <div>
@@ -75,7 +83,7 @@ function PurchaseReport() {
                             تاریخ:{" "}
                             {new Date(item.expire).toLocaleDateString("fa-IR")}
                           </p>
-                          <p>موجودی : {item.number}</p>
+                          <p>کشور : {item.country}</p>
                         </div>
                       </div>
                     </div>

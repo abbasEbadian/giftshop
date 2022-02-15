@@ -30,7 +30,7 @@ export default function ProfileAside({active}) {
   const  classes={selected: "active", root: "sidebar-item"}
   
   return (
-    <div className="col-md-7 col-lg-3 col-12 m-auto py-5">
+    <div className="col-md-12 col-lg-3 col-12 py-5">
             <h4 className='font-weight-bold text-dark text-center pb-3 m-0'>
             پنل کاربری
                 </h4>
@@ -51,11 +51,11 @@ export default function ProfileAside({active}) {
           </ListItemIcon>
           <ListItemText primary={
             active==="profile"?"مشخصات":
-            active==="favorites"?"مورد علاقه ها":"test"
+            active==="favorites"?"مورد علاقه ها":"منوی کاربری"
 
           } />
         </ListItemButton>
-        <ListItemButton component="a" href="/panel/purchase-report" selected={active==="profile"} classes={classes}>
+        <ListItemButton component="a" href="/panel/profile" selected={active==="profile"} classes={classes}>
           <ListItemIcon>
             <AccountBoxIcon />
           </ListItemIcon>
