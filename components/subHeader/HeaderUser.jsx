@@ -3,6 +3,10 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import logo from "../../img/logo/GS-03.png";
 import Link from "next/link";
 import Image from 'next/image'
+import SearchIcon from "../../img/icon/SearchIcon";
+import ShoppingIcon from "../../img/icon/ShoppingIcon";
+
+
 function HeaderUser() {
   const [menuopen, setMenuopen] = React.useState(false);
 
@@ -39,64 +43,56 @@ function HeaderUser() {
               <Offcanvas.Body>
                 <ul className="menu">
                   <li className="menu-item">
-                    <a href="#">
+                    <a href="/" onClick={e => setMenuopen(false)}>
                       {" "}
                       <i className="bi bi-house-door-fill"></i>{" "}
                     </a>
                   </li>
+
                   <li className="menu-item">
-                    <a href="#">صفحه اصلی</a>
+                    <Link href="/shop">
+                      <a onClick={e => setMenuopen(false)} >گیفت کارت</a>
+                    </Link>
                   </li>
                   <li className="menu-item">
-                    <a href="#">گیفت کارت</a>
-                  </li>
-                  <li className="menu-item">
-                    <Link href="/Purchase-report">
-                      <a>تماس با ما</a>
+                    <Link href="/contact-us">
+                      <a onClick={e => setMenuopen(false)}>تماس با ما</a>
                     </Link>
                   </li>
                   <li className="menu-item menu-item-child">
-                    <a href="#" data-toggle="sub-menu">
-                      درباره ما
-
-                    </a>
+                    <Link href="/about-us">
+                      <a onClick={e => setMenuopen(false)}>
+                        درباره ما
+                      </a></Link>
                   </li>
                   <li className="menu-item menu-item-child">
-                    <a href="#" data-toggle="sub-menu">
-                      تماس با ما{" "}
-                    </a>
-                  </li>
-                  <li className="menu-item menu-item-child">
-                    <a href="#" data-toggle="sub-menu">
-                      بلاگ{" "}
-                    </a>
+                    <Link href="/blog">
+                      <a onClick={e=>setMenuopen(false)}>
+                        بلاگ{" "}
+                      </a></Link>
                   </li>
                   <li className="menu-item">
-                    <Link href="/Purchase-report">
-                      <a>تیکت</a>
+                    <Link href="/send-ticket">
+                      <a onClick={e=>setMenuopen(false)}>تیکت</a>
+                    </Link>
+                  </li>
+                  <li className="menu-item menu-item-child">
+                    <Link href="/auth/signout">
+                      <a onClick={e => setMenuopen(false)}>خروج </a>
                     </Link>
                   </li>
                 </ul>
-                <div className="left-mennu-res">
-                  <div className="search-bar">
-                    <form action="#">
-                      <input type="text" name="" id="" placeholder=" " />
-                      <button>
-                        <i className="bi bi-search"></i>
-                      </button>
-                    </form>
-                  </div>
-                  <div className="basket-shop">
-                    <a href="#">
-                      <i className="bi bi-bag"></i>
-                    </a>
-                  </div>
-                  <div className="user">
-                    <a href="#">
-                      <i className="bi bi-person"></i>
-                    </a>
-                  </div>
-                </div>
+                <div className="controls d-flex">
+            <input type="text" className="form-control" />
+            <span className="mx-2">
+              <SearchIcon width={30} />
+            </span>
+            <ShoppingIcon />
+          </div>
+        <Link href="/user-level">
+        <button className="btn primary-gradient rounded d-flex mt-3">
+          حساب کاربری
+            </button></Link>
               </Offcanvas.Body>
             </Offcanvas>
             <nav className={"navbar navbar-expand-lg navbar-light w-100"} id="navbar">
@@ -109,10 +105,10 @@ function HeaderUser() {
                 </li>
 
                 <li className="menu-item">
-                  <a href="#">گیفت کارت</a>
+                  <a href="#" >گیفت کارت</a>
                 </li>
                 <li className="menu-item menu-item-child">
-                  <a href="#" data-toggle="sub-menu">
+                  <a href="#" onClick={e => setMenuopen(false)}>
                     درباره ما
                     {/* <i className="expand"></i>  */}
                   </a>
@@ -124,12 +120,12 @@ function HeaderUser() {
                      </ul>  */}
                 </li>
                 <li className="menu-item menu-item-child">
-                  <a href="#" data-toggle="sub-menu">
+                  <a href="#" onClick={e => setMenuopen(false)}>
                     تماس با ما{" "}
                   </a>
                 </li>
                 <li className="menu-item menu-item-child">
-                  <a href="#" data-toggle="sub-menu">
+                  <a href="#" onClick={e => setMenuopen(false)}>
                     بلاگ{" "}
                   </a>
                 </li>

@@ -128,3 +128,8 @@ main.main-page .images .pic-head4 {
   position: absolute;
   bottom: 0;
 }
+
+#bg-header-new {
+  background: rgb(233 233 233);
+  margin-inline: -55px;
+}

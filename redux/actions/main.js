@@ -13,7 +13,7 @@ export const fetch_brands = () =>{
     return async (dispatch, getState)=>{
         dispatch(update_fetching_brands(true))
         return (
-            axios.get(t.BASE_URL + "/api/brands/all")
+            axios.get(t.BASE_URL + "/api/v1/brands/all")
             .then(response=>{
                 const {data} = response
                 dispatch(update_brands(data))
@@ -28,7 +28,7 @@ export const fetch_brands = () =>{
 export const fetch_cards = () =>{
     return async (dispatch, getState)=>{
         dispatch(update_fetching_cards(true))
-        return axios.get(t.BASE_URL + "/api/cards/all")
+        return axios.get(t.BASE_URL + "/api/v1/cards/all")
         .then((response)=>{
             const {data} = response
             dispatch(update_cards(data))
@@ -42,7 +42,7 @@ export const fetch_cards = () =>{
 export const fetch_countries = () =>{
     return async (dispatch, getState)=>{
         dispatch(update_fetching_countries(true))
-        return axios.get(t.BASE_URL + "/api/country/all")
+        return axios.get(t.BASE_URL + "/api/v1/country/all")
         .then((response)=>{
             const {data} = response
             dispatch(update_countries(data))

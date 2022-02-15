@@ -26,7 +26,7 @@ import Link from "next/link";
 
 export default function Home() {
   const [active, setActive] = React.useState("day");
-  
+
   return (
     <>
       <div className="mcontainer mcontainer-bg">
@@ -44,70 +44,72 @@ export default function Home() {
           z-index: -1;
         }
       `}</style>
-        <main className="main-page flex-wrap">
-          <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4 pe-lg-5 p-0">
-            <h3 className="fs-2 ">
-              گیفت <Image src={card} width={36} height={24} /> کارت های متنوع
-            </h3>
-            <h3 className="fs-3 mt-3 mb-5 text-nowrap">
-              خرید <span className="text-secondary">سریع</span> {" و "}
-              <span className="text-secondary">آسان</span> {" و "}
-              همراه با <span className="text-secondary">امنیت بالا</span>
-            </h3>
-            <p className="text-justify">
-              انواع مختلف گیفت‌کارت با نازل‌ترین قیمت‌ها، قابل استفاده در
-              پلتفرم‌ها و سایت‌های گوناگون. جهت خریدهای آنلاین، خرید اکانت‌های
-              ویژه/پریمیوم، سهولت و کاهش هزینه‌ها در شارژ حساب‌های کاربری
-              (پلی‌استیشن، آی‌تونز، گوگل‌پلی، اسپاتیفای،...) و کاربردهای دیگر
-            </p>
-            <button className="btn success-gradient d-flex justify-content-between  align-items-center mt-3">
-              <Link href="/shop ">
-                <a className="text-white py-3 w-75 text-end">جستجوی سریع و خرید کارت</a>
-              </Link>
-              <ChevronLeft />
-            </button>
-          </div>
-          <div className="col-md-2 col-0"></div>
-          <div className="images col-md-6 col-12">
-            <div className="row">
-              <div className="col-md-4 col-6 d-flex align-items-center pic-head1">
-                <Image src={off} />
-              </div>
-              <div className="col-8 pic-head2">
-                <Image src={cardFolding} />
-              </div>
-              <div className="col-6 pic-head3">
-                <div className="varity-image d-grid place-items-center position-relative ">
-                  <Image src={pie} width={280} height={280} />
-                  {/* <span className="varity-span">
+        <section id="bg-header-new">
+          <main className="main-page flex-wrap">
+            <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4 pe-lg-5 p-0">
+              <h3 className="fs-2 ">
+                گیفت <Image src={card} width={36} height={24} /> کارت های متنوع
+              </h3>
+              <h3 className="fs-3 mt-3 mb-5 text-nowrap">
+                خرید <span className="text-secondary">سریع</span> {" و "}
+                <span className="text-secondary">آسان</span> {" و "}
+                همراه با <span className="text-secondary">امنیت بالا</span>
+              </h3>
+              <p className="text-justify">
+                انواع مختلف گیفت‌کارت با نازل‌ترین قیمت‌ها، قابل استفاده در
+                پلتفرم‌ها و سایت‌های گوناگون. جهت خریدهای آنلاین، خرید اکانت‌های
+                ویژه/پریمیوم، سهولت و کاهش هزینه‌ها در شارژ حساب‌های کاربری
+                (پلی‌استیشن، آی‌تونز، گوگل‌پلی، اسپاتیفای،...) و کاربردهای دیگر
+              </p>
+              <button className="btn success-gradient d-flex justify-content-between  align-items-center mt-3">
+                <Link href="/shop ">
+                  <a className="text-white py-3 w-75 text-end">جستجوی سریع و خرید کارت</a>
+                </Link>
+                <ChevronLeft />
+              </button>
+            </div>
+            <div className="col-md-2 col-0"></div>
+            <div className="images col-md-6 col-12">
+              <div className="row">
+                <div className="col-md-4 col-6 d-flex align-items-center pic-head1">
+                  <Image src={off} />
+                </div>
+                <div className="col-8 pic-head2">
+                  <Image src={cardFolding} />
+                </div>
+                <div className="col-6 pic-head3">
+                  <div className="varity-image d-grid place-items-center position-relative ">
+                    <Image src={pie} width={280} height={280} />
+                    {/* <span className="varity-span">
                     انواع <br />
                     گیفت کارت
                   </span> */}
+                  </div>
+                </div>
+                <div className="col-6 pic-head4">
+                  <Image src={income} />
                 </div>
               </div>
-              <div className="col-6 pic-head4">
-                <Image src={income} />
-              </div>
             </div>
-          </div>
 
-          <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pt-2">
-            <span></span>
-            <button className="scroll-down d-flex align-items-center justify-content-center flex-column">
-              <span calssName="mb-2">
-                <Image src={mouse} alt="mouse" />
-              </span>
-              <Image src={arrows} alt="arrows" />
-            </button>
-            {/* <div className="socials d-flex align-items-cetnter flex-column justify-content-center">
+            <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pt-2">
+              <span></span>
+              <button className="scroll-down d-flex align-items-center justify-content-center flex-column">
+                <span calssName="mb-2">
+                  <Image src={mouse} alt="mouse" />
+                </span>
+                <Image src={arrows} alt="arrows" />
+              </button>
+              {/* <div className="socials d-flex align-items-cetnter flex-column justify-content-center">
               <YouTube />
               <span className="my-2">
                 <Instagram />
               </span>
               <Twitter />
             </div> */}
-          </div>
-        </main>
+            </div>
+          </main>
+        </section>
         <HomeUtilities />
 
         <SimilarCards

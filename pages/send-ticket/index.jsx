@@ -27,11 +27,11 @@ function SendTicket(props) {
           </h5>
           <form action="#" method="post">
             <div className="d-flex justify-content-between flex-wrap px-5 send-ticket">
-              <div className="col-md-5 pb-4">
+              <div className="col-md-5 col-lg-5 col-12 pb-4">
                 <label htmlFor="">موضوع تیکت</label>
                 <input type="text" className="form-control" placeholder="موضوع پیام خود را وارد کنید" />
               </div>
-              <div className="col-md-5 pb-4">
+              <div className="col-md-5 col-lg-5 col-12 pb-4">
                 <label htmlFor="">دپارتمان مربوطه *</label>
                 <Form.Select aria-label="Default select example">
                   <option>--انتخاب کنید--</option>
@@ -40,7 +40,7 @@ function SendTicket(props) {
                   <option value="3">پشتیبانی</option>
                 </Form.Select>
               </div>
-              <div className="col-md-5">
+              <div className="col-md-5 col-lg-5 col-12">
                 <label htmlFor="">اولویت *</label>
                 <Form.Select aria-label="Default select example">
                   <option>--انتخاب کنید--</option>
@@ -49,7 +49,7 @@ function SendTicket(props) {
                   <option value="3">زیاد</option>
                 </Form.Select>
               </div>
-              <div className="col-md-5">
+              <div className="col-md-5 col-lg-5 col-12">
                 <label htmlFor="">محصول مربوطه</label>
                 <Form.Select aria-label="Default select example">
                   <option>--انتخاب کنید--</option>
@@ -59,11 +59,11 @@ function SendTicket(props) {
                   <option value="3">{RelevantProduct.product4}</option>
                 </Form.Select>
               </div>
-              <div className="col-md-12 py-4">
+              <div className="col-12 py-4">
                 <label htmlFor="">متن پیام شما *</label>
                 <textarea className="form-control" name="" id="" cols="30" rows="10"></textarea>
               </div>
-              <div className="col-md-12 text-center pb-4">
+              <div className="col-12 text-center pb-4">
                 <Link href="">
                   <a className="btn success-gradient px-5">
                     ارسال تیکت

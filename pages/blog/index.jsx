@@ -108,7 +108,7 @@ function Blog() {
             <div className="col-md-9 flex-blog order-1">
               {blogPosts.map((item, idx) => {
                 return (
-                  <div className="col-md-6 col-lg-4 col-12 p-2" key={idx}>
+                  <div className="col-md-6 col-lg-4 col-6 p-2 blog-cards" key={idx}>
                     <BlogPost data={item} />
                   </div>
                 );

@@ -152,3 +152,12 @@
     object-fit: cover;
     border-radius: 5px;
   }
+
+  @media (max-width:680px) {
+    .blog-cards {
+      width: 100% !important;
+    }
+    .info-blog-post {
+      margin: auto;
+    }
+  }

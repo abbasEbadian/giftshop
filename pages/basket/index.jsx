@@ -29,7 +29,7 @@ function Basket({setBasket}) {
   }, [cards, pid]);
 
   return (
-    <div className="container single-product">
+    <div className="container single-product pb-5">
       <h1 className="text-center mt-4">
         کارت <span className="text-secondary">انتخابی</span>
       </h1>
@@ -38,18 +38,14 @@ function Basket({setBasket}) {
       )}): (
         ""
       )}
-
-     
-     
-
-      <div className="fixed">
+      {/* <div className="fixed">
         <div className="col-6 text-center" onClick={(e) => setActive("filter")}>
           فیلتر
         </div>
         <div className="col-6 text-center" onClick={(e) => setActive("main")}>
           مشاهده محسول
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

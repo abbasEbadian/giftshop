@@ -32,43 +32,39 @@ function HeaderPublic({ basket }) {
         <Offcanvas.Body>
           <ul className="menu">
             <li className="menu-item">
-              <a href="#">
+              <a href="/" onClick={e=>setMenuopen(false)}>
                 {" "}
                 <i className="bi bi-house-door-fill"></i>{" "}
               </a>
             </li>
             <li className="menu-item">
               <Link href="/shop">
-                <a>گیفت کارت   </a>
+                <a onClick={e=>setMenuopen(false)}>گیفت کارت   </a>
               </Link>
             </li>
             <li className="menu-item">
               <Link href="/contact-us">
-                <a>تماس با ما</a>
+                <a onClick={e=>setMenuopen(false)}>تماس با ما</a>
               </Link>
             </li>
             <li className="menu-item menu-item-child">
               <Link href="/about-us">
-                <a data-toggle="sub-menu">درباره ما</a>
+                <a onClick={e=>setMenuopen(false)}>درباره ما</a>
               </Link>
             </li>
 
             <li className="menu-item menu-item-child">
               <Link href="/blog">
-                <a data-toggle="sub-menu">بلاگ </a>
+                <a onClick={e=>setMenuopen(false)}>بلاگ </a>
               </Link>
             </li>
 
             <li className="menu-item menu-item-child">
               <Link href="/send-ticket">
-                <a data-toggle="sub-menu">تیکت </a>
+                <a onClick={e=>setMenuopen(false)}>تیکت </a>
               </Link>
             </li>
-            <li className="menu-item menu-item-child">
-              <Link href="/">
-                <a data-toggle="sub-menu">خروج </a>
-              </Link>
-            </li>
+           
           </ul>
           <div className="controls d-flex">
             <input type="text" className="form-control" />

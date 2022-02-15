@@ -35,12 +35,12 @@ function ProductRow({ product , setBasket}) {
           <div className="col-6 col-md-3 mb-2">
             <span className="text-primary fs-5 d-block">کشور</span>
             <br />
-            <span className="pt-3 mt-3">{product.country}</span>
+            <span className="pt-3 mt-3">{product.country_id?.symbol}</span>
           </div>
           <div className="col-6 col-md-3 mb-2">
             <span className="text-primary  fs-5 d-block">دسته بندی</span>
             <br />
-            <span className="pt-3 mt-3">{product.category}</span>
+            <span className="pt-3 mt-3">{product.brand_id?.name}</span>
           </div>
           <div className="col-6 col-md-3 mb-2">
             <span className="text-primary  fs-5 d-block">امتیاز مشتریان</span>
