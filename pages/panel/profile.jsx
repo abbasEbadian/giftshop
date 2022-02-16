@@ -11,11 +11,25 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 
 
 const Input = styled('Input')({
     display: 'none',
 });
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
 
 function UserLevel() {
     const [ProfileMenuName, setProfileMenuName] = React.useState({
@@ -33,7 +47,9 @@ function UserLevel() {
         nationalCode: "1050847852",
         sex: "male",
     })
-
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
 
     return (
@@ -72,7 +88,77 @@ function UserLevel() {
                             </div>
                         </div>
                         <div className="col-lg-8 col-12">
-                            <h5 className="px-3">اطلاعات فردی شما</h5>
+                            <div className="d-flex align-items-center justify-content-between">
+                                <h5 className="px-3">اطلاعات فردی شما</h5>
+                                <div>
+                                    <Button className="text-basket" onClick={handleOpen}>
+                                        <span>
+                                        ویرایش یا ثبت اطلاعات
+                                        </span>
+                                    </Button>
+                                    <Modal
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style}>
+                                            <Form>
+                                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                    <Form.Label>نام</Form.Label>
+                                                    <Form.Control type="text" placeholder="نام " />
+                                                </Form.Group>
+                                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                    <Form.Label> نام خانوادگی</Form.Label>
+                                                    <Form.Control type="text" placeholder="نام خانوادگی خود" />
+                                                </Form.Group>
+                                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                    <Form.Label>تاریخ تولد</Form.Label>
+                                                    <Form.Control type="date" placeholder="تاریخ تولد" />
+                                                </Form.Group>
+                                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                    <Form.Label>کد ملی</Form.Label>
+                                                    <Form.Control type="number" placeholder="ملی" />
+                                                </Form.Group>
+                                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                    <Form.Label>جنسیت</Form.Label>
+                                                    <Form.Select aria-label="Default select example">
+                                                        <option>--جنسیت خود را وارد کنید --</option>
+                                                        <option value="مرد">مرد</option>
+                                                        <option value="زن">زن</option>
+                                                    </Form.Select>
+                                                </Form.Group>
+                                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                    <Form.Label>تلفن همراه</Form.Label>
+                                                    <Form.Control type="number" placeholder="تلفن همراه" />
+                                                </Form.Group>
+                                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                                    <Form.Label>تصویر پروفایل</Form.Label>
+                                                    <Stack direction="row" alignItems="center" spacing={2}>
+                                                        <label htmlFor="contained-button-file">
+                                                            <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                                                            <Button variant="contained" component="span">
+                                                                بارگزاری تصویر پروفایل
+                                                            </Button>
+                                                        </label>
+                                                        <label htmlFor="icon-button-file">
+                                                            <Input accept="image/*" id="icon-button-file" type="file" />
+                                                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                                                <CloudUploadIcon />
+                                                            </IconButton>
+                                                        </label>
+                                                    </Stack>
+                                                </Form.Group>
+                                                <div className="col-md-12 text-center py-4">
+                                                    <Button className="btn success-gradient">
+                                                        ثبت و بروزرسانی پروفایل
+                                                    </Button>
+                                                </div>
+                                            </Form>
+                                        </Box>
+                                    </Modal>
+                                </div>
+                            </div>
                             <div className="user-info d-flex align-items-center justify-content-around py-5">
                                 <div>
                                     <p> <span>نام</span> : {userInfo.firstName}</p>
@@ -122,7 +208,7 @@ function UserLevel() {
                             </div>
                             <div className="col-md-12 text-center py-4">
                                 <Button className="btn success-gradient">
-                                        ثبت و بروزرسانی پروفایل
+                                    ثبت و بروزرسانی پروفایل
                                 </Button>
                             </div>
                         </div>

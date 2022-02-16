@@ -1,7 +1,7 @@
-/* .MuiBox-root {
-    overflow: scroll;
+.MuiBox-root {
+    overflow: auto;
     max-height: 600px;
-} */
+}
 
 @media (max-width:992px) {
     .ModalShopFilter {
