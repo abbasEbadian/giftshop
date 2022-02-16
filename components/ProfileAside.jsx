@@ -101,7 +101,7 @@ export default function ProfileAside({active}) {
               </ListItemIcon>
               <ListItemText primary="ایجاد تیکت جدید" />
             </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }} component="a" selected={active==="tickets"} href="/panel/tickets" >
+            <ListItemButton sx={{ pl: 4 }} component="a" selected={active==="tickets"} href="/panel/ticket-list" >
               <ListItemIcon>
               </ListItemIcon>
               <ListItemText primary="مشاهده تیکت ها" />
