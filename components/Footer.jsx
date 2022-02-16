@@ -65,9 +65,10 @@ function Footer() {
                 loop
                 autoplay
                 >
-                <SwiperSlide>  <Image src={eNamad}  />
+                <SwiperSlide>  
+                  <Image src={eNamad} alt="eNamad" />
                 </SwiperSlide>   
-                <SwiperSlide>  <Image src={Trust} alt="slide 1" /> 
+                <SwiperSlide>  <Image src={Trust} alt="Trust" /> 
                 </SwiperSlide>   
             </Swiper>
             

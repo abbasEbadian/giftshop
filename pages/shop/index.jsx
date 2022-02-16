@@ -3,62 +3,73 @@ import ShopFilters from "../../components/ShopFilters";
 import ShopCards from "../../components/ShopCards";
 import Head from "next/head";
 import axios from "axios";
-import {GET_TEMPLATES } from '../../redux/endpoints'
+import { GET_TEMPLATES } from '../../redux/endpoints'
 import PaginationControlled from "../../components/Pagination";
+import { styled, Box } from '@mui/system';
+import ModalUnstyled from '@mui/base/ModalUnstyled';
+import ShopFilterModal from "../../components/ShopFilterModal";
+
+
 
 function Shop() {
-  
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [filteredCards, setFilteredCards] = React.useState([]);
   const [loading, setLoading] = React.useState(false)
   const [filters, setFilters] = React.useState({})
   const [cardsCount, setCardsCount] = React.useState({})
-  
+
   const [page, setPage] = React.useState(1);
 
   const handleChange = (event, value) => {
     setPage(value);
   };
 
-  
+
   React.useEffect(() => {
     let params = {}
-    Object.keys(filters).map(item=>{
-      if(item) params[item] = filters[item]
+    Object.keys(filters).map(item => {
+      if (item) params[item] = filters[item]
     })
-    
+
     params["page"] = page
 
-    axios.get(GET_TEMPLATES, {params})
-    .then(res=>{
-      const {data} = res
-      setFilteredCards(data.data || [])
-      setCardsCount(data.size)
-    })
-    .catch(err=>console.log(err))
+    axios.get(GET_TEMPLATES, { params })
+      .then(res => {
+        const { data } = res
+        setFilteredCards(data.data || [])
+        setCardsCount(data.size)
+      })
+      .catch(err => console.log(err))
 
   }, [filters, page])
+
   return (
     <div className="shop-main">
-        <Head><title>فروشگاه | گیفت شاپ</title></Head>
+      <Head><title>فروشگاه | گیفت شاپ</title></Head>
 
       <div className="row ">
         <div className="col-12 col-md-3">
           <ShopFilters
             setFilters={setFilters}
           />
+          <div>
+              <ShopFilterModal setFilters={setFilters}/>
+          </div>
         </div>
 
         <div className="col-12 col-md-9">
           <h1 className="text-center line-height-64">
-            
+
             محصولات <span className="text-danger">فروشگاه</span>
-            
+
           </h1>
           <ShopCards cards={filteredCards} />
-          {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
+          {cardsCount > 20 ? <PaginationControlled handleChange={handleChange} size={cardsCount} page={page} /> : null}
 
         </div>
-        
+
       </div>
     </div>
   );

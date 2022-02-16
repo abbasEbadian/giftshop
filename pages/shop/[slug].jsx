@@ -42,6 +42,7 @@ function Shop() {
     .catch(err=>console.log(err))
 
   }, [filters, page, brand_name])
+  
   return (
     <div className="shop-main">
        <Head>

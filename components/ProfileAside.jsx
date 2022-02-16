@@ -16,6 +16,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ChatIcon from '@mui/icons-material/Chat';
+import GradeIcon from '@mui/icons-material/Grade';
 
 
 
@@ -75,7 +76,7 @@ export default function ProfileAside({active}) {
         </ListItemButton>
         <ListItemButton component="a" href="/panel/points" selected={active==="points"} classes={classes}>
           <ListItemIcon>
-            <AssignmentIcon />
+            <GradeIcon />
           </ListItemIcon>
           <ListItemText primary="امتیازات" />
         </ListItemButton>

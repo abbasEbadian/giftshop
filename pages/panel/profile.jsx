@@ -5,6 +5,17 @@ import Link from "next/link";
 import profilePic from "../../img/other/11.png"
 import Image from 'next/image'
 import Head from "next/head";
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
+
+const Input = styled('Input')({
+    display: 'none',
+});
 
 function UserLevel() {
     const [ProfileMenuName, setProfileMenuName] = React.useState({
@@ -22,6 +33,9 @@ function UserLevel() {
         nationalCode: "1050847852",
         sex: "male",
     })
+
+
+
     return (
         <section className="container">
             <Head><title>گیفت استاپ | حساب کاربری</title></Head>
@@ -32,12 +46,12 @@ function UserLevel() {
                     <h5 class="text-basket pb-3 m-0">
                         سطح <span>کاربری</span>
                     </h5>
-                    <div className="d-flex align-items-center userLevel">
-                        <div className="col-lg-4 col-12">
+                    <div className="d-flex flex-wrap align-items-center userLevel">
+                        <div className="col-lg-4 col-12 text-center">
                             <div className="profile-menu">
-                                <Image src={profilePic} alt="favorite blog" />
+                                <Image src={profilePic} alt="Profile Image" />
                             </div>
-                            <div className="profile-menu-name">
+                            <div className="profile-menu-name pt-2">
 
                                 <p >{ProfileMenuName.name}</p>
                                 <p>{ProfileMenuName.email}</p>
@@ -58,8 +72,8 @@ function UserLevel() {
                             </div>
                         </div>
                         <div className="col-lg-8 col-12">
-                            <p>اطلاعات فردی شما</p>
-                            <div className="user-info d-flex align-items-center justify-content-around">
+                            <h5 className="px-3">اطلاعات فردی شما</h5>
+                            <div className="user-info d-flex align-items-center justify-content-around py-5">
                                 <div>
                                     <p> <span>نام</span> : {userInfo.firstName}</p>
                                     <p> <span>نام خانوادگی</span> : {userInfo.lastName}</p>
@@ -70,12 +84,52 @@ function UserLevel() {
                                     <p> <span>جنسیت</span> : {userInfo.sex}</p>
                                     <p> <span>تلفن همراه</span> : {userInfo.phoneNumber}</p>
                                 </div>
+
+                            </div>
+                            <div className="d-flex justify-content-center">
+                                <div className="upload-section co-12 col-lg-5 m-auto">
+                                    <Stack direction="row" alignItems="center" spacing={2}>
+                                        <label htmlFor="contained-button-file">
+                                            <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                                            <Button variant="contained" component="span">
+                                                بارگزاری تصویر شناسنامه
+                                            </Button>
+                                        </label>
+                                        <label htmlFor="icon-button-file">
+                                            <Input accept="image/*" id="icon-button-file" type="file" />
+                                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                                <CloudUploadIcon />
+                                            </IconButton>
+                                        </label>
+                                    </Stack>
+                                </div>
+                                <div className="upload-section co-12 col-lg-5 m-auto">
+                                    <Stack direction="row" alignItems="center" spacing={2}>
+                                        <label htmlFor="contained-button-file">
+                                            <Input accept="image/*" className="success-gradient" id="contained-button-file" multiple type="file" />
+                                            <Button variant="contained" component="span">
+                                                بارگزاری تصویر کارت ملی
+                                            </Button>
+                                        </label>
+                                        <label htmlFor="icon-button-file">
+                                            <Input accept="image/*" id="icon-button-file" type="file" />
+                                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                                <CloudUploadIcon />
+                                            </IconButton>
+                                        </label>
+                                    </Stack>
+                                </div>
+                            </div>
+                            <div className="col-md-12 text-center py-4">
+                                <Button className="btn success-gradient">
+                                        ثبت و بروزرسانی پروفایل
+                                </Button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
 export default UserLevel;

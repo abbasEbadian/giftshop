@@ -132,7 +132,7 @@ function ShopFilters({
          </a>
        </Link>
       </h4>
-      <div className="product-list-gift ">
+      <div className="product-list-gift  side-filters">
         <div className="filter filter-category">
           <span className="title">دسته بندی</span>
           <div className="d-flex flex-wrap  ">

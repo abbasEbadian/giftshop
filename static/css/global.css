@@ -21,6 +21,7 @@
 @import './userLevel.css';
 @import './bsicons.css';
 @import './shop.css';
+@import './ShopFilterModal.css';
 html{
     font-size: 90%;
 }

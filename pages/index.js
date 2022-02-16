@@ -92,7 +92,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-12 footing d-flex align-items-end justify-content-between mt-auto pb-2">
+          <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">
             <span></span>
             <button className="scroll-down d-flex align-items-center justify-content-center flex-column">
               <span calssName="mb-2">
