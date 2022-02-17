@@ -21,60 +21,86 @@ import ChatIcon from '@mui/icons-material/Chat';
 
 
 export default function ProfileAside({active}) {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [navOpen, setNavOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
   };
   const  classes={selected: "active", root: "sidebar-item"}
-  
+
   return (
-    <div className="col-md-3 py-5">
+    <div className="col-md-12 col-lg-3 col-12 py-5">
             <h4 className='font-weight-bold text-dark text-center pb-3 m-0'>
             پنل کاربری
                 </h4>
       <List
-       classes={{root: "profile-aside"}}
+       classes={{root: "profile-aside" + (navOpen?" collapsed": "")}}
         sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
         component="nav"
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
-          
+
             </ListSubheader>
         }
       >
-        <ListItemButton component="a" href="/panel/purchase-report" selected={active==="profile"} classes={classes}>
+        <ListItemButton component="div"  classes={{root : "mobile-menu-title"}} onClick={e=>setNavOpen(!navOpen)}>
           <ListItemIcon>
-            <AccountBoxIcon />
+            {navOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItemIcon>
-          <ListItemText primary="مشخصات" />
+          <ListItemText primary={
+            active==="profile"?"مشخصات":
+            active==="favorites"?"مورد علاقه هآ":
+            active==="purchase_report"?"گزارش خریدها":
+            active==="wallet"?"کیف پول":
+            active==="new_ticket"?"ایجاد تیکت جدید":
+            active==="tickets"?"مشاهده تیکت ها":
+            "پنل کاربری"
+          } />
         </ListItemButton>
-        <ListItemButton component="a" href="/panel/favorites" selected={active==="favorites"} classes={classes}>
-          <ListItemIcon>
-            <BookmarkBorderIcon />
-          </ListItemIcon>
-          <ListItemText primary="مورد علاقه ها" />
+        <ListItemButton component="div"  selected={active==="profile"} classes={classes}>
+          <Link href="/panel/profile">
+            <a >
+              <ListItemIcon>
+                <AccountBoxIcon />
+              </ListItemIcon>
+              <ListItemText primary="مشخصات" />
+            </a>
+          </Link>
         </ListItemButton>
-        <ListItemButton component="a" href="/panel/purchase-report" selected={active==="purchase_report"} classes={classes}>
-          <ListItemIcon>
-            <AssignmentIcon />
-          </ListItemIcon>
-          <ListItemText primary="گزارش خریدها" />
+        <ListItemButton component="div" selected={active==="favorites"} classes={classes}>
+          <Link href="/panel/favorites" >
+            <a>
+              <ListItemIcon>
+                <BookmarkBorderIcon />
+              </ListItemIcon>
+              <ListItemText primary="مورد علاقه ها" />
+            </a>
+          </Link>
         </ListItemButton>
-        <ListItemButton component="a" href="/panel/points" selected={active==="points"} classes={classes}>
-          <ListItemIcon>
-            <AssignmentIcon />
-          </ListItemIcon>
-          <ListItemText primary="امتیازات" />
-        </ListItemButton>
-        <ListItemButton component="a" href="/panel/wallet" selected={active==="wallet"} classes={classes}>
-          <ListItemIcon>
-            <AccountBalanceWalletIcon />
-          </ListItemIcon>
-          <ListItemText primary="کیف پول" />
+        <ListItemButton component="div"  selected={active==="purchase_report"} classes={classes}>
+          <Link href="/panel/purchase-report">
+            <a>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText primary="گزارش خریدها" />
+            </a>
+          </Link>
         </ListItemButton>
        
+        <ListItemButton component="div" selected={active==="wallet"} classes={classes}>
+          <Link href="/panel/wallet" >
+            <a>
+              <ListItemIcon>
+                <AccountBalanceWalletIcon />
+              </ListItemIcon>
+              <ListItemText primary="کیف پول" />
+            </a>
+          </Link>
+        </ListItemButton>
+
         <ListItemButton onClick={handleClick} >
           <ListItemIcon>
             <ChatIcon />
@@ -84,15 +110,23 @@ export default function ProfileAside({active}) {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }} component="a" selected={active==="new_ticket"} href="/panel/send-ticket" >
-              <ListItemIcon>
-              </ListItemIcon>
-              <ListItemText primary="ایجاد تیکت جدید" />
+            <ListItemButton sx={{ padding: "6px 24px" }} component="div" selected={active==="new_ticket"}  >
+              <Link href="/panel/send-ticket">
+                <a>
+                {/* <ListItemIcon>
+                </ListItemIcon> */}
+                <ListItemText primary="ایجاد تیکت جدید" />
+                </a>
+              </Link>
             </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }} component="a" selected={active==="tickets"} href="/panel/tickets" >
-              <ListItemIcon>
-              </ListItemIcon>
-              <ListItemText primary="مشاهده تیکت ها" />
+            <ListItemButton sx={{ padding: "6px 24px" }} component="div" selected={active==="tickets"} >
+              <Link href="/panel/ticket-list" >
+                <a>
+                {/* <ListItemIcon>
+                </ListItemIcon> */}
+                <ListItemText primary="مشاهده تیکت ها" />
+                </a>
+              </Link>
             </ListItemButton>
           </List>
         </Collapse>

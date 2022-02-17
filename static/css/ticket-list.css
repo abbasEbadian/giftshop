@@ -1,0 +1,63 @@
+.ticket-info-s {
+    box-shadow: 0px 4px 10px 5px #eee;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+.all-ticket img {
+    width: 29px !important;
+    height: 25px !important;
+    -o-object-fit: cover;
+    object-fit: contain;
+}
+.all-ticket p:first-child{
+    margin: 10px 0 !important;
+   
+}
+
+.all-ticket {
+    border: 1px solid #bbb;
+    padding: 15px 0;
+}
+.list-ticket-show p{
+    margin-block: 1rem 0;
+}
+.list-ticket-show {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.info-ticket-list  Button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--color-purple);
+
+}
+
+.info-ticket-list > div p:first-child {
+    margin-left:10px;
+    color: var(--color-purple);
+    font-size: 15px;
+    font-weight: bold;
+    margin-block: 0.7rem;
+}
+.AnswerTicketShow {
+    border-width: 1px 10px 1px 1px;    
+    border-color:  #5FABEB;
+    border-style: solid;
+    padding: 0 15px;
+    border-radius: 5px;
+    margin: 30px 0;
+}
+.AnswerTicketShow.pending {border-color:  #ed6c02;}
+.AnswerTicketShow.answered {border-color:  #2e7d32;}
+.AnswerTicketShow.closed {border-color:  #d32f2f;}
+
+.consistency-ticket:first-child {
+    margin-top: 7rem;
+}
+p {
+    margin-bottom: 0 ;
+}

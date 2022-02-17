@@ -21,6 +21,8 @@
 @import './userLevel.css';
 @import './bsicons.css';
 @import './shop.css';
+@import './ShopFilterModal.css';
+@import './ticket-list.css';
 html{
     font-size: 90%;
 }
@@ -66,4 +68,9 @@ button{
     body{
         padding-bottom: 60px;
     }
+}
+.table-info-payment  .MuiChip-icon{
+    margin-right: 12px;
+    width: 1.2rem;
+    height: 1.2rem;
 }

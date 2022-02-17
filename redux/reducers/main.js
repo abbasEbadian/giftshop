@@ -2,7 +2,8 @@ import * as t from '../types'
 import {HYDRATE} from 'next-redux-wrapper';
 
 const init_state = {
-    cards : [],
+    popular_cards : [],
+    top_sale_cards: [],
     brands: [],
     countries: [], 
     fetching_cards: false,
@@ -20,7 +21,12 @@ const mainReducer = (state=init_state,action)=>{
         case t.UPDATE_CARDS: 
             return {
                 ...state,
-                cards: action.payload
+                popular_cards: action.payload
+            }
+        case t.UPDATE_TOP_SALE: 
+            return {
+                ...state,
+                top_sale_cards: action.payload
             }
         case t.UPDATE_BRANDS: 
             return {

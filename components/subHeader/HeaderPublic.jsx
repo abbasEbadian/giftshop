@@ -18,7 +18,7 @@ function HeaderPublic({ authenticated }) {
   const [active, setActive] = React.useState(false);
   const brands = useSelector((state) => state.main.brands);
   const basket = useSelector((state) => state.order.basket);
-  
+  const auth = useSelector(s=>s.auth.authenticated)
   return (
     <header className="header-public">
       {/* <Link href="/shop">
@@ -63,11 +63,11 @@ function HeaderPublic({ authenticated }) {
                 <a onClick={e=>setMenuopen(false)} data-toggle="sub-menu">بلاگ </a>
               </Link>
             </li>
-            <li className="menu-item menu-item-child">
-              <Link href="/send-ticket">
+            {auth?<li className="menu-item menu-item-child">
+              <Link href="/panel/send-ticket">
                 <a onClick={e=>setMenuopen(false)}>تیکت </a>
               </Link>
-            </li>
+            </li>:null}
 
           </ul>
           <div className="controls d-flex">
@@ -127,9 +127,9 @@ function HeaderPublic({ authenticated }) {
           <Link href="/contact-us">
             <a>تماس با ما</a>
           </Link>
-          <Link href="/send-ticket">
+          {auth?<Link href="/panel/send-ticket">
             <a>تیکت</a>
-          </Link>
+          </Link>:null}
         </div>
 
         <div className="controls">

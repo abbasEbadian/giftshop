@@ -26,12 +26,11 @@
   width: 50%;
   justify-content: space-between;
   padding: 8px;
-  
 }
 
 .filter-category .category-item span {
   text-align: right;
-} 
+}
 .filter-country button.selected {
   border-width: 1px;
 }
@@ -85,22 +84,21 @@
   position: relative;
   transform: translate(0);
 }
-.with-button .swiper{
+.with-button .swiper {
   padding-bottom: 32px;
-
 }
 
-.with-button .single-card::before{
+.with-button .single-card::before {
   bottom: -35%;
 }
-.with-button .add-to-card-container{
+.with-button .add-to-card-container {
   margin-top: 0;
 }
 
 .single-card::before {
   content: "";
   position: absolute;
-  bottom: -10%;
+  bottom: -12%;
   left: 10%;
   width: 80%;
   height: 50px;
@@ -111,16 +109,16 @@
 }
 
 .single-card .price {
-	position: absolute;
-	font-size: clamp(18px,3vw, 24px);
-	right: 18%;
-	top: 30%;
-	box-shadow: 0 0 15px 7px #00000011;
-	padding: 5px;
-	border-radius: 12px;
-	background: #fff3;
-	min-width: 58px;
-	text-shadow: 0 0 7px #0005;
+  position: absolute;
+  font-size: clamp(18px, 3vw, 24px);
+  right: 18%;
+  top: 30%;
+  box-shadow: 0 0 15px 7px #00000011;
+  padding: 5px;
+  border-radius: 12px;
+  background: #fff3;
+  min-width: 58px;
+  text-shadow: 0 0 7px #0005;
 }
 .add-to-card-container {
   user-select: none;
@@ -132,7 +130,7 @@
   cursor: pointer;
   font-size: 1.1rem;
 }
-.product-list-gift  .counter {
+.product-list-gift .counter {
   background-color: #f1f2f6;
   padding: 7px 15px;
   border-radius: 8px;
@@ -168,8 +166,19 @@
 .css-1c99szj-MuiRating-icon {
   color: var(--color-yellow);
 }
-.MuiPagination-ul{
+.MuiPagination-ul {
   justify-content: center;
   margin-top: 32px;
   direction: ltr;
+}
+
+.flag-cont {
+  width: 30px;
+  height: 20px;
+  text-align: center;
+  margin: 0px auto 4px;
+}
+
+.flag-cont img {
+  object-fit: cover !important;
 }

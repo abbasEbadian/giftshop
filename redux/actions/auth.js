@@ -41,7 +41,7 @@ export const login = (info, next)=>{
                     return resolve({error: 0, message: "با موفقیت وارد شدید."})
                 }
                 
-                return resolve({error: 1, message: "خطا در برقراری ارتباط"})
+                return resolve({error: 1, message: data.message})
             })
             .catch(err=>{
                 console.log(err)

@@ -1,13 +1,94 @@
-.profile-aside .sidebar-item.active{
-    background-color:rgba(147, 202, 245, 1);
-    border-radius: 15px 15px 0 0;
+.profile-aside .sidebar-item{
+  border-radius: 15px 15px 0 0;
 }
-.profile-aside .sidebar-item.active i{
-    color:#fff;
-    opacity: 1;
+.profile-aside .sidebar-item a{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  width: 100%;
+}.profile-aside .sidebar-item.active {
+  background-color: rgba(147, 202, 245, 1);
+}
+.profile-aside .mobile-menu-title.active {
+  border-radius: 15px 15px 0 0;
+}
+.profile-aside .sidebar-item.active i {
+  color: #fff;
+  opacity: 1;
 }
 .css-i7rae6-MuiList-root {
-    border: 1px solid var(--color-blue);
-    box-shadow: 0px 0 10px 2px #eee;
-    border-radius: 15px;
+  border: 1px solid var(--color-blue);
+  box-shadow: 0px 0 10px 2px #eee;
+  border-radius: 15px;
+}
+.css-10hburv-MuiTypography-root {
+  text-align: right;
+}
+.css-cvhtoe-MuiButtonBase-root-MuiListItemButton-root {
+  flex-direction: row-reverse;
+}
+.css-cveggr-MuiListItemIcon-root {
+  justify-content: flex-end;
+}
+.css-cveggr-MuiListItemIcon-root {
+  min-width: 20px;
+}
+.userLevel {
+  box-shadow: 0px 4px 10px 5px #eee;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.userLevel .user-info > div p {
+  margin: 25px 0;
+}
+.userLevel .user-info > div p:first-child {
+  margin: 0px 0;
+}
+.userLevel .upload-section {
+  border: 1px dashed #8c92ac;
+  padding:0.5rem 1rem 1rem;
+  border-radius: 10px;
+}
+.userLevel .upload-section .css-1yo1jo6-MuiStack-root {
+  flex-direction: column-reverse;
+}
+.userLevel .upload-section .css-sghohy-MuiButtonBase-root-MuiButton-root {
+  font-size: 10px;
+  background: var(--success-gradient);
+}
+.userLevel .upload-section .css-1kuq5xv-MuiButtonBase-root-MuiIconButton-root {
+  color: var(--color-black);
+}
+@media (max-width: 992px) {
+  .mobile-menu-title {
+    display: flex;
+  }
+  .profile-aside {
+    max-height: 52px;
+    overflow: hidden;
+    transition: all 0.3s ease-in;
+    height: max-content;
+    margin: auto;
+  }
+  .userLevel > div:nth-child(1) {
+    border-bottom: 1px solid rgb(160, 160, 160);
+  }
+  .userLevel > div:nth-child(2) {
+    padding: 15px 0;
+  }
+
+  .profile-aside.collapsed {
+    max-height: 500px;
+    transition: all 0.3s ease-in;
+  }
+}
+@media (min-width: 993px) {
+  .mobile-menu-title {
+    display: none;
+  }
+  .userLevel > div:nth-child(1) {
+    border-left: 1px solid rgb(160, 160, 160);
+  }
 }

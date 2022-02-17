@@ -7,7 +7,8 @@ export const get_initial_data = ()=>{
     return dispatch =>{
         dispatch(check_user())
         dispatch(fetch_brands())
-        dispatch(fetch_cards())
+        dispatch(fetch_popular_cards())
+        dispatch(fetch_top_sale_cards())
         dispatch(fetch_countries())
         dispatch(get_cart())
         dispatch(profile())
@@ -53,6 +54,31 @@ export const fetch_cards = () =>{
         }, 2000))
     }
 }
+export const fetch_popular_cards = () =>{
+    return async (dispatch, getState)=>{
+        dispatch(update_fetching_cards(true))
+        return axios.get(e.GET_POPULAR)
+        .then((response)=>{
+            const {data} = response
+            dispatch(update_popular_cards(data))
+        })
+        .catch(err=>{console.log(err)})
+        .finally(f=>setTimeout(() => {
+            dispatch(update_fetching_cards(false))
+        }, 2000))
+    }
+}
+export const fetch_top_sale_cards = () =>{
+    return async (dispatch, getState)=>{
+        return axios.get(e.GET_TOP_SALE)
+        .then((response)=>{
+            const {data} = response
+            dispatch(update_top_sale_cards(data))
+        })
+        .catch(err=>{console.log(err)})
+        
+    }
+}
 export const fetch_countries = () =>{
     return async (dispatch, getState)=>{
         dispatch(update_fetching_countries(true))
@@ -83,6 +109,18 @@ export const update_fetching_brands = (is_active)=>{
 }
 
 export const update_cards = (cards)=>{
+    return {
+        type: t.UPDATE_CARDS,
+        payload: cards
+    }
+}
+export const update_top_sale_cards = (cards)=>{
+    return {
+        type: t.UPDATE_TOP_SALE,
+        payload: cards
+    }
+}
+export const update_popular_cards = (cards)=>{
     return {
         type: t.UPDATE_CARDS,
         payload: cards

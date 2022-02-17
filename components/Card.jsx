@@ -52,7 +52,7 @@ import { get_cart ,profile} from "../redux/actions";
 import {ADD_TO_CART, TOGGLE_FAVORITES} from '../redux/endpoints'
 import { Typography } from "@mui/material";
 import LoaderButton from "./LoaderButton";
-
+import { ProductionQuantityLimits } from "@mui/icons-material";
 
 
 function Card({
@@ -61,7 +61,8 @@ function Card({
   showRate = false,
   favoriteAndRate = false,
   layered = false,
-  ratable=false
+  ratable=false,
+  hidePrice=false
 }) {
   const [count, setCount] = React.useState(1);
   const [loading, setLoading] = React.useState(false);
@@ -128,8 +129,10 @@ function Card({
       count: count
     }).then(res=>{
       const {data}= res 
-      toast.success("با موفقیت افزوده شد.")
-      dispatch(get_cart())
+      toast(data.message, {type: data.type})
+
+      if(data.error === 0)
+        dispatch(get_cart())
     })
     .catch(e=>{
       console.log(e)
@@ -157,20 +160,22 @@ function Card({
       <div className="data-container position-relative">
         <Image src={get_image_src(data.brand_id.name)} />
 
-        
-
-        <Link href={{ pathname: "/product/[slug]", query: { slug: +data.id } }}>
+        <Link href={
+          { pathname: !hidePrice? "/product/[slug]":"/shop/[slug]", query: { slug: !hidePrice?+data.id:data.brand_id.name }
+           }}>
           <a>
             <div className="data position-absolute top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
-            <div className="flag-cont">
-              {/* <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={90} height={20} /> */}
-              </div>
+              {!hidePrice?
               <span dir="ltr" className="price text-center">
                   {data.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}
-                  <Typography sx={{fontSize: "10px"}}>{data.country_id.symbol}</Typography>
+                  <div className="flag-cont">
+                    <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
+                  </div>
                 </span>
+                :null
+              }
               <div className="d-flex align-items-center justify-content-between pb-3 pe-3">
-                {showRate || true  ? (
+                {showRate ? (
                   <span className="d-flex align-items-center">
                     <Typography sx={{transform: "translateY(1px)", fontSize: "17px", fontWeight: "900"}}> {Number(data.rate)} </Typography><StarIcon />
                   </span>

@@ -10,6 +10,8 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import withAuth from "../../redux/withAuth";
 import Head from "next/head";
+// import ConvertPointToWallet from '../../components/subPanel/ConvertPointToWallet'
+
 const columns = [
   { id: "number", label: "شماره", minWidth: 100, align: "right" },
   { id: "date", label: "تاریخ", minWidth: 100, align: "right" },

@@ -18,7 +18,6 @@ function ShopFilters({
   const [selectedCountries, setSelectedCountries] = React.useState([]);
   const countries = useSelector((state) => state.main.countries);
   const categories = useSelector((state) => state.main.brands);
-  const mainCards = useSelector((state) => state.main.cards);
 
   const toggleCountry = (symbol) => {
     if (selectedCountries.includes(symbol)) {
@@ -85,9 +84,7 @@ function ShopFilters({
   }, []);
 
   React.useEffect(() => {
-    // setCards(
-    //   mainCards.filter((i) => i.rate >= rateValue[0] && i.rate <= rateValue[1])
-    // );
+   
     setFilters(s=>{return {
       ...s,
       rate: rateValue[0] +","+ rateValue[1],
@@ -95,9 +92,7 @@ function ShopFilters({
   }, [rateValue]);
 
   React.useEffect(() => {
-    // setCards(
-    //   mainCards.filter((i) => i.real_price >= value1[0] && i.real_price <= value1[1])
-    // );
+    
     setFilters(s=>{return {
       ...s,
       real_price: value1[0] +","+ value1[1],
@@ -105,17 +100,7 @@ function ShopFilters({
   }, [value1]);
 
   React.useEffect(() => {
-    // if (selectedCountries.length) {
-    //   setCards(
-    //     mainCards.filter((i) =>
-    //       selectedCountries
-    //         .map((i) => i.toLowerCase())
-    //         .includes(i.country_id.symbol.toLowerCase())
-    //     )
-    //   );
-    // } else {
-    //   setCards(mainCards);
-    // }
+   
     setFilters(s=>{return {
       ...s,
       country: selectedCountries.join(','),
@@ -179,7 +164,6 @@ function ShopFilters({
 
         <div className="filter filter-price mt-5">
           <span className="title">قیمت</span>
-          {mainCards.length ? (
             <Slider
               getAriaLabel={() => "price"}
               value={value1}
@@ -192,7 +176,6 @@ function ShopFilters({
               min={1}
               max={300}
             />
-          ) : null}
 
           <div className="drops d-flex align-items-center w-100">
             <FormControl sx={{ m: 1, flexGrow: 1 }}>

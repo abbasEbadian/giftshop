@@ -8,11 +8,10 @@ import off from "../img/icon/ShoppingIconic.png";
 import cardFolding from "../img/icon/Cards-folding3.png";
 import pie from "../img/icon/Group3452.png";
 import income from "../img/icon/IncomeIconic.png";
-import logos from "../img/card/logos.png";
 import collapse from "../img/icon/Collapse.png";
 import why from "../img/other/why.png";
-
-
+import  BrandList from '../components/BrandList'
+import {useSelector } from 'react-redux'
 import {
   ChevronLeft,
   Facebook,
@@ -25,13 +24,15 @@ import HomeUtilities from "../components/subHome/HomeUtilities";
 import Link from "next/link";
 
 export default function Home() {
-  const [active, setActive] = React.useState("day");
-  
+  const [active, setActive] = React.useState("today");
+  const popular_cards = useSelector(s=>s.main.popular_cards)
+  const top_sale_cards = useSelector(s=>s.main.top_sale_cards)
+
   return (
     <>
       <div className="mcontainer mcontainer-bg">
         <Head>
-          <title>GiftShop | گیفت شاپ</title>
+          <title>GiftStop | گیفت استاپ</title>
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="description" content="وبسایت مرجع خرید انواع گیفت کارت"/>
@@ -93,7 +94,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="col-12 footing d-flex align-items-end justify-content-between mt-auto pb-2">
+          <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">
             <span></span>
             <button className="scroll-down d-flex align-items-center justify-content-center flex-column">
               <span calssName="mb-2">
@@ -115,7 +116,7 @@ export default function Home() {
 
         <SimilarCards
           addToCard
-          product={undefined}
+          _products={top_sale_cards && top_sale_cards[active] || []}
           title={
             <span>
               {"پرفروش ترین"} <span className="text-secondary">گیفت </span>{" "}
@@ -126,10 +127,10 @@ export default function Home() {
           <div className="row mb-3 mt-5">
             <div className="col-6 col-md-3">
               <button
-                onClick={(e) => setActive("day")}
+                onClick={(e) => setActive("today")}
                 className={
                   "btn w-100 " +
-                  (active !== "day"
+                  (active !== "today"
                     ? "primary-outline py-3"
                     : "primary-gradient py-3")
                 }
@@ -179,8 +180,7 @@ export default function Home() {
           </div>
         </SimilarCards>
         <div className="my-5 d-flex"></div>
-        <SimilarCards
-          product={undefined}
+        <BrandList
           title={
             <span>
               {"محصولات"} <span className="text-secondary">فروشگاه </span>
@@ -188,27 +188,15 @@ export default function Home() {
           }
         />
         <SimilarCards
-          product={undefined}
+          _products={popular_cards || []}
           title={
             <span>
               {"محصولات"} <span className="text-secondary">محبوب </span>
             </span>
           }
         />
-        <div className="d-flex justify-content-end my-5">
-          <div className="bgimage flex-grow-1 position-relative mx-2">
-            <Image
-              alt="Mountains"
-              src={logos}
-              layout="fill"
-              objectFit="cover"
-              quality={100}
-            />
-          </div>
-          <Link href="/shop">
-            <a className="btn primary-gradient mr-2 ">مشاهده همه محصولات</a>
-          </Link>
-        </div>
+       
+        
       </div>
       <div className="whyus secondary-gradient-90 py-4">
         <div className="mcontainer">
@@ -239,10 +227,10 @@ export default function Home() {
                 </h5>
               </div>
 
-              <button className="btn shadow bg-white d-flex justify-content-between py-3 mt-3">
+              <Link href="/shop"><a className="btn shadow bg-white d-flex justify-content-between py-3 mt-3">
                 جستجوی سریع و خرید کارت
                 <ChevronLeft />
-              </button>
+              </a></Link>
             </div>
 
             <div className="col-md-6 col-12 mt-md-0 mt-5">

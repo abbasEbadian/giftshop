@@ -19,7 +19,6 @@ function Login() {
     const [done, setDone] = React.useState(false)
     const [codeSent, setCodeSent] = React.useState(false)
     const [timer, setTimer] = React.useState(0)
-    const timeout = undefined
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -34,6 +33,7 @@ function Login() {
         
         try{
             if (!codeSent || resend_code){
+                console.log(phone);
                 setLoading(true)
                 axios.post(SEND_AUTH_CODE, {mobile: phone})
                 .then((response)=>{
@@ -59,8 +59,8 @@ function Login() {
                     else toast.error(message)
                     
                 })
-                .catch(err=>{console.log(err);toast.error("خطا در برقراری ارتباط")})
-                .finally(f=>{setLoading(false)})
+            .catch(err=>{console.log(err);toast.error("خطا در برقراری ارتباط")})
+            .finally(f=>{setLoading(false)})
             }
         }catch(err){
             console.log(err);
@@ -103,7 +103,7 @@ function Login() {
                 
                     {timer>0?
                          <><small>ارسال دوباره بعد از 
-                            <span className="text-success px-2">{Math.floor(timer/60)}:{timer%60}</span>
+                            <span className="text-success px-2">{Math.floor(timer/60)}:{String(timer%60).padStart(2, "0")}</span>
                               
                             دقیقه</small></>
                         :<small onClick={e=>_login(e, 1)} className="text-info cursor-pointer">ارسال دوباره</small>
