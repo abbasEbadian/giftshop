@@ -42,6 +42,9 @@ body a{
 .w-300{
     width: min(150px, 100%);
 }
+.form-select{
+    background-position: left 0.75rem center;
+}
 button{
     border: none;
     border-radius: 6px;

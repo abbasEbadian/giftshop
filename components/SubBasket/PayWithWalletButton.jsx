@@ -7,9 +7,12 @@ import {PAY_WITH_WALLET} from '../../redux/endpoints'
 import {get_cart, profile} from '../../redux/actions'
 import axios from 'axios'
 import {toast} from 'react-toastify'
+import {useRouter} from 'next/router'
+
 function PayWithWalletButton({setOpen}) {
     const user = useSelector(s=>s.auth.user)
     const dispatch = useDispatch()
+    const router = useRouter()
     const [loading, setLoading] = React.useState(false)
 
     const _payment = ()=>{
@@ -23,6 +26,9 @@ function PayWithWalletButton({setOpen}) {
             dispatch(get_cart())
             dispatch(profile())
             setOpen(false)
+            setTimeout(()=>{
+              router.push("/panel/purchase-report")
+            }, 3000)
           }else{
             toast(data.message, {type: data.type})
           }

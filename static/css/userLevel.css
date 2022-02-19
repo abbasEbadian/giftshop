@@ -4,12 +4,7 @@
     position: relative;
     
 }
-.profile-menu  > *{
-    width: 130px !important ;
-    height: 130px !important;
-    -o-object-fit: cover;
-    object-fit: cover;
-}
+
 .user-info {
     font-size: 16px;
 }
@@ -17,5 +12,5 @@
     font-weight: bold;
 }
 .profile-menu-name p{
-    margin-bottom: 8px;
+    margin-bottom: 18px;
 }

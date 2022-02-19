@@ -46,6 +46,13 @@
 .userLevel .user-info > div p:first-child {
   margin: 0px 0;
 }
+.profile-menu img{
+  border-radius: 50%;
+}
+.profile-menu > span{
+  transform: scale(1.2);
+  margin-bottom: 32px;
+}
 .userLevel .upload-section {
   border: 1px dashed #8c92ac;
   padding:0.5rem 1rem 1rem;

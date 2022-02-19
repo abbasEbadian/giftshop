@@ -1,10 +1,9 @@
 .text-basket {
     text-align: center;
-    margin: 20px 0;
   }
-  .text-basket span {
-    color: var(--color-orange);
-  }
+.text-basket span{
+  margin: 0;
+}
   .content-shopping {
     display: flex;
     align-items: flex-end;

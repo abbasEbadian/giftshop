@@ -75,7 +75,7 @@ function PurchaseReport() {
                     </Grid>
                     <Grid item xs={6} sx={{textAlign: "left"}}>
                       <>
-                        <ConvertPointToWalletButton id={i.id} points_converted={i.points_converted}/>
+                        {i.status === "done"? <ConvertPointToWalletButton id={i.id} points_converted={i.points_converted}/>:null}
                       </>
                     </Grid>
                   </Grid>

@@ -43,3 +43,6 @@ export const PAY_WITH_WALLET = _("/orders/pay_with_wallet/")
 export const CONVERT_POINT_TO_WALLET = _("/orders/convert_point_to_wallet/")
 
 export const UPLOAD_BIRTH_CARD_IMAGE = _("/users/upload_birth_image/")
+export const UPLOAD_NATIONAL_CARD_IMAGE = _("/users/upload_national_image/")
+export const UPLOAD_AVATAR_IMAGE = _("/users/upload_avatar_image/")
+export const UPDATE_PROFILE = _("/users/update_profile/")

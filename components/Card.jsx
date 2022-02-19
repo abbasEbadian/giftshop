@@ -167,7 +167,7 @@ function Card({
             <div className="data position-absolute top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
               {!hidePrice?
               <span dir="ltr" className="price text-center">
-                  {data.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}
+                  {data.country_id?.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}
                   <div className="flag-cont">
                     <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
                   </div>

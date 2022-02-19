@@ -5,4 +5,7 @@ module.exports = {
         WEBSITE_NAME_FA : "گیفت استاپ"
         
     },
+    images: {
+        domains: ['localhost'],
+      },
   }
