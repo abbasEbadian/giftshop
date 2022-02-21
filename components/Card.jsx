@@ -155,13 +155,16 @@ function Card({
     })
     .finally(f=>dispatch(profile()))
   }
+  const gen_path = (data)=>{
+    return data.id + "-" + "گیفت-کارت-" + data.real_price +"-"+ (data&&data.country_id&&data.country_id.currency_id?data.country_id.currency_id.persian_name+"-" : "")+data.brand_id.persian_name
+  }
   return (
     <div className="single-card px-3  ">
       <div className="data-container position-relative">
         <Image src={get_image_src(data.brand_id.name)} />
 
         <Link href={
-          { pathname: !hidePrice? "/product/[slug]":"/shop/[slug]", query: { slug: !hidePrice?+data.id:data.brand_id.name }
+          { pathname: !hidePrice? "/product/[slug]":"/shop/[slug]", query: { slug: !hidePrice?(gen_path(data)):data.brand_id.name }
            }}>
           <a>
             <div className="data position-absolute top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
@@ -171,23 +174,18 @@ function Card({
                   <div className="flag-cont">
                     <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
                   </div>
+                  
                 </span>
                 :null
               }
-              <div className="d-flex align-items-center justify-content-between pb-3 pe-3">
-                {showRate ? (
-                  <span className="d-flex align-items-center">
-                    <Typography sx={{transform: "translateY(1px)", fontSize: "17px", fontWeight: "900"}}> {Number(data.rate)} </Typography><StarIcon />
+            </div>
+            {showRate ? (
+                  <span className="d-flex align-items-center _rate position-absolute ">
+                    <Typography sx={{transform: "translateY(1px)", fontSize: "15px", fontWeight: "900"}}> {Number(data.rate)} </Typography><StarIcon />
                   </span>
                 ) : (
                   <i></i>
-                )}
-                <span>
-                  {/* {data.price} {" تومان "}{" "} */}
-                </span>
-                <span></span>
-              </div>
-            </div>
+            )}
           </a>
         </Link>
       </div>

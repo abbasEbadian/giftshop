@@ -1,6 +1,7 @@
 export const BASE_URL = "http://localhost:8000"
 // export const BASE_URL = "http://130.185.78.233:8000"
 export const UPDATE_CARDS = "UPDATE_CARDS"
+export const UPDATE_CONFIGS = "UPDATE_CONFIGS"
 export const UPDATE_TOP_SALE= "UPDATE_TOP_SALE"
 export const UPDATE_BRANDS = "UPDATE_BRANDS"
 export const UPDATE_COUNTRIES = "UPDATE_COUNTRIES"

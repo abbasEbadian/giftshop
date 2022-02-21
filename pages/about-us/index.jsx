@@ -8,7 +8,11 @@ import aboutimg2 from "../../img/other/image5.png";
 import abouthelp from "../../img/other/image3.png";
 import Head from "next/head";
 
+import {useSelector} from 'react-redux'
+
 function AboutUs() {
+  const configs = useSelector(s=>s.main.configs)
+
   return (
     <section>
       <Head><title>درباره ما | گیفت شاپ</title></Head>
@@ -28,19 +32,9 @@ function AboutUs() {
             </h3>
           </div>
           <div className="col-6 col-lg-5 col-md-6">
-            <h6>داستان ما</h6>
+            <h6>{configs && configs.aboutus?.title_1}</h6>
             <p className="text-justify">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-              استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
-              در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-              نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد،
-              کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
-              جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای
-              طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان
-              فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری
-              موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد
-              نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل
-              دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+            {configs && configs.aboutus?.content_1}
             </p>
           </div>
           <div className="col-6 col-lg-5 col-md-5">
@@ -54,19 +48,9 @@ function AboutUs() {
             </div>
           </div>
           <div className="col-6 col-lg-5 col-md-6">
-            <h6>انواع گیفت‌کارت</h6>
+            <h6>{configs && configs.aboutus?.title_2}</h6>
             <p className="text-justify">
-              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-              استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
-              در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-              نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد،
-              کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
-              جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای
-              طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان
-              فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری
-              موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد
-              نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل
-              دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+            {configs && configs.aboutus?.content_2}
             </p>
           </div>
         </div>
@@ -75,7 +59,7 @@ function AboutUs() {
         <div className="row">
           <div className="col-12 about-help mt-5">
             <div className="right-section col-lg-4">
-              <Image src={abouthelp} />
+              <Image src={abouthelp} height={260} width={400}/>
             </div>
             <div className="left-section col-12 col-lg-7 flmd">
               <div className="text-about-info">

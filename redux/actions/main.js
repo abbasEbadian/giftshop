@@ -12,6 +12,7 @@ export const get_initial_data = ()=>{
         dispatch(fetch_countries())
         dispatch(get_cart())
         dispatch(profile())
+        dispatch(configs())
     }
 }
 
@@ -22,6 +23,20 @@ export const check_user = ()=>{
             dispatch({type:t.UPDATE_STATUS, payload: true})
             dispatch(profile())
         }
+    }
+}
+export const configs = () =>{
+    return async (dispatch, getState)=>{
+        return (
+            axios.get(e.CONFIGS)
+            .then(response=>{
+                const {data} = response
+                dispatch(update_configs(data))
+                
+            })
+            .catch(err=>console.log(err))
+            
+        )
     }
 }
 export const fetch_brands = () =>{
@@ -95,6 +110,12 @@ export const fetch_countries = () =>{
 }
 
 
+export const update_configs = (configs)=>{
+    return {
+        type: t.UPDATE_CONFIGS,
+        payload: configs
+    }
+}
 export const update_brands = (brands)=>{
     return {
         type: t.UPDATE_BRANDS,

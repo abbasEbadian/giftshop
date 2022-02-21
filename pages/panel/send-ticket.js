@@ -86,7 +86,7 @@ function SendTicket(props) {
                 </Form.Select>
               </div>
               <div className="col-md-5 col-lg-5 col-12">
-                <label htmlFor="">محصول مربوطه</label>
+                <label htmlFor="">سفارش مربوطه</label>
                 <Form.Select aria-label="Default select example" value={order_id} onChange={e=>setorder_id(e.target.value)}>
                   <option value={0}>--انتخاب کنید--</option>
                   {user&&user.order_set? user.order_set.map((item)=>{

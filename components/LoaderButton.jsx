@@ -9,7 +9,6 @@ function LoaderButton({
     className
 
 }) {
-    console.log(text, typeof text)
   return (
     <Button  onClick={onClick} sx={{minWidth:"120px", "minHeight" : "38px"}}
     classes={{

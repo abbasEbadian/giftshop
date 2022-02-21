@@ -3,6 +3,8 @@ import eNamad from "../img/license/L-1.png";
 import Trust from "../img/license/L-2.png";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image'
+import Link from 'next/link'
+
 function Footer() {
     
   
@@ -26,16 +28,24 @@ function Footer() {
             <h6>دسترسی سریع</h6>
             <ul className="footer-links">
               <li>
-                <a href="#">تماس با ما</a>
+                <Link href="/contact-us">
+                  <a >تماس با ما</a>
+                </Link>
               </li>
               <li>
-                <a href="#">درباره ما</a>
+                <Link href="/about-us">
+                  <a >درباره ما</a>
+                </Link>
               </li>
               <li>
-                <a href="#">فروشگاه</a>
+                <Link href="/shop">
+                  <a >فروشگاه</a>
+                </Link>
               </li>
               <li>
-                <a href="#">سوالات متداول</a>
+                <Link href="/faq">
+                  <a >سوالات متداول</a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -44,16 +54,24 @@ function Footer() {
             <h6>خدمات مشتریان</h6>
             <ul className="footer-links">
               <li>
-                <a href="#">قوانین و مقررات</a>
+                <Link href="/terms">
+                  <a>قوانین و مقررات</a>
+                </Link>
               </li>
               <li>
-                <a href="#">شرایط استفاده</a>
+                <Link href="/terms">
+                  <a>شرایط استفاده</a>
+                </Link>
               </li>
               <li>
-                <a href="#">لیست محصولات</a>
+                <Link href="/shop">
+                  <a>لیست محصولات</a>
+                </Link>
               </li>
               <li>
-                <a href="#">حریم خصوصی</a>
+                <Link href="/terms">
+                  <a>حریم خصوصی</a>
+                </Link>
               </li>
             </ul>
           </div>

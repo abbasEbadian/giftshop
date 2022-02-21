@@ -74,7 +74,7 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
         TransitionComponent={Transition}
       >
         <AppBar sx={{ position: 'relative' }} color={color}>
-          <Toolbar>
+          <Toolbar className='d-flex align-items-center justify-content-between'>
             <IconButton
               edge="start"
               color="inherit"
@@ -83,7 +83,10 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
             >
               <CloseIcon />
             </IconButton>
-            <Typography sx={{"paddingInline": "16px", "width": "100%", "textAlign": "center"}} variant={"h6"} >{ticket?.title}</Typography>
+            <Typography sx={{"paddingInline": "16px", "flexGrow": 1, "textAlign": "center"}} variant={"h6"} >{ticket?.title}</Typography>
+            <div>
+              {ticket?.status}
+            </div>
           </Toolbar>
         </AppBar>
         <form action="#" method="post" onSubmit={_send}> 

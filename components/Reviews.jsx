@@ -4,6 +4,7 @@ import reviewer from '../img/card/reviewer.png'
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import datetime  from  'persian-time-ago'
+import  * as e from '../redux/endpoints'
 function Reviews({reviews}) {
     const get_time = (date)=>{
         const d = new Date(date).toLocaleDateString("fa", {month: 'long',day: "numeric" ,numberingSystem: "geor"});
@@ -28,8 +29,11 @@ function Reviews({reviews}) {
 
     <div className="review-lines  rounded ">
         {  reviews.map((i, idx)=>{
-            return i.accepted && <div key={idx} className="review-line d-flex align-items-center my-2 flex-wrap">
-                <Image src={reviewer} />
+            return i.accepted && <div key={idx} className="review-line d-flex align-items-center my-2 flex-wrap border ">
+                {i.user_id && i.user_id.avatar_image? 
+                    <img src={e.BASE_URL + i.user_id.avatar_image} alt="Profile Image" />
+                    :
+                    <Image src={reviewer} alt="Profile Image" />}
                 <div className="content1 flex-grow-1 px-2 pt-2">
                     <h6>{i.user_id.first_name? i.user_id.first_name + " " + i.user_id.last_name: "کاربر گیفت شاپ" } | <span className="text-black-50">{get_time(i.created)}</span></h6>
                     <p> {i.text} </p>
@@ -39,7 +43,7 @@ function Reviews({reviews}) {
                     <span className="mx-2"></span>
                     <ThumbDownOffAltIcon />
                 </div>
-                {i.answer? <p className='border rounded p-2 w-100 mt-4'>
+                {i.answer? <p className='border-top rounded p-2 w-100 mt-4'>
                     پاسخ مدیر: <br />
                     {i.answer}
                 </p>: i.answer}

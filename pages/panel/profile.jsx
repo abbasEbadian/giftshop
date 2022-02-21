@@ -68,6 +68,7 @@ function UserLevel() {
             setGender(user.gender)
             setNCode(user.national_code)
             setBirthDate(user.birth_date)
+            setEmail(user.email)
         }
     },[user])
     const birth_cart_ref = React.useRef()

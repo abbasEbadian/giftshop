@@ -25,6 +25,7 @@ export const LOGIN = _("/check_auth/")
 export const LOGOUT = _("/logout/")
 export const REGISTER = _("/register/")
 export const PROFILE = _("/profile/")
+export const CONFIGS = _("/configs/")
 
 export const GET_CART = _("/orders/get_cart/")
 export const PATCH_CART = _("/orders/delete_from_cart/")

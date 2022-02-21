@@ -65,8 +65,8 @@ function SendTicket(props) {
                         لیست <span>تیکت ها</span>
                     </h5>
                     <div className="ticket-info-s">
-                        <div className="list-ticket-show">
-                            <Button  className="all-ticket col-2 co-lg-2 " variant={active==="all"?"contained":""} onClick={e=>setActive('all')}>
+                        <div className="list-ticket-show  flex-wrap">
+                            <Button  className="all-ticket col-6 col-lg-2 " variant={active==="all"?"contained":""} onClick={e=>setActive('all')}>
                                 <div className="d-flex flex-column">
                                     <div className="pb-2">
                                         {geticon("all")}
@@ -79,7 +79,7 @@ function SendTicket(props) {
                                 const text = item === "pending"? "درحال بررسی":
                                 item === "answered"? "پاسخ داده شده":
                                 item === 'closed'? "بسته شده": ""
-                                return <Button key={item} className="all-ticket col-2 co-lg-2 " color={colors[idx]} variant={active===item?"contained":""} onClick={e=>setActive(item)}>
+                                return <Button key={item} className="all-ticket col-6 col-lg-2 " color={colors[idx]} variant={active===item?"contained":""} onClick={e=>setActive(item)}>
                                     <div className="d-flex flex-column">
                                         <div className="pb-2">
                                             {geticon(item)}

@@ -31,7 +31,9 @@ function Product() {
 
 
   React.useEffect(()=>{
-    axios.get(GET_CARD + pid).then(res=>{
+    if(!pid) return
+    const pids = pid.split('-')[0]
+    axios.get(GET_CARD + pids).then(res=>{
 
       const {data}  = res
       setProduct(data.card)

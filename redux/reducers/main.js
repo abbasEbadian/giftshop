@@ -6,6 +6,7 @@ const init_state = {
     top_sale_cards: [],
     brands: [],
     countries: [], 
+    configs: [],
     fetching_cards: false,
     fetching_brands: false,
     fetching_countries: false
@@ -18,6 +19,11 @@ const mainReducer = (state=init_state,action)=>{
         case HYDRATE:
             return {...state, ...action.payload};
 
+        case t.UPDATE_CONFIGS: 
+            return {
+                ...state,
+                configs: action.payload
+            }
         case t.UPDATE_CARDS: 
             return {
                 ...state,

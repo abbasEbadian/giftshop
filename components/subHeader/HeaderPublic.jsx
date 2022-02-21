@@ -70,12 +70,18 @@ function HeaderPublic({ authenticated }) {
             </li>:null}
 
           </ul>
-          <div className="controls d-flex">
+          <div className="controls d-flex flex-wrap">
             <input type="text" className="form-control" />
             <span className="mx-2">
               <SearchIcon width={30} />
             </span>
-            <ShoppingIcon />
+            <br />
+            <Link  href="/basket">
+              <a className="badge-container pt-2">
+                <span className="basket-badge bg-danger text-white rounded-circle p2 mt-2">{basket&&basket.orderline_set?basket.orderline_set.length: 0}</span>
+                <ShoppingIcon  width="30"/>
+              </a>
+          </Link>
           </div>
           <Link href="/auth">
             <a className="btn primary-gradient rounded d-flex mt-3">
