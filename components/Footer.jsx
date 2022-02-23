@@ -109,27 +109,27 @@ function Footer() {
           <div className="col-md-4 col-sm-6 col-xs-12">
             <ul className="social-icons p-0">
               <li>
-                <a className="pt-1 facebook" href={config&&config.contactus&&config.contactus.facebook_link?config.contactus.facebook_link: "https://facebook.com"}>
+                <a className="pt-1 facebook" target={"_blank"} href={config&&config.contactus&&config.contactus.facebook_link?config.contactus.facebook_link: "https://facebook.com"}>
                   <i className="bi fs-4 bi-facebook"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 telegram" href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
+                <a className="pt-1 telegram" target={"_blank"} href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
                   <i className="bi fs-4 bi-telegram"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 whatsapp" href={config&&config.contactus&&config.contactus.whatsapp_link?config.contactus.whatsapp_link: "https://whatsapp.org"}>
+                <a className="pt-1 whatsapp" target={"_blank"} href={config&&config.contactus&&config.contactus.whatsapp_link?config.contactus.whatsapp_link: "https://whatsapp.org"}>
                   <i className="bi fs-4 bi-whatsapp"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 twitter" href={config&&config.contactus&&config.contactus.twitter_link?config.contactus.twitter_link: "https://twitter.com"}>
+                <a className="pt-1 twitter" target={"_blank"} href={config&&config.contactus&&config.contactus.twitter_link?config.contactus.twitter_link: "https://twitter.com"}>
                   <i className="bi fs-4 bi-twitter"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 instagram" href={config&&config.contactus&&config.contactus.instagram_link?config.contactus.instagram_link: "https://instagram.com"}>
+                <a className="pt-1 instagram" target={"_blank"} href={config&&config.contactus&&config.contactus.instagram_link?config.contactus.instagram_link: "https://instagram.com"}>
                   <i className="bi fs-4 bi-instagram"></i>
                 </a>
               </li>

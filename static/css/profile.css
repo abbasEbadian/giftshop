@@ -130,3 +130,10 @@
 #credits .card-item > *{
   width: 100%;
 }
+
+.edit-profile-modal .MuiFormControl-root {
+  width: 100%;
+}
+.edit-profile-modal .MuiInputBase-inputAdornedEnd {
+  padding-block: 4px;
+}
