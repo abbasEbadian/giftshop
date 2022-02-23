@@ -1,7 +1,7 @@
 
-let base = "http://130.185.78.233:8001"
-if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
-    base = "http://localhost:8000" 
+let base = "http://arsimodir.ir"
+// if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
+//     base = "http://localhost:8000" 
 
 export const BASE_URL = base
 

@@ -42,7 +42,7 @@ function PurchaseReport() {
                 const {text, color} = get_status(i.status)
                 const group = _.groupBy(i.orderline_set, c => c.template_id.id)
                 console.log(group)
-              return <Accordion  key={idx}>
+              return <Accordion  key={idx} TransitionProps={{ unmountOnExit: true }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
