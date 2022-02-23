@@ -14,7 +14,7 @@ import Router, { useRouter } from 'next/router';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export default function CheckboxesTags() {
+export default function CheckboxesTags({setOpen=false}) {
  const [cats, setCats] = React.useState([])
  const [loading, setLoading] = React.useState([])
  const [searchValue, setSearchValue] = React.useState([])
@@ -58,12 +58,12 @@ export default function CheckboxesTags() {
             base+= p+"country=" + countries.map(i=>i.title).join(",")
         }
         
-        
+        if(setOpen) setOpen(false)
        router.push(base)
     }
 
   return (
-   <>
+   <div className="d-flex align-items-center ">
     <Autocomplete
         dir="ltr"
       multiple
@@ -77,7 +77,7 @@ export default function CheckboxesTags() {
       value={searchValue}
       onChange={(e, v)=>setSearchValue(v)}
       renderOption={(props, option, { selected }) => (
-        <li {...props}>
+        <li {...props} className="px-2">
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
@@ -97,7 +97,7 @@ export default function CheckboxesTags() {
         onClick={_search}
         >
         <SearchIcon  width="20"/>
-    </Button></>
+    </Button></div>
   );
 }
 

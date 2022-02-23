@@ -58,6 +58,10 @@ button{
 .bottom-navigation .searcher {
     transform: translateY(-30px);
 }
+div.bottom-navigation{
+    z-index: 10001;
+
+}
 .bottom-navigation div{
     height: 60px;
     background-color: #f7f7f7;

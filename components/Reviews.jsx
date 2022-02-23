@@ -27,9 +27,9 @@ function Reviews({reviews}) {
     </div> */}
 
 
-    <div className="review-lines  rounded ">
+    <div className="review-lines  rounded border">
         {  reviews.map((i, idx)=>{
-            return i.accepted && <div key={idx} className="review-line d-flex align-items-center my-2 flex-wrap border ">
+            return i.accepted && <div key={idx} className="review-line d-flex align-items-center my-2 flex-wrap  ">
                 {i.user_id && i.user_id.avatar_image? 
                     <img src={e.BASE_URL + i.user_id.avatar_image} alt="Profile Image" />
                     :

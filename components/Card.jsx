@@ -10,7 +10,7 @@ import leagueoflegends from "../img/card/leagueoflegends.png";
 import mastercard from "../img/card/mastercard.png";
 import netflix from "../img/card/netflix.png";
 import nintendo from "../img/card/nintendo.png";
-import paypal from "../img/card/paypal.png";
+// import paypal from "../img/card/paypal.png";
 import playstation from "../img/card/playstation.png";
 import pubg from "../img/card/pubg.png";
 import roblex from "../img/card/roblex.png";
@@ -74,7 +74,7 @@ function Card({
       case "visacard": return layered ? visaImageLayered : visacard;
       case "apple": return layered ? appleImageLayered : apple;
       case "applemusic": return  applemusic;
-      case "paypal": return layered ? paypalImageLayered : paypal;
+      // case "paypal": return layered ? paypalImageLayered : paypal;
       case "mastercard": return layered ? paypalImageLayered : mastercard;
       case "amazon": return  amazon;
       case "apex": return  apex;
@@ -189,21 +189,36 @@ function Card({
           </a>
         </Link>
       </div>
-      {addToCard ? (
+      {hidePrice && !addToCard?
+        <h2 className="w-100 text-center">
+          <Typography component="span">
+            <span className="">گیفت کارت های</span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+          </Typography>
+        </h2>
+      :null}
+      {addToCard ? <>
+        <h5 className="w-100 d-flex align-items-center justify-content-between px-2">
+          <Typography component="span" sx={{fontSize: "12px"}}>
+            <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+          </Typography>
+          <Typography component="span" sx={{fontSize: "12px"}}>
+           <span>
+            {Number(data.price).toLocaleString()} {" ت "}{" "}
+          </span>
+          </Typography>
+        </h5>
         <div className="add-to-card-container d-flex justify-content-between align-items-center">
           <div dir="ltr" className="counter">
             <span onClick={(e) => setCount((c) => (c += 1))}>+</span>
             <span className="border-bottom mx-2 ">{count}</span>
             <span onClick={(e) => setCount((c) => Math.max(1, c - 1))}>-</span>
           </div>
-          <span>
-            {Number(data.price).toLocaleString()} {" ت "}{" "}
-          </span>
+         
           
           <LoaderButton text={"افزودن به سبد"} loading={loading} onClick={_addToCart}/>
          
         </div>
-      ) : undefined}
+      </> : undefined}
       {favoriteAndRate ? (
         <>
           <div className="d-flex align-items-center justify-content-evenly mt-3">

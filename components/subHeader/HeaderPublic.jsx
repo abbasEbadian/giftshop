@@ -70,19 +70,6 @@ function HeaderPublic({ authenticated }) {
             </li>:null}
 
           </ul>
-          <div className="controls d-flex flex-wrap">
-            <Search />
-            <span className="mx-2">
-              <SearchIcon width={30} />
-            </span>
-            <br />
-            <Link  href="/basket">
-              <a className="badge-container pt-2">
-                <span className="basket-badge bg-danger text-white rounded-circle p2 mt-2">{basket&&basket.orderline_set?basket.orderline_set.length: 0}</span>
-                <ShoppingIcon  width="30"/>
-              </a>
-          </Link>
-          </div>
           <Link href="/auth">
             <a className="btn primary-gradient rounded d-flex mt-3">
               ورود <span className="mx-1">|</span>عضویت
@@ -104,14 +91,14 @@ function HeaderPublic({ authenticated }) {
           </Link>
           <Link href="/shop">
             <div
-              className="megamenu-shop"
+              className="megamenu-shop "
               onMouseEnter={(e) => setActive(true)}
               onMouseLeave={(e) => setActive(false)}
             >
               <a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a>
               <div className={"list-show-menu" + (active ? " collapsed " : "")}>
                 <ul
-                  class="dropdown-menu mega-menu d-flex flex-wrap"
+                  class="dropdown-menu mega-menu d-flex flex-wrap container"
                 >
                   {brands.map((item, idx) => {
                     return (

@@ -549,7 +549,6 @@ header .burger-line:nth-child(4) {
 }
 
 .megamenu-shop .dropdown-menu {
-  min-width: 100%;
   position: absolute;
   top: 60px;
   right: 0;
@@ -606,7 +605,7 @@ header .MuiInput-root{
 
 
 header .MuiAutocomplete-root{
-  width: 500px; 
+  width: clamp(300px, 25vw, 400px) !important;  
 }
 header .MuiInput-underline::before{
   display: none;
@@ -623,4 +622,12 @@ header .MuiInput-underline::before{
   body .header-public .links{
     width: 40vw;
   }
+}
+@media  (min-width: 900px){
+  body .mega-menu {
+    width: 80%;
+    margin: 0 auto;right:10vw;
+    left: 10vw;
+  }
+
 }

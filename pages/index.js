@@ -33,7 +33,7 @@ export default function Home() {
       <div className="mcontainer mcontainer-bg">
         <Head>
           <title>GiftStop | گیفت استاپ</title>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/fav.png" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="description" content="وبسایت مرجع خرید انواع گیفت کارت"/>
           <link

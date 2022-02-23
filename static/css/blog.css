@@ -40,6 +40,12 @@
   border-radius: 15px;
   border: none;
 }
+@media (max-width:576px){
+  body #enter , body #search {
+    font-size: 12px;
+    height:42px;
+  }
+}
 
 #search {
   position: absolute;
@@ -160,4 +166,9 @@
   .info-blog-post {
     margin: auto;
   }
+}
+.basket-remove-item{
+  position: aboulute;
+  left:24px;
+  top: 24px;
 }

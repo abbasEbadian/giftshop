@@ -31,23 +31,23 @@ function AboutUs() {
               درباره <span> ما</span>
             </h3>
           </div>
-          <div className="col-6 col-lg-5 col-md-6">
+          <div className="col-12 col-lg-5 col-md-6">
             <h6>{configs && configs.aboutus?.title_1}</h6>
             <p className="text-justify">
             {configs && configs.aboutus?.content_1}
             </p>
           </div>
-          <div className="col-6 col-lg-5 col-md-5">
+          <div className="col-12 col-lg-5 col-md-5">
             <div className="img-about">
               <Image src={aboutimg1}></Image>
             </div>
           </div>
-          <div className="col-6 col-lg-5 col-md-5">
-            <div className="img-about">
+          <div className="col-12 col-lg-5 col-md-5">
+            <div className="img-about my-3">
               <Image src={aboutimg2}></Image>
             </div>
           </div>
-          <div className="col-6 col-lg-5 col-md-6">
+          <div className="col-12 col-lg-5 col-md-6">
             <h6>{configs && configs.aboutus?.title_2}</h6>
             <p className="text-justify">
             {configs && configs.aboutus?.content_2}
@@ -58,7 +58,7 @@ function AboutUs() {
       <div className="container mw-100 w-100 mt-5">
         <div className="row">
           <div className="col-12 about-help mt-5">
-            <div className="right-section col-lg-4">
+            <div className="right-section col-lg-4 my-3">
               <Image src={abouthelp} height={260} width={400}/>
             </div>
             <div className="left-section col-12 col-lg-7 flmd">

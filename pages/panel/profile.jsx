@@ -171,6 +171,7 @@ function UserLevel() {
             setAvatar_loading(false)
         })
     }
+  
     return (
         <section className="container">
             <Head><title>گیفت استاپ | حساب کاربری</title></Head>
@@ -211,7 +212,10 @@ function UserLevel() {
                                 </p>
 
                             </div>
-                            <div className="col-md-12 text-center pb-4">
+                            <Chip label={"امتیازات کسب شده " + (user&&user.total_points?user&&user.total_points: 0 )}>
+                                
+                            </Chip>
+                            <div className="col-md-12 text-center pb-4 mt-2">
                             {user&&user.authentication_status==="authorized"?
                                 <Chip color="success" variant="outlined" label="احراز هویت شده"></Chip>
                             :user&&user.authentication_status==="pending"?

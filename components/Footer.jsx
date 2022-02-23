@@ -16,13 +16,21 @@ function Footer() {
         <div className="row">
           <div className="col-sm-12 col-md-5 ">
             <div className="col-md-9">
-              <h6>درباره ما</h6>
+              <h6>{config?.contactus?.footer_about_title}</h6>
               <p className="text-justify">
                 {" "}
-                کلیه حقوق این وب سایت متعلق به گیفت شاپ Giftshop.com و این قالب
-                ثبت شده در DMCA Report گوگل و یا همان قوانین کپی رایت آمریکا می
-                باشد.
+                {config?.contactus?.footer_about_content}
               </p>
+            </div>
+            <div className="col-md-9">
+              شماره تماس: 
+              {" "}
+              {config?.contactus?.phone_number_1}
+            </div>
+            <div className="col-md-9">
+              ایمیل: 
+              {" "}
+              {config?.contactus?.website_email}
             </div>
           </div>
 
