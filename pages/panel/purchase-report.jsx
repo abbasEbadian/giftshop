@@ -41,7 +41,6 @@ function PurchaseReport() {
               user.order_set.filter(i=>i.status!=="draft").map((i, idx)=>{
                 const {text, color} = get_status(i.status)
                 const group = _.groupBy(i.orderline_set, c => c.template_id.id)
-                console.log(group)
               return <Accordion  key={idx}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}

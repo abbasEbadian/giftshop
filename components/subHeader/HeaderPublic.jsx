@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import UserIcon from "./UserIcon";
 import { Button } from "@mui/material";
-
+import Search from './Search'
 function HeaderPublic({ authenticated }) {
 
   const [menuopen, setMenuopen] = React.useState(false);
@@ -71,7 +71,7 @@ function HeaderPublic({ authenticated }) {
 
           </ul>
           <div className="controls d-flex flex-wrap">
-            <input type="text" className="form-control" />
+            <Search />
             <span className="mx-2">
               <SearchIcon width={30} />
             </span>
@@ -139,16 +139,8 @@ function HeaderPublic({ authenticated }) {
         </div>
 
         <div className="controls">
-          <input type="text" className="form-control" placeholder="جستجو کنید..." />
-          <Button
-              className='px-0'
-            >
-            <Link  href="#search">
-              <a>
-                <SearchIcon  width="20"/>
-              </a>
-            </Link>
-          </Button>
+          <Search />
+          
          
           <Link  href="/basket">
             <a className="badge-container">

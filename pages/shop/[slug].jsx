@@ -23,7 +23,8 @@ function Shop() {
     setPage(value);
   };
 
-  
+  const {real_price, country} = router.query
+
   React.useEffect(() => {
     let params = {}
     Object.keys(filters).map(item=>{
@@ -42,6 +43,16 @@ function Shop() {
     .catch(err=>console.log(err))
 
   }, [filters, page, brand_name])
+
+  React.useEffect(()=>{
+    let f = {}
+    if(brand_name){
+      f["real_price"] =real_price
+      f["country"] =country
+    }
+    setFilters(f)
+}, [ real_price, country])
+
   return (
     <div className="shop-main">
        <Head>

@@ -16,7 +16,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ChatIcon from '@mui/icons-material/Chat';
-
+import CreditCardIcon from '@mui/icons-material/CreditCard';
 
 
 
@@ -56,6 +56,7 @@ export default function ProfileAside({active}) {
             active==="wallet"?"کیف پول":
             active==="new_ticket"?"ایجاد تیکت جدید":
             active==="tickets"?"مشاهده تیکت ها":
+            active==="credit_cards"?"کارت های اعتباری":
             "پنل کاربری"
           } />
         </ListItemButton>
@@ -76,6 +77,16 @@ export default function ProfileAside({active}) {
                 <BookmarkBorderIcon />
               </ListItemIcon>
               <ListItemText primary="مورد علاقه ها" />
+            </a>
+          </Link>
+        </ListItemButton>
+        <ListItemButton component="div" selected={active==="credit_cards"} classes={classes}>
+          <Link href="/panel/credit-cards" >
+            <a>
+              <ListItemIcon>
+                <CreditCardIcon />
+              </ListItemIcon>
+              <ListItemText primary="کارت های اعتباری" />
             </a>
           </Link>
         </ListItemButton>

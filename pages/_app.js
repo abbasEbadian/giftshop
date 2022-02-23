@@ -16,10 +16,8 @@ import { useRouter } from 'next/router';
 import {ToastContainer} from 'react-toastify'
 import NProgress from 'nprogress'
 import Router from 'next/router'
-NProgress.configure({ showSpinner: publicRuntimeConfig.NProgressShowSpinner });
 
 Router.onRouteChangeStart = () => {
-  console.log("CAE")
   NProgress.start();
 };
 

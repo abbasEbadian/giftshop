@@ -20,7 +20,7 @@ export const add_to_cart = (template_id, count) =>{
             axios.get(e.GET_BRANDS)
             .then(response=>{
                 const {data} = response
-                dispatch(update_brands(data))
+                dispatch(update_brands2(data))
             })
             .catch(err=>console.log(err))
             .finally(f=>setTimeout(() => {

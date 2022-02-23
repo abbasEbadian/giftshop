@@ -185,7 +185,7 @@ function Card({
                   </span>
                 ) : (
                   <i></i>
-            )}
+              )}
           </a>
         </Link>
       </div>
