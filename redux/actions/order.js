@@ -31,7 +31,7 @@ export const add_to_cart = (template_id, count) =>{
 }
 
 
-export const update_brands = (brands)=>{
+export const update_brands2 = (brands)=>{
     return {
         type: t.UPDATE_BRANDS,
         payload: brands
