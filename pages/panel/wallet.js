@@ -21,14 +21,21 @@ import WalletDepositSelectCard from "../../components/SubBasket/WalletDepositSel
 import axios from "axios";
 import {GET_WALLET_DEPOSIT_LINK} from '../../redux/endpoints'
 import {toast} from 'react-toastify'
-
+import TextField from '@mui/material/TextField'
 function Wallet() {
     const user = useSelector(s=>s.auth.user)
     const [amount, setAmount] = React.useState(0)
+    const [amountErr, setAmountErr] = React.useState("")
     const [open, setOpen] = React.useState(false)
     const [card, setCard] = React.useState(false)
     
     const _getPaymentLink = ()=>{
+        if(!amount || isNaN(+amount)){
+            setAmountErr("مقدار وارد شده صحیح نیست")
+            return 
+        }
+        setAmountErr("")
+
         axios.post(GET_WALLET_DEPOSIT_LINK, {
             amount, 
             card
@@ -45,9 +52,18 @@ function Wallet() {
 
         })
         .catch(e=>{
+            
             toast.error("خطا در ارتباط")
             console.log(e)
         })
+    }
+    const _open = ()=>{
+         if(!amount || isNaN(+amount)){
+            setAmountErr("مقدار وارد شده صحیح نیست")
+            return 
+        }
+        setAmountErr("")
+        setOpen(true)
     }
     
    
@@ -117,16 +133,7 @@ function Wallet() {
                         <div className="IncreaseCredit d-flex col-12 justify-content-center align-items-center py-5">
                             <span className="col-2">میزان افزایش موجودی:</span>
                             <div className="col-4">
-                                <Form.Select aria-label="Default select example" value={amount} onChange={e => setAmount(e.target.value)}>
-                                    <option value={0}> --مقدار مورد نظر را وارد کنید--</option>
-                                    {Array.from(Array(30)).map((_, idx) => {
-                                        return (
-                                            <>
-                                                <option key={idx+1} value={(idx+1)*10000}>{(idx+1)*10000}</option>
-                                            </>
-                                        );
-                                    })}
-                                </Form.Select>
+                                <TextField error={amountErr} value={amount} onChange={e => setAmount(e.target.value)} size="small" helperText={amountErr}/>
                             </div>
                         </div>
                         {Number(amount) > 0 ? <h4>
@@ -138,7 +145,7 @@ function Wallet() {
                         </h4> : null}
                         
                         <div className="transferToPayment py-4">
-                            <Button disabled={amount === 0} variant="contained" color="success" onClick={e=>setOpen(true)}>انتقال به درگاه پرداخت</Button>
+                            <Button disabled={amount === 0} variant="contained" color="success" onClick={e=>_open()}>انتقال به درگاه پرداخت</Button>
                         </div>
                         <div className="table-info-payment py-4 p-2">
                             <Paper

@@ -99,3 +99,41 @@
     border-left: 1px solid rgb(160, 160, 160);
   }
 }
+
+#credits .cards [data-testid="AddIcon"]{
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  cursor: pointer;
+}
+#credits .cards button{
+  width: 48px;
+  min-width: 48px;
+}
+#credits .cards input{
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  -o-appearance: textfield;
+  appearance: textfield;
+}
+#credits .cards .MuiButton-endIcon{
+  margin: 0;
+}
+#credits .card-item{
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+#credits .card-item > *{
+  width: 100%;
+}
+
+.edit-profile-modal .MuiFormControl-root {
+  width: 100%;
+}
+.edit-profile-modal .MuiInputBase-inputAdornedEnd {
+  padding-block: 4px;
+}

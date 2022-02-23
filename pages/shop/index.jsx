@@ -5,6 +5,7 @@ import Head from "next/head";
 import axios from "axios";
 import {GET_TEMPLATES } from '../../redux/endpoints'
 import PaginationControlled from "../../components/Pagination";
+import { useRouter } from 'next/router'
 
 function Shop() {
   
@@ -12,14 +13,13 @@ function Shop() {
   const [loading, setLoading] = React.useState(false)
   const [filters, setFilters] = React.useState({})
   const [cardsCount, setCardsCount] = React.useState({})
-  
+  const router = useRouter()
   const [page, setPage] = React.useState(1);
-
   const handleChange = (event, value) => {
     setPage(value);
   };
 
-  
+  const {brand_name, real_price, country} = router.query
   React.useEffect(() => {
     let params = {}
     Object.keys(filters).map(item=>{
@@ -37,6 +37,15 @@ function Shop() {
     .catch(err=>console.log(err))
 
   }, [filters, page])
+  React.useEffect(()=>{
+    let f = {}
+    if(brand_name){
+      f["brand_name"] =brand_name
+      f["real_price"] =real_price
+      f["country"] =country
+    }
+    setFilters(f)
+}, [brand_name, real_price, country])
   return (
     <div className="shop-main">
         <Head><title>فروشگاه | گیفت شاپ</title></Head>

@@ -66,19 +66,19 @@ function Product() {
     })
   }
   return (
-    <div className="container single-product">
+    <div className="container single-product ">
       <Head><title>صفحه محصول {pid} | گیفت شاپ</title></Head>
 
       <h1 className="text-center mt-4">
         کارت <span className="text-secondary">انتخابی</span>
       </h1>
       
-        <div className="row mt-5 product-list-gift">
+        <div className="row mt-5 product-list-gift mx-md-5">
         {product ? <>
-          <div className="col-12 col-md-4">
+          <div className="col-12 col-lg-4">
             <Card data={product} favoriteAndRate />
           </div>
-          <div className="col-12 col-md-8 p-3">
+          <div className="col-12 col-lg-8 p-3">
             <h2>{product.name}</h2>
             <div className="row my-4">
               <div className="col-6 col-md-3 mb-2">
@@ -108,7 +108,7 @@ function Product() {
               </div>
             </div>
             <p className="mt-3">{product.description}</p>
-            <div className="add-to-card-container d-flex justify-content-between align-items-center">
+            <div className="add-to-card-container d-flex justify-content-between align-items-center w-75 pe-xl-5 me-auto ms-0">
               <div dir="ltr" className="counter">
                 <span onClick={(e) => setCount((c) => (c += 1))}>+</span>
                 <span className="border-bottom mx-2 ">{count}</span>
@@ -140,9 +140,13 @@ function Product() {
         <Image src={logos} className="d-none d-md-flex" />
       </div>
 
-      <SendFeedback product={product} />
-      <Reviews reviews={product&&product.review_set||[]} />
-
+      <div className="card my-4 p-4">
+        <div className="col-12 col-lg-8 co-xl-6 mx-auto">
+          <SendFeedback product={product} />
+        
+        <Reviews reviews={product&&product.review_set||[]} />
+        </div>
+      </div>
      
     </div>
   );

@@ -94,14 +94,14 @@
   padding-bottom: 32px;
 }
 
-.with-button .single-card::before {
+/* .with-button .single-card::before {
   bottom: -35%;
-}
+} */
 .with-button .add-to-card-container {
   margin-top: 0;
 }
 
-.single-card::before {
+/* .single-card::before {
   content: "";
   position: absolute;
   bottom: -12%;
@@ -112,7 +112,7 @@
   border-radius: 50%;
   transform: perspective(500px) rotateX(64deg);
   filter: blur(11px);
-}
+} */
 
 .single-card .price {
   position: absolute;
@@ -129,8 +129,8 @@
 .add-to-card-container {
   user-select: none;
   margin-top: 16px;
-  width: min(350px, 100%);
-  float: left;
+  width: 95%;
+  margin-inline: auto;
 }
 .add-to-card-container .counter span {
   cursor: pointer;

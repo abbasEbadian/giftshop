@@ -19,7 +19,6 @@ import Router from 'next/router'
 
 
 Router.onRouteChangeStart = () => {
-  console.log("CAE")
   NProgress.start();
 };
 

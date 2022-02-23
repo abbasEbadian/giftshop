@@ -84,7 +84,6 @@ function ShopFilters({
   }, []);
 
   React.useEffect(() => {
-   
     setFilters(s=>{return {
       ...s,
       rate: rateValue[0] +","+ rateValue[1],

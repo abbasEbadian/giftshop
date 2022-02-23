@@ -171,6 +171,7 @@ function UserLevel() {
             setAvatar_loading(false)
         })
     }
+  
     return (
         <section className="container">
             <Head><title>گیفت استاپ | حساب کاربری</title></Head>
@@ -211,7 +212,10 @@ function UserLevel() {
                                 </p>
 
                             </div>
-                            <div className="col-md-12 text-center pb-4">
+                            <Chip label={"امتیازات کسب شده " + (user&&user.total_points?user&&user.total_points: 0 )}>
+                                
+                            </Chip>
+                            <div className="col-md-12 text-center pb-4 mt-2">
                             {user&&user.authentication_status==="authorized"?
                                 <Chip color="success" variant="outlined" label="احراز هویت شده"></Chip>
                             :user&&user.authentication_status==="pending"?
@@ -222,7 +226,7 @@ function UserLevel() {
                             </div>
                         </div>
                         <div className="col-lg-8 col-12">
-                            <div className="d-flex align-items-center justify-content-between">
+                            <div className="d-flex align-items-center justify-content-between ">
                                 <h5 className="px-3">اطلاعات فردی شما</h5>
                                 <div>
                                     <Button className="text-basket" color='info' variant="outlined" onClick={handleOpen} startIcon={<EditIcon/>}>
@@ -233,6 +237,7 @@ function UserLevel() {
                                         onClose={handleClose}
                                         aria-labelledby="modal-modal-title"
                                         aria-describedby="modal-modal-description"
+                                        className="edit-profile-modal"
                                     >
                                         <Box sx={style}>
                                             <Form onSubmit={update_profile}>
@@ -246,17 +251,22 @@ function UserLevel() {
                                                 </Form.Group>
                                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                                     <Form.Label> ایمیل</Form.Label>
-                                                    <Form.Control type="text" value={email} onChange={e=>setEmail(e.target.value)} />
+                                                    <Form.Control type="email" value={email} onChange={e=>setEmail(e.target.value)} />
                                                 </Form.Group>
-                                                <LocalizationProvider dateAdapter={AdapterJalali}>
-                                                    <DatePicker
-                                                        className="w-100"
-                                                        mask="____/__/__"
-                                                        value={birthDate}
-                                                        onChange={(newValue) => setBirthDate(newValue)}
-                                                        renderInput={(params) => <TextField {...params} />}
-                                                    />
-                                                </LocalizationProvider>
+                                                <div className="pb-2">
+                                                    <Form.Label> تاریخ تولد</Form.Label>
+                                                    <LocalizationProvider dateAdapter={AdapterJalali}>
+                                                        <DatePicker
+                                                            className="w-100"
+                                                            mask="____/__/__"
+                                                            value={birthDate}
+                                                            onChange={(newValue) => setBirthDate(newValue)}
+                                                            renderInput={(params) => <TextField {...params} />}
+                                                            fullWidth
+                                                            size="small"
+                                                        />
+                                                    </LocalizationProvider>
+                                                </div>
                                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                                     <Form.Label>کد ملی</Form.Label>
                                                     <Form.Control type="text" value={nCode} onChange={e=>setNCode(e.target.value)}  />

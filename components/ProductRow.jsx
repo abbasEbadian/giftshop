@@ -7,6 +7,8 @@ import {PATCH_CART} from '../redux/endpoints'
 import axios from "axios";
 import {useDispatch} from 'react-redux'
 
+import CloseIcon from '@mui/icons-material/Close';
+
 const locale = (yeGeimat)=>{
     return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString(): yeGeimat
 }
@@ -40,9 +42,14 @@ function ProductRow({ product , _count}) {
         setLoading(false)
       })
     }
-  
+  const _remove_item= (p)=>{
+    change_count(p, 0)
+  }
   return (
-    <div className="row mt-5 product-list-gift">
+    <div className="row mt-5 product-list-gift basket-remove-item-parent position-relative">
+      <div className="basket-remove-item text-start mt-2 position-absolute top-0 start-0">
+        <CloseIcon onClick={e=>_remove_item(product.id)} color="error"/>
+      </div>
       <div className="col-12 col-md-4">
         <Card data={product} favoriteAndRate />
       </div>

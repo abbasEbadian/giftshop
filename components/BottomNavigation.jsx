@@ -4,27 +4,44 @@ import OtherHousesOutlinedIcon from '@mui/icons-material/OtherHousesOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+// import ShoppingIcon from '@mui/icons-material/Shopping';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
+import CloseIcon from '@mui/icons-material/Close';
+import {useSelector} from 'react-redux'
+import FullScreenSearch from './subHeader/FullScreenSearch'
 function BottomNavigation() {
-const size = "28px" 
+    const [openFull, setOpenFull] = React.useState(false)
+    const size = "28px" 
+    const basket = useSelector(s=>s.main.basket)
   return <div className='d-md-none d-block bottom-navigation'>
-    <div className="d-flex align-items-center justify-content-evenly">
+    <div className="d-flex align-items-center justify-content-evenly  searcher-box">
         <Link href="/">
             <a><OtherHousesOutlinedIcon sx={{width: size, height: size}} color={"primary"}/></a>
         </Link>
-        <Link href="/profile">
+        <Link href="/panel/profile">
             <a><AccountBoxOutlinedIcon sx={{width: size, height: size}} color={"primary"}/></a>
         </Link>
-        <Link href="/">
-            <a className=' searcher rounded-circle primary-gradient p-2 '><SearchOutlinedIcon sx={{width: "45px", height: "45px"}} color={"white"}/></a>
+        <Link href="#" >
+            <a onClick={_=>setOpenFull(!openFull)} className='  searcher rounded-circle primary-gradient p-2 '>
+                {openFull?
+                 <CloseIcon sx={{width: "45px", height: "45px"}} color={"white"}/>
+                 :
+                 <SearchOutlinedIcon sx={{width: "45px", height: "45px"}} color={"white"}/>
+                }
+            </a>
         </Link>
-        <Link href="/messages">
+        <Link href="/panel/ticket-list">
             <a><ChatBubbleOutlineOutlinedIcon sx={{width: size, height: size}} color={"primary"}/></a>
         </Link>
-        <Link href="/shop">
-            <a><LocalGroceryStoreOutlinedIcon sx={{width: size, height: size}} color={"primary"}/></a>
+        <Link  href="/basket">
+            <a className="badge-container ">
+            <span className="basket-badge bg-danger text-white rounded-circle p2 mt-1">{basket&&basket.orderline_set?basket.orderline_set.length: 0}</span>
+            <LocalGroceryStoreOutlinedIcon  sx={{width: size, height: size}} color={"primary"}/>
+            </a>
         </Link>
+       
     </div>
+    <FullScreenSearch open={openFull} setOpen={setOpenFull} />
   </div>;
 }
 

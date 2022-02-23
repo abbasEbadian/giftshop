@@ -4,9 +4,11 @@ import Trust from "../img/license/L-2.png";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSelector } from "react-redux";
 
 function Footer() {
     
+  const config = useSelector(s=>s.main.configs)
   
   return (
     <footer className="site-footer">
@@ -14,13 +16,21 @@ function Footer() {
         <div className="row">
           <div className="col-sm-12 col-md-5 ">
             <div className="col-md-9">
-              <h6>درباره ما</h6>
+              <h6>{config?.contactus?.footer_about_title}</h6>
               <p className="text-justify">
                 {" "}
-                کلیه حقوق این وب سایت متعلق به گیفت شاپ Giftshop.com و این قالب
-                ثبت شده در DMCA Report گوگل و یا همان قوانین کپی رایت آمریکا می
-                باشد.
+                {config?.contactus?.footer_about_content}
               </p>
+            </div>
+            <div className="col-md-9">
+              شماره تماس: 
+              {" "}
+              {config?.contactus?.phone_number_1}
+            </div>
+            <div className="col-md-9">
+              ایمیل: 
+              {" "}
+              {config?.contactus?.website_email}
             </div>
           </div>
 
@@ -107,28 +117,28 @@ function Footer() {
           <div className="col-md-4 col-sm-6 col-xs-12">
             <ul className="social-icons p-0">
               <li>
-                <a className="facebook" href="#">
-                  <i className="bi bi-facebook"></i>
+                <a className="pt-1 facebook" target={"_blank"} href={config&&config.contactus&&config.contactus.facebook_link?config.contactus.facebook_link: "https://facebook.com"}>
+                  <i className="bi fs-4 bi-facebook"></i>
                 </a>
               </li>
               <li>
-                <a className="telegram" href="#">
-                  <i className="bi bi-telegram"></i>
+                <a className="pt-1 telegram" target={"_blank"} href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
+                  <i className="bi fs-4 bi-telegram"></i>
                 </a>
               </li>
               <li>
-                <a className="whatsapp" href="#">
-                  <i className="bi bi-whatsapp"></i>
+                <a className="pt-1 whatsapp" target={"_blank"} href={config&&config.contactus&&config.contactus.whatsapp_link?config.contactus.whatsapp_link: "https://whatsapp.org"}>
+                  <i className="bi fs-4 bi-whatsapp"></i>
                 </a>
               </li>
               <li>
-                <a className="twitter" href="#">
-                  <i className="bi bi-twitter"></i>
+                <a className="pt-1 twitter" target={"_blank"} href={config&&config.contactus&&config.contactus.twitter_link?config.contactus.twitter_link: "https://twitter.com"}>
+                  <i className="bi fs-4 bi-twitter"></i>
                 </a>
               </li>
               <li>
-                <a className="instagram" href="#">
-                  <i className="bi bi-instagram"></i>
+                <a className="pt-1 instagram" target={"_blank"} href={config&&config.contactus&&config.contactus.instagram_link?config.contactus.instagram_link: "https://instagram.com"}>
+                  <i className="bi fs-4 bi-instagram"></i>
                 </a>
               </li>
             </ul>

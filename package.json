@@ -3,7 +3,10 @@
   "scripts": {
     "dev": "next dev -p 80",
     "build": "next build",
-    "start": "next start -p 1280"
+
+
+    "start": "NODE_ENV=development next start -p 1280"
+
   },
   "engines": {
     "node": "14.17.4"
@@ -33,6 +36,7 @@
     "react-bootstrap": "^2.1.1",
     "react-dom": "17.0.2",
     "react-html-parser": "^2.0.2",
+    "react-imask": "^6.4.2",
     "react-loader-spinner": "^5.1.0",
     "react-redux": "^7.2.6",
     "react-toastify": "^8.1.1",

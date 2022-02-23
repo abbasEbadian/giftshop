@@ -1,7 +1,7 @@
 
 let base = "http://arsimodir.ir"
-// if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
-//     base = "http://localhost:8000" 
+if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
+    base = "http://localhost:8000" 
 
 export const BASE_URL = base
 
@@ -47,3 +47,9 @@ export const UPLOAD_BIRTH_CARD_IMAGE = _("/users/upload_birth_image/")
 export const UPLOAD_NATIONAL_CARD_IMAGE = _("/users/upload_national_image/")
 export const UPLOAD_AVATAR_IMAGE = _("/users/upload_avatar_image/")
 export const UPDATE_PROFILE = _("/users/update_profile/")
+
+export const ADD_CARD = _("/creditcard/add_card/")
+export const DELETE_CARD = _("/creditcard/delete_card/")
+
+export const SEARCH_OPTIONS = _("/search/options/")
+

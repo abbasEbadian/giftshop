@@ -477,11 +477,7 @@ header .burger-line:nth-child(4) {
 .header-public .controls > * {
   margin-right: 24px;
 }
-.header-public .controls input {
-  border-radius: 60px;
-  border: 1px solid var(--primary);
-  height: 32px;
-}
+
 .header-public .list-show-menu:not(.collapsed) {
   opacity: 0;
   pointer-events: none;
@@ -553,7 +549,6 @@ header .burger-line:nth-child(4) {
 }
 
 .megamenu-shop .dropdown-menu {
-  min-width: 100%;
   position: absolute;
   top: 60px;
   right: 0;
@@ -593,4 +588,46 @@ header .burger-line:nth-child(4) {
 }
 footer{
   margin-top: auto;
+}
+#main-searchbox{
+  text-align: right;
+  padding-right: 12px;
+  height: 34px;
+}
+#main-searchbox + .MuiAutocomplete-endAdornment {
+    display: none;
+}
+header .MuiInput-root{
+  padding-right: 0 !important;
+  border-radius: 60px;
+  border: 1px solid var(--primary);
+}
+
+
+header .MuiAutocomplete-root{
+  width: clamp(300px, 25vw, 400px) !important;  
+}
+header .MuiInput-underline::before{
+  display: none;
+}
+.css-ghsjzk-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled)::before {
+  border-bottom-width: 1px;
+  left: 16px;
+  right: 16px;
+}
+@media (max-width: 1100px) and (min-width: 900px){
+  header .MuiAutocomplete-root{
+    display: none;
+  }
+  body .header-public .links{
+    width: 40vw;
+  }
+}
+@media  (min-width: 900px){
+  body .mega-menu {
+    width: 80%;
+    margin: 0 auto;right:10vw;
+    left: 10vw;
+  }
+
 }
