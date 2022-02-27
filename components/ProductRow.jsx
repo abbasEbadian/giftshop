@@ -6,7 +6,7 @@ import { get_cart} from "../redux/actions";
 import {PATCH_CART} from '../redux/endpoints'
 import axios from "axios";
 import {useDispatch} from 'react-redux'
-
+import * as _ from 'lodash'
 import CloseIcon from '@mui/icons-material/Close';
 
 const locale = (yeGeimat)=>{
@@ -48,7 +48,7 @@ function ProductRow({ product , _count}) {
   return (
     <div className="row mt-5 product-list-gift basket-remove-item-parent position-relative">
       <div className="basket-remove-item text-start mt-2 position-absolute top-0 start-0">
-        <CloseIcon onClick={e=>_remove_item(product.id)} color="error"/>
+        <CloseIcon onClick={e=>_remove_item(product.id)} color="error" className="cursor-pointer"/>
       </div>
       <div className="col-12 col-md-4">
         <Card data={product} favoriteAndRate />
@@ -85,7 +85,7 @@ function ProductRow({ product , _count}) {
         <p className="mt-3">
          توضیحات: {product.description}
         </p>
-        <div className="col-md-6 col-12 d-flex flex-column align-items-end justify-content-center me-auto">
+        <div className="col-md-8 col-12 d-flex flex-column align-items-end justify-content-center me-auto">
           <div className="add-to-card-container d-flex justify-content-between align-items-center w-100">
             
                 <div dir="ltr" className="counter ">
@@ -100,12 +100,23 @@ function ProductRow({ product , _count}) {
               <LoaderButton text="اصلاح تعداد" className="px-3" loading={loading} onClick={e=>change_count(product.id, count)}/>
           </div>
           <br />
-          <div className="calculations mt-4 d-flex align-items-center justify-content-between w-100" dir="ltr">
+          
+          {product.dicsount > 0?<div className="calculations mt-4 d-flex align-items-center justify-content-between w-100" dir="ltr">
             
+            <div><span>{count}</span> <span className="px-2">x</span> <span>{product.dicsount}</span> <span className="px-2">=</span>  {count * product.dicsount}</div>
+            <span className="text-danger">تخفیف</span>
+          </div>:null}
+          {product.dicsount > 0?<div className="calculations mt-4 d-flex align-items-center justify-content-between w-100" dir="ltr">
+            
+            <div><span>{count * product.price}</span> <span className="px-2">-</span> <span>{count * product.dicsount}</span> <span className="px-2">=</span>  {count * product.final_price}</div>
+            <span className="text-success">مجموع </span>
+          </div>:
+            <div className="calculations mt-4 d-flex align-items-center justify-content-between w-100" dir="ltr">
             <div><span>{count}</span> <span className="px-2">x</span> <span>{product.price}</span> <span className="px-2">=</span>  {count * product.price}</div>
             <span className="text-success">مجموع</span>
           </div>
-        </div>
+          }
+        </div> 
       </div>
     </div>
   );

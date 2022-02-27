@@ -14,7 +14,7 @@ function HomeUtilities() {
     {image: alarm, text1: "پشتیبانی", text2: "24/7"},
     {image: present, text1: "هدیه", text2: "مناسب"}
   ]
-  return<article className='home-utilities py-5'>
+  return<article className='home-utilities' id="utilities">
     <div className="row justify-content-center w-100">
       {items.map((item, idx)=>{
         return <div className="col-md-2 col-sm-4 col-4 item">

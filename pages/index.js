@@ -96,12 +96,12 @@ export default function Home() {
 
           <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">
             <span></span>
-            <button className="scroll-down d-flex align-items-center justify-content-center flex-column">
+            <a href="#utilities" className="scroll-down d-flex align-items-center justify-content-center flex-column bg-transparent">
               <span calssName="mb-2">
                 <Image src={mouse} alt="mouse" />
               </span>
               <Image src={arrows} alt="arrows" />
-            </button>
+            </a>
             {/* <div className="socials d-flex align-items-cetnter flex-column justify-content-center">
               <YouTube />
               <span className="my-2">

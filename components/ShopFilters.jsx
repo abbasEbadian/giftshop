@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "@mui/material/Slider";
-import { Select, MenuItem, FormControl, Button } from "@mui/material";
+import { Select, MenuItem, FormControl, Button, Typography } from "@mui/material";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { useSelector } from "react-redux";
@@ -134,7 +134,9 @@ function ShopFilters({
                       (i.slug_name === brand_name ? "active" : "")
                     }
                   >
-                    {i.name}
+                    {/* <Typography sx={{fontSize: "11px"}}> */}
+                    {i.persian_name}
+                    {/* </Typography> */}
                   </a>
                 </Link>
               );
@@ -143,7 +145,7 @@ function ShopFilters({
         </div>
         <div className="filter filter-country">
           <span className="title">کشور</span>
-          <div className="d-flex flex-wrap justify-content-evenly">
+          <div className="d-flex flex-wrap justify-content-start">
             {countries.map((i, idx) => {
               return (
                 <button

@@ -37,7 +37,8 @@ function Shop() {
     axios.get(GET_TEMPLATES, {params})
     .then(res=>{
       const {data} = res
-      setFilteredCards(data.data || [])
+     
+      setFilteredCards( data.data || [])
       setCardsCount(data.size)
     })
     .catch(err=>console.log(err))
@@ -69,7 +70,7 @@ function Shop() {
         <div className="col-12 col-md-9">
           <h1 className="text-center line-height-64">
             {brand_name? <span>
-              {"گیفت کارت های "} {brand_name}</span>
+              {"گیفت کارت  "} {brand_name}</span>
             :<>
             محصولات <span className="text-danger">فروشگاه</span>
             </>

@@ -16,7 +16,8 @@ import { useRouter } from 'next/router';
 import {ToastContainer} from 'react-toastify'
 import NProgress from 'nprogress'
 import Router from 'next/router'
-
+import AcceptRuleModal from '../components/AcceptRuleModal'
+import Head from 'next/head'
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
@@ -45,10 +46,17 @@ const MyApp = ({Component, pageProps}) =>
     
   }, [])
 
+  const [open, setRuleOpen] = React.useState( false)
+
   return (<>
     <Provider store={store}>
+      <Head>
+          <link rel="icon" href="/fav.png" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="description" content="وبسایت مرجع خرید انواع گیفت کارت"/>
+        </Head>
       <Header/>
-      <Component {...pageProps} />
+      <Component {...pageProps} setRuleOpen={setRuleOpen} />
       {router.pathname.indexOf("auth")>-1?null:<>
       <Box sx={{ width: "100%" }}>
         <BottomNavigation/>
@@ -61,6 +69,7 @@ const MyApp = ({Component, pageProps}) =>
         autoClose={3000}
         rtl
       />
+      <AcceptRuleModal open={open} setOpen={setRuleOpen}/>
       </Provider>
   </>)
 };

@@ -12,7 +12,7 @@ import axios from "axios";
 import PaymentMethod from '../../components/SubBasket/PaymentMethod'
 import AlertDialog from '../../components/SubBasket/DeleteConfirmModal'
 import Head from 'next/head'
-
+import Discount from '../../components/SubBasket/Discount'
 
 function Basket() {
   const [products, setProducts] = React.useState({})
@@ -25,6 +25,9 @@ function Basket() {
     setProducts(x)
   }, [basket])
   const dispatch = useDispatch()
+  React.useEffect(()=>{
+    dispatch(get_cart())
+  }, [])
 
   const delete_cart = ()=>{
     axios.delete(EMPTY_CART)
@@ -58,10 +61,15 @@ function Basket() {
        <section className="alert alert-info w-75 my-5 mx-auto">سبد خرید شما خالیست</section>
         </>
       }
-      {basket.orderline_set?.length? <div class="col-10 button-basket py-5  flex-wrap">
+      {basket.orderline_set?.length? <div class="col-12 button-basket py-5  flex-wrap">
         <div className="col-12 col-md-6 d-flex justify-content-center">
           <h4>مجموع کل :</h4>
-          <h5 className="mx-4">{_.sumBy(basket.orderline_set, e=>+e.template_id.price).toLocaleString()}</h5>
+          {basket.discount_code_amount?
+            <h5 className="mx-4">
+              <del>{_.sumBy(basket.orderline_set, e=>+e.template_id.final_price).toLocaleString()}</del><br/>
+              <span className="text-success">{(_.sumBy(basket.orderline_set, e=>+e.template_id.final_price) - basket.discount_code_amount).toLocaleString()}</span>
+            </h5> 
+          :<h5 className="mx-4">{_.sumBy(basket.orderline_set, e=>+e.template_id.final_price).toLocaleString()}</h5>}
           تومان
 
         </div>
@@ -77,6 +85,8 @@ function Basket() {
             <a onClick={e=>setOpen(true)}>خالی کردن سبد</a>
           </div>
         </div>
+        {basket.discount_id?null:
+        <Discount ></Discount>}
       </div>:null}
       
       <AlertDialog onClick={delete_cart} open={open} setOpen={setOpen}/>

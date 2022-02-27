@@ -11,6 +11,7 @@ import * as e from '../../redux/endpoints'
 import Link from 'next/link'
 import Router, { useRouter } from 'next/router';
 
+
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
@@ -63,7 +64,10 @@ export default function CheckboxesTags({setOpen=false}) {
     }
 
   return (
-   <div className="d-flex align-items-center ">
+    <>
+    
+   <div className="d-flex align-items-center justify-content-center">
+     
     <Autocomplete
         dir="ltr"
       multiple
@@ -98,6 +102,7 @@ export default function CheckboxesTags({setOpen=false}) {
         >
         <SearchIcon  width="20"/>
     </Button></div>
+    </>
   );
 }
 

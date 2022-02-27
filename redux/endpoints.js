@@ -1,5 +1,5 @@
 
-let base = "http://arsimodir.ir"
+let base = "https://www.arsimodir.ir"
 if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
     base = "http://localhost:8000" 
 
@@ -52,4 +52,7 @@ export const ADD_CARD = _("/creditcard/add_card/")
 export const DELETE_CARD = _("/creditcard/delete_card/")
 
 export const SEARCH_OPTIONS = _("/search/options/")
+export const CLOSE_TICKET = _("/tickets/close/")
+
+export const APPLY_CODE = _("/orders/apply_code/")
 

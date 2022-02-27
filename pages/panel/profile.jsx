@@ -25,7 +25,7 @@ import TextField from '@mui/material/TextField';
 import AdapterJalali from '@date-io/date-fns-jalali';
 import DatePicker from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-
+import withAuth from '../../redux/withAuth'
 const Input = styled('Input')({
     display: 'none',
 });
@@ -53,11 +53,18 @@ function UserLevel() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+
+    const [firstNameErr, setFirstNameErr] = React.useState("")
     const [firstName, setFirstName] = React.useState("")
+    const [lastNameErr, setLastNameErr] = React.useState("")
     const [lastName, setLastName] = React.useState("")
+    const [birthDateErr, setBirthDateErr] = React.useState("")
     const [birthDate, setBirthDate] = React.useState("")
-    const [gender, setGender] = React.useState("")
+    const [genderErr, setGenderErr] = React.useState("")
+    const [gender, setGender] = React.useState(0)
+    const [nCodeErr, setNCodeErr] = React.useState("")
     const [nCode, setNCode] = React.useState("")
+    const [emailErr, setEmailErr] = React.useState("")
     const [email, setEmail] = React.useState("")
 
     
@@ -71,6 +78,10 @@ function UserLevel() {
             setEmail(user.email)
         }
     },[user])
+
+    React.useEffect(()=>{
+        dispatch(profile())
+    }, [])
     const birth_cart_ref = React.useRef()
     const national_cart_ref = React.useRef()
     const avatar_ref = React.useRef()
@@ -78,6 +89,25 @@ function UserLevel() {
     const update_profile = (e1)=>{
         e1.stopPropagation()
         e1.preventDefault()
+        if(!firstName) {
+            setFirstNameErr("اجباری");return;
+        }
+        if(!lastName) {
+            setLastNameErr("اجباری");return;
+        }
+        console.log(gender)
+        if(!gender || gender === "0" ) {
+            setGenderErr("اجباری");return;
+        }
+        if(!email) {
+            setEmailErr("اجباری");return;
+        }
+        if(!nCode) {
+            setNCodeErr("اجباری");return;
+        }
+        if(!birthDate) {
+            setBirthDateErr("اجباری");return;
+        }
         const data={
             first_name: firstName,
             last_name: lastName,
@@ -87,16 +117,13 @@ function UserLevel() {
             email
         }
         setProfile_loading(true)
-        axios.post(e.UPDATE_PROFILE, data, {
-            headers:{
-                // "Content-Type": ""
-            }
-        })
+        axios.post(e.UPDATE_PROFILE, data)
         .then(response =>{
             const {data} = response
             if(data.error === 0){
                 toast.success(data.message)
                 dispatch(profile())
+                setOpen(false)
             }else{
                 toast(data.message, {type: data.type})
             }  
@@ -243,15 +270,15 @@ function UserLevel() {
                                             <Form onSubmit={update_profile}>
                                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                                     <Form.Label>نام</Form.Label>
-                                                    <Form.Control type="text"  value={firstName} onChange={e=>setFirstName(e.target.value)}/>
+                                                    <Form.Control type="text"  value={firstName} onChange={e=>setFirstName(e.target.value)} isInvalid={firstNameErr}/>
                                                 </Form.Group>
                                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                                     <Form.Label> نام خانوادگی</Form.Label>
-                                                    <Form.Control type="text" value={lastName} onChange={e=>setLastName(e.target.value)} />
+                                                    <Form.Control type="text" value={lastName} onChange={e=>setLastName(e.target.value)}  isInvalid={lastNameErr}/>
                                                 </Form.Group>
                                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                                     <Form.Label> ایمیل</Form.Label>
-                                                    <Form.Control type="email" value={email} onChange={e=>setEmail(e.target.value)} />
+                                                    <Form.Control type="email" value={email} onChange={e=>setEmail(e.target.value)} isInvalid={emailErr} />
                                                 </Form.Group>
                                                 <div className="pb-2">
                                                     <Form.Label> تاریخ تولد</Form.Label>
@@ -261,7 +288,7 @@ function UserLevel() {
                                                             mask="____/__/__"
                                                             value={birthDate}
                                                             onChange={(newValue) => setBirthDate(newValue)}
-                                                            renderInput={(params) => <TextField {...params} />}
+                                                            renderInput={(params) => <TextField {...params} error={birthDateErr}/>}
                                                             fullWidth
                                                             size="small"
                                                         />
@@ -269,12 +296,12 @@ function UserLevel() {
                                                 </div>
                                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                                     <Form.Label>کد ملی</Form.Label>
-                                                    <Form.Control type="text" value={nCode} onChange={e=>setNCode(e.target.value)}  />
+                                                    <Form.Control type="text" value={nCode} onChange={e=>setNCode(e.target.value)}  isInvalid={nCodeErr}/>
                                                 </Form.Group>
                                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                                     <Form.Label>جنسیت</Form.Label>
-                                                    <Form.Select aria-label="Default select example" value={gender} onChange={e=>setGender(e.target.value)}>
-                                                        <option value="">--جنسیت خود را وارد کنید --</option>
+                                                    <Form.Select aria-label="Default select example" value={gender} onChange={e=>setGender(e.target.value)} isInvalid={genderErr}>
+                                                        <option value={0}>-- انتخاب کنید--</option>
                                                         <option value="male">آقا</option>
                                                         <option value="female">خانم</option>
                                                     </Form.Select>
@@ -297,24 +324,27 @@ function UserLevel() {
                                     </Modal>
                                 </div>
                             </div>
-                            <div className="user-info d-flex align-items-center justify-content-around py-5 flex-wrap">
+                            <div className="user-info d-flex align-items-start justify-content-between py-5 flex-wrap px-sm-5 px-2">
                                 <div>
                                     <p> <span>نام</span> : {firstName}</p>
                                     <p> <span>نام خانوادگی</span> : {lastName}</p>
                                     <p> <span>تاریخ تولد</span> :{birthDate? new Date(birthDate).toLocaleDateString("fa"): ""}</p>
+                                    <p className="text-nowrap"> <span>ایمیل</span> : {email}</p>
                                 </div>
                                 <div>
                                     <p> <span>کد ملی</span> : {nCode}</p>
-                                    <p> <span>جنسیت</span> : {gender==="male"? "آقا": "خانم"}</p>
+                                    <p> <span>جنسیت</span> : {gender==="male"?
+                                     "آقا":gender==="female"?
+                                     "خانم":""}</p>
                                     <p> <span>تلفن همراه</span> : {user?.username}</p>
                                 </div>
                                 <div className="col-10 px-4 ">
-                                    <p><span>ایمیل</span> : {email}</p>
+                                    
                                 </div>
 
                             </div>
-                            <div className="d-flex justify-content-center">
-                                <div className="upload-section co-12 col-lg-5 m-auto">
+                            <div className="d-flex justify-content-center flex-wrap">
+                                <div className="upload-section col-12 col-lg-5 m-auto">
                                     <Stack direction="row" alignItems="center" spacing={2}>
                                         <label htmlFor="contained-button-file">
                                             <Input accept="image/*" id="contained-button-file"  type="file" ref={birth_cart_ref} onChange={upload_birth_image}/>
@@ -344,7 +374,7 @@ function UserLevel() {
                                         </label>
                                     </Stack>
                                 </div>
-                                <div className="upload-section co-12 col-lg-5 m-auto">
+                                <div className="upload-section col-12 col-lg-5 m-auto">
                                     <Stack direction="row" alignItems="center" spacing={2}>
                                         <label htmlFor="contained-button-file1">
                                             <Input accept="image/*" className="success-gradient" id="contained-button-file1"  type="file" ref={national_cart_ref} onChange={upload_national_image}/>
@@ -382,4 +412,4 @@ function UserLevel() {
         </section >
     );
 }
-export default UserLevel;
+export default withAuth(UserLevel);

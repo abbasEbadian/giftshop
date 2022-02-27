@@ -5,10 +5,15 @@ import withAuth from "../../redux/withAuth";
 import Head from "next/head";
 import {useSelector} from 'react-redux'
 import { Grid, Item } from "@mui/material";
+import {profile} from '../../redux/actions'
+
 
  function StickyHeadTable() {
   const user = useSelector(s=>s.auth.user)
-
+  const dispatch = useDispatch()
+  React.useEffect(()=>{
+    dispatch(profile())
+  }, [])
   return (
     <section className="container">
       <Head><title>گیفت استاپ | امتیازات</title></Head>

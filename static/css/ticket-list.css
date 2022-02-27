@@ -15,7 +15,7 @@
 }
 
 .all-ticket {
-    border: 1px solid #bbb;
+    border: 1px solid #eee;
     padding: 15px 0;
 }
 .list-ticket-show p{
@@ -31,7 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    
     color: var(--color-purple);
 
 }

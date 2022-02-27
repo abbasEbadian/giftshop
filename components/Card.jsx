@@ -156,15 +156,19 @@ function Card({
     .finally(f=>dispatch(profile()))
   }
   const gen_path = (data)=>{
-    return data.id + "-" + "گیفت-کارت-" + data.real_price +"-"+ (data&&data.country_id&&data.country_id.currency_id?data.country_id.currency_id.persian_name+"-" : "")+data.brand_id.persian_name
+    return data.id + "-" + "گیفت-کارت-" + data.real_price +"-"+ (data&&data.country_id&&data.country_id.currency_id?data.country_id.currency_id?.persian_name+"-" : "")+data.brand_id?.persian_name
   }
   return (
     <div className="single-card px-3  ">
+      
       <div className="data-container position-relative">
-        <Image src={get_image_src(data.brand_id.name)} />
+      {data.offcard_set && data.offcard_set.length > 0?
+        <span className="special-offer">پیشنهاد ویژه</span>
+      : null }
+        <Image src={get_image_src(data.brand_id?.name)} />
 
         <Link href={
-          { pathname: !hidePrice? "/product/[slug]":"/shop/[slug]", query: { slug: !hidePrice?(gen_path(data)):data.brand_id.name }
+          { pathname: !hidePrice? "/product/[slug]":"/shop/[slug]", query: { slug: !hidePrice?(gen_path(data)):data.brand_id?.name }
            }}>
           <a>
             <div className="data position-absolute top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
@@ -201,10 +205,18 @@ function Card({
           <Typography component="span" sx={{fontSize: "12px"}}>
             <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
           </Typography>
-          <Typography component="span" sx={{fontSize: "12px"}}>
-           <span>
-            {Number(data.price).toLocaleString()} {" ت "}{" "}
-          </span>
+          <Typography component="span" sx={{fontSize: "14px"}} className="test">
+            {data.offcard_set && data.offcard_set.length > 0 ?<>
+              <del >
+                {Number(Number(data.price)).toLocaleString()} {" ت "}{" "}
+              </del><br/>
+              <span  className="special-offer-price text-success">{Number(data.price)/100 * (100 - data.offcard_set[0].amount )}</span> {" ت "}
+              </>
+            : <><span>
+            {(Number(data.price)).toLocaleString()} {" ت "}{" "}</span><br/>
+            <span className="special-offer-price text-success"></span>
+          </>}
+           
           </Typography>
         </h5>
         <div className="add-to-card-container d-flex justify-content-between align-items-center">
@@ -225,9 +237,9 @@ function Card({
             <span className="cursor-pointer">
               افزودن به کارت های مورد علاقه
             </span>
-            <span onClick={toggleFavorite}>
+            <span onClick={toggleFavorite} className="cursor-pointer">
               {user && user.favorite_set && user.favorite_set.filter(i=>i.template_id.id === data.id) && user.favorite_set.filter(i=>i.template_id.id === data.id).length? 
-                <BookmarkAddedIcon color={"success"}/>
+                <BookmarkAddedIcon color={"success"} witdh={30} height={30}/>
                 :
                 <BookmarkBorderIcon />
               }

@@ -31,14 +31,17 @@ function SimilarCards({ _products=[], children, product=undefined, title, addToC
           300: {
             slidesPerView: 1,
           },
-          700: {
+          450:{
             slidesPerView: 2,
+          },
+          790: {
+            slidesPerView: 3,
           },
           1200: {
             slidesPerView: 4,
           },
           1600: {
-            slidesPerView: 4,
+            slidesPerView: 5,
           },
         }}
       >

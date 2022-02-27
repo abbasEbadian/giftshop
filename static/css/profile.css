@@ -73,7 +73,7 @@
     display: flex;
   }
   .profile-aside {
-    max-height: 52px;
+    max-height:45px;
     overflow: hidden;
     transition: all 0.3s ease-in;
     height: max-content;

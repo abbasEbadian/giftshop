@@ -85,7 +85,7 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
             </IconButton>
             <Typography sx={{"paddingInline": "16px", "flexGrow": 1, "textAlign": "center"}} variant={"h6"} >{ticket?.title}</Typography>
             <div>
-              {ticket?.status}
+              {ticket?.status === "answered"? "پاسخ داده شده": ticket?.status==="closed"? "بسته شده.": "در حال پیگیری"}
             </div>
           </Toolbar>
         </AppBar>

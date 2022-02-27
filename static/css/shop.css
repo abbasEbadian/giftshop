@@ -35,13 +35,14 @@
   border-width: 1px;
 }
 .filter-country button {
-  flex-basis: 35%;
+  flex-basis: 47%;
   border-style: solid;
   border-color: #aaa;
   padding-block: 6px;
   border-width: 0px;
   margin: 4px;
   border-radius: 12px;
+  text-align: right;
 }
 .MuiSlider-root {
   margin-bottom: 25px;
@@ -72,10 +73,36 @@
 .MuiSlider-markLabel {
   top: 42px;
 }
+.single-card .data-container .special-offer{
+    position: absolute;
+    left: -42px;
+    top: 26px;
+    z-index: 1;
+    transform: rotate(-45deg);
+    background: crimson;
+    color: white;
+    /* width: 100px; */
+    --darkreader-inline-bgcolor: #bd1919;
+    --darkreader-inline-bgimage: none;
+    --darkreader-inline-color: #d3d2cf;
+    text-align: center;
+    width: 150px;
+    font-size: 12px;
+}
+.single-card h5{
+  height: 50px;
+}
+.single-card .special-offer-price{
+  height: 30px;
+  text-align: left;
+  width: 100%;
+}
 .single-card .data-container {
   font-weight: 800;
   font-size: 1.1rem;
+  overflow: hidden;
 }
+
 .single-card {
   /* width: min(100%, 300px); */
   width: 100%;
@@ -157,14 +184,17 @@
   box-shadow: 0px 0 10px 2px #eee;
   border-radius: 15px;
   padding: 0 0 0.5rem;
-}
-
-.product-list-gift .single-card .counter {
+} .single-card .counter {
   background-color: #f1f2f6;
   padding: 7px 15px;
   border-radius: 8px;
 }
-
+.single-card{
+    background: white;
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
 .cursor-pointer {
   cursor: pointer;
 }

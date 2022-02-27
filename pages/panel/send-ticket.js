@@ -47,6 +47,11 @@ function SendTicket(props) {
       console.log(err)
     })
   }
+
+  React.useEffect(()=>{
+    dispatch(profile())
+  }, [])
+
   return (
     <section className="container">
       <Head><title>گیفت استاپ | ارسال تیکت</title></Head>

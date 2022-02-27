@@ -52,11 +52,7 @@ function Footer() {
                   <a >فروشگاه</a>
                 </Link>
               </li>
-              <li>
-                <Link href="/faq">
-                  <a >سوالات متداول</a>
-                </Link>
-              </li>
+             
             </ul>
           </div>
 
@@ -73,14 +69,10 @@ function Footer() {
                   <a>شرایط استفاده</a>
                 </Link>
               </li>
+              
               <li>
-                <Link href="/shop">
-                  <a>لیست محصولات</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms">
-                  <a>حریم خصوصی</a>
+                <Link href="/faq">
+                  <a >سوالات متداول</a>
                 </Link>
               </li>
             </ul>
