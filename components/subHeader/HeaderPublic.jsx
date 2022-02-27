@@ -70,10 +70,10 @@ const [full, setFull] = React.useState(false)
                 <a onClick={e=>setMenuopen(false)}>تیکت </a>
               </Link>
             </li>:null}
-
+             <hr />
           </ul>
           <Link href="/auth">
-            <a className="btn primary-gradient rounded d-flex mt-3">
+            <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center"  onClick={e=>setMenuopen(false)}>
               ورود <span className="mx-1">|</span>عضویت
             </a>
           </Link>

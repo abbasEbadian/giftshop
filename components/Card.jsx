@@ -196,7 +196,7 @@ function Card({
       {hidePrice && !addToCard?
         <h2 className="w-100 text-center">
           <Typography component="span">
-            <span className="">گیفت کارت های</span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+            <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
           </Typography>
         </h2>
       :null}
