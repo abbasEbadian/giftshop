@@ -7,6 +7,24 @@
     padding: 16px;
     margin-top: 16px;
 }
+.add-to-card-container.product{
+    width: 55%;
+}
+@media screen and (max-width: 1250px) {
+    .add-to-card-container.product{
+        width: 65%;
+    }
+}
+@media screen and (max-width: 576px) {
+    .add-to-card-container.product{
+        width: 75%;
+    }
+}
+@media screen and (max-width: 480px) {
+    body .add-to-card-container.product{
+        width: 100%;
+    }
+}
 @media screen and (max-width: 768px) {
     .single-card{
         margin: 0 auto;

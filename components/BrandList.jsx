@@ -9,14 +9,21 @@ import { Button } from "@mui/material";
 function SimilarCards({  children, title }) {
     const brands = useSelector(s=>s.main.brands)
     const [showAll, setShowAll]= React.useState(false)
+    const [count, setCount]= React.useState(4)
+    React.useEffect(()=>{
+      if(typeof window !== 'undefined') 
+        if(window.width > 1440){
+          setCount(6)
+        }
+    },[])
   return (
     <div className="w-100">
       <h2 className="text-center mt-5 mb-4">{title}</h2>
       {children}
-      <div className="brands-container row">
+      <div className="brands-container row  justify-content-center">
           
             {brands?brands.map((item, idx)=>{
-                return (!showAll && idx < 4 || showAll) && <div className="col-12 col-sm-6 col-md-4 col-lg-3">
+                return (!showAll && idx < count || showAll) && <div className="col-6  col-md-4 col-lg-3 col-xl-2 p-0">
                     <Card hidePrice data={{
                     brand_id: item
                 }}/>

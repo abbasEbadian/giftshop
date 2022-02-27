@@ -63,10 +63,10 @@ function AboutUs() {
             </div>
             <div className="left-section col-12 col-lg-7 flmd">
               <div className="text-about-info">
-                <p>به راهنمایی بیشتری نیاز دارید؟</p>
+                <p>به راهنمایی بیشتری نیاز دارید؟ <Link href="/contact-us" ><a className="btn-contact text-nowrap">تماس با ما</a></Link></p>
                 <span>تیم پشتیبانی ما آماده پاسخگویی به سوالات شماست.</span>
               </div>
-              <Link href="/contact-us" className="btn-contact"><a >تماس با ما</a></Link>
+              
             </div>
           </div>
         </div>

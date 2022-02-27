@@ -20,8 +20,10 @@ import {useDispatch, useSelector} from 'react-redux'
 import WalletDepositSelectCard from "../../components/SubBasket/WalletDepositSelectCard";
 import axios from "axios";
 import {GET_WALLET_DEPOSIT_LINK} from '../../redux/endpoints'
+import {profile} from '../../redux/actions'
 import {toast} from 'react-toastify'
 import TextField from '@mui/material/TextField'
+import withAuth from '../../redux/withAuth'
 function Wallet() {
     const user = useSelector(s=>s.auth.user)
     const [amount, setAmount] = React.useState(0)
@@ -66,7 +68,10 @@ function Wallet() {
         setOpen(true)
     }
     
-   
+    const dispatch = useDispatch()
+    React.useEffect(()=>{
+      dispatch(profile())
+    }, [])
 
     const columns = [
         { id: "id", label: "ردیف", minWidth: 100, align: "right" },
@@ -79,7 +84,7 @@ function Wallet() {
         { id: "amount", label: "میزان شارژ", minWidth: 130, align: "right" },
         {
             id: "type",
-            label: "روش پرداخت",
+            label: "نوع تراکنش",
             minWidth: 50,
             align: "right",
             format: (value) => value.toLocaleString(),
@@ -147,7 +152,9 @@ function Wallet() {
                         <div className="transferToPayment py-4">
                             <Button disabled={amount === 0} variant="contained" color="success" onClick={e=>_open()}>انتقال به درگاه پرداخت</Button>
                         </div>
-                        <div className="table-info-payment py-4 p-2">
+                        <h5 className="text-end px-4">تراکنش ها</h5>
+                        {user&& user.wallet? 
+                            <div className="table-info-payment py-4 p-2">
                             <Paper
                                 sx={{ width: "100%", overflow: "hidden" }}
                                 className="product-list-gift"
@@ -173,7 +180,7 @@ function Wallet() {
                                                 .map((row, idx) => {
                                                     const status_text = row["status"]==="pending"?
                                                     "در انتظار پرداخت":row["status"]==="cancel"?"لغو شده"
-                                                   :"واریز شده";
+                                                   :"موفق";
 
                                                    const status_color = row["status"]==="pending"?
                                                    "warning":row["status"]==="cancel"?"error"
@@ -192,8 +199,11 @@ function Wallet() {
                                                         >
                                                             <TableCell align={"right"}>{idx+1}</TableCell>
                                                             <TableCell align={"right"}>{row["description"]}</TableCell>
-                                                            <TableCell align={"right"}>{Number(row["amount"]).toLocaleString()} تومان</TableCell>
-                                                            <TableCell align={"right"}>{row["type"]==="bank_deposit"? "واریز مستقیم": "تبدیل امتیاز"}</TableCell>
+                                                            <TableCell align={"right"}><span className={"text-" + (row["type"]==="purchase_withdraw"?"danger":"success")}>{Number(row["amount"]).toLocaleString()}</span> تومان</TableCell>
+                                                            <TableCell align={"right"}>{row["type"]==="bank_deposit"? "واریز مستقیم"
+                                                                :row["type"]==="purchase_withdraw"?
+                                                                    "خرید کارت"
+                                                                : "تبدیل امتیاز"}</TableCell>
                                                             <TableCell align={"right"}><Chip variant="outlined" label={status_text} color={status_color} icon={status_icon}></Chip></TableCell>
                                                             <TableCell align={"right"}>{new Date(row["created"]).toLocaleDateString('fa', {year: "numeric", month: "long", day: "numeric"})} {" "} {new Date(row["created"]).toLocaleTimeString('fa')}</TableCell>
 
@@ -221,6 +231,7 @@ function Wallet() {
                                 </div>
                             </Paper>
                         </div>
+                        : <p className="border p-2">بدون تراکنش</p>}
                     </div>
                 </div>
             </div>
@@ -228,4 +239,4 @@ function Wallet() {
         </section>
     );
 }
-export default Wallet;
+export default withAuth(Wallet);

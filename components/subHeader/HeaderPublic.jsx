@@ -12,6 +12,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import UserIcon from "./UserIcon";
 import { Button } from "@mui/material";
 import Search from './Search'
+import FullScreenDialog from './FullScreenSearch'
 function HeaderPublic({ authenticated }) {
 
   const [menuopen, setMenuopen] = React.useState(false);
@@ -19,8 +20,9 @@ function HeaderPublic({ authenticated }) {
   const brands = useSelector((state) => state.main.brands);
   const basket = useSelector((state) => state.order.basket);
   const auth = useSelector(s=>s.auth.authenticated)
+const [full, setFull] = React.useState(false)
   return (
-    <header className="header-public">
+    <header className="header-public shadow-sm">
       {/* <Link href="/shop">
       <a>
 
@@ -91,21 +93,21 @@ function HeaderPublic({ authenticated }) {
           </Link>
           <Link href="/shop">
             <div
-              className="megamenu-shop "
+              className="megamenu-shop"
               onMouseEnter={(e) => setActive(true)}
               onMouseLeave={(e) => setActive(false)}
             >
               <a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a>
-              <div className={"list-show-menu" + (active ? " collapsed " : "")}>
+              <div className={"list-show-menu w-100 bg-white " + (active ? " collapsed " : "")}>
                 <ul
-                  class="dropdown-menu mega-menu d-flex flex-wrap container"
+                  class="dropdown-menu mega-menu d-flex flex-wrap container-fluid mx-auto  pe-4"
                 >
                   {brands.map((item, idx) => {
                     return (
                       <li className="megamenu-item">
                         <ArrowBackIosIcon />
                         <Link href={"/shop/" + item.slug_name}>
-                          <a className="megamenu-link">{item.persian_name}</a>
+                          <a className="megamenu-link">گیفت کارت  {item.persian_name}</a>
                         </Link>
                       </li>
                     );
@@ -126,9 +128,13 @@ function HeaderPublic({ authenticated }) {
         </div>
 
         <div className="controls">
+          <div className="search-btn">
           <Search />
-          
-         
+          </div>
+
+          <Button onClick={e=>setFull(true)} className="full-search-button">
+            <SearchIcon width={17} height={17}/>
+          </Button>
           <Link  href="/basket">
             <a className="badge-container">
               <span className="basket-badge bg-danger text-white rounded-circle p2">{basket&&basket.orderline_set?basket.orderline_set.length: 0}</span>
@@ -157,6 +163,7 @@ function HeaderPublic({ authenticated }) {
           <span className="burger-line"></span>
         </button>
       </div>
+      <FullScreenDialog open={full} setOpen={setFull}/>
     </header>
   );
 }

@@ -2,8 +2,9 @@ import React from "react";
 import ProfileAside from '../../components/ProfileAside'
 import ConvertPointToWalletButton from '../../components/subPanel/ConvertPointToWalletButton'
 import withAuth from "../../redux/withAuth";
+import {profile} from "../../redux/actions";
 import Head from "next/head";
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {Accordion, AccordionDetails, AccordionSummary, Grid,Button, Typography} from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import * as _ from 'lodash'
@@ -27,6 +28,10 @@ function PurchaseReport() {
 
     }
   }
+  const dispatch = useDispatch()
+  React.useEffect(()=>{
+    dispatch(profile())
+  }, [])
   return (
     <>
       <Head><title>گیفت استاپ | گزارش خرید</title></Head>
@@ -56,7 +61,7 @@ function PurchaseReport() {
                     <Grid item xs={6}>
                       <>
                         <h6>
-                          پرداختی: {_.sumBy(i.orderline_set, e=>+e.template_id.price)} {" تومان"}
+                          پرداختی: {i.final_price  - (i.discount_code_amount || 0)} {" تومان"}
                         </h6>
                       </>
                     </Grid>
@@ -112,6 +117,18 @@ function PurchaseReport() {
                       </TableBody>
                     </Table>
                   </TableContainer>
+                  {i.status === "done"?<>
+                    <h5 className="mt-3">کدها</h5>
+                    <ul dir="ltr">
+                    {i.orderline_set?i.orderline_set.map(j=>{
+                        return <><li >  
+                          <span>{j?.card_id?.template_id?.real_price} / {j?.card_id?.template_id?.brand_id?.name}  / {j?.card_id?.template_id?.country_id?.symbol}</span>{" : "}<span className="text-success">{j.card_id?.pin}</span>
+                        </li><hr></hr></>
+                        
+                    }):""}
+                    </ul>
+                    </>
+                  : null}
                 </AccordionDetails>
               </Accordion>
             })

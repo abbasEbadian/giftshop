@@ -4,14 +4,21 @@ import { Dropdown, DropdownButton, Form } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
-import { Button } from "@mui/material";
+import { Button,Typography , Card  } from "@mui/material";
 import TicketChat from '../../components/subTicket/TicketChat'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import DoDisturbOffIcon from '@mui/icons-material/DoDisturbOff';
+
 import * as _ from 'lodash'
+import * as e from '../../redux/endpoints'
 import { useSelector } from "react-redux";
+import { profile } from "../../redux/actions";
+import axios from 'axios'
+import {toast} from 'react-toastify'
+import {useDispatch} from 'react-redux'
+import withAuth from '../../redux/withAuth'
 function SendTicket(props) {
     const [open, setOpen] = React.useState(false);
     const [color, setColor] = React.useState(false);
@@ -31,11 +38,13 @@ function SendTicket(props) {
         'success',
         'error'
     ]
-    
+    const dispatch = useDispatch()
     React.useEffect(()=>{
         setTickets(_.groupBy(user?.ticket_set, e=>e.status))
     }, [user])
-
+    React.useEffect(()=>{
+      dispatch(profile())
+    }, [])
     const geticon = (status)=>{
         switch(status){
             case "answered": return <LibraryAddCheckIcon/>
@@ -54,6 +63,18 @@ function SendTicket(props) {
         }
     }
     
+    const closeTicket= (id)=>{
+        axios.post(e.CLOSE_TICKET, {id})
+        .then(response=>{
+            const {data} = response
+            if(data.error === 0) dispatch(profile())
+            toast(data.message, {type: data.type})
+        })
+        .catch(err=>{
+            console.log(err);
+            toast.error("خطا در ارتباط")
+        })
+    }
     return (
         <section className="container">
             <Head><title>گیفت استاپ |تیکت ها</title></Head>
@@ -77,6 +98,7 @@ function SendTicket(props) {
                             </Button>
                             {types.map((item, idx)=>{
                                 const text = item === "pending"? "درحال بررسی":
+
                                 item === "answered"? "پاسخ داده شده":
                                 item === 'closed'? "بسته شده": ""
                                 return <Button key={item} className="all-ticket col-6 col-lg-2 " color={colors[idx]} variant={active===item?"contained":""} onClick={e=>setActive(item)}>
@@ -96,24 +118,28 @@ function SendTicket(props) {
                         <div className="info-ticket-list">
                                 {user&&user.ticket_set? user.ticket_set.map((item, idx) => {
                                     return (item.status === active || active === "all") && (
-                                        <div className={"AnswerTicketShow " + item.status}>
-                                        <>
-                                            <Button onClick={e=>{
-                                                    setOpen(true)
-                                                    setTicket(item)
-                                                    setOrder(item.order_id)
-                                                    setColor(getcolor(item.status))
-                                                }} > 
-                                                <div className="d-flex align-items-center">
-                                                    <p>{item.title}</p>
-                                                </div>
+                                        <Card className={"AnswerTicketShow " + item.status + " " + (item.status==="closed"? "opacity-50":"")}>
+                                            <div className="d-flex align-items-center w-100">
+                                                <p>{item.title}</p>
+                                                <div className="d-flex align-items-center  me-auto ">
+                                                    <Button onClick={e=>{
+                                                        setOpen(true)
+                                                        setTicket(item)
+                                                        setOrder(item.order_id)
+                                                        setColor(getcolor(item.status))
+                                                    }} size="small" variant="outlined" color="info">نمایش</Button>
+                                                    {item&&item.status !== "closed" ? <Button size="small" className="text-nowrap text-center" onClick={e=>closeTicket(item.id)} variant="outlined">بستن تیکت</Button>:null}
+                                                    <div className='d-flex flex-column me-4'>
+                                                        {new Date(item.created).toLocaleDateString("fa")}
+                                                        <Typography sx={{fontSize: "10px", "whiteSpace": "nowrap"}} component={"span"} color={getcolor(item.status)}>
+                                                        {item?.status === "answered"? "پاسخ داده شده": item?.status==="closed"? "بسته شده": "در حال بررسی" }
 
-                                                <div>
-                                                    {new Date(item.created).toLocaleDateString("fa")}
+                                                        </Typography>
+                                                    </div>
                                                 </div>
-                                            </Button>
-                                        </>
-                                    </div>
+                                                
+                                            </div>
+                                        </Card>
                                     ) 
                                 }): <div className="alert alert-primary mt-5">تیکتی برای نمایش وجود ندارد</div>}
                         </div>
@@ -125,4 +151,4 @@ function SendTicket(props) {
         </section >
     );
 }
-export default SendTicket;
+export default withAuth(SendTicket);

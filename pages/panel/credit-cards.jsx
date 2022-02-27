@@ -33,7 +33,9 @@ import {IMaskInput} from 'react-imask'
   const [toDelete, setToDelete] = React.useState(false)
 
   const dispatch = useDispatch()
-
+  React.useEffect(()=>{
+    dispatch(profile())
+  }, [])
   const _reset_form = ()=>{
     setNewCardNumber("")
     setNewCardShaba("")
@@ -67,7 +69,7 @@ import {IMaskInput} from 'react-imask'
   }
 
   const _addCard = ()=>{
-    if(newCardNumber.length !== 16 || newCardShaba.length !== 26){
+    if(newCardNumber.length !== 16 || (newCardShaba.length!==0 && newCardShaba.length !== 26)){
       toast.warning("اطلاعات وارد شده ناقص است");
       return
     }
@@ -110,18 +112,18 @@ import {IMaskInput} from 'react-imask'
                       </div>
                       <div className="d-flex justify-content-between">
                         <span>شماره شبا:</span>
-                        <span>{i.shaba}</span>
+                        <span>{i.shaba || "-"}</span>
                       </div>
                     </CardContent>
                     <CardActions>
                       
-                      {i.accepted?
+                      {/* {i.accepted?
                         <Chip label="تایید شده" color="success" size="small" variant="outlined" className="opacity-50 ms-auto">
 
                         </Chip>
                       :<Chip label="در انتظار تایید" color="info" size="small" variant="outlined" className="opacity-50 ms-auto">
 
-                      </Chip>}
+                      </Chip>} */}
                       <LoadingButton  endIcon={<DeleteIcon  classes={{root: "mx-0"}}/>} color="error" variant="outlined"  size="small" onClick={_=>_pre_delete(i.number)}>
                       </LoadingButton>
                     </CardActions>
@@ -147,7 +149,7 @@ import {IMaskInput} from 'react-imask'
                           dir="ltr"
                         />
                       <br className="mb-1"/>
-                      <small>شماره شبا</small>
+                      <small>شماره شبا (اختیاری)</small>
                       <IMaskInput
                       className="form-control form-control-sm"
                         lazy={false}

@@ -24,6 +24,8 @@
 @import './shop.css';
 @import './ShopFilterModal.css';
 @import './ticket-list.css';
+@import './product.css';
+
 html{
     font-size: 90%;
 }
@@ -76,9 +78,24 @@ div.bottom-navigation{
     body{
         padding-bottom: 60px;
     }
+    body .Toastify, body .Toastify__toast-container {
+        bottom: 60px;
+    }
 }
 .table-info-payment  .MuiChip-icon{
     margin-right: 12px;
     width: 1.2rem;
     height: 1.2rem;
+}
+body .swiper-button-next,body  .swiper-button-prev{
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    background: white;
+    box-shadow: 0 0 14px #0002;
+}
+body  .swiper-button-next::after,body  .swiper-button-prev::after{
+    font-size: 25px;
 }

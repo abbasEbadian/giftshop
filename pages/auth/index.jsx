@@ -11,8 +11,7 @@ import withAuth from "../../redux/withAuth";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { SEND_AUTH_CODE } from "../../redux/endpoints";
-
-function Login() {
+function Login({setRuleOpen}) {
     const [phone, setPhone] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [loading, setLoading] = React.useState(false)
@@ -21,7 +20,7 @@ function Login() {
     const [timer, setTimer] = React.useState(0)
     const dispatch = useDispatch()
     const router = useRouter()
-
+    const [hasRule, setHasRule] = React.useState(false)
 
     setTimeout(setTimeout(()=>{
         if(timer > 0 ) setTimer(timer-1)
@@ -32,8 +31,8 @@ function Login() {
         e.stopPropagation()
         
         try{
+            // entering number
             if (!codeSent || resend_code){
-                console.log(phone);
                 setLoading(true)
                 axios.post(SEND_AUTH_CODE, {mobile: phone})
                 .then((response)=>{
@@ -44,16 +43,24 @@ function Login() {
                         toast.success(data.message)
                         setCodeSent(true)
                         setTimer(120)
+
+                        if(data.created === 1){
+                            setHasRule(true)
+                        }
                     }
                 })
                 .catch(e=>console.log(e))
                 .finally(f=>setLoading(false))
             }else{
+                // entering code
 
                 dispatch(login({mobile: phone, code: password}, '')).then( ({error, message}) =>{
                     if(error === 0){
                         toast.success(message)
                         setDone(true)
+                        if(hasRule){
+                            setRuleOpen(true)
+                        }
                         router?.push('/')
                     }
                     else toast.error(message)
@@ -89,6 +96,7 @@ function Login() {
                     onChange={e=>setPhone(e.target.value)}
                     maxlength={11}
                 />
+                
                 {codeSent? <>
                     <InputBox
                         parentClass={"login-box ltr"}
@@ -121,7 +129,6 @@ function Login() {
                     "در حال انتقال" 
                     : "ورود / ثبت نام"}
                 </button>
-
             </form>
 
             

@@ -108,7 +108,7 @@ function Product() {
               </div>
             </div>
             <p className="mt-3">{product.description}</p>
-            <div className="add-to-card-container d-flex justify-content-between align-items-center w-75 pe-xl-5 me-auto ms-0">
+            <div className="add-to-card-container product d-flex justify-content-between align-items-center   me-auto ms-0">
               <div dir="ltr" className="counter">
                 <span onClick={(e) => setCount((c) => (c += 1))}>+</span>
                 <span className="border-bottom mx-2 ">{count}</span>

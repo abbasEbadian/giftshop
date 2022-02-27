@@ -1,17 +1,9 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import ListItemText from '@mui/material/ListItemText';
-import ListItem from '@mui/material/ListItem';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import Search from './Search'
+import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -27,13 +19,21 @@ export default function FullScreenDialog({open, setOpen}) {
   };
 
   return (
+      
       <Dialog
         fullScreen
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}
-      >
+        >
+          <div className='d-flex align-items-center justify-content-between px-2 py-4'>
+        <h5>فیلتر محصولات</h5>
+        <Button onClick={e=>setOpen(false)}>
+          <CloseIcon/>
+        </Button>
+      </div>
+      <hr className="mt-0" />
         <Search setOpen={setOpen}/>
-      </Dialog> 
+      </Dialog>
   );
 }
