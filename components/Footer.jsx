@@ -81,7 +81,7 @@ function Footer() {
           </div>
           <div className="col-xs-7 col-md-2">
             {/* <!-- Swiper --> */}
-            <Swiper
+            {/* <Swiper
                 spaceBetween={50}
                 slidesPerView={1}
                 loop
@@ -91,7 +91,7 @@ function Footer() {
                 </SwiperSlide>   
                 <SwiperSlide>  <Image src={Trust} alt="slide 1" /> 
                 </SwiperSlide>   
-            </Swiper>
+            </Swiper> */}
             
           </div>
         </div>
