@@ -7,12 +7,15 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import {useSelector} from 'react-redux'
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function AcceptRuleModal({open, setOpen}) {
     const configs = useSelector(s=>s.main.configs)
+    const [ checked, setChecked] = React.useState(false)
     const handleClose = () => {
         setOpen(false);
     };
@@ -27,7 +30,7 @@ export default function AcceptRuleModal({open, setOpen}) {
         maxWidth={"sm"}
         TransitionComponent={Transition}
         keepMounted
-        
+        className="mb-5 pb-5"
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>{" قوانین گیفت استاپ"}</DialogTitle>
@@ -41,7 +44,12 @@ export default function AcceptRuleModal({open, setOpen}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} variant={"outlined"} color="success">می پذیرم</Button>
+          <div className="d-flex align-items-center justify-content-between w-100 border-top  pt-1">
+
+          <FormControlLabel control={<Checkbox  checked={checked} onChange={e=>setChecked(e.target.checked)}/>} label={"قوانین را می پذیرم"} />
+            
+            <Button onClick={handleClose} variant={"outlined"} color="success" disabled={!checked}>ادامه</Button>
+          </div>
         </DialogActions>
       </Dialog>
     </div>

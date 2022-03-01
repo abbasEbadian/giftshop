@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
+import Button from '@mui/material/Button'
 function ContactUs() {
     return (
         <section>
@@ -31,11 +32,15 @@ function ContactUs() {
                                 <label for="">پیام</label>
                                 <textarea name="" id="" cols="30" rows="10" className="form-control" placeholder="پیام خود را وارد کنید"></textarea>
                             </div>
-                            <div className="col-6 col-md-5 py-5 m-auto">
-                                <div className="accept-pay">
+                            <div className="col-6 col-md-5 py-5 m-auto d-flex justify-content-between w-100">
+                                <div className="accept-pay px-5">
                                     <a href="#">ارسال</a>
                                 </div>
+                                <Button color="info" variant="contained" className='accept-pay'> 
+                                    پیام به تلگرام
+                                </Button>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

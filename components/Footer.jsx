@@ -23,14 +23,16 @@ function Footer() {
               </p>
             </div>
             <div className="col-md-9">
-              شماره تماس: 
-              {" "}
+              شماره تماس : 
+              {"  "}
               {config?.contactus?.phone_number_1}
+              {"  "}
             </div>
             <div className="col-md-9">
-              ایمیل: 
-              {" "}
+              ایمیل : 
+              {"  "}
               {config?.contactus?.website_email}
+              
             </div>
           </div>
 

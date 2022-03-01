@@ -22,12 +22,13 @@ function Shop() {
   const {brand_name, real_price, country} = router.query
   React.useEffect(() => {
     let params = {}
+
     Object.keys(filters).map(item=>{
       if(item) params[item] = filters[item]
     })
     
     params["page"] = page
-
+    setLoading(true)
     axios.get(GET_TEMPLATES, {params})
     .then(res=>{
       const {data} = res
@@ -35,7 +36,11 @@ function Shop() {
       setCardsCount(data.size)
     })
     .catch(err=>console.log(err))
-
+    .finally(f=>{
+      setTimeout(()=>{
+        setLoading(false)
+      }, 2000)
+    })
   }, [filters, page])
   React.useEffect(()=>{
     let f = {}
@@ -63,7 +68,7 @@ function Shop() {
             محصولات <span className="text-danger">فروشگاه</span>
             
           </h1>
-          <ShopCards cards={filteredCards} />
+          <ShopCards cards={filteredCards} loading={loading}/>
           {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
 
         </div>

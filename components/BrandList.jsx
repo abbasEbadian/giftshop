@@ -20,10 +20,10 @@ function SimilarCards({  children, title }) {
     <div className="w-100">
       <h2 className="text-center mt-5 mb-4">{title}</h2>
       {children}
-      <div className="brands-container row  justify-content-center">
+      <div className="brands-container row  justify-content-between">
           
             {brands?brands.map((item, idx)=>{
-                return (!showAll && idx < count || showAll) && <div className="col-6  col-md-4 col-lg-3 col-xl-2 p-0">
+                return (!showAll && idx < count || showAll) && <div className="col-6  col-md-4 col-lg-3 ">
                     <Card hidePrice data={{
                     brand_id: item
                 }}/>

@@ -60,10 +60,7 @@
   background: #ddd;
   border: 1px solid #ccc;
 }
-.MuiSvgIcon-root {
-  right: unset;
-  left: 7px;
-}
+
 .MuiFormControl-root legend {
   display: none;
 }

@@ -66,7 +66,7 @@ export const fetch_cards = () =>{
         .catch(err=>{console.log(err)})
         .finally(f=>setTimeout(() => {
             dispatch(update_fetching_cards(false))
-        }, 2000))
+        }, 5000))
     }
 }
 export const fetch_popular_cards = () =>{

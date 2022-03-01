@@ -3,7 +3,7 @@ import ProfileAside from '../../components/ProfileAside'
 import Card from '../../components/Card'
 import withAuth from "../../redux/withAuth";
 import Head from "next/head";
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import { Grid, Item } from "@mui/material";
 import {profile} from '../../redux/actions'
 

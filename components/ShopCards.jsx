@@ -1,9 +1,7 @@
 import React from "react";
 import Card from "./Card";
-import {useSelector} from 'react-redux'
 import {TailSpin} from 'react-loader-spinner'
-function ShopCards({ cards }) {
-  const {fetching_cards} = useSelector(state=>state.main)
+function ShopCards({ cards , loading=false}) {
   return (
     <div className="mt-5">
       <div className="container">
@@ -20,7 +18,7 @@ function ShopCards({ cards }) {
                   );
                 })
               : <div className="d-grid place-items-center w-100 mt-5"> 
-                  {!fetching_cards ? 
+                  {!loading ? 
                     <div className="alert alert-info">
                       {"کارتی برای نمایش وجود ندارد"}
                     </div>

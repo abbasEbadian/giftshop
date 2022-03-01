@@ -132,34 +132,13 @@ function UserLevel() {
             setProfile_loading(false)
         })
     }
-    const upload_birth_image = (e1)=>{
-        if(!e1.target.files.length) return
-        setBirth_loading(true)
-        const data = new FormData()
-        data.append('image', birth_cart_ref.current.files[0])
-        axios.post(e.UPLOAD_BIRTH_CARD_IMAGE, data, {
-            headers:{
-                "Content-Type": "multipart/form-data"
-            }
-        }).then(response => {
-            const {data} = response
-            if(data.error === 0){
-                toast.success(data.message)
-                dispatch(profile())
-            }else{
-                toast(data.message, {type: data.type})
-            }
-        }).catch(e=>{console.log(e);toast.error("خطا در برقراری ارتباط")})
-        .finally(f=>{
-            setBirth_loading(false)
-        })
-    }
+   
     const upload_national_image = (e1)=>{
         if(!e1.target.files.length) return
         
         setNational_loading(true)
         const data = new FormData()
-        data.append('image', national_cart_ref.current.files[0])
+        data.append('image', e1.target.files[0])
         axios.post(e.UPLOAD_NATIONAL_CARD_IMAGE, data, {
             headers:{
                 "Content-Type": "multipart/form-data"
@@ -180,7 +159,7 @@ function UserLevel() {
     const upload_avatar_image = (e1)=>{
         if(!e1.target.files.length) return
         const data = new FormData()
-        data.append('image', avatar_ref.current.files[0])
+        data.append('image', e1.target.files[0])
         axios.post(e.UPLOAD_AVATAR_IMAGE, data, {
             headers:{
                 "Content-Type": "multipart/form-data"
@@ -198,7 +177,17 @@ function UserLevel() {
             setAvatar_loading(false)
         })
     }
-  
+    const _national_click = (e)=>{
+        const d = document.getElementById('contained-button-file2');
+        console.log(d)
+        d.focus();
+        d.click();
+    }
+    const _avatar_click = (e)=>{
+        const d = document.getElementById('contained-button-file1');
+        console.log(d)
+        d.focus();
+    }
     return (
         <section className="container">
             <Head><title>گیفت استاپ | حساب کاربری</title></Head>
@@ -214,12 +203,12 @@ function UserLevel() {
                             <div className="profile-menu">
                             <label htmlFor="contained-button-file1">
 
-                                <Input accept="image/*" id="contained-button-file1"  type="file" ref={avatar_ref} onChange={upload_avatar_image}/>
+                                <input accept="image/*" id="contained-button-file1" className="d-none" type="file"  onChange={upload_avatar_image}/>
 
-                                <LoadingButton aria-label="cart" onClick={e=>avatar_ref.current.focus()} component="span">
+                                <LoadingButton aria-label="cart" onClick={_avatar_click} component="span">
                                     <Badge badgeContent={<EditIcon/>} color="primary" variant="string" overlap="circular" >
                                         {user&&user.avatar_image? 
-                                        <img src={"http://localhost:8000"+user.avatar_image } alt="Profile Image" />
+                                        <img src={e.BASE_URL+user.avatar_image } alt="Profile Image" />
                                         :
                                         <Image src={profilePic} alt="Profile Image" />}
                                     </Badge>
@@ -318,6 +307,9 @@ function UserLevel() {
                                                         >
                                                         ثبت و بروزرسانی پروفایل
                                                     </LoadingButton>
+                                                    <Button  variant="outlined" size="small" color="error" onClick={handleClose} className="mx-2">
+                                                        لغو
+                                                    </Button>
                                                 </div>
                                             </Form>
                                         </Box>
@@ -344,58 +336,16 @@ function UserLevel() {
 
                             </div>
                             <div className="d-flex justify-content-center flex-wrap">
-                                <div className="upload-section col-12 col-lg-5 m-auto">
-                                    <Stack direction="row" alignItems="center" spacing={2}>
-                                        <label htmlFor="contained-button-file">
-                                            <Input accept="image/*" id="contained-button-file"  type="file" ref={birth_cart_ref} onChange={upload_birth_image}/>
-                                            <LoadingButton
-                                                onCLick={e=>birth_cart_ref.current.focus()}
-                                                loading={birth_loading}
-                                                loadingPosition="start"
-                                                variant="contained"
-                                                color="success"
-                                                // classes={{root: "success-gradient"}}
-                                                size="small"
-                                                component="span"
-                                                
-                                            >
-                                               
-                                                {profile_loading? "در حال آپلود":
-                                                    " بارگذاری تصویر شناسنامه"
-                                                }
-                                            </LoadingButton>
-                                            
-                                        </label>
-                                        <label htmlFor="icon-button-file " className="pb-3 text-success">
-                                            {user&&user.has_birth_card_image?
-                                            "آپلود شده": <IconButton color="primary" aria-label="upload picture" component="span">
-                                            <CloudUploadIcon />
-                                        </IconButton>}
-                                        </label>
-                                    </Stack>
-                                </div>
-                                <div className="upload-section col-12 col-lg-5 m-auto">
+                               
+                                <div className="upload-section col-12 col-lg-6 m-auto">
                                     <Stack direction="row" alignItems="center" spacing={2}>
                                         <label htmlFor="contained-button-file1">
-                                            <Input accept="image/*" className="success-gradient" id="contained-button-file1"  type="file" ref={national_cart_ref} onChange={upload_national_image}/>
-                                            <LoadingButton
-                                                onCLick={e=>national_cart_ref.current.focus()}
-                                                loading={national_loading}
-                                                loadingPosition="start"
-                                                variant="contained"
-                                                color="success"
-                                                // classes={{root: "success-gradient"}}
-                                                size="small"
-                                                component="span"
-                                            >
-                                                {national_loading? "در حال آپلود":
-                                                "بارگذاری تصویر کارت ملی"
-                                                }
-                                            </LoadingButton>
+                                        <input accept="image/*" className="success-gradient d-none" id="contained-button-file2"  type="file"  onChange={upload_national_image}/>
+                                        <Button disabled={national_loading} size="small" variant="contained" color="success" onClick={_national_click}>بارگذاری تصویر کارت ملی + کارت بانکی</Button>
                                             
                                         </label>
                                         <label htmlFor="icon-button-file" className="pb-3 text-success">
-                                        {user&&user.has_birth_card_image?
+                                        {user&&user.has_national_card_image?
                                             "آپلود شده":
                                             <IconButton color="primary" aria-label="upload picture" component="span">
                                                 <CloudUploadIcon />
