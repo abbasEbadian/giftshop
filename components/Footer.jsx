@@ -23,14 +23,16 @@ function Footer() {
               </p>
             </div>
             <div className="col-md-9">
-              شماره تماس: 
-              {" "}
+              شماره تماس : 
+              {"  "}
               {config?.contactus?.phone_number_1}
+              {"  "}
             </div>
             <div className="col-md-9">
-              ایمیل: 
-              {" "}
+              ایمیل : 
+              {"  "}
               {config?.contactus?.website_email}
+              
             </div>
           </div>
 
@@ -79,7 +81,7 @@ function Footer() {
           </div>
           <div className="col-xs-7 col-md-2">
             {/* <!-- Swiper --> */}
-            <Swiper
+            {/* <Swiper
                 spaceBetween={50}
                 slidesPerView={1}
                 loop
@@ -89,7 +91,7 @@ function Footer() {
                 </SwiperSlide>   
                 <SwiperSlide>  <Image src={Trust} alt="slide 1" /> 
                 </SwiperSlide>   
-            </Swiper>
+            </Swiper> */}
             
           </div>
         </div>

@@ -14,6 +14,8 @@ import { Bars } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import { get_cart } from "../../redux/actions";
 import Head from "next/head";
+import Link from "next/link";
+import Button from "@mui/material/Button";
 
 
 function Product() {
@@ -72,8 +74,13 @@ function Product() {
       <h1 className="text-center mt-4">
         کارت <span className="text-secondary">انتخابی</span>
       </h1>
-      
-        <div className="row mt-5 product-list-gift mx-md-5">
+        {product&& product.brand_id&&product.brand_id.url?<Link href={product.brand_id.url}>
+          <a className="mx-md-5 py-4">
+           <Button variant="contained" color="info"> لینک آموزش استفاده</Button>
+          </a>
+          </Link>:null}
+        <div className="row  mt-2 product-list-gift mx-md-5">
+          
         {product ? <>
           <div className="col-12 col-lg-4">
             <Card data={product} favoriteAndRate />

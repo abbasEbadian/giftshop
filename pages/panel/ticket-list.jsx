@@ -19,6 +19,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import {useDispatch} from 'react-redux'
 import withAuth from '../../redux/withAuth'
+import {TailSpin} from 'react-loader-spinner'
 function SendTicket(props) {
     const [open, setOpen] = React.useState(false);
     const [color, setColor] = React.useState(false);
@@ -27,7 +28,9 @@ function SendTicket(props) {
 
     const user = useSelector(s=>s.auth.user)
     const [tickets, setTickets] = React.useState({})
+    const [loading, setLoading] = React.useState(false)
     const [active, setActive] = React.useState("all")
+
     const types = [
         "pending",
         "answered",
@@ -43,7 +46,8 @@ function SendTicket(props) {
         setTickets(_.groupBy(user?.ticket_set, e=>e.status))
     }, [user])
     React.useEffect(()=>{
-      dispatch(profile())
+        setLoading(true)
+        dispatch(profile(setLoading))
     }, [])
     const geticon = (status)=>{
         switch(status){
@@ -141,7 +145,12 @@ function SendTicket(props) {
                                             </div>
                                         </Card>
                                     ) 
-                                }): <div className="alert alert-primary mt-5">تیکتی برای نمایش وجود ندارد</div>}
+                                }): loading?
+                                <div className="d-flex align-items-end mt-5">
+                                <TailSpin width={40} height={30} color={"#39ACF1"}/> 
+                                <span className="mx-4">در حال دریافت</span>
+                                </div>
+                                :<div className="alert alert-primary mt-5">تیکتی برای نمایش وجود ندارد</div>}
                         </div>
                         
                     </div>

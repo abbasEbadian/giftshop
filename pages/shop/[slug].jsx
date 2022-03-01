@@ -33,15 +33,20 @@ function Shop() {
     
     params["brand_name"] = brand_name
     params["page"] = page
-
+    setLoading(true)
     axios.get(GET_TEMPLATES, {params})
     .then(res=>{
       const {data} = res
-     
+      
       setFilteredCards( data.data || [])
       setCardsCount(data.size)
     })
     .catch(err=>console.log(err))
+    .finally(f=>{
+      setTimeout(() => {
+        setLoading(false)
+      }, 2000);
+    })
 
   }, [filters, page, brand_name])
 
@@ -76,7 +81,7 @@ function Shop() {
             </>
             }
           </h1>
-          <ShopCards cards={filteredCards} />
+          <ShopCards cards={filteredCards} loading={loading}/>
           {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
         </div>
         

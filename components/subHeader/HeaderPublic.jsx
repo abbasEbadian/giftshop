@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../img/logo/GS-03.png";
 import HomIcon from "../../img/icon/HomeIcon";
 import SearchIcon from "../../img/icon/SearchIcon";
 import ShoppingIcon from "../../img/icon/ShoppingIcon";
@@ -65,24 +64,30 @@ const [full, setFull] = React.useState(false)
                 <a onClick={e=>setMenuopen(false)} data-toggle="sub-menu">بلاگ </a>
               </Link>
             </li>
+            
             {auth?<li className="menu-item menu-item-child">
               <Link href="/panel/send-ticket">
                 <a onClick={e=>setMenuopen(false)}>تیکت </a>
               </Link>
             </li>:null}
-             <hr />
+            <hr/>
           </ul>
-          <Link href="/auth">
+          {!auth? <Link href="/auth">
+
             <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center"  onClick={e=>setMenuopen(false)}>
               ورود <span className="mx-1">|</span>عضویت
             </a>
-          </Link>
+          </Link>: <Link href="/panel/profile">
+            <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center"  onClick={e=>setMenuopen(false)}>
+              حساب کاربری 
+            </a>
+          </Link>}
         </Offcanvas.Body>
       </Offcanvas>
       <div className="main-container">
         <Link href="/">
           <a>
-            <Image src={logo} height={"45px"} width={"200px"} />
+            <Image src={'/GS-03.png'} height={"45px"} width={"200px"} />
           </a>
         </Link>
         <div className="links">

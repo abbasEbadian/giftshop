@@ -99,7 +99,7 @@ body .swiper-button-next,body  .swiper-button-prev{
 body  .swiper-button-next::after,body  .swiper-button-prev::after{
     font-size: 25px;
 }
-
 .drops .MuiSelect-select{
     text-align: left;
 }
+

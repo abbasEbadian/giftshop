@@ -12,7 +12,7 @@ import FullScreenSearch from './subHeader/FullScreenSearch'
 function BottomNavigation() {
     const [openFull, setOpenFull] = React.useState(false)
     const size = "28px" 
-    const basket = useSelector(s=>s.main.basket)
+    const basket = useSelector(s=>s.order.basket)
   return <div className='d-md-none d-block bottom-navigation'>
     <div className="d-flex align-items-center justify-content-evenly  searcher-box">
         <Link href="/">

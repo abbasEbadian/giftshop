@@ -88,7 +88,7 @@ export default function CheckboxesTags({setOpen=false}) {
             style={{ marginRight: 8 }}
             checked={selected}
           />
-          {option.title}
+          {option.persian_name? option.persian_name: option.title}
         </li>
       )}
       style={{ width: 500 }}

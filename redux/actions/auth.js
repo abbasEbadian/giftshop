@@ -11,7 +11,7 @@ export const logout = (router)=>{
         if(typeof window!== "undefined") document.location.href = "/"
     }
 }
-export const profile = ()=>{
+export const profile = (setLoading=undefined)=>{
     return dispatch=>{
         axios.get(e.PROFILE)
         .then(response=>{
@@ -21,6 +21,11 @@ export const profile = ()=>{
         })
         .catch(err=>{
             console.log(err)
+        })
+        .finally(f=>{
+            setTimeout(()=>{
+                if (setLoading) setLoading(false)
+            }, 2000)
         })
 
     }
