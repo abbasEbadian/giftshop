@@ -12,11 +12,13 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import SendIcon from '@mui/icons-material/Send';
-import {ADD_TICKET} from '../../redux/endpoints'
+import {ADD_TICKET, SEEN_TICKET} from '../../redux/endpoints'
 import {useDispatch, useSelector} from 'react-redux'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 import {profile} from '../../redux/actions'
+import * as e from '../../redux/endpoints'
+import Image from 'next/Image'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -64,6 +66,14 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
       console.log(err)
     })
   }
+  React.useEffect(()=>{
+    if(ticket)
+    axios.get(SEEN_TICKET+ticket.id+"/")
+    .then(r=>{
+      dispatch(profile())
+    })
+    .catch(e=>{console.log(e)})
+  }, [ticket])
   return (
     <div>
       
@@ -96,17 +106,30 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
                                 
                                 {messages&&messages.map(item=>{
                                     return (
-                                        item.user_id.is_superuser?
+                                        item.user_id.is_superuser || item.user_id.is_staff?
                                             <div className="outgoing_msg">
                                                 <div className="sent_msg">
-                                                    <p>{item.message}</p>
+                                                    <p>
+                                                      <div>
+                                                        {item.user_id.avatar_image?<img className="ticket-message-image" src={e.BASE_URL + item.user_id.avatar_img} alt="avatar" />:null}
+                                                        <h6>{ item.user_id?.first_name + " " + item.user_id?.last_name + " : "}</h6>
+                                                      </div>
+                                                      <hr />
+                                                    {item.message}
+                                                    </p>
                                                     <span className="time_date"> {new Date(item.created).toLocaleDateString("fa")} {" "} {new Date(item.created).toLocaleTimeString("fa", {hour: "numeric", minute: "numeric"})}</span> </div>
                                             </div>
                                         :<div className="incoming_msg">
                                             {/* <div className="incoming_msg_Image"> <Image src={profilePic} alt="sunil" /> </div> */}
                                             <div className="received_msg">
                                                 <div className="received_withd_msg">
-                                                    <p>{item.message}</p>
+                                                    <p>
+                                                    <div>
+                                                    {item.user_id.avatar_image?<img className="ticket-message-image" src={e.BASE_URL + item.user_id.avatar_image} alt="avatar" />:null}
+                                                        <h6>{ item.user_id?.first_name + " " + item.user_id?.last_name + " : "}</h6>
+                                                      </div>
+                                                    <hr />
+                                                    {item.message}</p>
                                                     <span className="time_date"> {new Date(item.created).toLocaleDateString("fa")} {" "} {new Date(item.created).toLocaleTimeString("fa", {hour: "numeric", minute: "numeric"})}</span> </div>
                                               </div>
                                         </div>

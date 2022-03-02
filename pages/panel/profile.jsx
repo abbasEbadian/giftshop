@@ -199,7 +199,7 @@ function UserLevel() {
                         سطح <span>کاربری</span>
                     </h5>
                     <div className="d-flex flex-wrap align-items-center userLevel">
-                        <div className="col-lg-4 col-12 text-center">
+                        <div className="col-xl-4 col-lg-6 col-12 text-center">
                             <div className="profile-menu">
                             <label htmlFor="contained-button-file1">
 
@@ -241,14 +241,60 @@ function UserLevel() {
                                 
                             </div>
                         </div>
-                        <div className="col-lg-8 col-12">
+                        <div className="col-xl-8 col-lg-6 col-12">
                             <div className="d-flex align-items-center justify-content-between ">
                                 <h5 className="px-3">اطلاعات فردی شما</h5>
                                 <div>
                                     <Button className="text-basket" color='info' variant="outlined" onClick={handleOpen} startIcon={<EditIcon/>}>
                                         
                                     </Button>
-                                    <Modal
+                                    
+                                </div>
+                            </div>
+                            <div className="user-info d-flex align-items-start justify-content-between py-5 flex-wrap px-sm-5 px-2">
+                                <div>
+                                    <p> <span>نام</span> : {firstName}</p>
+                                    <p> <span>نام خانوادگی</span> : {lastName}</p>
+                                    <p> <span>تاریخ تولد</span> :{birthDate? new Date(birthDate).toLocaleDateString("fa"): ""}</p>
+                                    <p className="text-nowrap"> <span>ایمیل</span> : {email}</p>
+                                </div>
+                                <div>
+                                    <p> <span>کد ملی</span> : {nCode}</p>
+                                    <p> <span>جنسیت</span> : {gender==="male"?
+                                     "آقا":gender==="female"?
+                                     "خانم":""}</p>
+                                    <p> <span>تلفن همراه</span> : {user?.username}</p>
+                                </div>
+                                <div className="col-10 px-4 ">
+                                    
+                                </div>
+
+                            </div>
+                            <div className="d-flex justify-content-center flex-wrap">
+                               
+                                <div className="upload-section col-12 col-sm-10 col-xl-6 m-auto">
+                                    <div className="d-flex flex-column align-items-center justify-content-center">
+                                        
+                                        <label htmlFor="icon-button-file" className="pb-3 text-success">
+                                        {user&&user.has_national_card_image?
+                                            "آپلود شده":
+                                            <IconButton color="primary" aria-label="upload picture" component="span">
+                                                <CloudUploadIcon />
+                                            </IconButton>}
+                                        </label>
+                                        <label htmlFor="contained-button-file1">
+                                        <input accept="image/*" className="success-gradient d-none" id="contained-button-file2"  type="file"  onChange={upload_national_image}/>
+                                        <Button disabled={national_loading} size="small" variant="contained" color="success" onClick={_national_click}>بارگذاری تصویر کارت ملی + کارت بانکی</Button>
+                                            
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <Modal
                                         open={open}
                                         onClose={handleClose}
                                         aria-labelledby="modal-modal-title"
@@ -314,51 +360,6 @@ function UserLevel() {
                                             </Form>
                                         </Box>
                                     </Modal>
-                                </div>
-                            </div>
-                            <div className="user-info d-flex align-items-start justify-content-between py-5 flex-wrap px-sm-5 px-2">
-                                <div>
-                                    <p> <span>نام</span> : {firstName}</p>
-                                    <p> <span>نام خانوادگی</span> : {lastName}</p>
-                                    <p> <span>تاریخ تولد</span> :{birthDate? new Date(birthDate).toLocaleDateString("fa"): ""}</p>
-                                    <p className="text-nowrap"> <span>ایمیل</span> : {email}</p>
-                                </div>
-                                <div>
-                                    <p> <span>کد ملی</span> : {nCode}</p>
-                                    <p> <span>جنسیت</span> : {gender==="male"?
-                                     "آقا":gender==="female"?
-                                     "خانم":""}</p>
-                                    <p> <span>تلفن همراه</span> : {user?.username}</p>
-                                </div>
-                                <div className="col-10 px-4 ">
-                                    
-                                </div>
-
-                            </div>
-                            <div className="d-flex justify-content-center flex-wrap">
-                               
-                                <div className="upload-section col-12 col-lg-6 m-auto">
-                                    <Stack direction="row" alignItems="center" spacing={2}>
-                                        <label htmlFor="contained-button-file1">
-                                        <input accept="image/*" className="success-gradient d-none" id="contained-button-file2"  type="file"  onChange={upload_national_image}/>
-                                        <Button disabled={national_loading} size="small" variant="contained" color="success" onClick={_national_click}>بارگذاری تصویر کارت ملی + کارت بانکی</Button>
-                                            
-                                        </label>
-                                        <label htmlFor="icon-button-file" className="pb-3 text-success">
-                                        {user&&user.has_national_card_image?
-                                            "آپلود شده":
-                                            <IconButton color="primary" aria-label="upload picture" component="span">
-                                                <CloudUploadIcon />
-                                            </IconButton>}
-                                        </label>
-
-                                    </Stack>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section >
     );
 }

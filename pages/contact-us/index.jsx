@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import React from 'react'
 import Button from '@mui/material/Button'
+import {useSelector} from 'react-redux'
+import Link from 'next/link'
 function ContactUs() {
+    const config = useSelector(_=>_.main.configs)
+
     return (
         <section>
             <Head><title>تماس با ما | گیفت شاپ</title></Head>
@@ -36,9 +40,11 @@ function ContactUs() {
                                 <div className="accept-pay px-5">
                                     <a href="#">ارسال</a>
                                 </div>
-                                <Button color="info" variant="contained" className='accept-pay'> 
-                                    پیام به تلگرام
-                                </Button>
+                                <div className="accept-pay px-5">
+                                    <a target="_blank" href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
+                                            پیام به تلگرام
+                                    </a>
+                                </div>
                             </div>
                             
                         </div>

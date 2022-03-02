@@ -459,9 +459,9 @@ header .burger-line:nth-child(4) {
   margin-left: auto;
 }
 .header-public .links a {
-  font-size: clamp(13px, 1.2vw, 15px);
+  font-size: clamp(12px, 1.1vw, 14px);
   position: relative;
-  font-weight: 400;
+  font-weight: 100;
   display: block;
   padding: 10px 2px;
 }
@@ -484,7 +484,7 @@ header .burger-line:nth-child(4) {
   justify-content: flex-end;
 }
 .header-public .controls > * {
-  margin-right: 24px;
+  margin-right: 12px;
 }
 
 .header-public .list-show-menu:not(.collapsed) {
@@ -615,7 +615,7 @@ header .MuiInput-root{
 
 
 header .MuiAutocomplete-root{
-  width: clamp(300px, 25vw, 400px) !important;  
+  width: clamp(200px, 19vw, 320px) !important;  
 }
 header .MuiInput-underline::before{
   display: none;
@@ -633,6 +633,9 @@ header .full-search-button{
     display: none;
   }
 }
+body .controls button {
+  min-width: 38px !important;    
+}
 @media (max-width: 1200px) and (min-width: 900px){
   body header .full-search-button{
     display: block;
@@ -640,9 +643,7 @@ header .full-search-button{
   header .MuiAutocomplete-root{
     display: none;
   }
-  body .controls button {
-    min-width: 38px !important;    
-  }
+  
   body .header-public .links{
     width: 40vw;
   }

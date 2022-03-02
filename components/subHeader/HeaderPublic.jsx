@@ -39,9 +39,9 @@ const [full, setFull] = React.useState(false)
         <Offcanvas.Body>
           <ul className="menu">
             <li className="menu-item">
-              <a href="/" onClick={e=>setMenuopen(false)}>                {" "}
+              <Link href="/"><a onClick={e=>setMenuopen(false)}>                {" "}
                 <i className="bi bi-house-door-fill"></i>{" "}
-              </a>
+              </a></Link>
             </li>
             <li className="menu-item">
               <Link href="/shop">
@@ -65,11 +65,18 @@ const [full, setFull] = React.useState(false)
               </Link>
             </li>
             
-            {auth?<li className="menu-item menu-item-child">
+            {auth?<><li className="menu-item menu-item-child">
               <Link href="/panel/send-ticket">
                 <a onClick={e=>setMenuopen(false)}>تیکت </a>
               </Link>
-            </li>:null}
+            </li> 
+            <li className="menu-item menu-item-child">
+            <Link href="/auth/logout"><a  className="" >
+                خروج
+              </a>
+            </Link>
+            </li></>
+            :null}
             <hr/>
           </ul>
           {!auth? <Link href="/auth">
@@ -77,17 +84,19 @@ const [full, setFull] = React.useState(false)
             <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center"  onClick={e=>setMenuopen(false)}>
               ورود <span className="mx-1">|</span>عضویت
             </a>
-          </Link>: <Link href="/panel/profile">
-            <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center"  onClick={e=>setMenuopen(false)}>
+          </Link>: <div className="d-flex align-items-center px-5 mt-3"><Link href="/panel/profile">
+            <a className="btn primary-gradient rounded w-50  text-center"  onClick={e=>setMenuopen(false)}>
               حساب کاربری 
             </a>
-          </Link>}
+          </Link>
+          
+          </div>}
         </Offcanvas.Body>
       </Offcanvas>
       <div className="main-container">
         <Link href="/">
           <a>
-            <Image src={'/GS-03.png'} height={"45px"} width={"200px"} />
+            <Image src={'/logo.png'} height={"45px"} width={"200px"} />
           </a>
         </Link>
         <div className="links">

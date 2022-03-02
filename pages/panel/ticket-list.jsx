@@ -122,9 +122,9 @@ function SendTicket(props) {
                         <div className="info-ticket-list">
                                 {user&&user.ticket_set? user.ticket_set.map((item, idx) => {
                                     return (item.status === active || active === "all") && (
-                                        <Card className={"AnswerTicketShow " + item.status + " " + (item.status==="closed"? "opacity-50":"")}>
+                                        <Card className={"AnswerTicketShow " + item.status + " " + (item.status==="closed"? "opacity-50":"")} key={idx}>
                                             <div className="d-flex align-items-center w-100">
-                                                <p>{item.title}</p>
+                                                <p className={item.seen_by_user?"seen": ""}>{item.title}</p>
                                                 <div className="d-flex align-items-center  me-auto ">
                                                     <Button onClick={e=>{
                                                         setOpen(true)

@@ -1,7 +1,7 @@
 @font-face {
     font-family: IranYekan;
     font-style: normal;
-    font-weight: bold;
+    font-weight: lighter;
     src: url('../fonts/iransans/eot/IRANSansWeb_Bold.eot');
     src: url('../fonts/iransans/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ 
 	url('../fonts/iransans/woff2/IRANSansWeb_Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ 

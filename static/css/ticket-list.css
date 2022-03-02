@@ -39,9 +39,13 @@
 .info-ticket-list > div p:first-child {
     margin-left:10px;
     color: var(--color-purple);
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
     margin-block: 0.7rem;
+}
+.info-ticket-list > div p.seen{
+    font-weight: 100;
+    opacity: 0.6;
 }
 .AnswerTicketShow {
     border-width: 1px 10px 1px 1px;    
