@@ -82,7 +82,7 @@ function Product() {
         <div className="row  mt-2 product-list-gift mx-md-5">
           
         {product ? <>
-          <div className="col-12 col-lg-4">
+          <div className="col-12 col-lg-4  pt-5 pt-md-0">
             <Card data={product} favoriteAndRate />
           </div>
           <div className="col-12 col-lg-8 p-3">

@@ -17,12 +17,12 @@
   color: #fff;
   opacity: 1;
 }
-.css-i7rae6-MuiList-root {
+.profile-aside  {
   border: 1px solid var(--color-blue);
   box-shadow: 0px 0 10px 2px #eee;
   border-radius: 15px;
 }
-.css-10hburv-MuiTypography-root {
+.profile-aside .MuiListItemText-root {
   text-align: right;
 }
 .css-cvhtoe-MuiButtonBase-root-MuiListItemButton-root {
@@ -92,7 +92,7 @@
   }
 }
 @media (min-width: 993px) {
-  .mobile-menu-title {
+  .profile-aside div.mobile-menu-title {
     display: none;
   }
   .userLevel > div:nth-child(1) {

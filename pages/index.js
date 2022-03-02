@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="mcontainer mcontainer-bg">
+      <div className="mcontainer mcontainer-bg pb-5">
         <Head>
           <title>GiftStop | گیفت استاپ</title>
           <link rel="icon" href="/fav.png" />
@@ -179,7 +179,7 @@ export default function Home() {
             </div>
           </div>
         </SimilarCards>
-        <div className="my-5 d-flex"></div>
+        <div className=" d-flex"></div>
         <BrandList
           title={
             <span>

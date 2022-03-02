@@ -18,7 +18,7 @@ function SimilarCards({ _products=[], children, product=undefined, title, addToC
   }, [product, _products]);
 
   return (
-    <div className={"pb-5 " + (addToCard? "with-button": "")}>
+    <div className={"" + (addToCard? "with-button": "")}>
       <h2 className="text-center mt-5 mb-4">{title}</h2>
       {children}
       <Swiper

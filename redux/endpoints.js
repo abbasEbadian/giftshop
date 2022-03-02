@@ -37,6 +37,7 @@ export const TOGGLE_FAVORITES = _("/favorites/toggle_favorite/")
 export const SEND_REVIEW = _("/reviews/add_review/")
 export const SEND_TICKET = _("/tickets/add_ticket/")
 export const ADD_TICKET = _("/tickets/add_message/")
+export const SEEN_TICKET = _("/tickets/seen/")
 export const GET_PAYMENT_LINK = _("/orders/get_payment_url/")
 export const GET_WALLET_DEPOSIT_LINK = _("/orders/get_wallet_deposit_url/")
 
