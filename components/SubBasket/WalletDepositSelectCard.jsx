@@ -79,7 +79,7 @@ export default function WalletDepositSelectCard({onClick, open, setOpen, cards=[
             <br/>
               <small className="mt-2">وارد کردن شماره کارت جدید</small>
               <IMaskInput
-                 className="form-control form-control-sm"
+                 className="form-control form-control-md mt-2 text-center"
                   mask= '0000-0000-0000-0000'
                   radix="."
                   lazy={false}

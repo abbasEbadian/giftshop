@@ -18,6 +18,7 @@ import NProgress from 'nprogress'
 import Router from 'next/router'
 import AcceptRuleModal from '../components/AcceptRuleModal'
 import Head from 'next/head'
+import LoginModal from '../components/LoginModal';
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
@@ -70,6 +71,8 @@ const MyApp = ({Component, pageProps}) =>
         rtl
       />
       <AcceptRuleModal open={open} setOpen={setRuleOpen}/>
+      <LoginModal/>
+
       </Provider>
   </>)
 };

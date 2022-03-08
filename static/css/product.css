@@ -1,5 +1,5 @@
 .send-feedback-container, .reviews-container{
-    width: clamp(340px , 70vw, 50vw);
+    width: clamp(100% , 70vw, 50vw);
     margin: 0 auto;
 }
 .review-lines {

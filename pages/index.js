@@ -120,7 +120,7 @@ export default function Home() {
           title={
             <span>
               {"پرفروش ترین"} <span className="text-secondary">گیفت </span>{" "}
-              کارتها
+              کارت ها
             </span>
           }
         >

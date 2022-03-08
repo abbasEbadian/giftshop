@@ -101,19 +101,19 @@ function ProductRow({ product , _count}) {
           </div>
           <br />
           
-          {product.dicsount > 0?<div className="calculations mt-4 d-flex align-items-center justify-content-between w-100" dir="ltr">
+          {product.dicsount > 0?<div className="calculations mt-4 d-flex align-items-center justify-content-start w-100 border-bottom pb-3" dir="ltr">
             
             <div><span>{count}</span> <span className="px-2">x</span> <span>{product.dicsount}</span> <span className="px-2">=</span>  {count * product.dicsount}</div>
-            <span className="text-danger">تخفیف</span>
+            <span className="text-danger ms-4">: تخفیف  </span>
           </div>:null}
-          {product.dicsount > 0?<div className="calculations mt-4 d-flex align-items-center justify-content-between w-100" dir="ltr">
+          {product.dicsount > 0?<div className="calculations mt-3 d-flex align-items-center justify-content-start w-100" dir="ltr">
             
             <div><span>{count * product.price}</span> <span className="px-2">-</span> <span>{count * product.dicsount}</span> <span className="px-2">=</span>  {count * product.final_price}</div>
-            <span className="text-success">مجموع </span>
+            <span className="text-success ms-4">: مجموع  </span>
           </div>:
-            <div className="calculations mt-4 d-flex align-items-center justify-content-between w-100" dir="ltr">
+            <div className="calculations mt-4 d-flex align-items-center justify-content-start w-100" dir="ltr">
             <div><span>{count}</span> <span className="px-2">x</span> <span>{product.price}</span> <span className="px-2">=</span>  {count * product.price}</div>
-            <span className="text-success">مجموع</span>
+            <span className="text-success ms-4">: مجموع  </span>
           </div>
           }
         </div> 

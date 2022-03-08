@@ -18,7 +18,6 @@ import {toast} from 'react-toastify'
 import axios from 'axios'
 import {profile} from '../../redux/actions'
 import * as e from '../../redux/endpoints'
-import Image from 'next/Image'
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });

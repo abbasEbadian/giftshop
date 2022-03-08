@@ -35,6 +35,9 @@ import CANADA from '../img/flags/CANADA.webp'
 import BRAZIL from '../img/flags/BRAZIL.webp'
 import ARS from '../img/flags/ARS.webp'
 import IR from '../img/flags/ir.webp'
+import GLOBAL from '../img/flags/GLOBAL.webp'
+import TURKEY from '../img/flags/TURKEY.webp'
+
 
 
 import Image from "next/image";
@@ -47,7 +50,7 @@ import Rating from "@mui/material/Rating";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { get_cart ,profile} from "../redux/actions";
+import { get_cart ,profile, update_login_modal} from "../redux/actions";
 
 import {ADD_TO_CART, TOGGLE_FAVORITES} from '../redux/endpoints'
 import { Typography } from "@mui/material";
@@ -116,9 +119,13 @@ function Card({
         return BRAZIL;
       case "ARS": 
         return ARS;
+      case "TURKEY": 
+        return TURKEY;
+      case "GLOBAL": 
+        return GLOBAL;
     
       default:
-        return IR;
+        return GLOBAL;
     }
   } 
   const dispatch = useDispatch()
@@ -129,10 +136,14 @@ function Card({
       count: count
     }).then(res=>{
       const {data}= res 
-      toast(data.message, {type: data.type})
 
       if(data.error === 0)
         dispatch(get_cart())
+      else if(data.error === 1 && data.message.indexOf('وارد') > -1){
+        dispatch(update_login_modal(true))
+      }
+      toast(data.message, {type: data.type})
+
     })
     .catch(e=>{
       console.log(e)
@@ -156,7 +167,7 @@ function Card({
     .finally(f=>dispatch(profile()))
   }
   const gen_path = (data)=>{
-    return data.id + "-" + "گیفت-کارت-" + data.real_price +"-"+ (data&&data.country_id&&data.country_id.currency_id?data.country_id.currency_id?.persian_name+"-" : "")+data.brand_id?.persian_name
+    return data.id + "-" + data.full_name.replaceAll(' ', '-')
   }
   return (
     <div className="single-card px-3  ">
@@ -172,13 +183,15 @@ function Card({
            }}>
           <a>
             <div className="data position-absolute top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
-              {!hidePrice?
-              <span dir="ltr" className="price text-center">
-                  {data.country_id?.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}
-                  <div className="flag-cont">
+              {!hidePrice && (data.real_price > 0 || data.country_id)?
+                <span dir="ltr" className="price text-center">
+                  {data.real_price > 0 && 
+                    <span>{data.country_id?.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}</span>
+                  }
+                  {data.country_id && <div className="flag-cont">
                     <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
-                  </div>
-                  
+                  </div>}
+
                 </span>
                 :null
               }
@@ -195,15 +208,21 @@ function Card({
       </div>
       {hidePrice && !addToCard?
         <h2 className="w-100 text-center">
-          <Typography component="span">
-            <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+          <Typography component="span" sx={{fontSize: "clamp(12px, 1.1vw, 14px)"}}>
+          <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
           </Typography>
         </h2>
       :null}
       {addToCard ? <>
-        <h5 className="w-100 d-flex align-items-center justify-content-between px-2">
+        <h5 className="w-100 d-flex  justify-content-between px-2">
           <Typography component="span" sx={{fontSize: "12px"}}>
-            <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+            <span>
+              {data.full_name}
+            </span>
+            {data.date > 0?<>
+              <br></br>
+              <small> <span className="text-danger">{data.date_text} </span></small>
+            </>:null}
           </Typography>
           <Typography component="span" sx={{fontSize: "14px"}} className="test">
             {data.offcard_set && data.offcard_set.length > 0 ?<>

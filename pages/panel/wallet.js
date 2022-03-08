@@ -40,7 +40,8 @@ function Wallet() {
 
         axios.post(GET_WALLET_DEPOSIT_LINK, {
             amount, 
-            card
+            card,
+            token: window.location.href.indexOf('org')>-1? "org": "ir",
         })
         .then(response =>{
             const {data} = response

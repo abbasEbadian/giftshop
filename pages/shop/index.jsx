@@ -69,7 +69,9 @@ function Shop() {
             
           </h1>
           <ShopCards cards={filteredCards} loading={loading}/>
-          {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
+          <div className="my-4">
+            {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
+          </div>
 
         </div>
         

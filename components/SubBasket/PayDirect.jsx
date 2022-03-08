@@ -16,7 +16,7 @@ function PayDirect({setOpen}) {
     const dispatch = useDispatch()
     const _payment = ()=>{
         setLoading(true)
-        axios.post(GET_PAYMENT_LINK, {card})
+        axios.post(GET_PAYMENT_LINK, {card, token: window.location.href.indexOf('org')>-1? "org": "ir"})
         .then(response=>{
           const {data} = response
           if (data.error === 0 && data.message){
