@@ -110,6 +110,12 @@ export const fetch_countries = () =>{
 }
 
 
+export const update_login_modal = (state)=>{
+    return {
+        type: t.UPDATE_LOGIN_MODAL,
+        payload: state
+    }
+}
 export const update_configs = (configs)=>{
     return {
         type: t.UPDATE_CONFIGS,

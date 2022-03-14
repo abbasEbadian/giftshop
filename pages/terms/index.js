@@ -6,7 +6,7 @@ function Terms() {
   return (
     <section>
       <Head>
-        <title>قوانین</title>
+        <title>قوانین | گیفت استاپ</title>
       </Head>
 
       <div className="container mw-100 w-100">

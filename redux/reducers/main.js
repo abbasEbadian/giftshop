@@ -9,7 +9,9 @@ const init_state = {
     configs: [],
     fetching_cards: false,
     fetching_brands: false,
-    fetching_countries: false
+    fetching_countries: false,
+
+    loginModalOpen: false,
 }
 
 
@@ -58,6 +60,11 @@ const mainReducer = (state=init_state,action)=>{
             return {
                 ...state,
                 fetching_countries: action.payload
+            }
+        case t.UPDATE_LOGIN_MODAL: 
+            return {
+                ...state,
+                loginModalOpen: action.payload
             }
         default: return {...state}
     }

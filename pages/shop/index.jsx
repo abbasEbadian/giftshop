@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ShopFilters from "../../components/ShopFilters";
 import ShopCards from "../../components/ShopCards";
+// import ShopSortBy from "../../components/ShopSortBy";
 import Head from "next/head";
 import axios from "axios";
 import {GET_TEMPLATES } from '../../redux/endpoints'
@@ -13,6 +14,7 @@ function Shop() {
   const [loading, setLoading] = React.useState(false)
   const [filters, setFilters] = React.useState({})
   const [cardsCount, setCardsCount] = React.useState({})
+  const [sortBy, setSortBy] = React.useState("-created")
   const router = useRouter()
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
@@ -53,8 +55,9 @@ function Shop() {
 }, [brand_name, real_price, country])
   return (
     <div className="shop-main">
-        <Head><title>فروشگاه | گیفت شاپ</title></Head>
+        <Head><title>فروشگاه | گیفت استاپ</title></Head>
 
+      
       <div className="row ">
         <div className="col-12 col-md-3">
           <ShopFilters
@@ -68,8 +71,11 @@ function Shop() {
             محصولات <span className="text-danger">فروشگاه</span>
             
           </h1>
+          {/* <div className="col-12 col-md-6 col-xl-4"><ShopSortBy value={sortBy} setValue={setSortBy}/></div> */}
           <ShopCards cards={filteredCards} loading={loading}/>
-          {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
+          <div className="my-4">
+            {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
+          </div>
 
         </div>
         

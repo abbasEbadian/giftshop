@@ -34,11 +34,11 @@ function SendFeedback({product}) {
         می توانید نظر خود را برای ما ارسال کنید
     </p>
     <textarea className="form-control" placeholder="نظر خود را بنویسید" value={text} onChange={e=>setText(e.target.value)}> </textarea>
-    <div className="d-flex justify-content-between align-items-centerpy-2">
+    <div className="d-flex justify-content-between align-items-center py-2">
           <div
-            className="d-flex align-items-center justify-content-evenly mt-3"
-            dir="ltr"
+            className="d-flex align-items-center justify-content-evenly mt-3 flex-wrap"
           >
+            <span className="cursor-pointer">امتیاز دهید</span>
             <Rating
               className="star-color"
               name="simple-controlled"
@@ -47,7 +47,7 @@ function SendFeedback({product}) {
                 setNewRating(newValue);
               }}
             />
-            <span className="cursor-pointer">امتیاز دهید</span>
+            
           </div>
         <LoaderButton className="my-2 py-2  align-self-end w-300 " onClick={send} text="ارسال" loading={loading}/>
     </div>

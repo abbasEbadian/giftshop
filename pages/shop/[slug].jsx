@@ -16,8 +16,8 @@ function Shop() {
   const [loading, setLoading] = React.useState(false)
   const [filters, setFilters] = React.useState({brand_name})
   const [cardsCount, setCardsCount] = React.useState({brand_name})
-  const cards = useSelector(state=>state.main.cards)
-  
+  const brands = useSelector(state=>state.main.brands)
+  const [brandName, setBrandName] = React.useState()
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
@@ -26,27 +26,29 @@ function Shop() {
   const {real_price, country} = router.query
 
   React.useEffect(() => {
-    let params = {}
-    Object.keys(filters).map(item=>{
-      if(item) params[item] = filters[item]
-    })
-    
-    params["brand_name"] = brand_name
-    params["page"] = page
-    setLoading(true)
-    axios.get(GET_TEMPLATES, {params})
-    .then(res=>{
-      const {data} = res
+    if(brand_name){
+      let params = {}
+      Object.keys(filters).map(item=>{
+        if(item) params[item] = filters[item]
+      })
       
-      setFilteredCards( data.data || [])
-      setCardsCount(data.size)
-    })
-    .catch(err=>console.log(err))
-    .finally(f=>{
-      setTimeout(() => {
-        setLoading(false)
-      }, 2000);
-    })
+      params["brand_name"] = brand_name
+      params["page"] = page
+      setLoading(true)
+      axios.get(GET_TEMPLATES, {params})
+      .then(res=>{
+        const {data} = res
+        
+        setFilteredCards( data.data || [])
+        setCardsCount(data.size)
+      })
+      .catch(err=>console.log(err))
+      .finally(f=>{
+        setTimeout(() => {
+          setLoading(false)
+        }, 2000);
+      })
+    }
 
   }, [filters, page, brand_name])
 
@@ -59,10 +61,17 @@ function Shop() {
     setFilters(f)
 }, [ real_price, country])
 
+  React.useEffect(()=>{
+    if(brand_name && brands){
+      const b = brands.filter(i=>i.name === brand_name)
+      if( b && b.length>0 ) setBrandName(b[0].persian_name)
+    }
+}, [ brand_name, brands])
+
   return (
     <div className="shop-main">
        <Head>
-          <title>{brand_name} | گیفت شاپ </title>
+          <title>{brand_name} | گیفت استاپ </title>
         </Head>
       <div className="row ">
         <div className="col-12 col-md-3">
@@ -75,14 +84,16 @@ function Shop() {
         <div className="col-12 col-md-9">
           <h1 className="text-center line-height-64">
             {brand_name? <span>
-              {"گیفت کارت  "} {brand_name}</span>
+              {"گیفت کارت  "} <span className="text-danger">{brandName}</span></span>
             :<>
             محصولات <span className="text-danger">فروشگاه</span>
             </>
             }
           </h1>
           <ShopCards cards={filteredCards} loading={loading}/>
-          {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
+          <div className="my-4">
+            {cardsCount> 20 ?<PaginationControlled handleChange={handleChange} size={cardsCount} page={page}/>:null}
+          </div>
         </div>
         
       </div>

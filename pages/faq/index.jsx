@@ -23,7 +23,7 @@ function Faqs() {
   return (
     <>
       <section>
-        <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
+        <Head><title>پرسش پاسخ | گیفت استاپ</title></Head>
         <div className="container mw-100 w-100">
           <div className="row">
             <div className="aboutimg">

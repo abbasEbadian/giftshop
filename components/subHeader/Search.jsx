@@ -74,7 +74,7 @@ export default function CheckboxesTags({setOpen=false}) {
       id="main-searchbox"
       options={cats.filter(i=>!searchValue.includes(i.title))}
       disableCloseOnSelect
-      getOptionLabel={(option) => option.title}
+      getOptionLabel={(option) => option.persian_name? option.persian_name: option.title}
       groupBy={e=>e.group}
       noOptionsText={"گزینه ای یافت نشد "}
       loading={loading}
@@ -88,7 +88,13 @@ export default function CheckboxesTags({setOpen=false}) {
             style={{ marginRight: 8 }}
             checked={selected}
           />
-          {option.persian_name? option.persian_name: option.title}
+          {option.persian_name? 
+
+          <span>
+            {option.persian_name} <small className="text-black-50">({option.title})</small>
+          </span>
+          
+          : option.title}
         </li>
       )}
       style={{ width: 500 }}

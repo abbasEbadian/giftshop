@@ -1,14 +1,17 @@
 import React from "react";
 import Slider from "@mui/material/Slider";
 import { Select, MenuItem, FormControl, Button, Typography } from "@mui/material";
-import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import FormControlLabel from '@mui/material/FormControlLabel'
+import RadioGroup from '@mui/material/RadioGroup'
+import Radio from '@mui/material/Radio'
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import {useRouter} from 'next/router'
 function ShopFilters({  
   setFilters,
   brand_name = null,
 }) {
+  const router = useRouter()
   const minDistance = 5;
   const min_value = 0
   const max_value = 300
@@ -16,8 +19,11 @@ function ShopFilters({
   const [rateValue, setRateValue] = React.useState([1, 5]);
   const [values, setValues] = React.useState([]);
   const [selectedCountries, setSelectedCountries] = React.useState([]);
+  const [accountType, setAccountType] = React.useState("all")
   const countries = useSelector((state) => state.main.countries);
   const categories = useSelector((state) => state.main.brands);
+
+ 
 
   const toggleCountry = (symbol) => {
     if (selectedCountries.includes(symbol)) {
@@ -68,6 +74,7 @@ function ShopFilters({
     setSelectedCountries([]);
     setValue1([0, max_value]);
     setRateValue([1, 5]);
+    router.push('/shop')
   };
   React.useEffect(() => {
     let a = [];
@@ -99,12 +106,18 @@ function ShopFilters({
   }, [value1]);
 
   React.useEffect(() => {
-   
     setFilters(s=>{return {
       ...s,
       country: selectedCountries.join(','),
     }})
   }, [selectedCountries]);
+
+  React.useEffect(() => {
+    setFilters(s=>{return {
+      ...s,
+      accountType: accountType,
+    }})
+  }, [accountType]);
 
   return (
     <div>
@@ -142,6 +155,24 @@ function ShopFilters({
               );
             })}
           </div>
+        </div>
+
+        <div className="filter filter-country">
+          <span className="title d-block">نوع کارت</span>
+          
+            <div className="d-flex w-100">
+            <RadioGroup
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              value={accountType}
+              onChange={e=>setAccountType(e.target.value)}
+            >
+              <FormControlLabel className="m-0" value="giftcard" control={<Radio />} label="گیفت کارت" />
+              <FormControlLabel className="m-0" value="account" control={<Radio />} label="اشتراکی" />
+              <FormControlLabel className="m-0" value="all" control={<Radio />} label="هردو" />
+            </RadioGroup>
+            
+            </div>
         </div>
         <div className="filter filter-country">
           <span className="title">کشور</span>

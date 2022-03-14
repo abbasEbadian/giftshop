@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import LoginImage from "../../img/login/img-login.png"
 import Link from 'next/link'
+import Head from 'next/head'
 import {login} from '../../redux/actions'
 import {toast} from 'react-toastify'
 import { useDispatch } from "react-redux";
@@ -78,6 +79,7 @@ function Login({setRuleOpen}) {
 
     return (
     <div className="login">
+    <Head><title>ورود | گیفت استاپ</title></Head>  
     <div className="login__content">
         <div className="login__img">
             <Image src={LoginImage} alt="" />

@@ -49,7 +49,7 @@ function Basket() {
 
   return (
     <section className="container pb-5">
-      <Head><title>سبد خرید | گیفت شاپ</title></Head>
+      <Head><title>سبد خرید | گیفت استاپ</title></Head>
       <h1 className="text-center mt-4">
         کارت های <span className="text-secondary">انتخابی</span>
       </h1>

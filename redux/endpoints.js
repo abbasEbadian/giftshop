@@ -1,5 +1,5 @@
-
 let base = "https://www.arsimodir.ir"
+
 if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
     base = "http://localhost:8000" 
 
@@ -56,4 +56,7 @@ export const SEARCH_OPTIONS = _("/search/options/")
 export const CLOSE_TICKET = _("/tickets/close/")
 
 export const APPLY_CODE = _("/orders/apply_code/")
+export const GENERATE_WALLET_TRANSACRTION = _("/orders/generate_wallet_transaction/")
+
+export const SEND_CONTACT_US_MESSAGE = _("/contact-us/send_contact_us_message/")
 

@@ -6,7 +6,7 @@ function ShopCards({ cards , loading=false}) {
     <div className="mt-5">
       <div className="container">
         <div className="row">
-          <div className="product-list-gift">
+          <div className="product-list-gift py-3 row">
             {cards.length ? cards.map((i, idx) => {
                   return (
                     <div
@@ -17,9 +17,9 @@ function ShopCards({ cards , loading=false}) {
                     </div>
                   );
                 })
-              : <div className="d-grid place-items-center w-100 mt-5"> 
+              : <div className="d-grid place-items-center w-100"> 
                   {!loading ? 
-                    <div className="alert alert-info">
+                    <div className="alert alert-info mb-0">
                       {"کارتی برای نمایش وجود ندارد"}
                     </div>
                   :<div className="d-flex align-items-end">

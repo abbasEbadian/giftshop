@@ -16,3 +16,5 @@ export const UPDATE_STATUS = "UPDATE_STATUS"
 
 export const UPDATE_BASKET = "UPDATE_BASKET"
 export const SET_CART = "SET_CART"
+
+export const UPDATE_LOGIN_MODAL = "UPDATE_LOGIN_MODAL"

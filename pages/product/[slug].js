@@ -12,7 +12,7 @@ import axios from 'axios'
 import { ADD_TO_CART, GET_CARD } from "../../redux/endpoints";
 import { Bars } from "react-loader-spinner";
 import { toast } from "react-toastify";
-import { get_cart } from "../../redux/actions";
+import { get_cart, update_login_modal } from "../../redux/actions";
 import Head from "next/head";
 import Link from "next/link";
 import Button from "@mui/material/Button";
@@ -57,8 +57,12 @@ function Product() {
       count: count
     }).then(res=>{
       const {data}= res 
-      toast.success("با موفقیت افزوده شد.")
-      dispatch(get_cart())
+      if(data.error === 0)
+        dispatch(get_cart())
+      else if(data.error === 1 && data.message.indexOf('وارد') > -1){
+        dispatch(update_login_modal(true))
+      }
+      toast(data.message, {type: data.type})
     })
     .catch(e=>{
       console.log(e)
@@ -69,7 +73,7 @@ function Product() {
   }
   return (
     <div className="container single-product ">
-      <Head><title>صفحه محصول {pid} | گیفت شاپ</title></Head>
+      <Head><title>{product && product.full_name}</title></Head>
 
       <h1 className="text-center mt-4">
         کارت <span className="text-secondary">انتخابی</span>
@@ -139,7 +143,7 @@ function Product() {
         _products={similar}
         title={
           <span>
-            {"کارتهای"} <span className="text-secondary">مشابه</span>
+            {"کارت های"} <span className="text-secondary">مشابه</span>
           </span>
         }
       />
