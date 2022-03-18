@@ -151,7 +151,7 @@ function Wallet() {
             <div className="row">
                 <ProfileAside active="wallet" />
                 <div className=" col-lg-9 col-12 py-5">
-                    <h5 class="text-basket pb-3 m-0">
+                    <h5 className="text-basket pb-3 m-0">
                         موجودی <span>کیف پول</span>
                     </h5>
                     <div className="wallet py-4 text-center">

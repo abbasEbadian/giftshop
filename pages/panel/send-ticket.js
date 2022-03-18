@@ -59,7 +59,7 @@ function SendTicket(props) {
       <div className="row">
         <ProfileAside active="new_ticket" />
         <div className=" col-lg-9 col-12 py-5">
-          <h5 class="text-basket pb-3 m-0">
+          <h5 className="text-basket pb-3 m-0">
             ارسال <span>تیکت</span>
           </h5>
           <form action="#" method="post">
@@ -94,7 +94,7 @@ function SendTicket(props) {
                 <label htmlFor="">سفارش مربوطه</label>
                 <Form.Select aria-label="Default select example" value={order_id} onChange={e=>setorder_id(e.target.value)}>
                   <option value={0}>--انتخاب کنید--</option>
-                  {user&&user.order_set? user.order_set.map((item)=>{
+                  {user&&user.order_set? user.order_set.reverse().map((item)=>{
                     return <option key={item.id} value={item.id}>{item.order_code}</option>
                   }): null}
                 </Form.Select>

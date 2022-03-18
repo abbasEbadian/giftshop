@@ -78,11 +78,11 @@ function Product() {
       <h1 className="text-center mt-4">
         کارت <span className="text-secondary">انتخابی</span>
       </h1>
-        {product&& product.brand_id&&product.brand_id.url?<Link href={product.brand_id.url}>
-          <a className="mx-md-5 py-4">
+        {product&& product.brand_id&&product.brand_id.url?
+          <a className="mx-md-5 py-4" href={product.brand_id.url} target="_blank">
            <Button variant="contained" color="info"> لینک آموزش استفاده</Button>
           </a>
-          </Link>:null}
+         :null}
         <div className="row  mt-2 product-list-gift mx-md-5">
           
         {product ? <>

@@ -195,7 +195,7 @@ function UserLevel() {
             <div className="row">
                 <ProfileAside active="profile" />
                 <div className=" col-lg-9 col-12 py-5">
-                    <h5 class="text-basket pb-3 m-0">
+                    <h5 className="text-basket pb-3 m-0">
                         سطح <span>کاربری</span>
                     </h5>
                     <div className="d-flex flex-wrap align-items-center userLevel">

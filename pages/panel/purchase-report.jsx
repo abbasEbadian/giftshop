@@ -41,7 +41,7 @@ function PurchaseReport() {
         <div className="row">
           <ProfileAside active="purchase_report"/>
           <div className="col-md-9 mb-5">
-          <h5 class="text-basket py-3">گزارش <span>خریدها</span></h5>
+          <h5 className="text-basket py-3">گزارش <span>خریدها</span></h5>
           <div>
             {user && user.order_set && user.order_set.filter(i=>i.status!="draft").length ? 
               user.order_set.reverse().filter(i=>i.status!=="draft").map((i, idx)=>{
@@ -53,8 +53,15 @@ function PurchaseReport() {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>{i.order_code}</Typography>
+                  <Typography>{i.order_code} </Typography>
                   <span className={"mx-4 text-"+color}>{text}</span>
+                  <span className="text-black-50">{new Date(i.purchased_date).toLocaleDateString('fa', {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric"
+                  })}</span>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid container>

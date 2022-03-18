@@ -100,7 +100,7 @@ import {IMaskInput} from 'react-imask'
       <div className="row">
         <ProfileAside active="credit_cards" />
         <div className=" col-lg-9 col-12 py-5 cards" >
-          <h5 class="text-basket pb-3 m-0">کارت های <span>اعتباری</span></h5>
+          <h5 className="text-basket pb-3 m-0">کارت های <span>اعتباری</span></h5>
           <Grid container spacing={2}>
             {user&&user.creditcard_set.length?user.creditcard_set.map(i=>{
               return <Grid item xs={12} md={6} lg={4} key={i.number} >

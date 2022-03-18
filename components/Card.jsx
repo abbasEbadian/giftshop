@@ -4,7 +4,7 @@ import apex from "../img/card/apex.png";
 import apple from "../img/card/apple.png";
 import applemusic from "../img/card/applemusic.png";
 import blizard from "../img/card/blizard.png";
-import gold from "../img/card/gold.png";
+import razergold from "../img/card/razergold.png";
 import googleplay from "../img/card/googleplay.png";
 import leagueoflegends from "../img/card/leagueoflegends.png";
 import mastercard from "../img/card/mastercard.png";
@@ -83,7 +83,7 @@ function Card({
       case "apex": return  apex;
       case "leagueoflegends": return  leagueoflegends;
       case "blizard": return  blizard;
-      case "gold": return  gold;
+      case "razergold": return  razergold;
       case "googleplay": return  googleplay;
       case "netflix": return  netflix;
       case "nintendo": return  nintendo;
@@ -217,7 +217,7 @@ function Card({
         <h5 className="w-100 d-flex  justify-content-between px-2">
           <Typography component="span" sx={{fontSize: "12px"}}>
             <span>
-              {data.full_name}
+              {data.full_name_trimmed}
             </span>
             {data.date > 0?<>
               <br></br>
@@ -226,12 +226,12 @@ function Card({
           </Typography>
           <Typography component="span" sx={{fontSize: "14px"}} className="test">
             {data.offcard_set && data.offcard_set.length > 0 ?<>
-              <del >
+              <del>
                 {Number(Number(data.price)).toLocaleString()} {" ت "}{" "}
               </del><br/>
               <span  className="special-offer-price text-success">{Number(data.price)/100 * (100 - data.offcard_set[0].amount )}</span> {" ت "}
               </>
-            : <><span>
+            : <><span className="text-nowrap">
             {(Number(data.price)).toLocaleString()} {" ت "}{" "}</span><br/>
             <span className="special-offer-price text-success"></span>
           </>}

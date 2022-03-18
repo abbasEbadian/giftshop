@@ -60,7 +60,7 @@ const [full, setFull] = React.useState(false)
             </li>
 
             <li className="menu-item menu-item-child">
-                <a href="https://blog.giftstop.org" target="_blank" onClick={e=>setMenuopen(false)} data-toggle="sub-menu">بلاگ </a>
+                <a href="https://blog.giftstop.org/category/learn/" target="_blank" onClick={e=>setMenuopen(false)} data-toggle="sub-menu">آموزش </a>
             </li>
             
             {auth?<><li className="menu-item menu-item-child">
@@ -111,11 +111,11 @@ const [full, setFull] = React.useState(false)
               <a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a>
               <div className={"list-show-menu w-100 bg-white " + (active ? " collapsed " : "")}>
                 <ul
-                  class="dropdown-menu mega-menu d-flex flex-wrap container-fluid mx-auto  pe-4"
+                  className="dropdown-menu mega-menu d-flex flex-wrap container-fluid mx-auto  pe-4"
                 >
                   {brands.map((item, idx) => {
                     return (
-                      <li className="megamenu-item">
+                      <li className="megamenu-item" key={idx}>
                         <ArrowBackIosIcon />
                         <Link href={"/shop/" + item.slug_name}>
                           <a className="megamenu-link">گیفت کارت  {item.persian_name}</a>
@@ -136,7 +136,7 @@ const [full, setFull] = React.useState(false)
           {auth?<Link href="/panel/send-ticket">
             <a>تیکت</a>
           </Link>:null}
-          <a href="https://blog.giftstop.org" target="_blank" onClick={e=>setMenuopen(false)} data-toggle="sub-menu">بلاگ </a>
+          <a href="https://blog.giftstop.org/category/learn/" target="_blank" onClick={e=>setMenuopen(false)} data-toggle="sub-menu">آموزش </a>
 
         </div>
 

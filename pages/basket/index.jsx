@@ -61,7 +61,7 @@ function Basket() {
        <section className="alert alert-info w-75 my-5 mx-auto">سبد خرید شما خالیست</section>
         </>
       }
-      {basket.orderline_set?.length? <div class="col-12 button-basket py-5  flex-wrap">
+      {basket.orderline_set?.length? <div className="col-12 button-basket py-5  flex-wrap">
         <div className="col-12 col-md-6 d-flex justify-content-center">
           <h4>مجموع کل :</h4>
           {basket.discount_code_amount?
@@ -73,15 +73,15 @@ function Basket() {
           تومان
 
         </div>
-        <div class="col-6 col-md-3 px-2
+        <div className="col-6 col-md-3 px-2
         ">
-          <div class="accept-pay cursor-pointer">
+          <div className="accept-pay cursor-pointer">
             
             <a onClick={e=>setPaymentMethodOpen(true)}>تایید و ادامه</a>
           </div>
         </div>
-        <div class="col-6 col-md-3">
-          <div class="cancel-pay cursor-pointer">
+        <div className="col-6 col-md-3">
+          <div className="cancel-pay cursor-pointer">
             <a onClick={e=>setOpen(true)}>خالی کردن سبد</a>
           </div>
         </div>

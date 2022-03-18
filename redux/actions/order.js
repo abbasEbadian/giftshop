@@ -6,7 +6,6 @@ import * as e from '../endpoints'
 
 export const get_cart = () =>{
     return async (dispatch, getState)=>{
-        console.log(getState)
         axios.get(e.GET_CART).then(res=>{
             const {data} = res
             dispatch({type: t.UPDATE_BASKET,payload:  data })

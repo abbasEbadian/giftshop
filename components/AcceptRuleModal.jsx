@@ -37,8 +37,8 @@ export default function AcceptRuleModal({open, setOpen}) {
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             {configs&&configs.rules&&configs.rules.content?
-              configs&&configs.rules&&configs.rules.content.split("-").map(t=>{
-                return t&&<span> {"- "} {t}<br/><br/></span>
+              configs&&configs.rules&&configs.rules.content.split("-").map((t, idx)=>{
+                return t&&<span key={idx}> {"- "} {t}<br/><br/></span>
               })
             :""}
           </DialogContentText>

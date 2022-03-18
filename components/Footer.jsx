@@ -79,11 +79,11 @@ function Footer() {
           </div>
           <div className="col-12 col-md-4 row">
             <div className="col-6">  
-              <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl"><img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl" alt="" style={{"cursor":"pointer"}} id="c2wlsvTOBsHuWhbaPdwl"/></a>
+              <a referrerPolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl"><img referrerPolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl" alt="" style={{"cursor":"pointer"}} id="c2wlsvTOBsHuWhbaPdwl"/></a>
             </div>   
             <div className="col-6">  
               <span id="PPTrust" >
-              <a referrerpolicy="origin" href="https://oauth.payping.ir/trust" title="نماد اعتماد پی‌پینگ" onclick="event.preventDefault();window.open('https://oauth.payping.ir/trust','_blank','location=yes,height=720,width=520,scrollbars=yes,status=yes');"><img style={{width: "96px",  height: "115px"}} src="https://cdn.payping.ir/statics/Payping-logo/Trust/white.svg" alt="نماد اعتماد پی‌پینگ" referrerpolicy="origin"/></a>
+              <a referrerPolicy="origin" href="https://oauth.payping.ir/trust" title="نماد اعتماد پی‌پینگ" onclick="event.preventDefault();window.open('https://oauth.payping.ir/trust','_blank','location=yes,height=720,width=520,scrollbars=yes,status=yes');"><img style={{width: "96px",  height: "115px"}} src="https://cdn.payping.ir/statics/Payping-logo/Trust/white.svg" alt="نماد اعتماد پی‌پینگ" referrerPolicy="origin"/></a>
               </span>
             </div>  
             

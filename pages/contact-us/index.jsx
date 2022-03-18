@@ -6,7 +6,7 @@ import Link from 'next/link'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import * as e from '../../redux/endpoints'
-import contactimg from '../../img/other/Contact_us.jpg' 
+import contactimg from '../../img/other/Contact_us.png' 
 import Image from 'next/image'
 const Aster = ()=>{
     return  <b className="text-danger mx-2">*</b>
