@@ -63,7 +63,7 @@ function ContactUs() {
                                     <a className=' w-100 h-100 p-0'><input type="submit" value="ارسال" className=' px-5 bg-transparent border-0 text-white w-100 h-100'></input></a>
                                 </div>
                                 <div className="accept-pay px-md-5">
-                                    <a target="_blank" href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
+                                    <a target="_blank" rel="nofollow noopener"  href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
                                             پیام به تلگرام
                                     </a>
                                 </div>

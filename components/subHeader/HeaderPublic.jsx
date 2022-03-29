@@ -60,7 +60,11 @@ const [full, setFull] = React.useState(false)
             </li>
 
             <li className="menu-item menu-item-child">
-                <a href="https://blog.giftstop.org/category/learn/" target="_blank" onClick={e=>setMenuopen(false)} data-toggle="sub-menu">آموزش </a>
+              <Link href="/blog">
+                <a  onClick={e=>setMenuopen(false)} data-toggle="sub-menu">
+                آموزش - مقالات
+                </a>
+            </Link>
             </li>
             
             {auth?<><li className="menu-item menu-item-child">
@@ -136,7 +140,11 @@ const [full, setFull] = React.useState(false)
           {auth?<Link href="/panel/send-ticket">
             <a>تیکت</a>
           </Link>:null}
-          <a href="https://blog.giftstop.org/category/learn/" target="_blank" onClick={e=>setMenuopen(false)} data-toggle="sub-menu">آموزش </a>
+          <Link href="/blog">
+              <a  onClick={e=>setMenuopen(false)} data-toggle="sub-menu">
+              آموزش - مقالات
+              </a>
+          </Link>
 
         </div>
 

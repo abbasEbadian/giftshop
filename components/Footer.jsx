@@ -67,7 +67,7 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="https://blog.giftstop.org">بلاگ</a>
+                <a target="_blank" href="https://blog.giftstop.org">بلاگ</a>
               </li>
               
               <li>
@@ -78,13 +78,17 @@ function Footer() {
             </ul>
           </div>
           <div className="col-12 col-md-4 row">
-            <div className="col-6">  
-              <a referrerPolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl"><img referrerPolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl" alt="" style={{"cursor":"pointer"}} id="c2wlsvTOBsHuWhbaPdwl"/></a>
+            <div className="col-4">  
+              <a referrerPolicy="origin"  rel="nofollow noopener" target="_blank" href="https://trustseal.enamad.ir/?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl"><img referrerPolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl" alt="" style={{"cursor":"pointer"}} id="c2wlsvTOBsHuWhbaPdwl"/></a>
             </div>   
-            <div className="col-6">  
+            <div className="col-4">  
               <span id="PPTrust" >
-              <a referrerPolicy="origin" href="https://oauth.payping.ir/trust" title="نماد اعتماد پی‌پینگ" onclick="event.preventDefault();window.open('https://oauth.payping.ir/trust','_blank','location=yes,height=720,width=520,scrollbars=yes,status=yes');"><img style={{width: "96px",  height: "115px"}} src="https://cdn.payping.ir/statics/Payping-logo/Trust/white.svg" alt="نماد اعتماد پی‌پینگ" referrerPolicy="origin"/></a>
+              <a referrerPolicy="origin" rel="nofollow noopener"  href="https://oauth.payping.ir/trust" title="نماد اعتماد پی‌پینگ" onclick="event.preventDefault();window.open('https://oauth.payping.ir/trust','_blank','location=yes,height=720,width=520,scrollbars=yes,status=yes');"><img style={{width: "96px",  height: "115px"}} src="https://cdn.payping.ir/statics/Payping-logo/Trust/white.svg" alt="نماد اعتماد پی‌پینگ" referrerPolicy="origin"/></a>
               </span>
+            </div>  
+            <div className="col-4">  
+              <span id="PPTrust" >
+              <img referrerpolicy='origin' id = 'rgvjesgtjxlznbqeesgtnbqe' style = {{cursor:"pointer"}} onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=301202&p=xlaoobpdrfthuiwkobpduiwk", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=301202&p=qftilymanbpdodrflymaodrf' />              </span>
             </div>  
             
           </div>
@@ -98,35 +102,35 @@ function Footer() {
               تمامی مطالب، عکس ها و... متعلق به سایت فروشگاهی گیفت استاپ می باشد.
               <br />
               طراحی و اجرا: 
-              <a href="https://t.me/awrshhhhh" className="text-muted mx-3">آرش زرندی</a> -
-              <a href="https://t.me/EbadianAbbas" className="text-muted mx-3">عباس عبادیان</a>
+              <a href="https://t.me/awrshhhhh"  rel="nofollow noopener" className="text-muted mx-3">آرش زرندی</a> -
+              <a href="https://t.me/EbadianAbbas"  rel="nofollow noopener" className="text-muted mx-3">عباس عبادیان</a>
             </p>
           </div>
 
           <div className="col-md-4 col-sm-6 col-xs-12">
             <ul className="social-icons p-0">
               <li>
-                <a className="pt-1 facebook" target={"_blank"} href={config&&config.contactus&&config.contactus.facebook_link?config.contactus.facebook_link: "https://facebook.com"}>
+                <a className="pt-1 facebook" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.facebook_link?config.contactus.facebook_link: "https://facebook.com"}>
                   <i className="bi fs-4 bi-facebook"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 telegram" target={"_blank"} href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
+                <a className="pt-1 telegram" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
                   <i className="bi fs-4 bi-telegram"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 whatsapp" target={"_blank"} href={config&&config.contactus&&config.contactus.whatsapp_link?config.contactus.whatsapp_link: "https://whatsapp.org"}>
+                <a className="pt-1 whatsapp" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.whatsapp_link?config.contactus.whatsapp_link: "https://whatsapp.org"}>
                   <i className="bi fs-4 bi-whatsapp"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 twitter" target={"_blank"} href={config&&config.contactus&&config.contactus.twitter_link?config.contactus.twitter_link: "https://twitter.com"}>
+                <a className="pt-1 twitter" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.twitter_link?config.contactus.twitter_link: "https://twitter.com"}>
                   <i className="bi fs-4 bi-twitter"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 instagram" target={"_blank"} href={config&&config.contactus&&config.contactus.instagram_link?config.contactus.instagram_link: "https://instagram.com"}>
+                <a className="pt-1 instagram" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.instagram_link?config.contactus.instagram_link: "https://instagram.com"}>
                   <i className="bi fs-4 bi-instagram"></i>
                 </a>
               </li>

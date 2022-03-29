@@ -16,9 +16,9 @@ import { get_cart, update_login_modal } from "../../redux/actions";
 import Head from "next/head";
 import Link from "next/link";
 import Button from "@mui/material/Button";
+import * as e from "../../redux/endpoints"
 
-
-function Product() {
+function Product({data}) {
   const router = useRouter();
   const pid = router.query.slug;
   const [product, setProduct] = React.useState(undefined);
@@ -73,7 +73,11 @@ function Product() {
   }
   return (
     <div className="container single-product ">
-      <Head><title>{product && product.full_name}</title></Head>
+      <Head>
+          <title>{data.meta_title??(product && product.full_name)}</title>
+          <meta name="description" content={data.meta_description??(product && product.full_name)}/>
+          <meta name="keywords" content={data.meta_keywords??(product && product.full_name)}/>
+        </Head>
 
       <h1 className="text-center mt-4">
         کارت <span className="text-secondary">انتخابی</span>
@@ -162,5 +166,14 @@ function Product() {
     </div>
   );
 }
-
+export async function getServerSideProps({query}) {
+  try{
+    const pid = query.slug
+    const res = await fetch(e.GET_PRODUCT_TITLE(pid))
+    const data = await res.json()
+    return { props: { data } }
+  }catch(e){
+    return { props: { data:{} } }
+  }
+}
 export default Product;

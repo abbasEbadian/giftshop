@@ -176,7 +176,7 @@ function Card({
       {data.offcard_set && data.offcard_set.length > 0?
         <span className="special-offer">پیشنهاد ویژه</span>
       : null }
-        <Image src={get_image_src(data.brand_id?.name)} />
+        <Image src={get_image_src(data.brand_id?.name)} alt={(data && data.image_alt) ?? "گیفت کارت"}/>
 
         <Link href={
           { pathname: !hidePrice? "/product/[slug]":"/shop/[slug]", query: { slug: !hidePrice?(gen_path(data)):data.brand_id?.name }
@@ -189,7 +189,7 @@ function Card({
                     <span>{data.country_id?.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}</span>
                   }
                   {data.country_id && <div className="flag-cont">
-                    <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
+                    <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20}  />
                   </div>}
 
                 </span>

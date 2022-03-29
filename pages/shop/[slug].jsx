@@ -7,8 +7,8 @@ import Head from "next/head";
 import axios from "axios";
 import {GET_TEMPLATES } from '../../redux/endpoints'
 import PaginationControlled from "../../components/Pagination";
-
-function Shop() {
+import * as e from '../../redux/endpoints'
+function Shop({data}) {
   const router = useRouter();
 
   const [filteredCards, setFilteredCards] = React.useState([]);
@@ -67,11 +67,12 @@ function Shop() {
       if( b && b.length>0 ) setBrandName(b[0].persian_name)
     }
 }, [ brand_name, brands])
-
   return (
     <div className="shop-main">
-       <Head>
-          <title>{brand_name} | گیفت استاپ </title>
+        <Head>
+          <title>{data.meta_title??(brand_name + " | گیفت استاپ")}</title>
+          <meta name="description" content={data.meta_description??"فروشگاه گیفت استاپ " + brand_name}/>
+          <meta name="keywords" content={data.meta_keywords??"گیفت کارت , گیفت کارت ارزان " + brand_name}/>
         </Head>
       <div className="row ">
         <div className="col-12 col-md-3">
@@ -100,5 +101,14 @@ function Shop() {
     </div>
   );
 }
-
+export async function getServerSideProps({query}) {
+  try{
+    const brand_name = query.slug
+    const res = await fetch(e.GET_BRAND_TITLE(brand_name))
+    const data = await res.json()
+    return { props: { data } }
+  }catch(e){
+    return { props: { data:{} } }
+  }
+}
 export default Shop;

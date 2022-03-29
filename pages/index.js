@@ -22,23 +22,24 @@ import {
 import SimilarCards from "../components/SimilarCards";
 import HomeUtilities from "../components/subHome/HomeUtilities";
 import Link from "next/link";
+import * as e from '../redux/endpoints'
+import { Typography } from "@mui/material";
 
-export default function Home() {
+export default function Home({data}) {
   const [active, setActive] = React.useState("today");
   const popular_cards = useSelector(s=>s.main.popular_cards)
   const top_sale_cards = useSelector(s=>s.main.top_sale_cards)
-
+  console.log(data)
   return (
     <>
       <div className="mcontainer mcontainer-bg pb-5">
         <Head>
-          <title>GiftStop | گیفت استاپ</title>
+          <title>{data.index_title??"GiftStop | گیفت استاپ"}</title>
+          <meta name="description" content={data.index_description??"وبسایت مرجع خرید انواع گیفت کارت"}/>
+          <meta name="keywords" content={data.index_keywords??"گیفت کارت , گیفت کارت ارزان"}/>
           <link rel="icon" href="/fav.png" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <meta name="description" content="وبسایت مرجع خرید انواع گیفت کارت"/>
-          <link
-            rel="stylesheet"
-          />
+          
         </Head>
         <style JSX>{`
         .bgimage{
@@ -58,7 +59,8 @@ export default function Home() {
               همراه با <span className="text-secondary">امنیت بالا</span>
             </h3>
             <p className="text-justify">
-              انواع مختلف گیفت‌کارت با نازل‌ترین قیمت‌ها، قابل استفاده در
+              انواع مختلف 
+              {" "}<Typography sx={{fontSize: "1rem", fontWeight: "bold", display: "inline"}} component="h1" >گیفت‌ کارت</Typography> با نازل‌ترین قیمت‌ها، قابل استفاده در
               پلتفرم‌ها و سایت‌های گوناگون. جهت خریدهای آنلاین، خرید اکانت‌های
               ویژه ، پریمیوم، سهولت و کاهش هزینه‌ها در شارژ حساب‌های کاربری
               (پلی‌استیشن، آی‌تونز، گوگل‌پلی، اسپاتیفای،...) و کاربردهای دیگر
@@ -241,4 +243,13 @@ export default function Home() {
       </div>
     </>
   );
+}
+export async function getServerSideProps({query}) {
+  try{
+    const res = await fetch(e.GET_TITLE)
+    const data = await res.json()
+    return { props: { data } }
+  }catch(e){
+    return { props: { data:{} } }
+  }
 }
