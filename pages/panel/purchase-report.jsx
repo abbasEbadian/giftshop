@@ -129,7 +129,9 @@ function PurchaseReport() {
                     <ul >
                     {i.orderline_set?i.orderline_set.map(j=>{
                         return <><li >  
-                          <span>{j?.template_id?.full_name} </span>{" : "}<span className="text-success">{j.card_id?.pin}</span>
+                          <span>{j?.template_id?.full_name} </span>{" : "} {j.card_id?.pin2?<><br /></>:null}
+                            <span className="text-success">{j.card_id?.pin}</span>
+                            {j.card_id?.pin2?<><br /><span className="text-success">{j.card_id.pin2}</span></>:null}
                         </li><hr></hr></>
                         
                     }):""}

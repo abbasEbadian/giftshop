@@ -139,7 +139,9 @@
   font-weight: 600;
   font-size: 17px;
 }
-
+.head-box-blog p{
+  margin:0;
+}
 .headered-box-blog:first-child {
   margin: 0;
 }
@@ -149,7 +151,7 @@
 .favoite-blog-cat {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin: 10px 0;
 }
 .favoite-blog-cat .img-favorite-blog img {

@@ -83,12 +83,12 @@ function Footer() {
             </div>   
             <div className="col-4">  
               <span id="PPTrust" >
-              <a referrerPolicy="origin" rel="nofollow noopener"  href="https://oauth.payping.ir/trust" title="نماد اعتماد پی‌پینگ" onclick="event.preventDefault();window.open('https://oauth.payping.ir/trust','_blank','location=yes,height=720,width=520,scrollbars=yes,status=yes');"><img style={{width: "96px",  height: "115px"}} src="https://cdn.payping.ir/statics/Payping-logo/Trust/white.svg" alt="نماد اعتماد پی‌پینگ" referrerPolicy="origin"/></a>
+              <a referrerPolicy="origin" rel="nofollow noopener"  href="https://oauth.payping.ir/trust" title="نماد اعتماد پی‌پینگ" onClick="event.preventDefault();window.open('https://oauth.payping.ir/trust','_blank','location=yes,height=720,width=520,scrollbars=yes,status=yes');"><img style={{width: "96px",  height: "115px"}} src="https://cdn.payping.ir/statics/Payping-logo/Trust/white.svg" alt="نماد اعتماد پی‌پینگ" referrerPolicy="origin"/></a>
               </span>
             </div>  
             <div className="col-4">  
               <span id="PPTrust" >
-              <img referrerpolicy='origin' id = 'rgvjesgtjxlznbqeesgtnbqe' style = {{cursor:"pointer"}} onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=301202&p=xlaoobpdrfthuiwkobpduiwk", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=301202&p=qftilymanbpdodrflymaodrf' />              </span>
+              <img referrerpolicy='origin' id = 'rgvjesgtjxlznbqeesgtnbqe' style = {{cursor:"pointer"}} onClick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=301202&p=xlaoobpdrfthuiwkobpduiwk", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi' src = 'https://logo.samandehi.ir/logo.aspx?id=301202&p=qftilymanbpdodrflymaodrf' />              </span>
             </div>  
             
           </div>

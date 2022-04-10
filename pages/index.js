@@ -29,7 +29,8 @@ export default function Home({data}) {
   const [active, setActive] = React.useState("today");
   const popular_cards = useSelector(s=>s.main.popular_cards)
   const top_sale_cards = useSelector(s=>s.main.top_sale_cards)
-  console.log(data)
+  const config = useSelector(s=>s.main.configs)
+
   return (
     <>
       <div className="mcontainer mcontainer-bg pb-5">
@@ -207,28 +208,17 @@ export default function Home({data}) {
           </h3>
           <div className="d-flex align-items-center justify-content-between flex-wrap">
             <div className="col-12 col-md-5">
-              <div className="pt-5 pb-4">
-                <h4>تنوع در محصولات :</h4>
-                <p className="fw-light">
-                  شما میتوانید کامل ترین آرشیو گیفت کارت های موجود در بازار را
-                  فقط در فروشگاه اینترنتی گیفت استاپ بیابید.
-                </p>
-              </div>
-              <div className="pt-5 pb-4">
-                <h4>قیمت و کیفیت :</h4>
-                <p className="fw-light">
-                  همانطور که رضابت کاربران ، مهمترین اصل و هدف گروه گیفت استاپ
-                  میباشد ، مفتخر به ارائه نازل‌ترین قیمت ها هستیم.
-                </p>
-              </div>
-              <div className="pt-5 pb-4">
-                <p className="fw-light">
-                  {" "}
-                 همواره در تلاشیم تا با ارائه بالاترین سطح از خدمات و پشتیبانی، در کنار شما کاربران گرامی باشیم.
-                  {" "}
-                </p>
-              </div>
-
+              {config&&config.website? 
+                Array.from({length: 3}).map((_, item)=>{
+                  return <div className="pt-5 pb-4" key={item}>
+                    <h4>{config.website["orange_title_"+(item+1)]}</h4>
+                    <p className="fw-light">
+                      {config.website["orange_text_"+(item+1)]}
+                    </p>
+                  </div>
+                })
+              :""}
+              
               <Link href="/shop"><a className="btn shadow bg-white d-flex justify-content-between py-3 mt-3">
                 جستجوی سریع و خرید کارت
                 <ChevronLeft />

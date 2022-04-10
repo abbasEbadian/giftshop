@@ -198,7 +198,7 @@ function Card({
             </div>
             {showRate ? (
                   <span className="d-flex align-items-center _rate position-absolute ">
-                    <Typography sx={{transform: "translateY(1px)", fontSize: "15px", fontWeight: "900"}}> {Number(data.rate)} </Typography><StarIcon />
+                    <Typography component="h2" sx={{transform: "translateY(1px)", fontSize: "15px", fontWeight: "900"}}> {Number(data.rate)} </Typography><StarIcon />
                   </span>
                 ) : (
                   <i></i>
@@ -208,14 +208,14 @@ function Card({
       </div>
       {hidePrice && !addToCard?
         <h2 className="w-100 text-center">
-          <Typography component="span" sx={{fontSize: "clamp(12px, 1.1vw, 14px)"}}>
+          <Typography component="h2" sx={{fontSize: "clamp(12px, 1.1vw, 14px)"}}>
           <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
           </Typography>
         </h2>
       :null}
       {addToCard ? <>
         <h5 className="w-100 d-flex  justify-content-between px-2">
-          <Typography component="span" sx={{fontSize: "12px"}}>
+          <Typography component="h2" sx={{fontSize: "12px"}}>
             <span>
               {data.full_name_trimmed}
             </span>

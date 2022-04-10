@@ -277,7 +277,7 @@ function UserLevel() {
                                         
                                         <label htmlFor="icon-button-file" className="pb-3 text-success">
                                         {user&&user.has_national_card_image?
-                                            "آپلود شده":
+                                            "کارت ملی بارگذاری شده است":
                                             <IconButton color="primary" aria-label="upload picture" component="span">
                                                 <CloudUploadIcon />
                                             </IconButton>}

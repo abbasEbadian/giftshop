@@ -31,6 +31,7 @@ main.main-page .content1 p {
   align-items: center;
   margin-inline: clamp(-128px, -4vw, -16px);
   background-color: white;;
+  overflow: hidden;
 }
 .home-utilities .item {
   background-color: unset;

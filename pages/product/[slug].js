@@ -79,9 +79,9 @@ function Product({data}) {
           <meta name="keywords" content={data.meta_keywords??(product && product.full_name)}/>
         </Head>
 
-      <h1 className="text-center mt-4">
-        کارت <span className="text-secondary">انتخابی</span>
-      </h1>
+      <h2 className="text-center my-4">
+        گیفت کارت <span className="text-secondary">{product?.brand_id?.persian_name || ""}</span>
+      </h2>
         {product&& product.brand_id&&product.brand_id.url?
           <a className="mx-md-5 py-4" href={product.brand_id.url} target="_blank">
            <Button variant="contained" color="info"> لینک آموزش استفاده</Button>

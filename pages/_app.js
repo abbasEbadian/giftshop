@@ -19,6 +19,7 @@ import Router from 'next/router'
 import AcceptRuleModal from '../components/AcceptRuleModal'
 import Head from 'next/head'
 import LoginModal from '../components/LoginModal';
+import Whatsapp from '../components/Whatsapp'
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
@@ -63,6 +64,7 @@ const MyApp = ({Component, pageProps}) =>
         <BottomNavigation/>
       </Box>
       <Footer/>
+      <Whatsapp/>
      
       </>}
       <ToastContainer
