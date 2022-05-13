@@ -17,7 +17,10 @@ function PaymentStatus(props) {
         <Stack mt={5} pt={4}sx={{minHeight: "400px"}} direction="column" alignItems="center" justifyContent="flex-start">
             <ErrorIcon color="error" sx={{fontSize: "6rem"}}></ErrorIcon>
             <h2 className='my-4'>پرداخت با خطا مواجه شد.</h2>
-            <p className="text-danger">
+            <h5 className="border p-4 rounded rounded-4 text-danger">
+                {router && router.query && router.query.message || ""}
+            </h5>
+            <p className="text-danger my-4">
                 در صورت کسر مبلغ ، طی 72 ساعت آینده به حساب شما عودت داده خواهد شد.
             </p>
             <div className="d-flex">
@@ -39,5 +42,10 @@ function PaymentStatus(props) {
         </>
     )
 }
+PaymentStatus.getInitialProps = async ( context ) => {
+    let query  = context.query;
+    console.log(query);
+    return {query}
+  }
 
 export default PaymentStatus

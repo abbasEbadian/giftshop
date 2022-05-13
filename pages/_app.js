@@ -20,6 +20,8 @@ import AcceptRuleModal from '../components/AcceptRuleModal'
 import Head from 'next/head'
 import LoginModal from '../components/LoginModal';
 import Whatsapp from '../components/Whatsapp'
+import Script from 'next/script'
+
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
@@ -38,11 +40,7 @@ const MyApp = ({Component, pageProps}) =>
   configure()
   const store = useStore(pageProps.initialReduxState)
   const router = useRouter();
-  const excludeUrls = [
-    "login",
-    "signup",
-    "logout"
-  ] 
+
   React.useEffect(()=>{
     store.dispatch(get_initial_data())
     
@@ -50,7 +48,22 @@ const MyApp = ({Component, pageProps}) =>
 
   const [open, setRuleOpen] = React.useState( false)
 
+  const handleRouteChange = (url) => {
+    if (typeof window.gtag !== 'undefined' || typeof gtag !== 'undefined')
+    window.gtag('config', '[Tracking ID]', {
+      page_path: url,
+    });
+    else
+    console.log("TEST")
+  };
+  React.useEffect(() => {
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
   return (<>
+    
     <Provider store={store}>
       <Head>
           <link rel="icon" href="/fav.png" />

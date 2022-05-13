@@ -25,7 +25,7 @@ function BlogPostView({blog, blogs}) {
             </div>
             <div className="col-md-9">
             <div className="position-relative h-100 d-flex  my-4 flex-wrap">
-              <img src={e.BASE_URL + blog.image} alt="post-pic" width="425" height="264"/>
+              {blog.image&&<img src={e.BASE_URL + blog.image}  alt={blog.image_alt} className="blog-main-image" />}
               <div className="bg-Sblog " >
                 <div className="caption-header-blog  text-black">
                   <h3 className="position-relative">{blog.title}</h3>
@@ -37,7 +37,7 @@ function BlogPostView({blog, blogs}) {
              </div>
             
               <div className="text-single-blog p-4" dangerouslySetInnerHTML={{
-                __html: blog.content.replace("/media", e.BASE_URL + "/media")
+                __html: blog.content?.replace(/\/media/g, e.BASE_URL + "/media")
                 }}>
 
               </div>

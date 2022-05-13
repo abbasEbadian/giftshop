@@ -26,6 +26,8 @@ import AdapterJalali from '@date-io/date-fns-jalali';
 import DatePicker from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import withAuth from '../../redux/withAuth'
+import InfoIcon from '@mui/icons-material/Info';
+
 const Input = styled('Input')({
     display: 'none',
 });
@@ -282,10 +284,13 @@ function UserLevel() {
                                                 <CloudUploadIcon />
                                             </IconButton>}
                                         </label>
-                                        <label htmlFor="contained-button-file1">
+                                        <label htmlFor="contained-button-file1" className="text-center">
                                         <input accept="image/*" className="success-gradient d-none" id="contained-button-file2"  type="file"  onChange={upload_national_image}/>
                                         <Button disabled={national_loading} size="small" variant="contained" color="success" onClick={_national_click}>بارگذاری تصویر کارت ملی + کارت بانکی</Button>
-                                            
+                                        <Typography sx={{fontSize: "11px", mt: 1}} color="error">
+                                            <InfoIcon/>
+                                            <span>کارت ملی و کارت بانکی کنار هم و در یک عکس قرار بگیرد</span>
+                                        </Typography>
                                         </label>
                                     </div>
                                 </div>

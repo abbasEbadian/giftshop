@@ -19,17 +19,18 @@ app.prepare().then(() => {
   server.use(express.json())
 
   server.post('/gen_code', (req, res) => {
-    let last_name = req.body["first_name_sha256"]
-    last_name = Array.from(last_name).map(i=>String(i).charCodeAt()-2)
-    last_name = last_name.map(i=>String.fromCharCode(i))
-    user_id = req.body["user_id"]
+    let merchant_id = req.body["merchant_id"]
+    // // console.log(req.body)
+    // // merchant_id = Array.from(merchant_id).map(i=>String(i).charCodeAt()-2)
+    // // merchant_id = merchant_id.map(i=>String.fromCharCode(i))
+    // // req.body["merchant_id"] = merchant_id
+    // user_id = req.body["user_id"]
     fetch(req.body.url,{
         method: "POST",
         headers:{
-            Authorization: "Bearer " + last_name.join(""),
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({...req.body, amount: 1000})
+        body: JSON.stringify({...req.body, amount: req.body['amount']*10, merchant_id: merchant_id})
     })
     .then(r=>{
       if(r.status === 401)
@@ -38,31 +39,19 @@ app.prepare().then(() => {
       return r.json()
     })
     .then(r=>{
-        return res.end(JSON.stringify({error: 0, code: r.code}))
+        return res.end(JSON.stringify({error: 0, code: r.data.authority}))
     })
     .catch(c=>{return res.end(JSON.stringify({error:1, message: "خطا در اتصال به درگاه", extra: c}))})
     
   })
   server.get("/shop/payment_status", (req, res)=>{
 
-    res.writeHead(302, { // or 301
-      Location: "/",
-    });
-    return res.end();
-  })
-  server.post("/shop/payment_status", (req, res)=>{
-    server.use(bodyParser.urlencoded({ extended: true }));
-    const data = {
-      code: req.body.code,
-      refid: req.body.refid || "Test",
-      clientrefid: req.body.clientrefid,
-      cardnumber: req.body.cardnumber,
-      cardhashpan: req.body.cardhashpan || "test" ,
-    }
-    console.log(data)
-    if(!data["cardhashpan"])
-      return app.render(req, res, '/shop/payment_failure' )
-
+    
+    const {Authority, Status} = req.query
+    if(Status === "OK") {
+      const data = {
+        Authority
+      }
       fetch(_PAY, {
         method: "POST", 
         headers,
@@ -70,19 +59,25 @@ app.prepare().then(() => {
       })
       .then(r=>r.json())
       .then(r=>{
-        // if(r.error === 1)
-        // return app.render(req, res, '/shop/payment_failure' )
+        if(r.error === 1){
+          console.log(r)
+          return app.render(req, res, '/shop/payment_failure', {"message": r.message} )
+        }
+        if(r.type === "wallet")
+          return app.render(req, res, '/shop/payment_success_w')
+        return app.render(req, res, '/shop/payment_success')
       })
       .catch(e=>{
         return app.render(req, res, '/shop/payment_failure' )
       })
-      .finally(f=>{
-        if(data.clientrefid.indexOf('w#') > -1)
-          return app.render(req, res, '/shop/payment_success_w')
-        return app.render(req, res, '/shop/payment_success')
+      
 
-      })
+    }
+    else
+      return app.render(req, res, '/shop/payment_failure' )
+    
   })
+ 
   server.all('*', (req, res)=>{
     return handle(req, res)
   })

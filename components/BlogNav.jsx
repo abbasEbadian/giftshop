@@ -48,7 +48,7 @@ function BlogNav({blogs}) {
             return (
               <div className="favoite-blog-cat" key={idx}>
                 <div className="img-favorite-blog">
-                  <img src={BASE_URL + item.image} alt="favorite blog" width={75} height={47}/>
+                  {item.image &&<img src={BASE_URL + item.image} alt={item.image_alt} width={"100%"}/>}
                 </div>
                 <div className="content-fav-blog">
                <div>

@@ -44,7 +44,7 @@ function PayDirect({setOpen}) {
                       toast.success("در حال انتقال", {
                         duration: 3000,
                         onClose: ()=>{
-                          window.open("https://api.payping.ir/v2/pay/gotoipg/"+data2.code, "_self")
+                          window.open("https://www.zarinpal.com/pg/StartPay/"+data2.code, "_self")
                           setOpen(false)  
                         }
                       })

@@ -91,9 +91,7 @@ function ProductRow({ product , _count}) {
             </span>
           </div>
         </div>
-        <p className="mt-3">
-         توضیحات: {product.description}
-        </p>
+       
         <div className="col-md-8 col-12 d-flex flex-column align-items-end justify-content-center me-auto">
           <div className="add-to-card-container d-flex justify-content-end align-items-center w-100">
             

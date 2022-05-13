@@ -7,23 +7,31 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Box } from "@mui/system";
 import { useRouter } from "next/router";
+import PaginationControlled from "../../components/Pagination";
 
 function Blog({blogs, category_blogs, meta}) {
-  const [blogPosts, setBLogPosts] = React.useState(category_blogs);
+  const [blogPosts, setBLogPosts] = React.useState([]);
   const [search, setSearch] = React.useState("")
   const router = useRouter()
   const {word, category} = router.query 
+  const [page, setPage] = React.useState(1);
+  const handleChange = (e, page)=>{
+    setPage(page)
+  }
   const _search = (e)=>{
     e.preventDefault()
     e.stopPropagation()
-    router.push({pathname: "/blog", query: {word: search}}, undefined, { scroll: false })
+    router.push({pasthname: "/blog", query: {word: search}}, undefined, { scroll: false })
   }
   
   React.useEffect(async ()=>{
-    const res = await fetch(e.GET_BLOGS + (category? "?category=" + category:"")  + (word? (category? "&word=" : "?word=") + word: ""))
+    const res = await fetch(e.GET_BLOGS +( (category? "?category=" + category:"")  + (word? (category? "&word=" : "?word=") + word: ""))??"")
     const data = await res.json()
     setBLogPosts(data.category_blogs)
   }, [word])
+  React.useEffect(()=>{
+    setBLogPosts(category_blogs)
+  }, [category_blogs])
   return (
     <>
       <Head>
@@ -62,13 +70,16 @@ function Blog({blogs, category_blogs, meta}) {
               <BlogNav  blogs={blogs}/>
             </div>
             <div className="col-md-9 flex-blog order-1 justify-content-start">
-              {blogPosts.length? blogPosts.map((item, idx) => {
+              {category_blogs.length? blogPosts.map((item, idx) => {
                 return (
-                  <div className="col-md-6 col-lg-4 col-6 p-2 blog-cards" key={idx}>
+                  Math.floor(idx / 12 ) === (page-1) && <div className="col-md-6 col-lg-4 col-6 p-2 blog-cards" key={idx}>
                     <BlogPost data={item} />
                   </div>
                 );
               }): <div className="alert alert-info w-50 ">موردی یافت نشد</div>}
+              <div className="col-12 my-2">
+                {category_blogs.length> 1 ?<PaginationControlled handleChange={handleChange} size={category_blogs.length} page={page} countInEachPage={12}/>:null}
+              </div>
             </div>
           </div>
         </div>
@@ -79,7 +90,7 @@ function Blog({blogs, category_blogs, meta}) {
 export async function getServerSideProps({query}) {
   try{
     const {category, word}= query
-    const res = await fetch(e.GET_BLOGS + (category? "?category=" + category:"")  + (word? (category? "&word=" : "?word=") + word: ""))
+    const res = await fetch(e.GET_BLOGS + ((category? "?category=" + category:"")  + (word? (category? "&word=" : "?word=") + word: ""))??"")
     const data = await res.json()
     return { props: { blogs:  data.blogs , category_blogs: data.category_blogs, meta: data.meta || {}},  }
   }catch(e){

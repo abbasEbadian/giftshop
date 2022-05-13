@@ -9,13 +9,16 @@ function BlogPost({ data }) {
       <div className="up-section-info-post">
         <Link href={"/blog/posts/" + data.id}>
           <a className="position-relative">
-          <img src={BASE_URL + data.image} alt="post-pic"width="425" height="264"/>
+          {data.image && <img src={BASE_URL + data.image} alt={data.image_alt} width="100%" />}
           </a>
         </Link>
         <h6>{data.title}</h6>
-        <Typography component="p" sx={{height: "40px"}} dangerouslySetInnerHTML={{
-          __html: data.summary
-        }}></Typography>
+        <p style={{height: "40px"}}dangerouslySetInnerHTML={{
+          __html:data.summary
+        }}></p>
+        {/* {data.summary&&<Typography component="p" >
+          
+        </Typography>} */}
         <div className="text-left readMore">
           <Link href={"/blog/posts/" + data.id}>
             <a><p>ادامه مطلب...</p></a>

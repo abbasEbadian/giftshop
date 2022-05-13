@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack'
 
 function PaymentStatus(props) {
     return (<>
-        <Head><title>شارژ کیف پول موفق</title></Head>
+        <Head><title>تراکنش موفق</title></Head>
 
         <Stack mt={5} pt={4}sx={{minHeight: "400px"}} direction="column" alignItems="center" justifyContent="flex-start">
             <CheckCircleIcon color="success" sx={{fontSize: "6rem"}}></CheckCircleIcon>

@@ -24,7 +24,7 @@ import HomeUtilities from "../components/subHome/HomeUtilities";
 import Link from "next/link";
 import * as e from '../redux/endpoints'
 import { Typography } from "@mui/material";
-
+import intro from '../img/icon/giftstop-01.png'
 export default function Home({data}) {
   const [active, setActive] = React.useState("today");
   const popular_cards = useSelector(s=>s.main.popular_cards)
@@ -42,7 +42,7 @@ export default function Home({data}) {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           
         </Head>
-        <style JSX>{`
+        <style jsx>{`
         .bgimage{
           overflow: hidden;
           z-index: -1;
@@ -75,7 +75,7 @@ export default function Home({data}) {
           </div>
           <div className="col-md-2 col-0"></div>
           <div className="images col-md-6 col-12">
-            <div className="row">
+            {/* <div className="row">
               <div className="col-md-4 col-6 d-flex align-items-center pic-head1">
                 <Image src={off} />
               </div>
@@ -85,22 +85,20 @@ export default function Home({data}) {
               <div className="col-6 pic-head3">
                 <div className="varity-image d-grid place-items-center position-relative ">
                   <Image src={pie} width={280} height={280} />
-                  {/* <span className="varity-span">
-                    انواع <br />
-                    گیفت کارت
-                  </span> */}
+                 
                 </div>
               </div>
               <div className="col-6 pic-head4">
                 <Image src={income} />
               </div>
-            </div>
+            </div> */}
+            <Image src={intro} alt="intro"/>
           </div>
 
           <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">
             <span></span>
             <a href="#utilities" className="scroll-down d-flex align-items-center justify-content-center flex-column bg-transparent">
-              <span calssName="mb-2">
+              <span className="mb-2">
                 <Image src={mouse} alt="mouse" />
               </span>
               <Image src={arrows} alt="arrows" />

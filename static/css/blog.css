@@ -27,9 +27,14 @@
   position: relative;
 }
 .buttonIn .form-control::-webkit-input-placeholder {
-  font-size: 16px;
+  font-size: 15px;
   color: #707070;
   padding-right: 0.5rem;
+}
+@media (max-width: 768px) {
+  .buttonIn .form-control::-webkit-input-placeholder {
+    font-size: 11px;
+  }
 }
 #enter {
   margin: 0px;
