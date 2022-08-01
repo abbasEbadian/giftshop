@@ -9,7 +9,7 @@ import cardFolding from "../img/icon/Cards-folding3.png";
 import pie from "../img/icon/Group3452.png";
 import income from "../img/icon/IncomeIconic.png";
 import collapse from "../img/icon/Collapse.png";
-import why from "../img/other/why.png";
+import _why from "../img/other/why.png";
 import  BrandList from '../components/BrandList'
 import {useSelector } from 'react-redux'
 import {
@@ -23,7 +23,7 @@ import SimilarCards from "../components/SimilarCards";
 import HomeUtilities from "../components/subHome/HomeUtilities";
 import Link from "next/link";
 import * as e from '../redux/endpoints'
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import intro from '../img/icon/giftstop-01.png'
 export default function Home({data}) {
   const [active, setActive] = React.useState("today");
@@ -37,6 +37,14 @@ export default function Home({data}) {
     }
     return intro
   }, [config])
+
+  const why = useMemo(() => {
+    if(config?.website?.orange_image){
+      return e.BASE_URL + config.website.orange_image
+    }
+    return _why
+  }, [config])
+
   return (
     <>
       <div className="mcontainer mcontainer-bg pb-5">
@@ -191,12 +199,12 @@ export default function Home({data}) {
        
         
       </div>
-      <div className="whyus secondary-gradient-90 py-4">
+      <div className="whyus secondary-gradient-90 py-4" style={ config?.website?.orange_background? {background:  config.website.orange_background }: {}}>
         <div className="mcontainer">
           <h3 className="text-center mb-md-0 mb-5">
             <Image src={collapse} /> <b className="mx-2">چرا گیفت استاپ؟</b>{" "}
           </h3>
-          <div className="d-flex align-items-center justify-content-between flex-wrap">
+          <div className="d-flex align-items-stretch justify-content-between flex-wrap">
             <div className="col-12 col-md-5">
               {config&&config.website? 
                 Array.from({length: 3}).map((_, item)=>{
@@ -215,8 +223,8 @@ export default function Home({data}) {
               </a></Link>
             </div>
 
-            <div className="col-md-6 col-12 mt-md-0 mt-5">
-              <Image src={why} />
+            <div className="col-md-6 col-12 mt-md-0 mt-5 position-relative" >
+              <Image src={why} layout="fill" objectFit="contain"/>
             </div>
           </div>
         </div>
