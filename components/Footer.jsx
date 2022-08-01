@@ -66,9 +66,6 @@ function Footer() {
                   <a>قوانین و مقررات</a>
                 </Link>
               </li>
-              <li>
-                <a target="_blank" href="https://blog.giftstop.org">بلاگ</a>
-              </li>
               
               <li>
                 <Link href="/faq">

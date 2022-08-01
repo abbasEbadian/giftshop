@@ -6,6 +6,7 @@ import * as e from '../../../redux/endpoints'
 import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { Typography } from "@mui/material";
 // import ReadMoreBlog from "../pages/ReadMoreBlog";
 
 function BlogPostView({blog, blogs, is_short}) {
@@ -40,6 +41,9 @@ function BlogPostView({blog, blogs, is_short}) {
                   <p className="w-100" dangerouslySetInnerHTML={{
                     __html: blog.summary
                   }}></p>
+                  <hr />
+                  <Typography fontSize={12} component='small' className="w-100 text-black-50">زمان تقریبی مطالعه : { Number(blog?.read_time).toLocaleString('fa')} دقیقه</Typography>
+
                 </div>
               </div>
              </div>

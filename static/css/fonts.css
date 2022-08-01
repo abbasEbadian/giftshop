@@ -23,7 +23,7 @@
 * , [class*=Mui], [class*=Mui] *{
     font-family: IranYekan !important;
 }
-body .blog-desc * {
+body .blog-desc *, .text-single-blog * {
     font-family: IranYekanLight !important ;
     white-space: break-spaces;
 }

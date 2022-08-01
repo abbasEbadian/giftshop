@@ -25,11 +25,14 @@ function BlogPost({ data }) {
           </Link>
         </div>
       </div>
-      <div className="down-section-info-post">
+
+      <div className="down-section-info-post flex-wrap pt-2">
+      <Typography fontSize={10} component='small' className="w-100 text-black-50">زمان تقریبی مطالعه : { Number(data?.read_time).toLocaleString('fa')} دقیقه</Typography>
+
         <div className="publisher">
           <p className="m-0">
             <i className="bi bi-person "></i>
-            <span className="text-black-50 mx-2">{data.author.first_name} {" "} {data.author.last_name}</span>
+            <Typography fontSize={12} component={'small'} className="text-black-50 mx-2">{data.author.nickname || "گیفت استاپ"}</Typography>
           </p>
         </div>
         <div className="date-publish">
