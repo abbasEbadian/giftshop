@@ -56,6 +56,7 @@ import {ADD_TO_CART, TOGGLE_FAVORITES} from '../redux/endpoints'
 import { Typography } from "@mui/material";
 import LoaderButton from "./LoaderButton";
 import { ProductionQuantityLimits } from "@mui/icons-material";
+import { BASE_URL } from "../redux/types";
 
 
 function Card({
@@ -176,7 +177,7 @@ function Card({
       {data.offcard_set && data.offcard_set.length > 0?
         <span className="special-offer">پیشنهاد ویژه</span>
       : null }
-        <Image src={get_image_src(data.brand_id?.name)} alt={(data && data.image_alt) ?? "گیفت کارت"}/>
+        <Image src={data?.image? (BASE_URL+ data.image) : get_image_src(data.brand_id?.name)} alt={(data && data.image_alt) ?? "گیفت کارت"} layout="fill" />
 
         <Link href={
           { pathname: !hidePrice? "/product/[slug]":"/shop/[slug]", query: { slug: !hidePrice?(gen_path(data)):data.brand_id?.name }
