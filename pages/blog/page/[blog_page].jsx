@@ -1,27 +1,27 @@
 import React from "react";
-import background from "../../img/other/BLOG-01.png";
-import BlogPost from "../../components/BlogPost";
-import BlogNav from "../../components/BlogNav";
-import * as e from '../../redux/endpoints'
+import background from "../../../img/other/BLOG-01.png";
+import BlogPost from "../../../components/BlogPost";
+import BlogNav from "../../../components/BlogNav";
+import * as e from '../../../redux/endpoints'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Box } from "@mui/system";
 import { useRouter } from "next/router";
-import PaginationControlled from "../../components/Pagination";
+import PaginationControlled from "../../../components/Pagination";
 
 function Blog({blogs, category_blogs, meta}) {
   const [blogPosts, setBLogPosts] = React.useState([]);
   const [search, setSearch] = React.useState("")
   const router = useRouter()
-  const {word, category} = router.query 
-  const [page, setPage] = React.useState(1);
+  const {word, category, blog_page} = router.query 
+  const [page, setPage] = React.useState(0);
   const countInEachPage = React.useRef(4)
   const handleChange = (e, page)=>{
     if(page === 1){
       router.push('/blog'+ location.search)
       return
     }
-    router.push('/blog/page/' + page+ location.search)
+    router.push('/blog/page/' + page + location.search)
     if(typeof window !== "undefined"){
       window.scrollTo({
         top: 500, 
@@ -29,10 +29,11 @@ function Blog({blogs, category_blogs, meta}) {
       })
     }
   }
+  
   const _search = (e)=>{
     e.preventDefault()
     e.stopPropagation()
-    router.push({pasthname: "/blog", query: {word: search}}, undefined, { scroll: false })
+    router.push({pathname: "/blog", query: {word: search}}, undefined, { scroll: false })
   }
   
   React.useEffect(async ()=>{
@@ -40,9 +41,18 @@ function Blog({blogs, category_blogs, meta}) {
     const data = await res.json()
     setBLogPosts(data.category_blogs)
   }, [word])
+
   React.useEffect(()=>{
     setBLogPosts(category_blogs)
   }, [category_blogs])
+
+  React.useEffect(()=>{
+    if(blog_page == 1){
+      router.push('/blog')
+      return
+    }
+    if(blog_page) setPage(+blog_page)
+  }, [blog_page])
   return (
     <>
       <Head>

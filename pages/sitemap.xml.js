@@ -23,6 +23,9 @@ export const getServerSideProps = async ({ res }) => {
   const d = await fetch(BASE_URL+":8000/api/v1/get_sitemap_products/") 
   let dynamicPaths= await d.json() || []
 
+  const b = await fetch(BASE_URL+":8000/api/v1/get_sitemap_blogs/") 
+  let blogPathes= await b.json() || []
+
   let c = await fetch(BASE_URL+":8000/api/v1/get_sitemap_brands/") 
   c= await c.json() || []
 
@@ -31,6 +34,9 @@ export const getServerSideProps = async ({ res }) => {
   })
   JSON.parse(c).map(item=>{
     dynamicPaths.push(`${BASE_URL}/shop/${item}`)
+  })
+  JSON.parse(blogPathes).map(item=>{
+    dynamicPaths.push(`${BASE_URL}/blog/posts/${item}`)
   })
   const allPaths = [...staticPaths, ...dynamicPaths];
 

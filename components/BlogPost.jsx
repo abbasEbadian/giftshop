@@ -12,7 +12,7 @@ function BlogPost({ data }) {
           {data.image && <img src={BASE_URL + data.image} alt={data.image_alt} width="100%" />}
           </a>
         </Link>
-        <h6>{data.title}</h6>
+        <h2 className="blog-title">{data.title}</h2>
         <p style={{height: "40px"}}dangerouslySetInnerHTML={{
           __html:data.summary
         }}></p>
@@ -20,7 +20,7 @@ function BlogPost({ data }) {
           
         </Typography>} */}
         <div className="text-left readMore">
-          <Link href={"/blog/posts/" + data.id}>
+          <Link href={`/blog/posts/${data.id}-${data.title.replace(/[\s]+/g, '-')}`}>
             <a><p>ادامه مطلب...</p></a>
           </Link>
         </div>

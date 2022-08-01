@@ -168,7 +168,7 @@ function ShopFilters({
               onChange={e=>setAccountType(e.target.value)}
             >
               <FormControlLabel className="m-0" value="giftcard" control={<Radio />} label="گیفت کارت" />
-              <FormControlLabel className="m-0" value="account" control={<Radio />} label="اشتراکی" />
+              <FormControlLabel className="m-0" value="account" control={<Radio />} label="  اشتراک ماهیانه" />
               <FormControlLabel className="m-0" value="all" control={<Radio />} label="هردو" />
             </RadioGroup>
             

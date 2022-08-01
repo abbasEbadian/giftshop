@@ -74,8 +74,8 @@
     border-radius: 15px;
     margin:0  0 30px;
 }
-.info-blog-post h6 {
-    font-size: 16px; 
+.info-blog-post .blog-title {
+    font-size: 16px ; 
     font-weight: 500;
     margin: 15px 0;
 }

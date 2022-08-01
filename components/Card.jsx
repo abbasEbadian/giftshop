@@ -186,7 +186,7 @@ function Card({
               {!hidePrice && (data.real_price > 0 || data.country_id)?
                 <span dir="ltr" className="price text-center">
                   {data.real_price > 0 && 
-                    <span>{data.country_id?.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}</span>
+                    <span>{data.country_id?.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString('fa')}</span>
                   }
                   {data.country_id && <div className="flag-cont">
                     <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20}  />
@@ -209,7 +209,7 @@ function Card({
       {hidePrice && !addToCard?
         <h2 className="w-100 text-center">
           <Typography component="h2" sx={{fontSize: "clamp(12px, 1.1vw, 14px)"}}>
-          <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+          <span className="">گیفت کارت </span> {" "} {Number(data.real_price).toLocaleString('fa')}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
           </Typography>
         </h2>
       :null}
@@ -227,12 +227,12 @@ function Card({
           <Typography component="span" sx={{fontSize: "14px"}} className="test">
             {data.offcard_set && data.offcard_set.length > 0 ?<>
               <del>
-                {Number(Number(data.price)).toLocaleString()} {" ت "}{" "}
+                {Number(data.price).toLocaleString('fa')} {" ت "}{" "}
               </del><br/>
-              <span  className="special-offer-price text-success">{Number(data.price)/100 * (100 - data.offcard_set[0].amount )}</span> {" ت "}
+              <span  className="special-offer-price text-success">{Number(Number(data.price)/100 * (100 - data.offcard_set[0].amount )).toLocaleString('fa')}</span> {" ت "}
               </>
             : <><span className="text-nowrap">
-            {(Number(data.price)).toLocaleString()} {" ت "}{" "}</span><br/>
+            {(Number(data.price)).toLocaleString('fa')} {" ت "}{" "}</span><br/>
             <span className="special-offer-price text-success"></span>
           </>}
            

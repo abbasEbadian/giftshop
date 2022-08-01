@@ -82,7 +82,10 @@ function Product({data}) {
         </Head>
 
       <h2 className="text-center my-4">
-        گیفت کارت <span className="text-secondary">{product?.brand_id?.persian_name || ""}</span>
+        گیفت کارت {" "}
+        <Link href={'/shop/' + product?.brand_id?.name}><a>
+          <span className="text-secondary">{product?.brand_id?.persian_name || ""}</span>
+        </a></Link>
       </h2>
         {product&& product.brand_id&&product.brand_id.url?
           <a className="mx-md-5 py-4" href={product.brand_id.url} target="_blank">

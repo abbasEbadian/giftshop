@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Reviews from "../../../components/Reviews";
 import BlogNav from "../../../components/BlogNav";
 import * as e from '../../../redux/endpoints'
 
 import Image from "next/image";
 import Head from "next/head";
+import { useRouter } from "next/router";
 // import ReadMoreBlog from "../pages/ReadMoreBlog";
 
-function BlogPostView({blog, blogs}) {
+function BlogPostView({blog, blogs, is_short}) {
+  const router = useRouter()
+
+  useEffect(() => {
+      if(is_short)
+        router.push(`/blog/posts/${blog.id}-${blog.title.replace(/[\s]+/g, '-')}`)
+  }, [blog, is_short])
+  
   return (
     <>
       <Head>
@@ -25,7 +33,7 @@ function BlogPostView({blog, blogs}) {
             </div>
             <div className="col-md-9">
             <div className="position-relative h-100 d-flex  my-4 flex-wrap">
-              {blog.image&&<img src={e.BASE_URL + blog.image}  alt={blog.image_alt} className="blog-main-image" />}
+              {blog.image&&<img src={e.BASE_URL + blog.image}  alt={blog.image_alt} className="blog-main-image border rounded" />}
               <div className="bg-Sblog " >
                 <div className="caption-header-blog  text-black">
                   <h3 className="position-relative">{blog.title}</h3>
@@ -57,11 +65,15 @@ function BlogPostView({blog, blogs}) {
 export async function getServerSideProps({query}) {
     try{
       const {post_id}= query
-      const res = await fetch(e.GET_BLOG(post_id))
+      const d =  post_id.split('-').filter(Boolean)
+      const short = d.length === 1
+      const _post_id = d ? d[0] : 0
+      
+      const res = await fetch(e.GET_BLOG(_post_id))
       const blog = await res.json()
       const res2 = await fetch(e.GET_BLOGS)
       const blogs = await res2.json()
-      return { props: {blog, blogs: blogs.blogs}}
+      return { props: {blog, blogs: blogs.blogs, is_short: short}}
     }catch(e){
       return { props: { blog:{}, name: String(e)} } 
     }
