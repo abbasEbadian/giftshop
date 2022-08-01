@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Head from "next/head";
 import card from "../img/other/Card.png";
 import Image from "next/image";
@@ -31,6 +31,12 @@ export default function Home({data}) {
   const top_sale_cards = useSelector(s=>s.main.top_sale_cards)
   const config = useSelector(s=>s.main.configs)
 
+  const intro_image = useMemo(() => {
+    if(config?.website?.index_intro_image){
+      return e.BASE_URL + config.website.index_intro_image
+    }
+    return intro
+  }, [config])
   return (
     <>
       <div className="mcontainer mcontainer-bg pb-5">
@@ -60,11 +66,13 @@ export default function Home({data}) {
               همراه با <span className="text-secondary">امنیت بالا</span>
             </h3>
             <p className="text-justify">
-              انواع مختلف 
-              {" "}<Typography sx={{fontSize: "1rem", fontWeight: "bold", display: "inline"}} component="h1" >گیفت‌ کارت</Typography> با نازل‌ترین قیمت‌ها، قابل استفاده در
-              پلتفرم‌ها و سایت‌های گوناگون. جهت خریدهای آنلاین، خرید اکانت‌های
-              ویژه ، پریمیوم، سهولت و کاهش هزینه‌ها در شارژ حساب‌های کاربری
-              (پلی‌استیشن، آی‌تونز، گوگل‌پلی، اسپاتیفای،...) و کاربردهای دیگر
+              {config?.website?.index_intro_text??  <span>
+                انواع مختلف 
+                {" "}<Typography sx={{fontSize: "1rem", fontWeight: "bold", display: "inline"}} component="h1" >گیفت‌ کارت</Typography> با نازل‌ترین قیمت‌ها، قابل استفاده در
+                پلتفرم‌ها و سایت‌های گوناگون. جهت خریدهای آنلاین، خرید اکانت‌های
+                ویژه ، پریمیوم، سهولت و کاهش هزینه‌ها در شارژ حساب‌های کاربری
+                (پلی‌استیشن، آی‌تونز، گوگل‌پلی، اسپاتیفای،...) و کاربردهای دیگر
+              </span>}
             </p>
             <button className="btn success-gradient d-flex justify-content-between  align-items-center mt-3">
               <Link href="/shop ">
@@ -75,24 +83,8 @@ export default function Home({data}) {
           </div>
           <div className="col-md-2 col-0"></div>
           <div className="images col-md-6 col-12">
-            {/* <div className="row">
-              <div className="col-md-4 col-6 d-flex align-items-center pic-head1">
-                <Image src={off} />
-              </div>
-              <div className="col-8 pic-head2">
-                <Image src={cardFolding} />
-              </div>
-              <div className="col-6 pic-head3">
-                <div className="varity-image d-grid place-items-center position-relative ">
-                  <Image src={pie} width={280} height={280} />
-                 
-                </div>
-              </div>
-              <div className="col-6 pic-head4">
-                <Image src={income} />
-              </div>
-            </div> */}
-            <Image src={intro} alt="intro"/>
+            
+            <Image src={intro_image} alt="intro" layout="fill" objectFit="contain"/>
           </div>
 
           <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">
