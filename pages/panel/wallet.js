@@ -19,7 +19,7 @@ import Head from "next/head";
 import {useDispatch, useSelector} from 'react-redux'
 import WalletDepositSelectCard from "../../components/SubBasket/WalletDepositSelectCard";
 import axios from "axios";
-import {GET_WALLET_DEPOSIT_LINK} from '../../redux/endpoints'
+import {GET_WALLET_DEPOSIT_LINK, GENERATE_WALLET_TRANSACRTION} from '../../redux/endpoints'
 import {profile} from '../../redux/actions'
 import {toast} from 'react-toastify'
 import TextField from '@mui/material/TextField'
@@ -38,26 +38,50 @@ function Wallet() {
         }
         setAmountErr("")
 
-        axios.post(GET_WALLET_DEPOSIT_LINK, {
-            amount, 
-            card,
-            token: window.location.href.indexOf('org')>-1? "org": "ir",
-        })
-        .then(response =>{
-            const {data} = response
-
-            if(data.error === 0 && data.code !== ""){
-                toast(data.message, {type: data.type})
-                window.open("https://api.payping.ir/v2/pay/gotoipg/"+data.code)
-            }else{
-                toast(data.message, {type: data.type})
-            }
-
-        })
-        .catch(e=>{
+        axios.post(GET_WALLET_DEPOSIT_LINK, {amount, card, token: window.location.href.indexOf('org')>-1? "org": "ir"})
+        .then(response=>{
+          const {data} = response
+          if (data.error === 0 ){
+            let {clientRefId:card, source, amount} = data.data
             
-            toast.error("خطا در ارتباط")
-            console.log(e)
+            axios.post('/gen_code', data.data)
+            .then(response2=>{
+              let {data:data2} = response2
+              if(data2.error === 0){
+                if(data2.code){
+                  let ddd = {
+                    card,
+                    description: data2.code
+                  }
+                  if(source === "wallet") ddd["amount"] = amount
+                  axios.post(GENERATE_WALLET_TRANSACRTION, ddd)
+                  .then(r=>{
+                    let {data:data3} = r
+                    if(data3.error === 0)
+                      toast.success("در حال انتقال", {
+                        duration: 3000,
+                        onClose: ()=>{
+                          window.open("https://www.zarinpal.com/pg/StartPay/"+data2.code, "_self")
+                          setOpen(false)  
+                        }
+                      })
+                    else toast.error("خطا در ایجاد تراکنش")
+                  })
+                  .catch(err2=>{
+                    console.log(err2)
+                    toast.error("خطا در ایجاد تراکنش")
+                  })
+                }
+              }else{
+                toast.error(data2.message)
+              }
+            })
+          }else{
+            toast(data.message, {type: data.type})
+          }
+        }).catch(e=>console.log(e))
+        .finally(f=>{
+            // setLoading(false)
         })
     }
     const _open = ()=>{
@@ -127,7 +151,7 @@ function Wallet() {
             <div className="row">
                 <ProfileAside active="wallet" />
                 <div className=" col-lg-9 col-12 py-5">
-                    <h5 class="text-basket pb-3 m-0">
+                    <h5 className="text-basket pb-3 m-0">
                         موجودی <span>کیف پول</span>
                     </h5>
                     <div className="wallet py-4 text-center">
@@ -136,9 +160,9 @@ function Wallet() {
                                  اعتبار فعلی کیف پول شما : <span>{Number(user?.wallet?.balance || 0).toLocaleString('fa-IR')}</span> تومان است.
                             </h5>
                         </div>
-                        <div className="IncreaseCredit d-flex col-12 justify-content-center align-items-center py-5">
-                            <span className="col-2">میزان افزایش موجودی:</span>
-                            <div className="col-4">
+                        <div className="IncreaseCredit d-flex col-12 flex-wrap justify-content-center align-items-center py-5">
+                            <span className="col-12 col-md-3 py-4">میزان افزایش موجودی:</span>
+                            <div className="col-12 col-md-3">
                                 <TextField error={amountErr} value={amount} onChange={e => setAmount(e.target.value)} size="small" helperText={amountErr}/>
                             </div>
                         </div>

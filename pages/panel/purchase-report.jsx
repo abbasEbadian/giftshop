@@ -22,7 +22,8 @@ function PurchaseReport() {
   const user = useSelector(s=>s.auth.user)
   const get_status = (t)=>{
     switch(t.toLowerCase()){
-      case "pending": return {text: "در حال بررسی", color: "warning" }
+      case "pending": return {text: "در حال ارسال", color: "warning" }
+      case "pending_auth": return {text: "در حال بررسی", color: "warning" }
       case "done": return {text: "موفق", color: "success" }
       case "cancel": return {text: "لغو شده", color: "danger" }
 
@@ -39,22 +40,28 @@ function PurchaseReport() {
       <section className="container">
         <div className="row">
           <ProfileAside active="purchase_report"/>
-          <div className="col-md-9">
-          <h5 class="text-basket py-3">گزارش <span>خریدها</span></h5>
+          <div className="col-md-9 mb-5">
+          <h5 className="text-basket py-3">گزارش <span>خریدها</span></h5>
           <div>
             {user && user.order_set && user.order_set.filter(i=>i.status!="draft").length ? 
-              user.order_set.filter(i=>i.status!=="draft").map((i, idx)=>{
+              user.order_set.sort((a,b)=> new Date(b.purchased_date) - new Date(a.purchased_date)).filter(i=>i.status!=="draft").map((i, idx)=>{
                 const {text, color} = get_status(i.status)
-                const group = _.groupBy(i.orderline_set, c => c.template_id.id)
-                
-              return <Accordion  key={idx} TransitionProps={{ unmountOnExit: true }}>
-                             <AccordionSummary
+                const group = _.groupBy(i.orderline_set, c => c.template_id?.id)
+              return <Accordion  key={idx}>
+                <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>{i.order_code}</Typography>
+                  <Typography>{i.order_code} </Typography>
                   <span className={"mx-4 text-"+color}>{text}</span>
+                  <span className="text-black-50">{new Date(i.purchased_date).toLocaleDateString('fa', {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric"
+                  })}</span>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid container>
@@ -119,10 +126,12 @@ function PurchaseReport() {
                   </TableContainer>
                   {i.status === "done"?<>
                     <h5 className="mt-3">کدها</h5>
-                    <ul dir="ltr">
+                    <ul >
                     {i.orderline_set?i.orderline_set.map(j=>{
                         return <><li >  
-                          <span>{j?.card_id?.template_id?.real_price} / {j?.card_id?.template_id?.brand_id?.name}  / {j?.card_id?.template_id?.country_id?.symbol}</span>{" : "}<span className="text-success">{j.card_id?.pin}</span>
+                          <span>{j?.template_id?.full_name} </span>{" : "} {j.card_id?.pin2?<><br /></>:null}
+                            <span className="text-success">{j.card_id?.pin}</span>
+                            {j.card_id?.pin2?<><br /><span className="text-success">{j.card_id.pin2}</span></>:null}
                         </li><hr></hr></>
                         
                     }):""}

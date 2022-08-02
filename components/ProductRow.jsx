@@ -45,6 +45,15 @@ function ProductRow({ product , _count}) {
   const _remove_item= (p)=>{
     change_count(p, 0)
   }
+  const increaseCount = (e)=>{
+    if(loading) return
+    change_count(product.id, _count +1)
+  }
+  const decreaseCount = (e)=>{
+    if(loading) return
+    change_count(product.id, _count -1 )
+    
+  }
   return (
     <div className="row mt-5 product-list-gift basket-remove-item-parent position-relative">
       <div className="basket-remove-item text-start mt-2 position-absolute top-0 start-0">
@@ -82,37 +91,35 @@ function ProductRow({ product , _count}) {
             </span>
           </div>
         </div>
-        <p className="mt-3">
-         توضیحات: {product.description}
-        </p>
+       
         <div className="col-md-8 col-12 d-flex flex-column align-items-end justify-content-center me-auto">
-          <div className="add-to-card-container d-flex justify-content-between align-items-center w-100">
+          <div className="add-to-card-container d-flex justify-content-end align-items-center w-100">
             
-                <div dir="ltr" className="counter ">
-                <span onClick={(e) => setCount((c) => (c += 1))}>+</span>
-                <span className="border-bottom mx-2 ">{count}</span>
-                <span onClick={(e) => setCount((c) => Math.max(0, c - 1))}>-</span>
+                <div dir="ltr" className="counter mx-5">
+                <span onClick={increaseCount}>+</span>
+                <span className="border-bottom mx-2 ">{_count}</span>
+                <span onClick={decreaseCount}>-</span>
               </div>
               <span className="border rounded p-2">
                 {locale(product.price)} {" تومان "}{" "}
               </span>
 
-              <LoaderButton text="اصلاح تعداد" className="px-3" loading={loading} onClick={e=>change_count(product.id, count)}/>
+              {/* <LoaderButton text="اصلاح تعداد" className="px-3" loading={loading} onClick={e=>change_count(product.id, _count)}/> */}
           </div>
           <br />
           
           {product.dicsount > 0?<div className="calculations mt-4 d-flex align-items-center justify-content-start w-100 border-bottom pb-3" dir="ltr">
             
-            <div><span>{count}</span> <span className="px-2">x</span> <span>{product.dicsount}</span> <span className="px-2">=</span>  {count * product.dicsount}</div>
+            <div><span>{_count}</span> <span className="px-2">x</span> <span>{product.dicsount}</span> <span className="px-2">=</span>  {_count * product.dicsount}</div>
             <span className="text-danger ms-4">: تخفیف  </span>
           </div>:null}
           {product.dicsount > 0?<div className="calculations mt-3 d-flex align-items-center justify-content-start w-100" dir="ltr">
             
-            <div><span>{count * product.price}</span> <span className="px-2">-</span> <span>{count * product.dicsount}</span> <span className="px-2">=</span>  {count * product.final_price}</div>
+            <div><span>{_count * product.price}</span> <span className="px-2">-</span> <span>{_count * product.dicsount}</span> <span className="px-2">=</span>  {_count * product.final_price}</div>
             <span className="text-success ms-4">: مجموع  </span>
           </div>:
             <div className="calculations mt-4 d-flex align-items-center justify-content-start w-100" dir="ltr">
-            <div><span>{count}</span> <span className="px-2">x</span> <span>{product.price}</span> <span className="px-2">=</span>  {count * product.price}</div>
+            <div><span>{_count}</span> <span className="px-2">x</span> <span>{product.price}</span> <span className="px-2">=</span>  {_count * product.price}</div>
             <span className="text-success ms-4">: مجموع  </span>
           </div>
           }

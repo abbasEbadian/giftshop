@@ -61,8 +61,10 @@ const [full, setFull] = React.useState(false)
 
             <li className="menu-item menu-item-child">
               <Link href="/blog">
-                <a onClick={e=>setMenuopen(false)} data-toggle="sub-menu">بلاگ </a>
-              </Link>
+                <a  onClick={e=>setMenuopen(false)} data-toggle="sub-menu">
+                آموزش - مقالات
+                </a>
+            </Link>
             </li>
             
             {auth?<><li className="menu-item menu-item-child">
@@ -80,7 +82,6 @@ const [full, setFull] = React.useState(false)
             <hr/>
           </ul>
           {!auth? <Link href="/auth">
-
             <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center"  onClick={e=>setMenuopen(false)}>
               ورود <span className="mx-1">|</span>عضویت
             </a>
@@ -114,11 +115,11 @@ const [full, setFull] = React.useState(false)
               <a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a>
               <div className={"list-show-menu w-100 bg-white " + (active ? " collapsed " : "")}>
                 <ul
-                  class="dropdown-menu mega-menu d-flex flex-wrap container-fluid mx-auto  pe-4"
+                  className="dropdown-menu mega-menu d-flex flex-wrap container-fluid mx-auto  pe-4"
                 >
                   {brands.map((item, idx) => {
                     return (
-                      <li className="megamenu-item">
+                      <li className="megamenu-item" key={idx}>
                         <ArrowBackIosIcon />
                         <Link href={"/shop/" + item.slug_name}>
                           <a className="megamenu-link">گیفت کارت  {item.persian_name}</a>
@@ -139,6 +140,12 @@ const [full, setFull] = React.useState(false)
           {auth?<Link href="/panel/send-ticket">
             <a>تیکت</a>
           </Link>:null}
+          <Link href="/blog">
+              <a  onClick={e=>setMenuopen(false)} data-toggle="sub-menu">
+              آموزش - مقالات
+              </a>
+          </Link>
+
         </div>
 
         <div className="controls">

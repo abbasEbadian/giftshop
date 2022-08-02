@@ -1,46 +1,25 @@
 import React from "react";
 import Link from "next/link";
-import imgFav from "../img/other/unsplash_ZEy7KSeKIIk.png";
 import Image from 'next/image'
-function BlogNav() {
-  const [cats1, setCats1] = React.useState([
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-  ]);
-  const [cats2, setCats2] = React.useState([
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-    "مزایای خرید گیفت کارت مزایای خرید گیفت کارت ",
-  ]);
-  const [cats3, setCats3] = React.useState([
-  {
-    key: "گیفت کارت اپل",
-    value: 132
-  },
-  {
-    key: "گیفت کارت اپل",
-    value: 13
-  },
-  {
-    key: "گیفت کارت اپل",
-    value: 13
-  },
-  {
-    key: "گیفت کارت اپل",
-    value: 13
-  },
-  {
-    key: "گیفت کارت اپل",
-    value: 13
-  },
-  ]);
+import * as _ from 'lodash'
+import { BASE_URL } from "../redux/endpoints";
+
+function BlogNav({blogs}) {
+  const [cats1, setCats1] = React.useState([]);
+  const [cats2, setCats2] = React.useState([]);
+  const [cats3, setCats3] = React.useState([]);
+  React.useEffect(()=>{
+    if(blogs){
+      setCats1(_.sortBy(blogs, item=>item.id).reverse())
+      setCats2(_.sortBy(blogs, item=>item.reviews).reverse())
+      let x = _.groupBy(blogs, c => c.category_id?.name)
+      x = Object.keys(x).map(key=>{return {
+        key,
+        value: x[key].length
+      }}) 
+      setCats3(x)
+    }
+  }, [blogs])
   return (
     <div className="sidebar">
       <div className="headered-box-blog ">
@@ -50,10 +29,10 @@ function BlogNav() {
         <div className="d-flex flex-column content-box-blog">
           {cats1.map((item, idx) => {
             return (
-              <Link href="Blog/Post" className="py-2" key={idx}>
-                <a>
+              <Link href={"/blog/posts/" + item.id}  key={idx}>
+                <a className="py-2">
                 <i className="bi bi-chevron-left"></i>
-                {item}
+                {item.title}
                 </a>
               </Link>
             );
@@ -69,12 +48,12 @@ function BlogNav() {
             return (
               <div className="favoite-blog-cat" key={idx}>
                 <div className="img-favorite-blog">
-                  <Image src={imgFav} alt="favorite blog" />
+                  {item.image &&<img src={BASE_URL + item.image} alt={item.image_alt} width={"100%"}/>}
                 </div>
                 <div className="content-fav-blog">
                <div>
-                    <Link href="Blog/Post"  >
-                        <a className="py-2">{item}</a>
+                    <Link href={"/blog/posts/" + item.id} >
+                        <a className="py-2">{item.title}</a>
                     </Link>
                </div>
                 </div>
@@ -83,16 +62,16 @@ function BlogNav() {
           })}
         </div>
       </div>
-      <div className="headered-box-blog ">
+      <div className="headered-box-blog">
         <div className="head-box-blog">
           <p className="text-center">دسته بندی مطالب</p>
         </div>
         <div className="d-flex flex-column content-box-blog">
-            <ul>
+            <ul className="list-unstyled">
                 {cats3.map((item, idx) => {
                     return (
                     <li key={idx}>
-                        <Link href="/blog/post" >
+                        <Link href={"/blog?category=" + item.key} >
                             <a className="py-2">
                                 <i className="bi bi-chevron-left"></i>
                                 {item.key} &nbsp;<span>({item.value})</span>

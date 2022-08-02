@@ -16,9 +16,9 @@ import { get_cart, update_login_modal } from "../../redux/actions";
 import Head from "next/head";
 import Link from "next/link";
 import Button from "@mui/material/Button";
+import * as e from "../../redux/endpoints"
 
-
-function Product() {
+function Product({data}) {
   const router = useRouter();
   const pid = router.query.slug;
   const [product, setProduct] = React.useState(undefined);
@@ -71,18 +71,27 @@ function Product() {
       setLoading1(false)
     })
   }
+  const [open, setOpen] = React.useState(false)
   return (
     <div className="container single-product ">
-      <Head><title>صفحه محصول {pid} | گیفت شاپ</title></Head>
+        <Head>
+          <title>{data.meta_title??(product && product.full_name)}</title>
+          <meta name="description" content={data.meta_description??(product && product.full_name)}/>
+          <meta name="keywords" content={data.meta_keywords??(product && product.full_name)}/>
+          {data.meta_canonical? <link rel="canonical" href={data.meta_canonical} /> :null}
+        </Head>
 
-      <h1 className="text-center mt-4">
-        کارت <span className="text-secondary">انتخابی</span>
-      </h1>
-        {product&& product.brand_id&&product.brand_id.url?<Link href={product.brand_id.url}>
-          <a className="mx-md-5 py-4">
+      <h2 className="text-center my-4">
+        گیفت کارت {" "}
+        <Link href={'/shop/' + product?.brand_id?.name}><a>
+          <span className="text-secondary">{product?.brand_id?.persian_name || ""}</span>
+        </a></Link>
+      </h2>
+        {product&& product.brand_id&&product.brand_id.url?
+          <a className="mx-md-5 py-4" href={product.brand_id.url} target="_blank">
            <Button variant="contained" color="info"> لینک آموزش استفاده</Button>
           </a>
-          </Link>:null}
+         :null}
         <div className="row  mt-2 product-list-gift mx-md-5">
           
         {product ? <>
@@ -90,7 +99,7 @@ function Product() {
             <Card data={product} favoriteAndRate />
           </div>
           <div className="col-12 col-lg-8 p-3">
-            <h2>{product.name}</h2>
+            <h4>{product.full_name}</h4>
             <div className="row my-4">
               <div className="col-6 col-md-3 mb-2">
                 <span className="text-primary  fs-5 d-block">قیمت</span>
@@ -118,7 +127,7 @@ function Product() {
                 </span>
               </div>
             </div>
-            <p className="mt-3">{product.description}</p>
+            
             <div className="add-to-card-container product d-flex justify-content-between align-items-center   me-auto ms-0">
               <div dir="ltr" className="counter">
                 <span onClick={(e) => setCount((c) => (c += 1))}>+</span>
@@ -138,6 +147,17 @@ function Product() {
        : loading?<section className="w-75 py-5 my-5 d-flex justify-content-center mx-auto"><Bars/></section>:
         <section className="w-75 alert alert-info my-5 mx-auto">محصول یافت نشد</section>
       }</div>
+      <div className="desc product-list-gift mx-md-5 my-4 p-3 blog-desc overflow-hidden position-relative pb-5" style={{height: (open? "unset": (product?.description.length > 1200? "300px" : "max-content"))}}>
+         <p className="mt-3  text-truncate h-100">توضیحات:  <span dangerouslySetInnerHTML={{
+              __html: product?.description
+        }}></span></p>
+        {product?.description.length > 1200 &&<Button sx={{width: '100%', height: '38px', backgroundColor: '#efe', color: "#4c4c4c"}} onClick={e=>{setOpen(!open)}} className="position-absolute bottom-0 start-0 end-0">
+          {open? 
+          "مشاهده کمتر "
+          : "مشاهده بیشتر"}
+        </Button>}
+      </div>
+
 
       <SimilarCards
         _products={similar}
@@ -154,13 +174,22 @@ function Product() {
       <div className="card my-4 p-4">
         <div className="col-12 col-lg-8 co-xl-6 mx-auto">
           <SendFeedback product={product} />
-        
-        <Reviews reviews={product&&product.review_set||[]} />
+          <Reviews reviews={product&&product.review_set||[]} />
         </div>
       </div>
      
     </div>
   );
 }
+export async function getServerSideProps({query}) {
+  try{
+    const pid = query.slug.split("-")[0]
+    const res = await fetch(e.GET_PRODUCT_TITLE(pid))
+    const data = await res.json()
 
+    return { props: { data } }
+  }catch(e){
+    return { props: { data:{} } }
+  }
+}
 export default Product;

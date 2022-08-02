@@ -5,9 +5,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row-reverse;
   width: 100%;
-}.profile-aside .sidebar-item.active {
+}
+.profile-aside .sidebar-item a > div:first-of-type{
+  min-width: 32px !important;
+}
+.profile-aside .sidebar-item.active {
   background-color: rgba(147, 202, 245, 1);
 }
 .profile-aside .mobile-menu-title.active {

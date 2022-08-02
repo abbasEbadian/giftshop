@@ -4,7 +4,7 @@ import apex from "../img/card/apex.png";
 import apple from "../img/card/apple.png";
 import applemusic from "../img/card/applemusic.png";
 import blizard from "../img/card/blizard.png";
-import gold from "../img/card/gold.png";
+import razergold from "../img/card/razergold.png";
 import googleplay from "../img/card/googleplay.png";
 import leagueoflegends from "../img/card/leagueoflegends.png";
 import mastercard from "../img/card/mastercard.png";
@@ -56,6 +56,7 @@ import {ADD_TO_CART, TOGGLE_FAVORITES} from '../redux/endpoints'
 import { Typography } from "@mui/material";
 import LoaderButton from "./LoaderButton";
 import { ProductionQuantityLimits } from "@mui/icons-material";
+import { BASE_URL } from "../redux/types";
 
 
 function Card({
@@ -83,7 +84,7 @@ function Card({
       case "apex": return  apex;
       case "leagueoflegends": return  leagueoflegends;
       case "blizard": return  blizard;
-      case "gold": return  gold;
+      case "razergold": return  razergold;
       case "googleplay": return  googleplay;
       case "netflix": return  netflix;
       case "nintendo": return  nintendo;
@@ -176,7 +177,7 @@ function Card({
       {data.offcard_set && data.offcard_set.length > 0?
         <span className="special-offer">پیشنهاد ویژه</span>
       : null }
-        <Image src={get_image_src(data.brand_id?.name)} />
+        <Image src={data?.image? (BASE_URL+ data.image) : get_image_src(data.brand_id?.name)} alt={(data && data.image_alt) ?? "گیفت کارت"} layout="fill" />
 
         <Link href={
           { pathname: !hidePrice? "/product/[slug]":"/shop/[slug]", query: { slug: !hidePrice?(gen_path(data)):data.brand_id?.name }
@@ -186,10 +187,10 @@ function Card({
               {!hidePrice && (data.real_price > 0 || data.country_id)?
                 <span dir="ltr" className="price text-center">
                   {data.real_price > 0 && 
-                    <span>{data.country_id?.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString()}</span>
+                    <span>{data.country_id?.currency_id?.symbol??"$"} {Number(data.real_price).toLocaleString('fa')}</span>
                   }
                   {data.country_id && <div className="flag-cont">
-                    <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
+                    <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20}  />
                   </div>}
 
                 </span>
@@ -198,7 +199,7 @@ function Card({
             </div>
             {showRate ? (
                   <span className="d-flex align-items-center _rate position-absolute ">
-                    <Typography sx={{transform: "translateY(1px)", fontSize: "15px", fontWeight: "900"}}> {Number(data.rate)} </Typography><StarIcon />
+                    <Typography component="h2" sx={{transform: "translateY(1px)", fontSize: "15px", fontWeight: "900"}}> {Number(data.rate)} </Typography><StarIcon />
                   </span>
                 ) : (
                   <i></i>
@@ -208,16 +209,16 @@ function Card({
       </div>
       {hidePrice && !addToCard?
         <h2 className="w-100 text-center">
-          <Typography component="span" sx={{fontSize: "clamp(12px, 1.1vw, 14px)"}}>
-          <span className="">گیفت کارت </span> {" "} {data.real_price}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+          <Typography component="h2" sx={{fontSize: "clamp(12px, 1.1vw, 14px)"}}>
+          <span className="">گیفت کارت </span> {" "} {Number(data.real_price).toLocaleString('fa')}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
           </Typography>
         </h2>
       :null}
       {addToCard ? <>
         <h5 className="w-100 d-flex  justify-content-between px-2">
-          <Typography component="span" sx={{fontSize: "12px"}}>
+          <Typography component="h2" sx={{fontSize: "12px"}}>
             <span>
-              {data.full_name}
+              {data.full_name_trimmed}
             </span>
             {data.date > 0?<>
               <br></br>
@@ -226,13 +227,13 @@ function Card({
           </Typography>
           <Typography component="span" sx={{fontSize: "14px"}} className="test">
             {data.offcard_set && data.offcard_set.length > 0 ?<>
-              <del >
-                {Number(Number(data.price)).toLocaleString()} {" ت "}{" "}
+              <del>
+                {Number(data.price).toLocaleString('fa')} {" ت "}{" "}
               </del><br/>
-              <span  className="special-offer-price text-success">{Number(data.price)/100 * (100 - data.offcard_set[0].amount )}</span> {" ت "}
+              <span  className="special-offer-price text-success">{Number(Number(data.price)/100 * (100 - data.offcard_set[0].amount )).toLocaleString('fa')}</span> {" ت "}
               </>
-            : <><span>
-            {(Number(data.price)).toLocaleString()} {" ت "}{" "}</span><br/>
+            : <><span className="text-nowrap">
+            {(Number(data.price)).toLocaleString('fa')} {" ت "}{" "}</span><br/>
             <span className="special-offer-price text-success"></span>
           </>}
            

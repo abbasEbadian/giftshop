@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Image from 'next/image'
-import faqsimg from "../../img/other/image6.png";
+import faqsimg from "../../img/other/faq-01.png";
 import abouthelp from "../../img/other/image3.png";
 import Head from "next/head";
 import { useSelector } from "react-redux";
@@ -23,7 +23,7 @@ function Faqs() {
   return (
     <>
       <section>
-        <Head><title>پرسش پاسخ | گیفت شاپ</title></Head>
+        <Head><title>پرسش پاسخ | گیفت استاپ</title></Head>
         <div className="container mw-100 w-100">
           <div className="row">
             <div className="aboutimg">
@@ -37,13 +37,13 @@ function Faqs() {
               <h3 className="text-basket text-center py-4">
                 سوالات <span> متداول</span>
               </h3>
-              <p className="text-center pb-5">
+              {/* <p className="text-center pb-5">
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
                 استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
                 در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
                 نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد،
                 کتابهای زیادی در شص
-              </p>
+              </p> */}
             </div>
             <div className="col-12 content-faqs">
               <div className="wrapper col-12 col-lg-8 col-md-8 m-auto">

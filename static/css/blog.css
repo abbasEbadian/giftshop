@@ -27,9 +27,14 @@
   position: relative;
 }
 .buttonIn .form-control::-webkit-input-placeholder {
-  font-size: 16px;
+  font-size: 15px;
   color: #707070;
   padding-right: 0.5rem;
+}
+@media (max-width: 768px) {
+  .buttonIn .form-control::-webkit-input-placeholder {
+    font-size: 11px;
+  }
 }
 #enter {
   margin: 0px;
@@ -69,10 +74,10 @@
     border-radius: 15px;
     margin:0  0 30px;
 }
-.info-blog-post h6 {
-    font-size: 16px; 
-    font-weight: 500;
-    margin: 15px 0;
+.info-blog-post .blog-title {
+  font-size: 16px ; 
+  font-weight: 500;
+  margin: 15px 0;
 }
 .info-blog-post p {
     font-size: 12px;
@@ -139,7 +144,9 @@
   font-weight: 600;
   font-size: 17px;
 }
-
+.head-box-blog p{
+  margin:0;
+}
 .headered-box-blog:first-child {
   margin: 0;
 }
@@ -149,7 +156,7 @@
 .favoite-blog-cat {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin: 10px 0;
 }
 .favoite-blog-cat .img-favorite-blog img {

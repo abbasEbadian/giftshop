@@ -72,7 +72,7 @@ export default function CheckboxesTags({setOpen=false}) {
         dir="ltr"
       multiple
       id="main-searchbox"
-      options={cats.filter(i=>!searchValue.includes(i.title))}
+      options={cats.filter(i=>!searchValue || !searchValue.includes(i.title))}
       disableCloseOnSelect
       getOptionLabel={(option) => option.title}
       groupBy={e=>e.group}

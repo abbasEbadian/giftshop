@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import LoginImage from "../../img/login/img-login.png"
 import Link from 'next/link'
+import Head from 'next/head'
 import {login} from '../../redux/actions'
 import {toast} from 'react-toastify'
 import { useDispatch } from "react-redux";
@@ -78,17 +79,18 @@ function Login({setRuleOpen}) {
 
     return (
     <div className="login">
+    <Head><title>ورود | گیفت استاپ</title></Head>  
     <div className="login__content">
-        <div className="login__img">
-            <Image src={LoginImage} alt="" />
+        <div className="login__img position-relative">
+            <Image src={LoginImage} alt="" layout="fill" height={"100%"} className="m-0 h-100" />
         </div>
 
         <div className="login__forms login2">
-            <form action="" class="login__registre" id="login-in" onSubmit={_login}>
-                <h1 class="login__title">ورود به حساب</h1>
+            <form action="" className="login__registre" id="login-in" onSubmit={_login}>
+                <h1 className="login__title">ورود به حساب</h1>
                 <InputBox
-                    parentClass={"login-box ltr"}
-                    iconClass={"bi-phone login__icon"}
+                    parentclassName={"login-box ltr"}
+                    iconclassName={"bi-phone login__icon"}
                     type="tel"
                     placeholder="شماره همراه"
                     className="login__input text-center" 
@@ -99,8 +101,8 @@ function Login({setRuleOpen}) {
                 
                 {codeSent? <>
                     <InputBox
-                        parentClass={"login-box ltr"}
-                        iconClass={"bi-shield login__icon"}
+                        parentclassName={"login-box ltr"}
+                        iconclassName={"bi-shield login__icon"}
                         type="tel"
                         placeholder="کد 5 رقمی ارسال شده"
                         className="login__input text-center" 

@@ -26,6 +26,8 @@ import AdapterJalali from '@date-io/date-fns-jalali';
 import DatePicker from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import withAuth from '../../redux/withAuth'
+import InfoIcon from '@mui/icons-material/Info';
+
 const Input = styled('Input')({
     display: 'none',
 });
@@ -195,7 +197,7 @@ function UserLevel() {
             <div className="row">
                 <ProfileAside active="profile" />
                 <div className=" col-lg-9 col-12 py-5">
-                    <h5 class="text-basket pb-3 m-0">
+                    <h5 className="text-basket pb-3 m-0">
                         سطح <span>کاربری</span>
                     </h5>
                     <div className="d-flex flex-wrap align-items-center userLevel">
@@ -277,15 +279,18 @@ function UserLevel() {
                                         
                                         <label htmlFor="icon-button-file" className="pb-3 text-success">
                                         {user&&user.has_national_card_image?
-                                            "آپلود شده":
+                                            "کارت ملی بارگذاری شده است":
                                             <IconButton color="primary" aria-label="upload picture" component="span">
                                                 <CloudUploadIcon />
                                             </IconButton>}
                                         </label>
-                                        <label htmlFor="contained-button-file1">
+                                        <label htmlFor="contained-button-file1" className="text-center">
                                         <input accept="image/*" className="success-gradient d-none" id="contained-button-file2"  type="file"  onChange={upload_national_image}/>
                                         <Button disabled={national_loading} size="small" variant="contained" color="success" onClick={_national_click}>بارگذاری تصویر کارت ملی + کارت بانکی</Button>
-                                            
+                                        <Typography sx={{fontSize: "11px", mt: 1}} color="error">
+                                            <InfoIcon/>
+                                            <span>کارت ملی و کارت بانکی کنار هم و در یک عکس قرار بگیرد</span>
+                                        </Typography>
                                         </label>
                                     </div>
                                 </div>

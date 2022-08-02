@@ -40,6 +40,7 @@ function SendFeedback({product}) {
           >
             <span className="cursor-pointer">امتیاز دهید</span>
             <Rating
+              dir="ltr"
               className="star-color"
               name="simple-controlled"
               value={newRating}

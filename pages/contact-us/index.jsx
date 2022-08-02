@@ -6,6 +6,8 @@ import Link from 'next/link'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import * as e from '../../redux/endpoints'
+import contactimg from '../../img/other/Contact_us.png' 
+import Image from 'next/image'
 const Aster = ()=>{
     return  <b className="text-danger mx-2">*</b>
 }
@@ -34,19 +36,13 @@ function ContactUs() {
     }
     return (
         <section>
-            <Head><title>تماس با ما | گیفت شاپ</title></Head>
+            <Head><title>تماس با ما | گیفت استاپ</title></Head>
            
             <div className="container mw-100 w-100">
+                <div className="aboutimg">
+                <Image src={contactimg}></Image>
+                </div>
                 <div className="row">
-                    <div className="google-addres">
-                        <div className="mapouter">
-                            <div className="gmap_canvas">
-                                <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=36.305417486054324,%2059.602965183683956&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                                    <a href="https://123movies-to.org"></a>
-                            </div>
-                        </div>
-                    </div>
                     <div className="col-12 col-md-5 contact-us m-auto">
                         <h3 className="text-basket text-center py-4"> با ما در <span> تماس</span> باشید </h3>
                         <form className="form-contact" onSubmit={_send}>

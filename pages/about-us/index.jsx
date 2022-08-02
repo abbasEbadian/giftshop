@@ -15,7 +15,7 @@ function AboutUs() {
 
   return (
     <section>
-      <Head><title>درباره ما | گیفت شاپ</title></Head>
+      <Head><title>درباره ما | گیفت استاپ</title></Head>
 
       <div className="container mw-100 w-100">
         <div className="row">
