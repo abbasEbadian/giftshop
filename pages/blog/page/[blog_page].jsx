@@ -15,7 +15,7 @@ function Blog({blogs, category_blogs, meta}) {
   const router = useRouter()
   const {word, category, blog_page} = router.query 
   const [page, setPage] = React.useState(0);
-  const countInEachPage = React.useRef(4)
+  const countInEachPage = React.useRef(9)
   const handleChange = (e, page)=>{
     if(page === 1){
       router.push('/blog'+ location.search)
@@ -46,13 +46,6 @@ function Blog({blogs, category_blogs, meta}) {
     setBLogPosts(category_blogs)
   }, [category_blogs])
 
-  React.useEffect(()=>{
-    if(blog_page == 1){
-      router.push('/blog')
-      return
-    }
-    if(blog_page) setPage(+blog_page)
-  }, [blog_page])
   return (
     <>
       <Head>

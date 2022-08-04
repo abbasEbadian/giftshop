@@ -14,7 +14,7 @@ function BlogPostView({blog, blogs, is_short}) {
 
   useEffect(() => {
       if(is_short)
-        router.push(`/blog/posts/${blog.id}-${blog.title.replace(/[\s]+/g, '-')}`)
+        router.replace(`/blog/posts/${blog.id}-${blog.title.replace(/[\s]+/g, '-')}`)
   }, [blog, is_short])
   
   return (
