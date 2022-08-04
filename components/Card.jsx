@@ -171,6 +171,14 @@ function Card({
   const gen_path = (data) => {
     return data.id + "-" + data.full_name.replaceAll(' ', '-')
   }
+  const get_image = (data) => {
+    const brand = data.brand_id
+    if(!brand) return
+    const alt = data.image_alt ?? "گیفت کارت"
+    const image = brand.image ? (BASE_URL + brand.image): get_image_src(brand?.name)
+    return <Image src={image} alt={alt} layout="fill" />
+
+  }
   return (
     <div className="single-card px-3  ">
 
@@ -178,7 +186,9 @@ function Card({
         {data.offcard_set && data.offcard_set.length > 0 ?
           <span className="special-offer">پیشنهاد ویژه</span>
           : null}
-        <Image src={data?.image ? (BASE_URL + data.image) : get_image_src(data.brand_id?.name)} alt={(data && data.image_alt) ?? "گیفت کارت"} layout="fill" />
+        {
+          get_image(data)
+        }
 
         <Link href={
           {
@@ -212,7 +222,8 @@ function Card({
       {hidePrice && !addToCard ?
         <h2 className="w-100 text-center">
           <Typography component="h2" sx={{ fontSize: "clamp(12px, 1.1vw, 14px)" }}>
-            <span className="">گیفت کارت </span> {" "} {Number(data.real_price).toLocaleString('fa')}  {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+            <span className="">گیفت کارت </span>   {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
+            {/* {" "} {Number(data.real_price).toLocaleString('fa')} */}
           </Typography>
         </h2>
         : null}
