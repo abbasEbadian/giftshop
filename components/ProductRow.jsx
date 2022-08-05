@@ -10,7 +10,7 @@ import * as _ from 'lodash'
 import CloseIcon from '@mui/icons-material/Close';
 
 const locale = (yeGeimat)=>{
-    return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString(): yeGeimat
+    return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString('fa'): yeGeimat
 }
 function ProductRow({ product , _count}) {
     const [count,setCount] = React.useState(_count)
@@ -115,11 +115,11 @@ function ProductRow({ product , _count}) {
           </div>:null}
           {product.dicsount > 0?<div className="calculations mt-3 d-flex align-items-center justify-content-start w-100" dir="ltr">
             
-            <div><span>{_count * product.price}</span> <span className="px-2">-</span> <span>{_count * product.dicsount}</span> <span className="px-2">=</span>  {_count * product.final_price}</div>
+            <div><span>{locale(_count * product.price)}</span> <span className="px-2">-</span> <span>{_count * product.dicsount}</span> <span className="px-2">=</span>  {_count * product.final_price}</div>
             <span className="text-success ms-4">: مجموع  </span>
           </div>:
             <div className="calculations mt-4 d-flex align-items-center justify-content-start w-100" dir="ltr">
-            <div><span>{_count}</span> <span className="px-2">x</span> <span>{product.price}</span> <span className="px-2">=</span>  {_count * product.price}</div>
+            <div><span>{locale(_count)}</span> <span className="px-2">x</span> <span>{locale(product.price)}</span> <span className="px-2">=</span>  {locale(_count * product.price)}</div>
             <span className="text-success ms-4">: مجموع  </span>
           </div>
           }
