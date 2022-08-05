@@ -14,6 +14,9 @@ import AlertDialog from '../../components/SubBasket/DeleteConfirmModal'
 import Head from 'next/head'
 import Discount from '../../components/SubBasket/Discount'
 
+const locale = (yeGeimat)=>{
+  return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString('fa'): yeGeimat
+}
 function Basket() {
   const [products, setProducts] = React.useState({})
   const basket = useSelector(s => s.order.basket)
@@ -66,10 +69,10 @@ function Basket() {
           <h4>مجموع کل :</h4>
           {basket.discount_code_amount?
             <h5 className="mx-4">
-              <del>{_.sumBy(basket.orderline_set, e=>+e.template_id.final_price).toLocaleString()}</del><br/>
-              <span className="text-success">{(_.sumBy(basket.orderline_set, e=>+e.template_id.final_price) - basket.discount_code_amount).toLocaleString()}</span>
+              <del>{locale(_.sumBy(basket.orderline_set, e=>+e.template_id.final_price))}</del><br/>
+              <span className="text-success">{locale(_.sumBy(basket.orderline_set, e=>+e.template_id.final_price) - basket.discount_code_amount)}</span>
             </h5> 
-          :<h5 className="mx-4">{_.sumBy(basket.orderline_set, e=>+e.template_id.final_price).toLocaleString()}</h5>}
+          :<h5 className="mx-4">{locale(_.sumBy(basket.orderline_set, e=>+e.template_id.final_price))}</h5>}
           تومان
 
         </div>

@@ -7,7 +7,7 @@ function BlogPost({ data }) {
   return (
     <div className="info-blog-post">
       <div className="up-section-info-post">
-        <Link href={"/blog/posts/" + data.id}>
+        <Link href={`/blog/posts/${data.id}-${data.title.replace(/[\s]+/g, '-')}`}>
           <a className="position-relative">
           {data.image && <img src={BASE_URL + data.image} alt={data.image_alt} width="100%" />}
           </a>
