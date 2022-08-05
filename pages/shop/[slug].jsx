@@ -85,6 +85,7 @@ function Shop({ data }) {
 				<title>{data.meta_title ?? (brand_name + " | گیفت استاپ")}</title>
 				<meta name="description" content={data.meta_description ?? "فروشگاه گیفت استاپ " + brand_name} />
 				<meta name="keywords" content={data.meta_keywords ?? "گیفت کارت , گیفت کارت ارزان " + brand_name} />
+        		{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
 			</Head>
 			<div className="row ">
 				<div className="col-12 col-md-3">
