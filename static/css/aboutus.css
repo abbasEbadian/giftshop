@@ -1,77 +1,74 @@
 .text-justify {
-    text-align: justify;
-  }
-  .img-about img {
-    width: 100%;
-  }
-  .col-6 {
-    padding: 25px 0;
-  }
-  .about-help {
-    position: relative;
-    background-color: #84cffc;
-    width: 100%;
-    height: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .aboutimg {
-    padding: 0 !important;
-  }
-  
-  .about-help .right-section img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-  }
-  .left-section {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
-  .left-section .text-about-info {
-    display: flex;
-    flex-direction: column;
-    color: var(--color-white);
-    line-height: 1.7;
-  }
-  .left-section .text-about-info p {
-    font-size: 30px;
-    font-weight: 700;
-    font-style: normal;
-  }
-  .left-section .text-about-info span {
-    font-size: 15px;
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  .left-section .btn-contact {
-    background-color: var(--color-white);
-    border-radius: 30px;
-    padding: 8px 30px;
-    margin-right: 2rem;
-    font-size: 18px;
-  }
-  .flmd p {
-    line-height: 2.4;
-    margin: 20px 0;
-  }
-  .flmd h6 {
-    position: relative;
-    width: 100%;
-    font-weight: bold;
-    font-size: 18px;
-  }
-  
-  .flmd h6::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    right: 0;
-    width: 10%;
-    border-bottom: 2px solid var(--color-purple);
-    border-radius: 5px;
-  }
+  text-align: justify;
+}
+.img-about img {
+  width: 100%;
+}
+.about-help {
+  position: relative;
+  background-color: #84cffc;
+  width: 100%;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aboutimg {
+  padding: 0 !important;
+}
+
+.about-help .right-section img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+.left-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.left-section .text-about-info {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-white);
+  line-height: 1.7;
+}
+.left-section .text-about-info p {
+  font-size: 30px;
+  font-weight: 700;
+  font-style: normal;
+}
+.left-section .text-about-info span {
+  font-size: 15px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.left-section .btn-contact {
+  background-color: var(--color-white);
+  border-radius: 30px;
+  padding: 8px 30px;
+  margin-right: 2rem;
+  font-size: 18px;
+}
+.flmd p {
+  line-height: 2.4;
+  margin: 20px 0;
+}
+.flmd h6 {
+  position: relative;
+  width: 100%;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.flmd h6::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  width: 10%;
+  border-bottom: 2px solid var(--color-purple);
+  border-radius: 5px;
+}

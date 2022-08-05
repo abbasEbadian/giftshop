@@ -18,6 +18,10 @@ import Link from "next/link";
 import Button from "@mui/material/Button";
 import * as e from "../../redux/endpoints"
 
+const locale = (yeGeimat)=>{
+  return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString('fa'): yeGeimat
+}
+
 function Product({ data }) {
   const router = useRouter();
   const pid = router.query.slug;
@@ -79,12 +83,12 @@ function Product({ data }) {
         {data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
       </Head>
 
-      <h2 className="text-center my-4">
-        گیفت کارت {" "}
+      <h1 className="text-center my-4 fs-3">
+        {product?.is_account? '': "گیفت کارت"}{" "}
         <Link href={'/shop/' + product?.brand_id?.name}><a>
-          <span className="text-secondary">{product?.brand_id?.persian_name || ""}</span>
+          <span className="text-secondary">{product?.full_name || ""}</span>
         </a></Link>
-      </h2>
+      </h1>
       {product && product.brand_id && product.brand_id.url ?
         <a className="mx-md-5 py-4" href={product.brand_id.url} target="_blank">
           <Button variant="contained" color="info"> لینک آموزش استفاده</Button>
@@ -97,34 +101,33 @@ function Product({ data }) {
             <Card data={product} favoriteAndRate />
           </div>
           <div className="col-12 col-lg-8 p-3">
-            <h4>{product.full_name}</h4>
-            <div className="row my-4">
+            <div className="row mb-5">
               <div className="col-6 col-md-3 mb-2">
-                <span className="text-primary  fs-5 d-block">قیمت</span>
-                <br />
-                <span className="pt-3 mt-3">
+                <span className="text-primary   d-block">قیمت</span>
+                <br className="d-done d-lg-block" />
+                <span className="pt-lg-3 mt-lg-3">
                 {(product?.no_sell || product?.ask_me)? "-":
                   <>
-                  {product.price}
+                  {locale(product.price)}
                   {" تومان"}
                   </>}
                   
                 </span>
               </div>
               <div className="col-6 col-md-3 mb-2">
-                <span className="text-primary fs-5 d-block">کشور</span>
-                <br />
-                <span className="pt-3 mt-3">{product.country_id?.name}</span>
+                <span className="text-primary  d-block">کشور</span>
+                <br className="d-done d-lg-block" />
+                <span className="pt-lg-3 mt-lg-3">{product.country_id?.name}</span>
               </div>
-              <div className="col-6 col-md-3 mb-2">
-                <span className="text-primary  fs-5 d-block">دسته بندی</span>
-                <br />
-                <span className="pt-3 mt-3">{product.brand_id?.persian_name} ({product.brand_id?.name})</span>
+              <div className="col-6 col-md-3 mb-2  mt-4 mt-md-0">
+                <span className="text-primary   d-block">دسته بندی</span>
+                <br className="d-done d-lg-block" />
+                <span className="pt-lg-3 mt-lg-3">{product.brand_id?.persian_name} ({product.brand_id?.name})</span>
               </div>
-              <div className="col-6 col-md-3 mb-2">
-                <span className="text-primary  fs-5 d-block">امتیاز مشتریان</span>
-                <br />
-                <span className="pt-3 mt-3">
+              <div className="col-6 col-md-3 mb-2  mt-4 mt-md-0">
+                <span className="text-primary   d-block">امتیاز مشتریان</span>
+                <br className="d-done d-lg-block" />
+                <span className="pt-lg-3 mt-lg-3">
                   {product.rate} {"(" + product.reviews_count + ")"}
                 </span>
               </div>
@@ -140,7 +143,7 @@ function Product({ data }) {
                       <span onClick={(e) => setCount((c) => Math.max(1, c - 1))}>-</span>
                     </div>
                     <span className="border rounded p-2">
-                      {product.price} {" تومان "}{" "}
+                      {locale(product.price)} {" تومان "}{" "}
                     </span>
                     <LoaderButton text="افزودن به سبد خرید" className=" px-3" loading={loading1} onClick={_addToCart} />
                   </>}
@@ -152,7 +155,7 @@ function Product({ data }) {
             <section className="w-75 alert alert-info my-5 mx-auto">محصول یافت نشد</section>
         }</div>
       <div className="desc product-list-gift mx-md-5 my-4 p-3 blog-desc overflow-hidden position-relative pb-5" style={{ height: (open ? "unset" : (product?.description.length > 1200 ? "300px" : "max-content")) }}>
-        <p className="mt-3  text-truncate h-100">توضیحات:  <span dangerouslySetInnerHTML={{
+        <p className="mt-3  h-100">توضیحات:  <span dangerouslySetInnerHTML={{
           __html: product?.description
         }}></span></p>
         {product?.description.length > 1200 && <Button sx={{ width: '100%', height: '38px', backgroundColor: '#efe', color: "#4c4c4c" }} onClick={e => { setOpen(!open) }} className="position-absolute bottom-0 start-0 end-0">
