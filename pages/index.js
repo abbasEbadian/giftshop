@@ -66,7 +66,7 @@ export default function Home({data}) {
           <main className="main-page flex-wrap">
           <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4 pe-lg-5 p-0">
             <h3 className="fs-2 ">
-              گیفت <Image src={card} width={36} height={24} /> کارت های متنوع
+              گیفت <Image src={card} width={36} height={24} alt="گیفت کارت"/> کارت های متنوع
             </h3>
             <h3 className="fs-3 mt-3 mb-5 text-nowrap">
               خرید <span className="text-secondary">سریع</span> {" و "}
@@ -92,7 +92,7 @@ export default function Home({data}) {
           <div className="col-md-2 col-0"></div>
           <div className="images col-md-6 col-12">
             
-            <Image src={intro_image} alt="intro" layout="fill" objectFit="contain"/>
+            <Image src={intro_image}  layout="fill" objectFit="contain" alt="خرید انواع گیفت کارت"/>
           </div>
 
           <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">
