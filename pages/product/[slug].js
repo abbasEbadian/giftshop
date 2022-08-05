@@ -84,7 +84,6 @@ function Product({ data }) {
       </Head>
 
       <h1 className="text-center my-4 fs-3">
-        {product?.is_account? '': "گیفت کارت"}{" "}
         <Link href={'/shop/' + product?.brand_id?.name}><a>
           <span className="text-secondary">{product?.full_name || ""}</span>
         </a></Link>
