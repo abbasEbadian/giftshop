@@ -34,7 +34,7 @@ const [full, setFull] = React.useState(false)
         placement={"end"}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>گیفت استاپ</Offcanvas.Title>
+          <Offcanvas.Title> گیفت استاپ </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ul className="menu">
@@ -97,7 +97,7 @@ const [full, setFull] = React.useState(false)
       <div className="main-container">
         <Link href="/">
           <a>
-            <Image src={'/logo.png'} height={"45px"} width={"200px"} />
+            <Image src={'/logo.png'} height={"45px"} width={"200px"} alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت'/>
           </a>
         </Link>
         <div className="links">
