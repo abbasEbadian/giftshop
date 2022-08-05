@@ -84,9 +84,7 @@ function Product({ data }) {
       </Head>
 
       <h1 className="text-center my-4 fs-3">
-        <Link href={'/shop/' + product?.brand_id?.name}><a>
-          <span className="text-secondary">{product?.full_name || ""}</span>
-        </a></Link>
+        <span className="text-secondary">{product?.full_name || ""}</span>
       </h1>
       {product && product.brand_id && product.brand_id.url ?
         <a className="mx-md-5 py-4" href={product.brand_id.url} target="_blank">
