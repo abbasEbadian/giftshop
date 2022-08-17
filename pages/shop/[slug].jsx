@@ -12,9 +12,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ShopBrandDescription from "../../components/ShopBrandDescription";
 import { filter } from "lodash";
 
-import ShopBrandDescription from "../../components/ShopBrandDescription";
-import { filter } from "lodash";
-
 function Shop({ data }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
 
