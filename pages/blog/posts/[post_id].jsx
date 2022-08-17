@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Reviews from "../../../components/Reviews";
 import BlogNav from "../../../components/BlogNav";
 import * as e from '../../../redux/endpoints'
+import SendFeedback from "../../../components/SendFeedback";
 
 import Image from "next/image";
 import Head from "next/head";
@@ -14,9 +15,9 @@ function BlogPostView({blog, blogs, is_short}) {
 
   useEffect(() => {
       if(is_short)
-        router.push(`/blog/posts/${blog.id}-${blog.title.replace(/[\s]+/g, '-')}`)
+        router.replace(`/blog/posts/${blog.id}-${blog.title.replace(/[\s]+/g, '-')}`)
   }, [blog, is_short])
-  
+    console.log(blog)
   return (
     <>
       <Head>
@@ -55,7 +56,8 @@ function BlogPostView({blog, blogs, is_short}) {
               </div>
 
               <div className="review-section">
-                {/* <Reviews reviews={[]}/> */}
+                <SendFeedback blog={blog} />
+                <Reviews reviews={blog.reviews}/>
               </div>
             </div>
           </div>
@@ -79,6 +81,7 @@ export async function getServerSideProps({query}) {
       const blogs = await res2.json()
       return { props: {blog, blogs: blogs.blogs, is_short: short}}
     }catch(e){
+      console.log(e)
       return { props: { blog:{}, name: String(e)} } 
     }
   }

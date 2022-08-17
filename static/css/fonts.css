@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: IranYekan;
     font-style: normal;
@@ -18,11 +19,14 @@
 	url('../fonts/iransans/woff/IRANSansWeb_Light.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ 
 	url('../fonts/iransans/ttf/IRANSansWeb_Light.ttf') format('truetype');
 }
-
-
+@font-face {
+    font-family: "Vazirmatn RD UI FD";
+    src: url('../fonts/vazirmatn-numeric.woff2');
+    unicode-range: U+0030-0039;
+  }
 * , [class*=Mui], [class*=Mui] *{
-    font-family: IranYekan !important;
+    font-family: "Vazirmatn RD UI FD", IranYekan !important;
 }
 body .blog-desc *, .text-single-blog * {
-    font-family: IranYekanLight !important ;
+    font-family: "Vazirmatn RD UI FD", IranYekanLight !important ;
 }

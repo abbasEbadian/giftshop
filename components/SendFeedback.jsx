@@ -5,7 +5,7 @@ import { Rating } from '@mui/material';
 import { toast } from 'react-toastify';
 import LoaderButton from './LoaderButton';
 
-function SendFeedback({product}) {
+function SendFeedback({product={}, blog={}}) {
   const [text, setText] = React.useState("")
   const [loading, setLoading] = React.useState(false)
   const [newRating, setNewRating] = React.useState(3)
@@ -13,6 +13,7 @@ function SendFeedback({product}) {
     setLoading(true)
     axios.post(SEND_REVIEW, {
       template_id: product.id,
+      blog_id: blog.id,
       content: text,
       rate: newRating
     })
@@ -21,6 +22,8 @@ function SendFeedback({product}) {
       toast(data.message, {
         type: data.type
       })
+      if(data.error === 0)  
+        setText('')
     })
     .catch(e=>{
       console.log(e)
