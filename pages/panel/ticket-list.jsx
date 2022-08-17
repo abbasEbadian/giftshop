@@ -90,13 +90,13 @@ function SendTicket(props) {
                         لیست <span>تیکت ها</span>
                     </h5>
                     <div className="ticket-info-s">
-                        <div className="list-ticket-show  flex-wrap">
-                            <Button  className="all-ticket col-6 col-lg-2 " variant={active==="all"?"contained":""} onClick={e=>setActive('all')}>
+                        <div className="list-ticket-show  flex-wrap row">
+                            <Button  className="all-ticket col-6 col-lg-3 " variant={active==="all"?"contained":""} onClick={e=>setActive('all')}>
                                 <div className="d-flex flex-column">
                                     <div className="pb-2">
                                         {geticon("all")}
+                                        <span className="px-2">{"همه" }</span>
                                     </div>
-                                    <p>{"همه" }</p>
                                     <p>{user?.ticket_set?.length}</p>
                                 </div>
                             </Button>
@@ -105,12 +105,12 @@ function SendTicket(props) {
 
                                 item === "answered"? "پاسخ داده شده":
                                 item === 'closed'? "بسته شده": ""
-                                return <Button key={item} className="all-ticket col-6 col-lg-2 " color={colors[idx]} variant={active===item?"contained":""} onClick={e=>setActive(item)}>
+                                return <Button key={item} className="all-ticket col-6 col-lg-3 " color={colors[idx]} variant={active===item?"contained":""} onClick={e=>setActive(item)}>
                                     <div className="d-flex flex-column">
                                         <div className="pb-2">
                                             {geticon(item)}
+                                        <small className="px-2">{text}</small>
                                         </div>
-                                        <p>{text}</p>
                                         <p>{tickets[item]?.length || 0}</p>
                                     </div>
                                     

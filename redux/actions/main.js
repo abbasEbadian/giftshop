@@ -7,8 +7,6 @@ export const get_initial_data = ()=>{
     return dispatch =>{
         dispatch(check_user())
         dispatch(fetch_brands())
-        dispatch(fetch_popular_cards())
-        dispatch(fetch_top_sale_cards())
         dispatch(fetch_countries())
         dispatch(get_cart())
         dispatch(profile())

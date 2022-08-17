@@ -26,7 +26,7 @@ function SendTicket(props) {
   const dispatch = useDispatch()
   const _send = ()=>{
     axios.post(SEND_TICKET, {
-      order_id ,
+      order_id: (!isNaN(order_id) && +order_id > 0 ) ? order_id: 0,
       section,
       title,
       content,
@@ -71,9 +71,9 @@ function SendTicket(props) {
               <div className="col-md-5 col-lg-5 col-12 pb-4">
                 <label htmlFor="">دپارتمان مربوطه </label>
                 <Form.Select aria-label="Default select example" value={section} onChange={e=>setsection(e.target.value)}>
-                  <option value={0}>--انتخاب کنید--</option>
-                  <option value="حسابداری">
-                    حسابداری</option>
+                  <option value={0}>-- انتخاب کنید --</option>
+                  <option value="مدیریت">
+                    مدیریت</option>
                   <option value="مالی">
                     مالی </option>
                   <option value="پشتیبانی">
@@ -84,7 +84,7 @@ function SendTicket(props) {
               <div className="col-md-5 col-lg-5 col-12">
                 <label htmlFor="">اولویت *</label>
                 <Form.Select aria-label="Default select example" value={priority} onChange={e=>setpriority(e.target.value)}>
-                  <option value={0}>--انتخاب کنید--</option>
+                  <option value={0}>-- انتخاب کنید --</option>
                   <option value="کم">کم</option>
                   <option value="متوسط">متوسط</option>
                   <option value="زیاد">زیاد</option>
@@ -94,8 +94,9 @@ function SendTicket(props) {
                 <label htmlFor="">سفارش مربوطه</label>
                 <Form.Select aria-label="Default select example" value={order_id} onChange={e=>setorder_id(e.target.value)}>
                   <option value={0}>--انتخاب کنید--</option>
+                  <option value={null}>هیچکدام </option>
                   {user&&user.order_set? user.order_set.reverse().map((item)=>{
-                    return <option key={item.id} value={item.id}>{item.order_code}</option>
+                    return <option key={item.id} value={item.id}>{item.order_code || item.id}</option>
                   }): null}
                 </Form.Select>
               </div>
