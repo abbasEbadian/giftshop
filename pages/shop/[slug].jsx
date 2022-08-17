@@ -12,6 +12,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ShopBrandDescription from "../../components/ShopBrandDescription";
 import { filter } from "lodash";
 
+import ShopBrandDescription from "../../components/ShopBrandDescription";
+import { filter } from "lodash";
+
 function Shop({ data }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
 
@@ -112,7 +115,9 @@ function Shop({ data }) {
 					<div className="my-4">
 						{cardsCount > 20 ? <PaginationControlled handleChange={handleChange} size={cardsCount} page={page} /> : null}
 					</div>
+
 					<ShopBrandDescription brand={ data}/>
+
 				</div>
 
 			</div>

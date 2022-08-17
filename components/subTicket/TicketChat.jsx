@@ -18,6 +18,7 @@ import {toast} from 'react-toastify'
 import axios from 'axios'
 import {profile} from '../../redux/actions'
 import * as e from '../../redux/endpoints'
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -81,6 +82,7 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
         open={open}
         onClose={handleClose}
         TransitionComponent={Transition}
+        sx={{zIndex: 999999}}
       >
         <AppBar sx={{ position: 'relative' }} color={color}>
           <Toolbar className='d-flex align-items-center justify-content-between'>
@@ -138,10 +140,9 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
                                 
                             </div>
                             <div className="type_msg">
-                                <div className="input_msg_write d-flex">
+                                <div className="input_msg_write d-flex align-items-center">
                                     <input type="text" className="write_msg" placeholder="متن پیام را وارد کنید" value={message} onChange={e=>setMessage(e.target.value)}/>
-                                    {/* <textarea name="" className="form-control" id="" cols="30" rows="10"></textarea> */}
-                                    <IconButton  type="submit" > <SendIcon/></IconButton>
+                                    <Button  type="submit" color='info' variant='contained'> ارسال</Button>
                                 </div>
                             </div>
                         </div>

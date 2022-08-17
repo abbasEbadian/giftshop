@@ -1,3 +1,4 @@
+
 import styled from '@emotion/styled'
 import { Box, Rating } from '@mui/material'
 import Image from 'next/image'
@@ -10,6 +11,7 @@ const Desc = styled.div`
         margin-block: 0;
     }
 `
+
 function ShopBrandDescription({ brand }) {
     console.log(brand);
   return (
@@ -36,5 +38,4 @@ function ShopBrandDescription({ brand }) {
     </Desc>  
   )
 }
-
 export default ShopBrandDescription

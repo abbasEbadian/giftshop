@@ -9,7 +9,7 @@ import { Offcanvas } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import UserIcon from "./UserIcon";
-import { Button } from "@mui/material";
+import { Badge, Button, Chip } from "@mui/material";
 import Search from './Search'
 import FullScreenDialog from './FullScreenSearch'
 function HeaderPublic({ authenticated }) {
@@ -18,16 +18,19 @@ function HeaderPublic({ authenticated }) {
   const [active, setActive] = React.useState(false);
   const brands = useSelector((state) => state.main.brands);
   const basket = useSelector((state) => state.order.basket);
-  const auth = useSelector(s=>s.auth.authenticated)
-const [full, setFull] = React.useState(false)
+  const auth = useSelector(s => s.auth.authenticated)
+  const user = useSelector(s => s.auth.user)
+  const [full, setFull] = React.useState(false)
+
+  const unseen_tickets_count = React.useMemo(() => {
+    console.log(user, user?.ticket_set)
+    const x = user?.ticket_set?.filter(i => !i.seen_by_user)
+    return x?.length || 0
+  }, [user])
+
   return (
     <header className="header-public shadow-sm">
-      {/* <Link href="/shop">
-      <a>
 
-      </a>
-    </Link> */}
-      {/* <Image src={}alt={} width={"100%"} height={} /> */}
       <Offcanvas
         show={menuopen}
         onHide={(e) => setMenuopen(false)}
@@ -39,65 +42,68 @@ const [full, setFull] = React.useState(false)
         <Offcanvas.Body>
           <ul className="menu">
             <li className="menu-item">
-              <Link href="/"><a onClick={e=>setMenuopen(false)}>                {" "}
+              <Link href="/"><a onClick={e => setMenuopen(false)}>                {" "}
                 <i className="bi bi-house-door-fill"></i>{" "}
               </a></Link>
             </li>
             <li className="menu-item">
               <Link href="/shop">
-                <a onClick={e=>setMenuopen(false)}>گیفت کارت   </a>
+                <a onClick={e => setMenuopen(false)}>گیفت کارت   </a>
               </Link>
             </li>
             <li className="menu-item">
               <Link href="/contact-us">
-                <a onClick={e=>setMenuopen(false)}>تماس با ما</a>
+                <a onClick={e => setMenuopen(false)}>تماس با ما</a>
               </Link>
             </li>
             <li className="menu-item menu-item-child">
-              <Link  href="/about-us">
-                <a onClick={e=>setMenuopen(false)} data-toggle="sub-menu">درباره ما</a>
+              <Link href="/about-us">
+                <a onClick={e => setMenuopen(false)} data-toggle="sub-menu">درباره ما</a>
               </Link>
             </li>
 
             <li className="menu-item menu-item-child">
               <Link href="/blog">
-                <a  onClick={e=>setMenuopen(false)} data-toggle="sub-menu">
-                آموزش - مقالات
+                <a onClick={e => setMenuopen(false)} data-toggle="sub-menu">
+                  آموزش - مقالات
                 </a>
-            </Link>
-            </li>
-            
-            {auth?<><li className="menu-item menu-item-child">
-              <Link href="/panel/send-ticket">
-                <a onClick={e=>setMenuopen(false)}>تیکت </a>
               </Link>
-            </li> 
-            <li className="menu-item menu-item-child">
-            <Link href="/auth/logout"><a  className="" >
-                خروج
-              </a>
-            </Link>
-            </li></>
-            :null}
-            <hr/>
+            </li>
+
+            {auth ? <><li className="menu-item menu-item-child d-flex">
+              <Link href="/panel/ticket-list">
+                <a onClick={e => setMenuopen(false)}>تیکت ها </a>
+              </Link>
+
+              <Chip label={unseen_tickets_count} className={"me-auto"} />
+
+            </li>
+              <li className="menu-item menu-item-child">
+                <Link href="/auth/logout"><a className="" >
+                  خروج
+                </a>
+                </Link>
+              </li></>
+              : null}
+            <hr />
           </ul>
-          {!auth? <Link href="/auth">
-            <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center"  onClick={e=>setMenuopen(false)}>
+          {!auth ? <Link href="/auth">
+            <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center" onClick={e => setMenuopen(false)}>
               ورود <span className="mx-1">|</span>عضویت
             </a>
-          </Link>: <div className="d-flex align-items-center px-5 mt-3"><Link href="/panel/profile">
-            <a className="btn primary-gradient rounded w-50  text-center"  onClick={e=>setMenuopen(false)}>
-              حساب کاربری 
+          </Link> : <div className="d-flex align-items-center px-5 mt-3"><Link href="/panel/profile">
+            <a className="btn primary-gradient rounded w-50  text-center" onClick={e => setMenuopen(false)}>
+              حساب کاربری
             </a>
           </Link>
-          
+
           </div>}
         </Offcanvas.Body>
       </Offcanvas>
       <div className="main-container">
         <Link href="/">
-          <a>
-            <Image src={'/logo.png'} height={"45px"} width={"200px"} alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت'/>
+          <a className="header-image">
+            <Image src={'/logo.png'} layout='fill' alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' />
           </a>
         </Link>
         <div className="links">
@@ -137,40 +143,42 @@ const [full, setFull] = React.useState(false)
           <Link href="/contact-us">
             <a>تماس با ما</a>
           </Link>
-          {auth?<Link href="/panel/send-ticket">
-            <a>تیکت</a>
-          </Link>:null}
+          {auth ? <Badge color="secondary" badgeContent={unseen_tickets_count} showZero>
+                <Link href="/panel/ticket-list">
+                  <a onClick={e => setMenuopen(false)}>تیکت ها</a>
+                </Link>
+              </Badge>: null}
           <Link href="/blog">
-              <a  onClick={e=>setMenuopen(false)} data-toggle="sub-menu">
+            <a onClick={e => setMenuopen(false)} data-toggle="sub-menu">
               آموزش - مقالات
-              </a>
+            </a>
           </Link>
 
         </div>
 
         <div className="controls">
           <div className="search-btn">
-          <Search />
+            <Search />
           </div>
 
-          <Button onClick={e=>setFull(true)} className="full-search-button">
-            <SearchIcon width={17} height={17}/>
+          <Button onClick={e => setFull(true)} className="full-search-button">
+            <SearchIcon width={17} height={17} />
           </Button>
-          <Link  href="/basket">
+          <Link href="/basket">
             <a className="badge-container">
-              <span className="basket-badge bg-danger text-white rounded-circle p2">{basket&&basket.orderline_set?basket.orderline_set.length: 0}</span>
-              <ShoppingIcon  width="20"/>
+              <span className="basket-badge bg-danger text-white rounded-circle p2">{basket && basket.orderline_set ? basket.orderline_set.length : 0}</span>
+              <ShoppingIcon width="20" />
             </a>
           </Link>
           {
-            !authenticated?
-            <Link href="/auth"><a className="btn primary-gradient rounded d-flex">
-              ورود <span className="mx-1">|</span>عضویت
-            </a>
-            </Link>:
-            <UserIcon />
+            !authenticated ?
+              <Link href="/auth"><a className="btn primary-gradient rounded d-flex">
+                ورود <span className="mx-1">|</span>عضویت
+              </a>
+              </Link> :
+              <UserIcon />
           }
-          
+
         </div>
         <button
           type="button"
@@ -184,7 +192,7 @@ const [full, setFull] = React.useState(false)
           <span className="burger-line"></span>
         </button>
       </div>
-      <FullScreenDialog open={full} setOpen={setFull}/>
+      <FullScreenDialog open={full} setOpen={setFull} />
     </header>
   );
 }
