@@ -179,7 +179,6 @@ function Card({
     return <Image src={image} alt={alt} layout="fill" />
 
   }
-  console.log(data)
   return (
     <div className="single-card px-3  ">
 

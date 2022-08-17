@@ -255,12 +255,33 @@
   /* Chat Ticket */
 
   .ticket-message-image{
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: inline-block;
     margin-left: 16px;
   }
   .ticket-message-image + * {
     display: inline-block;
+  }
+
+  @media (max-width: 992px) {
+    .type_msg{
+      padding-inline: 8px;
+    }
+    .type_msg input::placeholder, 
+    .type_msg input
+    {
+      font-size: small;
+      font-weight: 100;
+    }
+    .inbox_msg {
+      width: 98%;
+    }
+    .outgoing_msg .sent_msg {
+      width: 90%;
+    }
+    .received_withd_msg{
+      width: 100%;
+    }
   }

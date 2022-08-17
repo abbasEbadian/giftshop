@@ -4,20 +4,12 @@ import card from "../img/other/Card.png";
 import Image from "next/image";
 import mouse from "../img/icon/Mouse-alt.png";
 import arrows from "../img/icon/Arrows.svg";
-import off from "../img/icon/ShoppingIconic.png";
-import cardFolding from "../img/icon/Cards-folding3.png";
-import pie from "../img/icon/Group3452.png";
-import income from "../img/icon/IncomeIconic.png";
 import collapse from "../img/icon/Collapse.png";
 import _why from "../img/other/why.png";
 import  BrandList from '../components/BrandList'
-import {useSelector } from 'react-redux'
+import {useDispatch, useSelector } from 'react-redux'
 import {
   ChevronLeft,
-  Facebook,
-  Instagram,
-  Twitter,
-  YouTube,
 } from "@mui/icons-material";
 import SimilarCards from "../components/SimilarCards";
 import HomeUtilities from "../components/subHome/HomeUtilities";
@@ -25,13 +17,15 @@ import Link from "next/link";
 import * as e from '../redux/endpoints'
 import { Box, Typography } from "@mui/material";
 import intro from '../img/icon/giftstop-01.png'
+import { useEffect } from "react";
+import { fetch_popular_cards, fetch_top_sale_cards } from "../redux/actions";
 export default function Home({data}) {
   const [active, setActive] = React.useState("today");
   const popular_cards = useSelector(s=>s.main.popular_cards)
   const top_sale_cards = useSelector(s=>s.main.top_sale_cards)
   const config = useSelector(s=>s.main.configs)
-
-  const intro_image = useMemo(() => {
+  const dispatch = useDispatch()
+    const intro_image = useMemo(() => {
     if(config?.website?.index_intro_image){
       return e.BASE_URL + config.website.index_intro_image
     }
@@ -45,6 +39,10 @@ export default function Home({data}) {
     return _why
   }, [config])
 
+  useEffect(() => {
+    dispatch(fetch_popular_cards())
+    dispatch(fetch_top_sale_cards())
+  }, [])
   return (
     <>
       <div className="mcontainer mcontainer-bg pb-5">

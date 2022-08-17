@@ -10,6 +10,7 @@ import PaginationControlled from "../../components/Pagination";
 import * as e from '../../redux/endpoints'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ShopBrandDescription from "../../components/ShopBrandDescription";
+import { filter } from "lodash";
 
 function Shop({ data }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
@@ -19,11 +20,12 @@ function Shop({ data }) {
 	const [filteredCards, setFilteredCards] = React.useState([]);
 	const brand_name = router.query.slug;
 	const [loading, setLoading] = React.useState(false)
-	const [filters, setFilters] = React.useState({ brand_name })
+	const [filters, setFilters] = React.useState({ real_price: undefined, country: undefined })
 	const [cardsCount, setCardsCount] = React.useState({ brand_name })
 	const brands = useSelector(state => state.main.brands)
 	const [brandName, setBrandName] = React.useState()
 	const [page, setPage] = React.useState(1);
+	
 	const handleChange = (event, value) => {
 		setPage(value);
 	};
@@ -31,6 +33,7 @@ function Shop({ data }) {
 	const { real_price, country } = router.query
 
 	React.useEffect(() => {
+		console.log(filters, page, brand_name)
 		if (brand_name) {
 			let params = {}
 			Object.keys(filters).map(item => {
@@ -55,8 +58,7 @@ function Shop({ data }) {
 				})
 		}
 
-	}, [filters, page, brand_name])
-
+	}, [filters.brand_name, filters.country, filters.real_price, page, brand_name])
 	React.useEffect(() => {
 		let f = {}
 		if (brand_name) {
@@ -72,6 +74,7 @@ function Shop({ data }) {
 			if (b && b.length > 0) setBrandName(b[0].persian_name)
 		}
 	}, [brand_name, brands])
+
 	React.useEffect(() => {
 		if (isMobile && typeof window !== "undefined") {
 			window.scrollTo({
@@ -109,7 +112,7 @@ function Shop({ data }) {
 					<div className="my-4">
 						{cardsCount > 20 ? <PaginationControlled handleChange={handleChange} size={cardsCount} page={page} /> : null}
 					</div>
-					<ShopBrandDescription brand={ data}/>
+					<ShopBrandDescription brand={ data }/>
 				</div>
 
 			</div>
