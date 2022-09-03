@@ -1,38 +1,36 @@
 import React from 'react'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Box from '@mui/material/Box'
-import {useSlector} from 'react-redux'
 import {GET_PAYMENT_LINK } from '../../redux/endpoints'
 import WalletDepositSelectCard from './WalletDepositSelectCard'
 import {toast} from 'react-toastify'
 import  axios from 'axios'
-import {profile} from '../../redux/actions'
-import {useDispatch} from 'react-redux'
 import * as e from '../../redux/endpoints'
 function PayDirect({setOpen}) {
-    // user = useSelector(s=>s.auth.user)
+
     const [loading, setLoading] = React.useState(false)
     const [payOpen, setPayOpen] = React.useState(false)
     const [redirecting, setRedirecting] = React.useState(false)
     const [card, setCard] = React.useState(null)
-    const dispatch = useDispatch()
-    
+    const [dargah, setDargah] = React.useState('zarinpal')
+
+    console.log(process.env.ZARINPAL_REQUEST_URL)
     const _payment = ()=>{
         setLoading(true)
-        axios.post(GET_PAYMENT_LINK, {card, token: window.location.href.indexOf('org')>-1? "org": "ir"})
+        axios.post(GET_PAYMENT_LINK, { card, dargah })
         .then(response=>{
           const {data} = response
           if (data.error === 0 ){
             let {clientRefId:card, source, amount} = data.data
             
-            axios.post('/gen_code', data.data)
+            axios.post('/gen_code', {...data.data, dargah})
             .then(response2=>{
               let {data:data2} = response2
               if(data2.error === 0){
-                if(data2.code){
+                if(data2.url){
                   let ddd = {
                     card,
-                    description: data2.code
+                    description: data2.url.split("/")[ data2.url.split("/").length - 1 ]
                   }
                   if(source === "wallet") ddd["amount"] = amount
                   axios.post(e.GENERATE_WALLET_TRANSACRTION, ddd)
@@ -44,7 +42,7 @@ function PayDirect({setOpen}) {
                       toast.success("در حال انتقال", {
                         duration: 3000,
                         onClose: ()=>{
-                          window.open("https://www.zarinpal.com/pg/StartPay/"+data2.code, "_self")
+                          window.open(data2.url, "_blank")
                           setOpen(false)  
                         }
                       })
@@ -75,7 +73,11 @@ function PayDirect({setOpen}) {
             onClick={e=>setPayOpen(true)}
             variant="contained" color="primary" sx={{minWidth: "160px"}}>پرداخت مستقیم </LoadingButton>
         </Box>
-        <WalletDepositSelectCard open={payOpen} setOpen={setPayOpen} onClick={_payment} card={card} setCard={setCard}></WalletDepositSelectCard>
+        <WalletDepositSelectCard 
+          open={payOpen} setOpen={setPayOpen}
+          onClick={_payment} card={card} setCard={setCard}
+          dargah={dargah} setDargah={setDargah}
+          ></WalletDepositSelectCard>
         </>
     )
 }

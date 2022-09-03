@@ -55,7 +55,7 @@ function ProductRow({ product , _count}) {
     
   }
   return (
-    <div className="row mt-5 product-list-gift basket-remove-item-parent position-relative">
+    <div className="d-flex flex-wrap px-2 mt-5 product-list-gift basket-remove-item-parent position-relative">
       <div className="basket-remove-item text-start mt-2 position-absolute top-0 start-0">
         <CloseIcon onClick={e=>_remove_item(product.id)} color="error" className="cursor-pointer"/>
       </div>

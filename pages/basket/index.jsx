@@ -76,8 +76,7 @@ function Basket() {
           تومان
 
         </div>
-        <div className="col-6 col-md-3 px-2
-        ">
+        <div className="col-6 col-md-3 ps-2">
           <div className="accept-pay cursor-pointer">
             
             <a onClick={e=>setPaymentMethodOpen(true)}>تایید و ادامه</a>
