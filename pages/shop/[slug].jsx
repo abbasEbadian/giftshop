@@ -33,7 +33,6 @@ function Shop({ data }) {
 	const { real_price, country } = router.query
 
 	React.useEffect(() => {
-		console.log(filters, page, brand_name)
 		if (brand_name) {
 			let params = {}
 			Object.keys(filters).map(item => {
@@ -58,7 +57,7 @@ function Shop({ data }) {
 				})
 		}
 
-	}, [filters.brand_name, filters.country, filters.real_price, page, brand_name])
+	}, [filters.brand_name, filters.country, filters.real_price, page, brand_name, filters.accountType])
 	React.useEffect(() => {
 		let f = {}
 		if (brand_name) {
