@@ -17,7 +17,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function CheckboxesTags({ setOpen = false }) {
   const [cats, setCats] = React.useState([])
-  const [loading, setLoading] = React.useState([])
+  const [loading, setLoading] = React.useState(false)
   const [searchValue, setSearchValue] = React.useState([])
   const router = useRouter()
 

@@ -8,6 +8,7 @@ import axios from "axios";
 import {useDispatch} from 'react-redux'
 import * as _ from 'lodash'
 import CloseIcon from '@mui/icons-material/Close';
+import { Box } from "@mui/material";
 
 const locale = (yeGeimat)=>{
     return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString('fa'): yeGeimat
@@ -55,10 +56,10 @@ function ProductRow({ product , _count}) {
     
   }
   return (
-    <div className="d-flex flex-wrap px-2 mt-5 product-list-gift basket-remove-item-parent position-relative">
-      <div className="basket-remove-item text-start mt-2 position-absolute top-0 start-0">
+    <div className="d-flex flex-wrap p-2 mt-5 product-list-gift basket-remove-item-parent position-relative">
+      <Box className="basket-remove-item text-start mt-2 position-absolute top-0 start-0 " sx={{zIndex: 2, pl: "12px", pt:"6px"}}>
         <CloseIcon onClick={e=>_remove_item(product.id)} color="error" className="cursor-pointer"/>
-      </div>
+      </Box>
       <div className="col-12 col-md-4">
         <Card data={product} favoriteAndRate />
       </div>
