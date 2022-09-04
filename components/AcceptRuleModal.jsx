@@ -25,7 +25,7 @@ export default function AcceptRuleModal({open, setOpen}) {
       <Dialog
         onBackdropClick={e=>{return false}}
         disableEscapeKeyDown
-        open={open}
+        open={open || true}
         fullWidth
         maxWidth={"sm"}
         TransitionComponent={Transition}
@@ -33,7 +33,7 @@ export default function AcceptRuleModal({open, setOpen}) {
         className="mb-5 pb-5"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{" قوانین گیفت استاپ"}</DialogTitle>
+        <p className='fs-4 p-3'>{" قوانین گیفت استاپ"}</p>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             {configs&&configs.rules&&configs.rules.content?

@@ -211,7 +211,7 @@ function Card({
             </div>
             {showRate ? (
               <span className="d-flex align-items-center _rate position-absolute ">
-                <Typography component="h2" sx={{ transform: "translateY(1px)", fontSize: "15px", fontWeight: "900" }}> {Number(data.rate)} </Typography><StarIcon />
+                <Typography component="span" sx={{ transform: "translateY(1px)", fontSize: "15px", fontWeight: "900" }}> {Number(data.rate)} </Typography><StarIcon />
               </span>
             ) : (
               <i></i>
