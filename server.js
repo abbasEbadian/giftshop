@@ -114,6 +114,9 @@ app.prepare().then(() => {
         method: "POST",
         headers,
         body: JSON.stringify(data),
+        agent: new https.Agent({
+          rejectUnauthorized: false,
+        })
       })
         .then(r => r.json())
         .then(r => {
@@ -127,6 +130,7 @@ app.prepare().then(() => {
           return app.render(req, res, '/shop/payment_success')
         })
         .catch(e => {
+          console.log(e)
           return app.render(req, res, '/shop/payment_failure')
         })
 
