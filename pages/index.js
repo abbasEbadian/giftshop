@@ -95,7 +95,7 @@ export default function Home({data}) {
 
           <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">
             <span></span>
-            <a href="#utilities" className="scroll-down d-flex align-items-center justify-content-center flex-column bg-transparent">
+            <a href="#scroll-here" className="scroll-down d-flex align-items-center justify-content-center flex-column bg-transparent">
               <span className="mb-2">
                 <Image src={mouse} alt="mouse" />
               </span>
@@ -112,18 +112,18 @@ export default function Home({data}) {
           </main>
         </section>
         <HomeUtilities />
-
+          <i id="scroll-here"></i>
         <SimilarCards
           addToCard
           _products={top_sale_cards && top_sale_cards[active] || []}
           title={
-            <span>
+            <span >
               {"پرفروش ترین"} <span className="text-secondary">گیفت </span>{" "}
               کارت ها
             </span>
           }
         >
-          <div className="row mb-3 mt-5">
+          <div className="row mb-3 mt-5" >
             <div className="col-6 col-md-3">
               <button
                 onClick={(e) => setActive("today")}
