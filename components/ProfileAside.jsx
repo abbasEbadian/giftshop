@@ -122,7 +122,7 @@ export default function ProfileAside({active}) {
         </ListItemButton>
 
         <ListItemButton onClick={handleClick} >
-          <ListItemIcon sx={{minWidth: 36}}>
+          <ListItemIcon sx={{minWidth: 36 }}>
             <ChatIcon />
           </ListItemIcon>
           <ListItemText className="postiion-relative" primary={"تیکت ها " } />
