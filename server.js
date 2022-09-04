@@ -106,9 +106,10 @@ app.prepare().then(() => {
         authority,
         verify_url: ZARINPAL_VERIFY_URL,
         token: ZARINPAL_MERCHANT_ID,
-        dargah: 'zarinpal'
+        dargah: 'zarinpal',
+        
       }
-      console.log(data)   
+      console.log(data, _PAY)   
       fetch(_PAY, {
         method: "POST",
         headers,
@@ -116,6 +117,7 @@ app.prepare().then(() => {
       })
         .then(r => r.json())
         .then(r => {
+          console.log(r)
           if (r.error === 1) {
             console.log(r)
             return app.render(req, res, '/shop/payment_failure', { "message": r.message })
