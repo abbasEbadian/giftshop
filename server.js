@@ -100,8 +100,7 @@ app.prepare().then(() => {
   // Zarinpal calls callback with GET
   server.get("/shop/payment_status", (req, res) => {
     const { Authority:authority, Status } = req.query
-    console.log( req)
-      
+       
     if (Status === "OK") {
       const data = {
         authority,
@@ -109,6 +108,7 @@ app.prepare().then(() => {
         token: ZARINPAL_MERCHANT_ID,
         dargah: 'zarinpal'
       }
+      console.log(data)   
       fetch(_PAY, {
         method: "POST",
         headers,
