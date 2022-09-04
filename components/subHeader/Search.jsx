@@ -72,7 +72,7 @@ export default function CheckboxesTags({setOpen=false}) {
         dir="ltr"
       multiple
       id="main-searchbox"
-      options={cats.filter(i=>!searchValue ||!searchValue.includes(i.title))}
+      options={cats.filter(i=>!searchValue || !searchValue.includes(i.title))}
       disableCloseOnSelect
       getOptionLabel={(option) => option.title}
       groupBy={e=>e.group}
@@ -88,13 +88,7 @@ export default function CheckboxesTags({setOpen=false}) {
             style={{ marginRight: 8 }}
             checked={selected}
           />
-          {option.persian_name? 
-
-          <span>
-            {option.persian_name} <small className="text-black-50">({option.title})</small>
-          </span>
-          
-          : option.title}
+          {option.persian_name? option.persian_name: option.title}
         </li>
       )}
       style={{ width: 500 }}
@@ -111,4 +105,3 @@ export default function CheckboxesTags({setOpen=false}) {
     </>
   );
 }
-
