@@ -74,7 +74,7 @@ function ShopFilters({
     setSelectedCountries([]);
     setValue1([0, max_value]);
     setRateValue([1, 5]);
-    router.push('/shop')
+    // router.push('/shop')
   };
   React.useEffect(() => {
     let a = [];

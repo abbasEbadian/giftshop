@@ -32,17 +32,24 @@
   text-align: right;
 }
 .filter-country button.selected {
-  border-width: 1px;
+  border-width: 1px ;
+  border-color: navy ;
+  background-color: #0003;
+}
+.filter-country{
+  flex-wrap: wrap;
 }
 .filter-country button {
-  flex-basis: 47%;
+  flex-basis: 30%;
   border-style: solid;
   border-color: #aaa;
   padding-block: 6px;
   border-width: 0px;
-  margin: 4px;
+  margin: 1%;
   border-radius: 12px;
-  text-align: right;
+  text-align: center;
+  flex-grow: 1;
+  min-width: 80px;
 }
 .MuiSlider-root {
   margin-bottom: 25px;

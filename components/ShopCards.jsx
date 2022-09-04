@@ -2,12 +2,16 @@ import React from "react";
 import Card from "./Card";
 import {TailSpin} from 'react-loader-spinner'
 function ShopCards({ cards , loading=false}) {
+  const points = (d) => {
+    if(d.brand_id?.name === 'apple') return 0
+    return 1 
+  }
   return (
     <div className="mt-5">
       <div className="container">
         <div className="row">
           <div className="product-list-gift py-3 row">
-            {cards.length ? cards.map((i, idx) => {
+            {cards.length ? cards.sort((a,b) => points(a) - points(b)).map((i, idx) => {
                   return (
                     <div
                       key={idx}
