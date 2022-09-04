@@ -23,7 +23,6 @@ function HeaderPublic({ authenticated }) {
   const [full, setFull] = React.useState(false)
 
   const unseen_tickets_count = React.useMemo(() => {
-    console.log(user, user?.ticket_set)
     const x = user?.ticket_set?.filter(i => !i.seen_by_user)
     return x?.length || 0
   }, [user])

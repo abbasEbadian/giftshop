@@ -17,17 +17,26 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ChatIcon from '@mui/icons-material/Chat';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
+import { useSelector } from 'react-redux';
+import { Badge, Chip, Typography } from '@mui/material';
 
 
 
 export default function ProfileAside({active}) {
   const [open, setOpen] = React.useState(false);
   const [navOpen, setNavOpen] = React.useState(false);
+  const user = useSelector(e => e.auth.user)
 
   const handleClick = () => {
     setOpen(!open);
   };
   const  classes={selected: "active", root: "sidebar-item"}
+
+
+  const unseen_tickets_count = React.useMemo(() => {
+    const x = user?.ticket_set?.filter(i => !i.seen_by_user)
+    return x?.length || 0
+  }, [user])
 
   return (
     <div className="col-md-12 col-lg-3 col-12 py-5">
@@ -113,13 +122,14 @@ export default function ProfileAside({active}) {
         </ListItemButton>
 
         <ListItemButton onClick={handleClick} >
-          <ListItemIcon>
+          <ListItemIcon sx={{minWidth: 36}}>
             <ChatIcon />
           </ListItemIcon>
-          <ListItemText primary="تیکت ها" />
+          <ListItemText className="postiion-relative" primary={"تیکت ها " } />
           {open ? <ExpandLess /> : <ExpandMore />}
+          {unseen_tickets_count &&  unseen_tickets_count > 0 && <Typography className={"me-auto d-grid place-items-center rounded-circle bg-danger text-white text-center"} sx={{width:24 ,height:24}}>{unseen_tickets_count}</Typography> || null}
         </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={open} timeout="auto" unmountOnExit >
           <List component="div" disablePadding>
             <ListItemButton sx={{ padding: "6px 24px" }} component="div" selected={active==="new_ticket"}  >
               <Link href="/panel/send-ticket">
