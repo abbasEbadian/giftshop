@@ -8,7 +8,7 @@ const handle = app.getRequestHandler()
 const { query } = require('express');
 const https = require('https');
 
-const _PAY = dev? "http://localhost:8000/api/v1/orders/get_payment_status/": "https://arsimodir.ir/api/v1/orders/get_payment_status/"
+const _PAY = dev ? "http://localhost:8000/api/v1/orders/get_payment_status/" : "https://arsimodir.ir/api/v1/orders/get_payment_status/"
 const headers = {
   "Content-Type": "application/json"
 }
@@ -21,7 +21,7 @@ app.prepare().then(() => {
 
   const ZARINPAL_REQUEST_URL = String(process.env.ZARINPAL_REQUEST_URL).trim()
   const IRANDARGAH_REQUEST_URL = String(process.env.IRANDARGAH_REQUEST_URL).trim()
-  
+
   const ZARINPAL_PAYMENT_URL = String(process.env.ZARINPAL_PAYMENT_URL).trim()
   const IRANDARGAH_PAYMENT_URL = String(process.env.IRANDARGAH_PAYMENT_URL).trim()
 
@@ -79,16 +79,16 @@ app.prepare().then(() => {
       })
       .then(r => {
         let authority = undefined
-        if(  req.body.dargah === 'zarinpal')
+        if (req.body.dargah === 'zarinpal')
           authority = r.data?.authority
         else
           authority = r.authority
         console.log(r, authority)
 
-        if(!authority) 
-          return res.end(JSON.stringify({ error: 1, message:  "خطا در اتصال به درگاه"}))
-        return res.end(JSON.stringify({ error: 0, url: PAYURL+authority}))
-        
+        if (!authority)
+          return res.end(JSON.stringify({ error: 1, message: "خطا در اتصال به درگاه" }))
+        return res.end(JSON.stringify({ error: 0, url: PAYURL + authority }))
+
       })
       .catch(c => {
         console.log(c)
@@ -99,17 +99,17 @@ app.prepare().then(() => {
 
   // Zarinpal calls callback with GET
   server.get("/shop/payment_status", (req, res) => {
-    const { Authority:authority, Status } = req.query
-       
+    const { Authority: authority, Status } = req.query
+
     if (Status === "OK") {
       const data = {
         authority,
         verify_url: ZARINPAL_VERIFY_URL,
         token: ZARINPAL_MERCHANT_ID,
         dargah: 'zarinpal',
-        
+
       }
-      console.log(data, _PAY)   
+      console.log(data, _PAY)
       fetch(_PAY, {
         method: "POST",
         headers,
@@ -142,10 +142,10 @@ app.prepare().then(() => {
   })
   // Iran Dargah calls callback with POST
   server.post("/shop/payment_status", (req, res) => {
-    const { authority, code:status,  } = req.body
-      
+    const { authority, code: status, } = req.body
+
     if (status == 100) {
-    const data = {
+      const data = {
         authority,
         verify_url: IRANDARGAH_VERIFY_URL,
         token: IRANDARGAH_MERCHANT_ID,
@@ -155,6 +155,9 @@ app.prepare().then(() => {
         method: "POST",
         headers,
         body: JSON.stringify(data),
+        agent: new https.Agent({
+          rejectUnauthorized: false,
+        })
       })
         .then(r => r.json())
         .then(r => {
@@ -167,13 +170,15 @@ app.prepare().then(() => {
           return app.render(req, res, '/shop/payment_success')
         })
         .catch(e => {
+          console.log(e)
           return app.render(req, res, '/shop/payment_failure')
         })
 
 
     }
-    else
+    else {
       return app.render(req, res, '/shop/payment_failure')
+    }
 
   })
 
