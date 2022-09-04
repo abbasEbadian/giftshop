@@ -37,14 +37,7 @@ function PayDirect({setOpen}) {
                     let {data:data3} = r
                     if(data3.error === 0){
                       setRedirecting(true)
-                      
-                      toast.success("در حال انتقال", {
-                        duration: 3000,
-                        onClose: ()=>{
-                          window.open(data2.url, "_blank")
-                          setOpen(false)  
-                        }
-                      })
+                      window.open(data2.url, "_self")
                     }
                     else toast.error("خطا در ایجاد تراکنش")
                   })
