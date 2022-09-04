@@ -45,7 +45,14 @@ function Blog({blogs, category_blogs, meta}) {
   React.useEffect(()=>{
     setBLogPosts(category_blogs)
   }, [category_blogs])
-
+  
+  React.useEffect(()=>{
+    if(blog_page == 1){
+      router.push('/blog')
+      return
+    }
+    if(blog_page) setPage(+blog_page)
+  }, [blog_page])
   return (
     <>
       <Head>

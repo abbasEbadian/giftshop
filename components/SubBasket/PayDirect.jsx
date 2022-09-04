@@ -14,7 +14,6 @@ function PayDirect({setOpen}) {
     const [card, setCard] = React.useState(null)
     const [dargah, setDargah] = React.useState('zarinpal')
 
-    console.log(process.env.ZARINPAL_REQUEST_URL)
     const _payment = ()=>{
         setLoading(true)
         axios.post(GET_PAYMENT_LINK, { card, dargah })

@@ -44,7 +44,7 @@ function PurchaseReport() {
           <h5 className="text-basket py-3">گزارش <span>خریدها</span></h5>
           <div>
             {user && user.order_set && user.order_set.filter(i=>i.status!="draft").length ? 
-              user.order_set.reverse().filter(i=>i.status!=="draft").map((i, idx)=>{
+              user.order_set.sort((a,b)=> new Date(b.purchased_date) - new Date(a.purchased_date)).filter(i=>i.status!=="draft").map((i, idx)=>{
                 const {text, color} = get_status(i.status)
                 const group = _.groupBy(i.orderline_set, c => c.template_id?.id)
               return <Accordion  key={idx}>
