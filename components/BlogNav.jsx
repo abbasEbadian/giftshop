@@ -27,7 +27,7 @@ function BlogNav({blogs}) {
           <p className="text-center">آخرین مطالب ارسالی</p>
         </div>
         <div className="d-flex flex-column content-box-blog">
-          {cats1.map((item, idx) => {
+          {cats1&&cats1.slice(0, 10).map((item, idx) => {
             return (
               <Link href={"/blog/posts/" + item.id}  key={idx}>
                 <a className="py-2">
@@ -44,7 +44,7 @@ function BlogNav({blogs}) {
           <p className="text-center">پربازدیدترین مطالب</p>
         </div>
         <div className="d-flex flex-column content-box-blog">
-          {cats2.map((item, idx) => {
+          {cats2&&cats2.slice(0, 10).map((item, idx) => {
             return (
               <div className="favoite-blog-cat" key={idx}>
                 <div className="img-favorite-blog">

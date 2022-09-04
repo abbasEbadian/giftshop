@@ -121,15 +121,15 @@ function ShopFilters({
 
   return (
     <div>
-      <h4 className="d-flex align-items-center justify-content-between m-0 h-100 line-height-64">
-        <span>فیلترها</span>
+      <p className="d-flex align-items-center justify-content-between m-0 h-100 line-height-64">
+        <span className="fs-4">فیلترها</span>
         <small
           className="text-danger fs-6 cursor-pointer"
           onClick={resetFilters}
         >
           پاک کردن همه
         </small>
-      </h4>
+      </p>
       <div className="product-list-gift ">
         <div className="filter filter-category">
           <span className="title">دسته بندی</span>

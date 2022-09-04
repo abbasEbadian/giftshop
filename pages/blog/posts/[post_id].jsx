@@ -8,16 +8,13 @@ import Image from "next/image";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Typography } from "@mui/material";
+import { urlencoded } from "body-parser";
 // import ReadMoreBlog from "../pages/ReadMoreBlog";
 
 function BlogPostView({blog, blogs, is_short}) {
   const router = useRouter()
 
-  useEffect(() => {
-      if(is_short)
-        router.replace(`/blog/posts/${blog.id}-${blog.title.replace(/[\s]+/g, '-')}`)
-  }, [blog, is_short])
-    console.log(blog)
+
   return (
     <>
       <Head>
@@ -33,12 +30,12 @@ function BlogPostView({blog, blogs, is_short}) {
             <div className="col-md-3">
               <BlogNav blogs={blogs}/>
             </div>
-            <div className="col-md-9">
+            <div className="col-md-9 col-12">
             <div className="position-relative h-100 d-flex  my-4 flex-wrap">
               {blog.image&&<img src={e.BASE_URL + blog.image}  alt={blog.image_alt} className="blog-main-image border rounded" />}
               <div className="bg-Sblog " >
                 <div className="caption-header-blog  text-black">
-                  <h3 className="position-relative">{blog.title}</h3>
+                  <h1 className="position-relative fs-3">{blog.title}</h1>
                   <p className="w-100" dangerouslySetInnerHTML={{
                     __html: blog.summary
                   }}></p>
@@ -77,6 +74,16 @@ export async function getServerSideProps({query}) {
       
       const res = await fetch(e.GET_BLOG(_post_id))
       const blog = await res.json()
+      const uri = `/blog/posts/${blog.id}-` + encodeURIComponent(`${blog.title.replace(/[\s]+/g, '-')}`)
+      console.log(blog, uri)
+      if( short ){
+        return {
+          redirect: {
+            destination: uri,
+            permanent: true,
+          }
+        }
+      }
       const res2 = await fetch(e.GET_BLOGS)
       const blogs = await res2.json()
       return { props: {blog, blogs: blogs.blogs, is_short: short}}

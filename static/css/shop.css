@@ -2,7 +2,7 @@
   padding: 16px;
 }
 .shop-main .filter .title {
-  font-size: min(5vw, 20px);
+  font-size: clamp(14px, 3vw, 18px);
   border-bottom: 1px solid #f005;
   padding-bottom: 8px;
   margin-bottom: 12px;
