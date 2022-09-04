@@ -141,9 +141,9 @@ app.prepare().then(() => {
   })
   // Iran Dargah calls callback with POST
   server.post("/shop/payment_status", (req, res) => {
-    const { authority, code: status, } = req.body
+    const { authority, code: status, message } = req.body
     console.log("CAME TO IRAN DARGAH")
-    console.log(authority, status)
+    console.log(authority, status, message )
     if (status == 100) {
       const data = {
         authority,
@@ -179,7 +179,7 @@ app.prepare().then(() => {
 
     }
     else 
-      return app.render(req, res, '/shop/payment_failure')
+      return app.render(req, res, '/shop/payment_failure', { "message": message })
 
   })
 
