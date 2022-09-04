@@ -8,7 +8,7 @@ const handle = app.getRequestHandler()
 const { query } = require('express');
 const https = require('https');
 
-const _PAY = "http://localhost:8000/api/v1/orders/get_payment_status/"
+const _PAY = dev? "http://localhost:8000/api/v1/orders/get_payment_status/": "/api/v1/orders/get_payment_status/"
 const headers = {
   "Content-Type": "application/json"
 }
@@ -29,8 +29,7 @@ app.prepare().then(() => {
   const IRANDARGAH_VERIFY_URL = String(process.env.IRANDARGAH_VERIFY_URL).trim()
 
   const PAYMENT_CALLBACK_URL = String(process.env.PAYMENT_CALLBACK_URL).trim()
-  const IRANDARGAH_ID = 1
-  const ZARINPAL_ID = 1
+
 
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(express.json())
