@@ -83,7 +83,6 @@ app.prepare().then(() => {
           authority = r.data?.authority
         else
           authority = r.authority
-        console.log(r, authority)
 
         if (!authority)
           return res.end(JSON.stringify({ error: 1, message: "خطا در اتصال به درگاه" }))
@@ -143,7 +142,8 @@ app.prepare().then(() => {
   // Iran Dargah calls callback with POST
   server.post("/shop/payment_status", (req, res) => {
     const { authority, code: status, } = req.body
-
+    console.log("CAME TO IRAN DARGAH")
+    console.log(authority, status)
     if (status == 100) {
       const data = {
         authority,
@@ -151,6 +151,7 @@ app.prepare().then(() => {
         token: IRANDARGAH_MERCHANT_ID,
         dargah: 'irandargah'
       }
+      console.log(data)
       fetch(_PAY, {
         method: "POST",
         headers,
@@ -161,6 +162,7 @@ app.prepare().then(() => {
       })
         .then(r => r.json())
         .then(r => {
+          console.log("INSIDE RES")
           if (r.error === 1) {
             console.log(r)
             return app.render(req, res, '/shop/payment_failure', { "message": r.message })
@@ -170,7 +172,7 @@ app.prepare().then(() => {
           return app.render(req, res, '/shop/payment_success')
         })
         .catch(e => {
-          console.log(e)
+          console.log("ERROR", e)
           return app.render(req, res, '/shop/payment_failure')
         })
 
