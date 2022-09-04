@@ -8,7 +8,7 @@ const handle = app.getRequestHandler()
 const { query } = require('express');
 const https = require('https');
 
-const _PAY = dev ? "http://localhost:8000/api/v1/orders/get_payment_status/" : "https://arsimodir.ir/api/v1/orders/get_payment_status/"
+const _PAY = dev? "http://localhost:8000/api/v1/orders/get_payment_status/": "https://arsimodir.ir/api/v1/orders/get_payment_status/"
 const headers = {
   "Content-Type": "application/json"
 }
@@ -176,9 +176,8 @@ app.prepare().then(() => {
 
 
     }
-    else {
+    else 
       return app.render(req, res, '/shop/payment_failure')
-    }
 
   })
 
