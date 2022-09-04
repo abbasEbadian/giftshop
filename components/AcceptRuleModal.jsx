@@ -25,7 +25,7 @@ export default function AcceptRuleModal({open, setOpen}) {
       <Dialog
         onBackdropClick={e=>{return false}}
         disableEscapeKeyDown
-        open={open || true}
+        open={open}
         fullWidth
         maxWidth={"sm"}
         TransitionComponent={Transition}

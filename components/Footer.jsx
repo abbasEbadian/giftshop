@@ -16,7 +16,7 @@ function Footer() {
         <div className="row">
           <div className="col-sm-12 col-md-4 ">
             <div className="col-md-9">
-              <p className="fs-6">{config?.contactus?.footer_about_title}</p>
+              <p className="fs-6" >{config?.contactus?.footer_about_title}</p>
               <p className="text-justify">
                 {" "}
                 {config?.contactus?.footer_about_content}
