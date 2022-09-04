@@ -10,98 +10,103 @@ import axios from 'axios'
 import * as e from '../../redux/endpoints'
 import Link from 'next/link'
 import Router, { useRouter } from 'next/router';
-
+import { createFilterOptions } from '@mui/material/Autocomplete';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export default function CheckboxesTags({setOpen=false}) {
- const [cats, setCats] = React.useState([])
- const [loading, setLoading] = React.useState([])
- const [searchValue, setSearchValue] = React.useState([])
- const router = useRouter()
-    React.useEffect(()=>{
-        setLoading(true)
-        axios.get(e.SEARCH_OPTIONS)
-        .then(response=>{
-            const {data} = response
-            setCats(data)
-        })
-        .catch(e=>console.log(e))
-        .finally(e=>setLoading(false))
-    }, [])
+export default function CheckboxesTags({ setOpen = false }) {
+  const [cats, setCats] = React.useState([])
+  const [loading, setLoading] = React.useState([])
+  const [searchValue, setSearchValue] = React.useState([])
+  const router = useRouter()
 
-    const _search = ()=>{
-        let base = "/shop/"
-        if(!searchValue) return
-        const brands = searchValue.filter(e=>e.group==="دسته بندی")
-        const countries = searchValue.filter(e=>e.group==="کشور")
-        const prices = searchValue.filter(e=>e.group==="قیمت")
+  React.useEffect(() => {
+    setLoading(true)
+    axios.get(e.SEARCH_OPTIONS)
+      .then(response => {
+        const { data } = response
+        setCats(data)
+      })
+      .catch(e => console.log(e))
+      .finally(e => setLoading(false))
+  }, [])
 
-        if (brands.length === 1)
-            base += brands[0].title
-        else if(brands.length > 1)
-            base += "?brand_name=" +  brands.map(e=>e.title).join(",")
+  const _search = () => {
+    let base = "/shop/"
+    if (!searchValue) return
+    const brands = searchValue.filter(e => e.group === "دسته بندی")
+    const countries = searchValue.filter(e => e.group === "کشور")
+    const prices = searchValue.filter(e => e.group === "قیمت")
 
-        
-        if(prices.length>0){
-            const p = base.indexOf("?")>-1?"&":"?"
+    if (brands.length === 1)
+      base += brands[0].title
+    else if (brands.length > 1)
+      base += "?brand_name=" + brands.map(e => e.title).join(",")
 
-            if(prices.length > 1)
-                base += p+"real_price=" +  Math.min(...prices.map(e=>+e.title)) + "," + Math.max(...prices.map(e=>+e.title))
-            else if (prices.length === 1)
-                base += p+"real_price=" + +prices[0].title + "," + (+prices[0].title + 5)     
-            
-            
-        }
-        if(countries.length){
-            const p = base.indexOf("?")>-1?"&":"?"
-            base+= p+"country=" + countries.map(i=>i.title).join(",")
-        }
-        
-        if(setOpen) setOpen(false)
-       router.push(base)
+
+    if (prices.length > 0) {
+      const p = base.indexOf("?") > -1 ? "&" : "?"
+
+      if (prices.length > 1)
+        base += p + "real_price=" + Math.min(...prices.map(e => +e.title)) + "," + Math.max(...prices.map(e => +e.title))
+      else if (prices.length === 1)
+        base += p + "real_price=" + +prices[0].title + "," + (+prices[0].title + 5)
+
+
+    }
+    if (countries.length) {
+      const p = base.indexOf("?") > -1 ? "&" : "?"
+      base += p + "country=" + countries.map(i => i.title).join(",")
     }
 
+    if (setOpen) setOpen(false)
+    router.push(base)
+  }
+  const filterOptions = createFilterOptions({
+    matchFrom: 'any',
+    stringify: (option) => option.title + " " + option.persian_name,
+  });
   return (
     <>
-    
-   <div className="d-flex align-items-center justify-content-center">
-     
-    <Autocomplete
-        dir="ltr"
-      multiple
-      id="main-searchbox"
-      options={cats.filter(i=>!searchValue || !searchValue.includes(i.title))}
-      disableCloseOnSelect
-      getOptionLabel={(option) => option.title}
-      groupBy={e=>e.group}
-      noOptionsText={"گزینه ای یافت نشد "}
-      loading={loading}
-      value={searchValue}
-      onChange={(e, v)=>setSearchValue(v)}
-      renderOption={(props, option, { selected }) => (
-        <li {...props} className="px-2">
-          <Checkbox
-            icon={icon}
-            checkedIcon={checkedIcon}
-            style={{ marginRight: 8 }}
-            checked={selected}
-          />
-          {option.persian_name? option.persian_name: option.title}
-        </li>
-      )}
-      style={{ width: 500 }}
-      renderInput={(params) => (
-        <TextField {...params} placeholder="قیمت ، کشور یا دسته بندی"  variant="standard"/>
-      )}
-    />
-    <Button
-        className='px-0'
-        onClick={_search}
+
+      <div className="d-flex align-items-center justify-content-center">
+
+        <Autocomplete
+          dir="ltr"
+          multiple
+          id="main-searchbox"
+          options={cats.filter(i => !searchValue || !searchValue.includes(i.persian_name) )}
+          disableCloseOnSelect
+          getOptionLabel={(option) => option.title}
+          groupBy={e => e.group}
+          noOptionsText={"گزینه ای یافت نشد "}
+          loading={loading}
+          value={searchValue}
+          onChange={(e, v) => setSearchValue(v)}
+          filterOptions={filterOptions}
+          renderOption={(props, option, { selected }) => (
+            <li {...props} className="px-2">
+              <Checkbox
+                icon={icon}
+                checkedIcon={checkedIcon}
+                style={{ marginRight: 8 }}
+                checked={selected}
+              />
+              {option.persian_name ? option.persian_name : option.title}
+            </li>
+          )}
+          sx={{ width: 500 }}
+          renderInput={(params) => (
+            <TextField {...params} placeholder="قیمت ، کشور یا دسته بندی" variant="standard" />
+          )}
+        />
+        <Button
+          className='px-0'
+          onClick={_search}
         >
-        <SearchIcon  width="20"/>
-    </Button></div>
+          <SearchIcon width="20" />
+        </Button></div>
     </>
   );
 }
