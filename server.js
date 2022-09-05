@@ -1,20 +1,24 @@
 const express = require('express')
 const next = require('next')
+const axios = require('axios')
 const bodyParser = require('body-parser');
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
-const { query } = require('express');
+const { query, response } = require('express');
 const https = require('https');
+var sslRootCAs = require('ssl-root-cas')
 
-const _PAY = dev? "http://localhost:8000/api/v1/orders/get_payment_status/": "https://arsimodir.ir/api/v1/orders/get_payment_status/"
+const _PAY = dev ? "http://localhost:8000/api/v1/orders/get_payment_status/" : "https://arsimodir.ir/api/v1/orders/get_payment_status/"
 const headers = {
   "Content-Type": "application/json"
 }
 
 app.prepare().then(() => {
+  // process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
   const server = express()
+  sslRootCAs.inject()
 
   const ZARINPAL_MERCHANT_ID = String(process.env.ZARINPAL_MERCHANT_ID).trim()
   const IRANDARGAH_MERCHANT_ID = String(process.env.IRANDARGAH_MERCHANT_ID).trim()
@@ -38,51 +42,44 @@ app.prepare().then(() => {
     const amount = data['amount'] * 10
     if (data.dargah === 'zarinpal')
       return {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          merchant_id: ZARINPAL_MERCHANT_ID,
-          amount: amount,
-          description: data.description,
-          Email: data.metadata?.email || "test@yahoo.com",
-          Mobile: data.metadata?.mobile || "",
-          callback_url: `${PAYMENT_CALLBACK_URL}`,
-        })
+        merchant_id: ZARINPAL_MERCHANT_ID,
+        amount: amount,
+        description: data.description,
+        Email: data.metadata?.email || "test@yahoo.com",
+        Mobile: data.metadata?.mobile || "",
+        callback_url: `${PAYMENT_CALLBACK_URL}`,
       }
 
     return {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        merchantID: IRANDARGAH_MERCHANT_ID,
-        amount: amount,
-        callbackURL: `${PAYMENT_CALLBACK_URL}`,
-        orderId: data.orderId,
-        description: data.description
-      }),
-      agent: new https.Agent({
-        rejectUnauthorized: false,
-      })
-
+      merchantID: IRANDARGAH_MERCHANT_ID,
+      amount: amount,
+      callbackURL: `${PAYMENT_CALLBACK_URL}`,
+      orderId: data.orderId,
+      description: data.description,
     }
   }
 
   server.post('/gen_code', (req, res) => {
     const URL = req.body.dargah === 'zarinpal' ? ZARINPAL_REQUEST_URL : IRANDARGAH_REQUEST_URL
     const PAYURL = req.body.dargah === 'zarinpal' ? ZARINPAL_PAYMENT_URL : IRANDARGAH_PAYMENT_URL
-    fetch(URL, generate_payload(req.body))
-      .then(r => {
-        if (r.status === 401)
-          throw "401 unauthorized"
-
-        return r.json()
+    console.log(generate_payload(req.body));
+    fetch(URL, {
+      method: "POST", 
+      headers,
+      body: JSON.stringify(generate_payload(req.body)),
+      agent: new https.Agent({
+        rejectUnauthorized: false,
+        requestCert: false
       })
-      .then(r => {
+    })
+    .then(r => r.json())
+      .then(response => {
+        console.log({URL,response})
         let authority = undefined
         if (req.body.dargah === 'zarinpal')
-          authority = r.data?.authority
+          authority = response.data?.authority
         else
-          authority = r.authority
+          authority = response.authority
 
         if (!authority)
           return res.end(JSON.stringify({ error: 1, message: "خطا در اتصال به درگاه" }))
@@ -143,7 +140,7 @@ app.prepare().then(() => {
   server.post("/shop/payment_status", (req, res) => {
     const { authority, code: status, message } = req.body
     console.log("CAME TO IRAN DARGAH")
-    console.log(authority, status, message )
+    console.log(authority, status, message)
     if (status == 100) {
       const data = {
         authority,
@@ -151,17 +148,20 @@ app.prepare().then(() => {
         token: IRANDARGAH_MERCHANT_ID,
         dargah: 'irandargah'
       }
-      console.log(data)
-      fetch(_PAY, {
+
+      console.log("FETCH DATA", data)
+      axios({
+        url: _PAY,
         method: "POST",
         headers,
-        body: JSON.stringify(data),
+        data: JSON.stringify(data),
         agent: new https.Agent({
           rejectUnauthorized: false,
+
         })
+
       })
-        .then(r => r.json())
-        .then(r => {
+        .then(({ data: r }) => {
           console.log("INSIDE RES")
           if (r.error === 1) {
             console.log(r)
@@ -178,7 +178,7 @@ app.prepare().then(() => {
 
 
     }
-    else 
+    else
       return app.render(req, res, '/shop/payment_failure', { "message": message })
 
   })
