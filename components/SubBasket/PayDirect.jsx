@@ -14,9 +14,16 @@ function PayDirect({setOpen}) {
     const [card, setCard] = React.useState(null)
     const [dargah, setDargah] = React.useState('zarinpal')
 
-    const _payment = ()=>{
+    const _payment = async ()=>{
+        let user_location = ""
         setLoading(true)
-        axios.post(GET_PAYMENT_LINK, { card, dargah })
+        try {
+          user_location = await axios.get("https://api.bigdatacloud.net/data/reverse-geocode-client")
+          user_location = JSON.stringify(user_location)
+        } catch (error) {
+          console.log(error)
+        }
+        axios.post(GET_PAYMENT_LINK, { card, dargah, user_location })
         .then(response=>{
           const {data} = response
           if (data.error === 0 ){
