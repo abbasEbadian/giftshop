@@ -121,7 +121,7 @@ function ShopFilters({
 
   return (
     <div>
-      <p className="d-flex align-items-center justify-content-between m-0 h-100 line-height-64">
+      <p className="d-flex align-items-center justify-content-between m-0 mb-3 h-100 line-height-64">
         <span className="fs-4">فیلترها</span>
         <small
           className="text-danger fs-6 cursor-pointer"
@@ -174,41 +174,9 @@ function ShopFilters({
             
             </div>
         </div>
-        <div className="filter filter-country">
-          <span className="title">کشور</span>
-          <div className="d-flex flex-wrap justify-content-start">
-            {countries.map((i, idx) => {
-              return (
-                <button
-                  key={idx}
-                  onClick={(e) => toggleCountry(i.symbol)}
-                  className={
-                    "btn-transparent   " +
-                    (selectedCountries.includes(i.symbol) ? "selected" : "")
-                  }
-                >
-                  {i.name}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
+        
         <div className="filter filter-price mt-5">
           <span className="title">قیمت</span>
-            <Slider
-              getAriaLabel={() => "price"}
-              value={value1}
-              onChange={handleChange1}
-              valueLabelDisplay="auto"
-              disableSwap
-              marks
-              isRtl
-              step={5}
-              min={1}
-              max={300}
-            />
-
           <div className="drops d-flex align-items-center w-100">
             <FormControl sx={{ m: 1, flexGrow: 1 }}>
               <Select
@@ -249,26 +217,27 @@ function ShopFilters({
               </Select>
             </FormControl>
           </div>
+        </div>  
+        <div className="filter filter-country">
+          <span className="title">کشور</span>
+          <div className="d-flex flex-wrap justify-content-start">
+            {countries.map((i, idx) => {
+              return (
+                <button
+                  key={idx}
+                  onClick={(e) => toggleCountry(i.symbol)}
+                  className={
+                    "btn-transparent   " +
+                    (selectedCountries.includes(i.symbol) ? "selected" : "")
+                  }
+                >
+                  {i.name}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="filter filter-rate">
-          <span className="title">امتیاز مشتریان</span>
-          <Slider
-            getAriaLabel={() => "rate"}
-            value={rateValue}
-            onChange={handleRateChange}
-            valueLabelDisplay="auto"
-            getAriaValueText={valuetext}
-            disableSwap
-            marks={[1, 2, 3, 4, 5].map((i) => {
-              return { value: i, label: i };
-            })}
-            isRtl={true}
-            step={1}
-            min={1}
-            max={5}
-          />
-        </div>
       </div>
     </div>
   );

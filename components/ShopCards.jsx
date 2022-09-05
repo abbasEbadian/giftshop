@@ -7,7 +7,7 @@ function ShopCards({ cards , loading=false}) {
     return 1 
   }
   return (
-    <div className="mt-5">
+    <div className="mt-5 mt-lg-0">
       <div className="container">
         <div className="row">
           <div className="product-list-gift py-3 row">

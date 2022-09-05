@@ -81,7 +81,7 @@ function Shop({ data }) {
 				</div>
 
 				<div className="col-12 col-md-9">
-					<h1 className="text-center line-height-64">
+					<h1 className="text-center line-height-64 mb-3">
 
 						محصولات <span className="text-danger">فروشگاه</span>
 
