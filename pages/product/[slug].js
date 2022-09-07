@@ -24,12 +24,12 @@ const locale = (yeGeimat) => {
   return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString('fa') : yeGeimat
 }
 
-function Product({ data }) {
+function Product({ data, product }) {
   const router = useRouter();
   const pid = router.query.slug;
-  const [product, setProduct] = React.useState(undefined);
+  // const [product, setProduct] = React.useState(undefined);
   const [count, setCount] = React.useState(1);
-  const [loading, setLoading] = React.useState(true)
+  const [loading, setLoading] = React.useState(false)
   const [loading1, setLoading1] = React.useState(false)
   const [similar, setSimilar] = React.useState(true)
   const config = useSelector(s => s.main.configs)
@@ -40,9 +40,7 @@ function Product({ data }) {
     if (!pid) return
     const pids = pid.split('-')[0]
     axios.get(GET_CARD + pids).then(res => {
-
       const { data } = res
-      setProduct(data.card)
       setSimilar(data.similar)
     }).catch(err => {
       console.log(err)
@@ -77,6 +75,7 @@ function Product({ data }) {
   }
   const [open, setOpen] = React.useState(false)
   return (
+    
     <div className="container single-product ">
       <Head>
         <title>{data.meta_title ?? (product && product.full_name)}</title>
@@ -173,9 +172,9 @@ function Product({ data }) {
             <section className="w-75 alert alert-info my-5 mx-auto">محصول یافت نشد</section>
         }</div>
       <div className="desc product-list-gift  my-4 p-3 blog-desc overflow-hidden position-relative pb-5" style={{ height: (open ? "unset" : (product?.description.length > 1200 ? "300px" : "max-content")) }}>
-        <p className="mt-3  h-100">توضیحات:  <span dangerouslySetInnerHTML={{
+        <div className="mt-3  h-100">توضیحات:  <span dangerouslySetInnerHTML={{
           __html: product?.description
-        }}></span></p>
+        }}></span></div>
         {product?.description.length > 1200 && <Button sx={{ width: '100%', height: '38px', backgroundColor: '#efe', color: "#4c4c4c" }} onClick={e => { setOpen(!open) }} className="position-absolute bottom-0 start-0 end-0">
           {open ?
             "مشاهده کمتر "
@@ -211,10 +210,9 @@ export async function getServerSideProps({ query }) {
     const pid = query.slug.split("-")[0]
     const res = await fetch(e.GET_PRODUCT_TITLE(pid))
     const data = await res.json()
-
-    return { props: { data } }
+    return { props: { data, product: data.product } }
   } catch (e) {
-    return { props: { data: {} } }
+    return { props: { data: {}, product: {}} }
   }
 }
 export default Product;
