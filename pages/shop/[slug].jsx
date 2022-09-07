@@ -16,23 +16,24 @@ import Link from "next/link";
 
 function Shop({ data }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
-
+	
 	const router = useRouter();
 
-	const [filteredCards, setFilteredCards] = React.useState([]);
+	const [filteredCards, setFilteredCards] = React.useState(initialCards);
 	const brand_name = router.query.slug;
 	const [loading, setLoading] = React.useState(false)
 	const [filters, setFilters] = React.useState({ real_price: undefined, country: undefined })
-	const [cardsCount, setCardsCount] = React.useState({ brand_name })
+	const [cardsCount, setCardsCount] = React.useState(initialSize)
 	const brands = useSelector(state => state.main.brands)
 	const [brandName, setBrandName] = React.useState()
 	const [page, setPage] = React.useState(1);
 
-	const handleChange = (event, value) => {
-		setPage(value);
-	};
+	const handleChange = (event, value) => setPage(value);
+	
 
-	const { real_price, country } = router.query
+	const { real_price, country } = React.useMemo(() => {
+		return router.query
+	}, [router.query])
 
 	React.useEffect(() => {
 		if (brand_name) {
@@ -40,7 +41,6 @@ function Shop({ data }) {
 			Object.keys(filters).map(item => {
 				if (item) params[item] = filters[item]
 			})
-
 			params["brand_name"] = brand_name
 			params["page"] = page
 			setLoading(true)
@@ -60,6 +60,7 @@ function Shop({ data }) {
 		}
 
 	}, [filters.brand_name, filters.country, filters.real_price, page, brand_name, filters.accountType])
+
 	React.useEffect(() => {
 		let f = {}
 		if (brand_name) {
@@ -70,7 +71,7 @@ function Shop({ data }) {
 	}, [real_price, country])
 
 	React.useEffect(() => {
-		if (brand_name && brands) {
+		if (brand_name && brands ) {
 			const b = brands.filter(i => i.name === brand_name)
 			if (b && b.length > 0) setBrandName(b[0].persian_name)
 		}
@@ -84,6 +85,7 @@ function Shop({ data }) {
 			})
 		}
 	}, [])
+
 	return (
 		<div className="shop-main">
 			<Head>
@@ -132,12 +134,16 @@ function Shop({ data }) {
 		</div>
 	);
 }
+
+
+
 export async function getServerSideProps({ query }) {
 	try {
 		const brand_name = query.slug
 		const res = await fetch(e.GET_BRAND_TITLE(brand_name))
 		const data = await res.json()
-		return { props: { data } }
+		const {cards, size} = data
+		return { props: { data , cards, size} }
 	} catch (e) {
 		return { props: { data: {} } }
 	}

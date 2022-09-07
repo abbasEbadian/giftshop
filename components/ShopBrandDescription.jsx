@@ -10,8 +10,13 @@ const Desc = styled.div`
         margin-block: 0;
     }
 `
-function ShopBrandDescription({ brand }) {
-    console.log(brand);
+const check = (a,b) => {
+    return  a.brand.description_image === b.brand.description_image &&
+      a.review_rating === b.review_rating &&
+      a.brand.description === b.brand.description
+
+}
+const  ShopBrandDescription = React.memo(({ brand } ) => {
   return (
     
     <Desc className='row brand-description mb-4' >
@@ -35,6 +40,6 @@ function ShopBrandDescription({ brand }) {
         </div>
     </Desc>  
   )
-}
+}, check)
 
 export default ShopBrandDescription

@@ -6,14 +6,15 @@ import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import {useRouter} from 'next/router'
-function ShopFilters({  
+import { useRouter } from 'next/router'
+
+function ShopFilters({
   setFilters,
   brand_name = null,
 }) {
   const router = useRouter()
   const minDistance = 5;
-  const min_value = 0
+  const min_value = 1
   const max_value = 300
   const [value1, setValue1] = React.useState([min_value, max_value]);
   const [rateValue, setRateValue] = React.useState([1, 5]);
@@ -23,7 +24,7 @@ function ShopFilters({
   const countries = useSelector((state) => state.main.countries);
   const categories = useSelector((state) => state.main.brands);
 
- 
+
 
   const toggleCountry = (symbol) => {
     if (selectedCountries.includes(symbol)) {
@@ -33,33 +34,8 @@ function ShopFilters({
     }
   };
 
-  const handleChange1 = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
 
-    if (activeThumb === 0) {
-      setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
-    } else {
-      setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
-    }
-  };
 
-  const handleRateChange = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
-    if (activeThumb === 0) {
-      setRateValue([Math.min(newValue[0], rateValue[1]), rateValue[1]]);
-    } else {
-      setRateValue([rateValue[0], Math.max(newValue[1], rateValue[0])]);
-    }
-  };
-
-  function valuetext(value) {
-    return `${value}`;
-  }
 
   const handleMinPriceChange = (e) => {
     let val = e.target.value;
@@ -72,51 +48,59 @@ function ShopFilters({
 
   const resetFilters = () => {
     setSelectedCountries([]);
-    setValue1([0, max_value]);
+    setValue1([1, max_value]);
     setRateValue([1, 5]);
-    // router.push('/shop')
   };
+
   React.useEffect(() => {
-    let a = [];
-    for (let index = 1; index < 20; index += 1) {
-      a.push(index);
-    }
-    for (let index = 20; index < 100; index +=5) {
-      a.push(index);
-    }
-    for (let index = 100; index <= 300; index +=50) {
+    let a = [1];
+    
+    for (let index = 10; index <= 300; index += 10) {
       a.push(index);
     }
     setValues(a);
   }, []);
 
+
   React.useEffect(() => {
-    setFilters(s=>{return {
-      ...s,
-      rate: rateValue[0] +","+ rateValue[1],
-    }})
+    resetFilters()
+  }, [brand_name])
+
+  React.useEffect(() => {
+    setFilters(s => {
+      return {
+        ...s,
+        rate: rateValue[0] + "," + rateValue[1],
+      }
+    })
   }, [rateValue]);
 
   React.useEffect(() => {
-    
-    setFilters(s=>{return {
-      ...s,
-      real_price: value1[0] +","+ value1[1],
-    }})
+
+    setFilters(s => {
+      return {
+        ...s,
+        real_price: value1[0] + "," + value1[1],
+      }
+    })
   }, [value1]);
 
   React.useEffect(() => {
-    setFilters(s=>{return {
-      ...s,
-      country: selectedCountries.join(','),
-    }})
+    setFilters(s => {
+      return {
+        ...s,
+        country: selectedCountries.join(','),
+      }
+    })
   }, [selectedCountries]);
 
   React.useEffect(() => {
-    setFilters(s=>{return {
-      ...s,
-      accountType: accountType,
-    }})
+    setFilters(s => {
+      return {
+        ...s,
+        accountType: accountType,
+      }
+    })
   }, [accountType]);
 
   return (
@@ -159,22 +143,22 @@ function ShopFilters({
 
         <div className="filter filter-country">
           <span className="title d-block">نوع کارت</span>
-          
-            <div className="d-flex w-100">
+
+          <div className="d-flex w-100">
             <RadioGroup
               aria-labelledby="demo-controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
               value={accountType}
-              onChange={e=>setAccountType(e.target.value)}
+              onChange={e => setAccountType(e.target.value)}
             >
               <FormControlLabel className="m-0" value="giftcard" control={<Radio />} label="گیفت کارت" />
               <FormControlLabel className="m-0" value="account" control={<Radio />} label="  اشتراک ماهیانه" />
               <FormControlLabel className="m-0" value="all" control={<Radio />} label="هردو" />
             </RadioGroup>
-            
-            </div>
+
+          </div>
         </div>
-        
+
         <div className="filter filter-price mt-5">
           <span className="title">قیمت</span>
           <div className="drops d-flex align-items-center w-100">
@@ -188,12 +172,12 @@ function ShopFilters({
               >
                 {values.length
                   ? values.map((i, idx) => {
-                      return (
-                        <MenuItem value={i} key={idx}>
-                          {i}
-                        </MenuItem>
-                      );
-                    })
+                    return (
+                      <MenuItem value={i} key={idx}>
+                        {i}
+                      </MenuItem>
+                    );
+                  })
                   : undefined}
               </Select>
             </FormControl>
@@ -207,17 +191,17 @@ function ShopFilters({
               >
                 {values.length
                   ? values.map((i, idx) => {
-                      return (
-                        <MenuItem key={idx} value={i}>
-                          {i}
-                        </MenuItem>
-                      );
-                    })
+                    return (
+                      <MenuItem key={idx} value={i}>
+                        {i}
+                      </MenuItem>
+                    );
+                  })
                   : undefined}
               </Select>
             </FormControl>
           </div>
-        </div>  
+        </div>
         <div className="filter filter-country">
           <span className="title">کشور</span>
           <div className="d-flex flex-wrap justify-content-start">
