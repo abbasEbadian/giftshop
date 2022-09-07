@@ -25,6 +25,7 @@ import Router from 'next/router'
 
 import Head from 'next/head'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import Script from 'next/script';
 
 Router.onRouteChangeStart = () => {
 	NProgress.start();
@@ -82,13 +83,14 @@ const MyApp = ({ Component, pageProps }) => {
 					<link rel="icon" href="/fav.png" />
 					<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 					<meta name="description" content="وبسایت مرجع خرید انواع گیفت کارت" />
-					<script
+					<Script
+						strategy="lazyOnload"
 						dangerouslySetInnerHTML={{
 							__html: `
 						!function (t, e, n) { t.yektanetAnalyticsObject = n, t[n] = t[n] || function () { t[n].q.push(arguments) }, t[n].q = t[n].q || []; var a = new Date, r = a.getFullYear().toString() + "0" + a.getMonth() + "0" + a.getDate() + "0" + a.getHours(), c = e.getElementsByTagName("script")[0], s = e.createElement("script"); s.id = "ua-script-hcMB8fLc"; s.dataset.analyticsobject = n; s.async = 1; s.type = "text/javascript"; s.src = "https://cdn.yektanet.com/rg_woebegone/scripts_v3/hcMB8fLc/rg.complete.js?v=" + r, c.parentNode.insertBefore(s, c) }(window, document, "yektanet");
 							`,
 						}}
-					></script>
+					></Script>
 
 				</Head>
 				<Header /> 
