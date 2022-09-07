@@ -12,7 +12,7 @@ import UserIcon from "./UserIcon";
 import { Badge, Button, Chip } from "@mui/material";
 import Search from './Search'
 import FullScreenDialog from './FullScreenSearch'
-import Logo from '@/img/Logo.png'
+import Logo from '../../img/Logo.png'
 
 
 function HeaderPublic({ authenticated }) {

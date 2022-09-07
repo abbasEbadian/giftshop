@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { Box } from '@mui/system'
-import Wa from '@/img/whatsapp.png'
+import Wa from '../img/whatsapp.png'
+
 function Whatsapp() {
     const contact = useSelector(s=>s.main.configs)
   return (
