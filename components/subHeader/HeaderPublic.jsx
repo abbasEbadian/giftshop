@@ -171,7 +171,7 @@ function HeaderPublic({ authenticated }) {
           </div>
 
           <Button onClick={e => setFull(true)} className="full-search-button">
-            <Search  width={17} height={17} />
+            <SearchIcon  width={17} height={17} />
           </Button>
           <Link href="/basket">
             <a className="badge-container">
