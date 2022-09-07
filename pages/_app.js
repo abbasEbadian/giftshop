@@ -91,7 +91,7 @@ const MyApp = ({ Component, pageProps }) => {
 					></script>
 
 				</Head>
-				{/* <Header />  */}
+				<Header /> 
 				<Component {...pageProps} setRuleOpen={setRuleOpen} />
 				{router.pathname.indexOf("auth") > -1 ? null : <>
 					<Box sx={{ width: "100%" }}>
