@@ -14,7 +14,7 @@ import { Breadcrumbs } from "@mui/material";
 import { Home, NavigateBefore } from "@mui/icons-material";
 import Link from "next/link";
 
-function Shop({ data }) {
+function Shop({ data, cards:initialCards, size: initialSize  }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
 	
 	const router = useRouter();
