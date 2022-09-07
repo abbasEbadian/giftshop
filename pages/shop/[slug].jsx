@@ -92,6 +92,18 @@ function Shop({ data }) {
 				<meta name="keywords" content={data.meta_keywords ?? "گیفت کارت , گیفت کارت ارزان " + brand_name} />
 				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
 			</Head>
+			<div role="presentation" className="shadow-sm rounded mt-3 mb-4 p-3 px-1 px-md-3" >
+				<Breadcrumbs aria-label="breadcrumb" separator={<NavigateBefore fontSize="small" />} className={"breadcrumbs"}>
+					<Link href="/"><a underline="hover">
+						<Home sx={{ mr: 0.5 }} />
+					</a>
+					</Link>
+					<span>
+					گیفت کارت {" "} {brandName}
+					</span>
+					
+				</Breadcrumbs>
+			</div>
 			<div className="row ">
 				<div className="col-12 col-md-3">
 					<ShopFilters
