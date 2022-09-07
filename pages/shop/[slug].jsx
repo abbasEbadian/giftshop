@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
-import ShopFilters from "../../components/ShopFilters";
-import ShopCards from "../../components/ShopCards";
+import dynamic from 'next/dynamic'
+const ShopFilters = dynamic(() => import("../../components/ShopFilters"))
+const ShopCards = dynamic(() => import("../../components/ShopCards"))
+const ShopBrandDescription = dynamic(() => import("../../components/ShopBrandDescription"))
+const PaginationControlled = dynamic(() => import("../../components/Pagination"))
+
 import { useSelector } from 'react-redux'
+
 import { useRouter } from "next/router";
 import Head from "next/head";
 import axios from "axios";
-import { GET_TEMPLATES } from '../../redux/endpoints'
-import PaginationControlled from "../../components/Pagination";
 import * as e from '../../redux/endpoints'
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ShopBrandDescription from "../../components/ShopBrandDescription";
 import { Breadcrumbs } from "@mui/material";
 import { Home, NavigateBefore } from "@mui/icons-material";
 import Link from "next/link";
@@ -44,7 +46,7 @@ function Shop({ data, cards:initialCards, size: initialSize  }) {
 			params["brand_name"] = brand_name
 			params["page"] = page
 			setLoading(true)
-			axios.get(GET_TEMPLATES, { params })
+			axios.get(e.GET_TEMPLATES, { params })
 				.then(res => {
 					const { data } = res
 

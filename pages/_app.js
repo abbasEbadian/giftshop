@@ -1,13 +1,19 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
+
 import '../static/css/global.css'
 import '../static/scss/master.scss'
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Box from '@mui/material/Box'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import BottomNavigation from '../components/BottomNavigation'
+const Footer = dynamic(() => import('../components/Footer'))
+const Header = dynamic(() => import('../components/Header'))
+const BottomNavigation = dynamic(() => import('../components/BottomNavigation'))
+const AcceptRuleModal = dynamic(() => import('../components/AcceptRuleModal'))
+const LoginModal = dynamic(() => import('../components/LoginModal'))
+const Whatsapp = dynamic(() => import('../components/Whatsapp'))
 import { useStore } from '../redux/store';
 import { get_initial_data } from '../redux/actions'
 import { configure } from '../redux/axiosConfig'
@@ -16,11 +22,8 @@ import { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify'
 import NProgress from 'nprogress'
 import Router from 'next/router'
-import AcceptRuleModal from '../components/AcceptRuleModal'
+
 import Head from 'next/head'
-import LoginModal from '../components/LoginModal';
-import Whatsapp from '../components/Whatsapp'
-import Script from 'next/script'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 Router.onRouteChangeStart = () => {

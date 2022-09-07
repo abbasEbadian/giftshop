@@ -176,7 +176,7 @@ function Card({
     if(!brand) return
     const alt = data.image_alt ?? "گیفت کارت"
     const image = brand.image ? (BASE_URL + brand.image): get_image_src(brand?.name)
-    return <Image src={image} alt={alt} layout="fill" />
+    return <Image src={image} alt={alt} layout="fill"  priority/>
 
   }
   return (

@@ -1,18 +1,25 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import HomIcon from "../../img/icon/HomeIcon";
-import SearchIcon from "../../img/icon/SearchIcon";
-import ShoppingIcon from "../../img/icon/ShoppingIcon";
+import dynamic from 'next/dynamic'
+const HomIcon = dynamic(() => import("../../img/icon/HomeIcon"))
+const SearchIcon = dynamic(() => import("../../img/icon/SearchIcon"))
+const ShoppingIcon = dynamic(() => import("../../img/icon/ShoppingIcon"))
+const UserIcon = dynamic(() => import("./UserIcon"))
+
+const Search = dynamic(() => import("./Search"))
+const FullScreenDialog = dynamic(() => import("./FullScreenSearch"))
+
+
+// const KeyboardArrowDownIcon = dynamic(() => import("./UserIcon"))
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Offcanvas } from "react-bootstrap";
+import Logo from "../../img/logo.png";
 import { useSelector } from "react-redux";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import UserIcon from "./UserIcon";
 import { Badge, Button, Chip } from "@mui/material";
-import Search from './Search'
-import FullScreenDialog from './FullScreenSearch'
-import Logo from '../../img/logo.png'
+
 
 
 function HeaderPublic({ authenticated }) {
@@ -105,7 +112,7 @@ function HeaderPublic({ authenticated }) {
       <div className="main-container">
         <Link href="/">
           <a className="header-image">
-            <Image src={Logo} layout='fill' alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' />
+              <Image src={Logo} layout='fill' alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' />
           </a>
         </Link>
         <div className="links">
@@ -146,10 +153,10 @@ function HeaderPublic({ authenticated }) {
             <a>تماس با ما</a>
           </Link>
           {auth ? <Badge color="secondary" badgeContent={unseen_tickets_count} showZero>
-                <Link href="/panel/ticket-list">
-                  <a onClick={e => setMenuopen(false)}>تیکت ها</a>
-                </Link>
-              </Badge>: null}
+            <Link href="/panel/ticket-list">
+              <a onClick={e => setMenuopen(false)}>تیکت ها</a>
+            </Link>
+          </Badge> : null}
           <Link href="/blog">
             <a onClick={e => setMenuopen(false)} data-toggle="sub-menu">
               آموزش - مقالات
@@ -164,7 +171,7 @@ function HeaderPublic({ authenticated }) {
           </div>
 
           <Button onClick={e => setFull(true)} className="full-search-button">
-            <SearchIcon width={17} height={17} />
+            <Search  width={17} height={17} />
           </Button>
           <Link href="/basket">
             <a className="badge-container">
