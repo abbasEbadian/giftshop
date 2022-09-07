@@ -10,6 +10,9 @@ import PaginationControlled from "../../components/Pagination";
 import * as e from '../../redux/endpoints'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ShopBrandDescription from "../../components/ShopBrandDescription";
+import { Breadcrumbs } from "@mui/material";
+import { Home, NavigateBefore } from "@mui/icons-material";
+import Link from "next/link";
 
 function Shop({ data }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
@@ -24,7 +27,7 @@ function Shop({ data }) {
 	const brands = useSelector(state => state.main.brands)
 	const [brandName, setBrandName] = React.useState()
 	const [page, setPage] = React.useState(1);
-	
+
 	const handleChange = (event, value) => {
 		setPage(value);
 	};
@@ -87,8 +90,20 @@ function Shop({ data }) {
 				<title>{data.meta_title ?? (brand_name + " | گیفت استاپ")}</title>
 				<meta name="description" content={data.meta_description ?? "فروشگاه گیفت استاپ " + brand_name} />
 				<meta name="keywords" content={data.meta_keywords ?? "گیفت کارت , گیفت کارت ارزان " + brand_name} />
-        		{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
+				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
 			</Head>
+			<div role="presentation" className="shadow-sm rounded mt-4 p-3 px-1 px-md-3" >
+				<Breadcrumbs aria-label="breadcrumb" separator={<NavigateBefore fontSize="small" />} className={"breadcrumbs"}>
+					<Link href="/"><a underline="hover">
+						<Home sx={{ mr: 0.5 }} />
+					</a>
+					</Link>
+					<span>
+					گیفت کارت {" "} {brandName}
+					</span>
+					
+				</Breadcrumbs>
+			</div>
 			<div className="row ">
 				<div className="col-12 col-md-3">
 					<ShopFilters
@@ -110,7 +125,7 @@ function Shop({ data }) {
 					<div className="my-4">
 						{cardsCount > 20 ? <PaginationControlled handleChange={handleChange} size={cardsCount} page={page} /> : null}
 					</div>
-					<ShopBrandDescription brand={ data }/>
+					<ShopBrandDescription brand={data} />
 				</div>
 
 			</div>

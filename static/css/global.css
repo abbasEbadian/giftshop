@@ -102,3 +102,9 @@ body  .swiper-button-next::after,body  .swiper-button-prev::after{
 .drops .MuiSelect-select{
     text-align: left;
 }
+@media (max-width: 576px) {
+    .breadcrumbs{
+        font-size: 11px;
+    }
+    
+}

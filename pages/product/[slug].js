@@ -17,9 +17,11 @@ import Head from "next/head";
 import Link from "next/link";
 import Button from "@mui/material/Button";
 import * as e from "../../redux/endpoints"
-
-const locale = (yeGeimat)=>{
-  return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString('fa'): yeGeimat
+import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumbs } from "@mui/material";
+import { Home, NavigateBefore, NavigateNext } from "@mui/icons-material";
+const locale = (yeGeimat) => {
+  return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString('fa') : yeGeimat
 }
 
 function Product({ data }) {
@@ -30,7 +32,7 @@ function Product({ data }) {
   const [loading, setLoading] = React.useState(true)
   const [loading1, setLoading1] = React.useState(false)
   const [similar, setSimilar] = React.useState(true)
-  const config = useSelector(s=>s.main.configs)
+  const config = useSelector(s => s.main.configs)
 
 
 
@@ -83,6 +85,25 @@ function Product({ data }) {
         {data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
       </Head>
 
+      <div role="presentation" className="shadow-sm rounded mt-4 p-3 px-1 px-md-3" >
+        <Breadcrumbs aria-label="breadcrumb" separator={<NavigateBefore fontSize="small" />} className={"breadcrumbs"}>
+          <Link href="/"><a underline="hover">
+            <Home sx={{ mr: 0.5 }} />
+          </a>
+          </Link>
+          <Link
+            href={`/shop/${product?.brand_id?.name}`}
+          ><a underline="hover">
+              گیفت کارت {" "} {product?.brand_id?.persian_name}
+            </a>
+
+          </Link>
+          <span>
+            {product?.full_name}
+          </span>
+        </Breadcrumbs>
+      </div>
+
       <h1 className="text-center my-4 fs-3">
         <span className="text-secondary">{product?.full_name || ""}</span>
       </h1>
@@ -91,10 +112,10 @@ function Product({ data }) {
           <Button variant="contained" color="info"> لینک آموزش استفاده</Button>
         </a>
         : null}
-      <div className="row  mt-2 product-list-gift mx-md-5">
+      <div className="d-flex flex-wrap  mt-2 product-list-gift">
 
         {product ? <>
-          <div className="col-12 col-lg-4  pt-5 pt-md-0">
+          <div className="col-12 col-lg-4  pt-5 pt-md-0 px-2">
             <Card data={product} favoriteAndRate />
           </div>
           <div className="col-12 col-lg-8 p-3">
@@ -103,12 +124,12 @@ function Product({ data }) {
                 <span className="text-primary   d-block">قیمت</span>
                 <br className="d-done d-lg-block" />
                 <span className="pt-lg-3 mt-lg-3">
-                {(product?.no_sell || product?.ask_me)? "-":
-                  <>
-                  {locale(product.price)}
-                  {" تومان"}
-                  </>}
-                  
+                  {(product?.no_sell || product?.ask_me) ? "-" :
+                    <>
+                      {locale(product.price)}
+                      {" تومان"}
+                    </>}
+
                 </span>
               </div>
               <div className="col-6 col-md-3 mb-2">
@@ -151,7 +172,7 @@ function Product({ data }) {
           : loading ? <section className="w-75 py-5 my-5 d-flex justify-content-center mx-auto"><Bars /></section> :
             <section className="w-75 alert alert-info my-5 mx-auto">محصول یافت نشد</section>
         }</div>
-      <div className="desc product-list-gift mx-md-5 my-4 p-3 blog-desc overflow-hidden position-relative pb-5" style={{ height: (open ? "unset" : (product?.description.length > 1200 ? "300px" : "max-content")) }}>
+      <div className="desc product-list-gift  my-4 p-3 blog-desc overflow-hidden position-relative pb-5" style={{ height: (open ? "unset" : (product?.description.length > 1200 ? "300px" : "max-content")) }}>
         <p className="mt-3  h-100">توضیحات:  <span dangerouslySetInnerHTML={{
           __html: product?.description
         }}></span></p>
