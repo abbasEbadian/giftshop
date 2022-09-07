@@ -12,6 +12,9 @@ import UserIcon from "./UserIcon";
 import { Badge, Button, Chip } from "@mui/material";
 import Search from './Search'
 import FullScreenDialog from './FullScreenSearch'
+import Logo from '@/img/Logo.png'
+
+
 function HeaderPublic({ authenticated }) {
 
   const [menuopen, setMenuopen] = React.useState(false);
@@ -41,7 +44,7 @@ function HeaderPublic({ authenticated }) {
         <Offcanvas.Body>
           <ul className="menu">
             <li className="menu-item">
-              <Link href="/"><a onClick={e => setMenuopen(false)}>                {" "}
+              <Link href="/"><a onClick={e => setMenuopen(false)}>{" "}
                 <i className="bi bi-house-door-fill"></i>{" "}
               </a></Link>
             </li>
@@ -102,7 +105,7 @@ function HeaderPublic({ authenticated }) {
       <div className="main-container">
         <Link href="/">
           <a className="header-image">
-            <Image src={'/logo.png'} layout='fill' alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' />
+            <Image src={Logo} layout='fill' alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' />
           </a>
         </Link>
         <div className="links">
