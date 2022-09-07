@@ -194,6 +194,7 @@ function HeaderPublic({ authenticated }) {
           className="burger"
           id="burger"
           onClick={(e) => setMenuopen(!menuopen)}
+          aria-label="open menu"
         >
           <span className="burger-line"></span>
           <span className="burger-line"></span>

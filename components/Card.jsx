@@ -202,7 +202,7 @@ function Card({
                     <span>{data.country_id?.currency_id?.symbol ?? "$"} {Number(data.real_price).toLocaleString('fa')}</span>
                   }
                   {data.country_id && <div className="flag-cont">
-                    <Image className="flag" src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
+                    <Image className="flag" alt={data.country_id.symbol + " flag"} src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
                   </div>}
 
                 </span>

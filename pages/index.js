@@ -19,6 +19,7 @@ import { Box, Typography } from "@mui/material";
 import intro from '../img/icon/giftstop-01.png'
 import { useEffect } from "react";
 import { fetch_popular_cards, fetch_top_sale_cards } from "../redux/actions";
+
 export default function Home({data}) {
   const [active, setActive] = React.useState("today");
   const popular_cards = useSelector(s=>s.main.popular_cards)
@@ -200,7 +201,7 @@ export default function Home({data}) {
       <div className="whyus secondary-gradient-90 py-4" style={ config?.website?.orange_background? {background:  config.website.orange_background }: {}}>
         <div className="mcontainer">
           <h3 className="text-center mb-md-0 mb-5">
-            <Image src={collapse} /> <b className="mx-2">چرا گیفت استاپ؟</b>{" "}
+            <Image src={collapse} alt={"collapse"}/> <b className="mx-2">چرا گیفت استاپ؟</b>{" "}
           </h3>
           <div className="d-flex align-items-stretch justify-content-between flex-wrap">
             <div className="col-12 col-md-5">
@@ -222,7 +223,7 @@ export default function Home({data}) {
             </div>
 
             <div className="col-md-6 col-12 mt-md-0 mt-5 position-relative" >
-              <Image src={why} layout="fill" objectFit="contain"/>
+              <Image src={why} layout="fill" objectFit="contain" alt='various cards'/>
             </div>
           </div>
         </div>
