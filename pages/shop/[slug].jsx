@@ -16,9 +16,9 @@ import { Breadcrumbs } from "@mui/material";
 import { Home, NavigateBefore } from "@mui/icons-material";
 import Link from "next/link";
 
-function Shop({ data, cards:initialCards, size: initialSize  }) {
+function Shop({ data, cards: initialCards =[], size: initialSize }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
-	
+
 	const router = useRouter();
 
 	const [filteredCards, setFilteredCards] = React.useState(initialCards);
@@ -31,7 +31,7 @@ function Shop({ data, cards:initialCards, size: initialSize  }) {
 	const [page, setPage] = React.useState(1);
 
 	const handleChange = (event, value) => setPage(value);
-	
+
 
 	const { real_price, country } = React.useMemo(() => {
 		return router.query
@@ -73,7 +73,7 @@ function Shop({ data, cards:initialCards, size: initialSize  }) {
 	}, [real_price, country])
 
 	React.useEffect(() => {
-		if (brand_name && brands ) {
+		if (brand_name && brands) {
 			const b = brands.filter(i => i.name === brand_name)
 			if (b && b.length > 0) setBrandName(b[0].persian_name)
 		}
@@ -87,14 +87,67 @@ function Shop({ data, cards:initialCards, size: initialSize  }) {
 			})
 		}
 	}, [])
+	console.log({data})
+	const addJsonLd = ({brand, review_count, review_rating, size ,max_price, min_price}) => {
+		if(!brand) return {__html: {}}
+		return {
+			__html: `{
+				"@context": "https://schema.org",
+				"@type": "Product",
+				"name": "${brand.name}  Giftcard",
+				"description": "${brand.meta_description}",
+				"alternateName": "${brand.persian_name}",
+				"image": [
+					{
+						"@type": "ImageObject",
+						"url": "/card/${brand.name}.png"
+					},
+					{
+						"@type": "ImageObject",
+						"url": "https://arsimodir.ir/${brand.description_image}"
+					}
+				],
+				"url": "shop/${brand.name}",
+				"aggregateRating": {
+					"@type": "AggregateRating",
+					"bestRating": 5,
+					"ratingValue": ${review_rating},
+					"worstRating": 1,
+					"ratingCount":${review_count}
+				},
+				"brand": {
+					"@type": "Organization",
+					"name":  "${brand.persian_name}",
+					"alternateName": "${brand.name} Giftcard",
 
+				},
+				"itemCondition": "https://schema.org/NewCondition",
+				"mpn": ${brand.id},
+				"offers": {
+					"@type": "AggregateOffer",
+					"url": "/shop/${brand.name}",
+					"availability": "https://schema.org/InStock",
+					"priceCurrency": "IRR",
+					"highPrice": ${max_price},
+					"lowPrice": ${min_price},
+					"offerCount": ${size}"
+				},
+				"productID": ${brand.id},
+				"sku": ${brand.id}
+			}`
+		}
+	}
 	return (
 		<div className="shop-main">
 			<Head>
 				<title>{data.meta_title ?? (brand_name + " | گیفت استاپ")}</title>
 				<meta name="description" content={data.meta_description ?? "فروشگاه گیفت استاپ " + brand_name} />
 				<meta name="keywords" content={data.meta_keywords ?? "گیفت کارت , گیفت کارت ارزان " + brand_name} />
-				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
+				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null} <script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={addJsonLd(data)}
+				key="item-jsonld"
+				/>
 			</Head>
 			<div role="presentation" className="shadow-sm rounded mt-3 mb-4 p-3 px-1 px-md-3" >
 				<Breadcrumbs aria-label="breadcrumb" separator={<NavigateBefore fontSize="small" />} className={"breadcrumbs"}>
@@ -144,8 +197,8 @@ export async function getServerSideProps({ query }) {
 		const brand_name = query.slug
 		const res = await fetch(e.GET_BRAND_TITLE(brand_name))
 		const data = await res.json()
-		const {cards, size} = data
-		return { props: { data , cards, size} }
+		const { cards, size } = data
+		return { props: { data, cards, size } }
 	} catch (e) {
 		return { props: { data: {} } }
 	}

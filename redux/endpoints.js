@@ -1,7 +1,7 @@
 let base = "https://www.arsimodir.ir"
 
-// if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
-//     base = "http://localhost:8000" 
+if(!process.env.NODE_ENV || process.env.NODE_ENV  === 'development')
+    base = "http://localhost:8000" 
 
 export const BASE_URL = base
 
