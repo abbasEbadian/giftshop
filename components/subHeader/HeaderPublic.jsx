@@ -14,13 +14,18 @@ const FullScreenDialog = dynamic(() => import("./FullScreenSearch"))
 // const KeyboardArrowDownIcon = dynamic(() => import("./UserIcon"))
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Offcanvas } from "react-bootstrap";
 import Logo from "../../img/logo.png";
 import { useSelector } from "react-redux";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { Badge, Button, Chip } from "@mui/material";
-
-
+import { Badge, Button, Chip, Collapse, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
+import CategoryIcon from '@mui/icons-material/Category';
+import CallIcon from '@mui/icons-material/Call';
+import InfoIcon from '@mui/icons-material/Info';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 
 function HeaderPublic({ authenticated }) {
 
@@ -28,111 +33,113 @@ function HeaderPublic({ authenticated }) {
   const [active, setActive] = React.useState(false);
   const brands = React.useRef([
     {
-        "id": 22,
-        "name": "apple",
-        "persian_name": "اپل"
+      "id": 22,
+      "name": "apple",
+      "persian_name": "اپل"
     },
     {
-        "id": 24,
-        "name": "googleplay",
-        "persian_name": "گوگل پلی"
+      "id": 24,
+      "name": "googleplay",
+      "persian_name": "گوگل پلی"
     },
     {
-        "id": 25,
-        "name": "playstation",
-        "persian_name": "پلی استیشن"
+      "id": 25,
+      "name": "playstation",
+      "persian_name": "پلی استیشن"
     },
     {
-        "id": 26,
-        "name": "steam",
-        "persian_name": "استیم"
+      "id": 26,
+      "name": "steam",
+      "persian_name": "استیم"
     },
     {
-        "id": 27,
-        "name": "xbox",
-        "persian_name": "ایکس باکس"
+      "id": 27,
+      "name": "xbox",
+      "persian_name": "ایکس باکس"
     },
     {
-        "id": 28,
-        "name": "amazon",
-        "persian_name": "امازون"
+      "id": 28,
+      "name": "amazon",
+      "persian_name": "امازون"
     },
     {
-        "id": 29,
-        "name": "spotify",
-        "persian_name": "اسپاتیفای"
+      "id": 29,
+      "name": "spotify",
+      "persian_name": "اسپاتیفای"
     },
     {
-        "id": 30,
-        "name": "netflix",
-        "persian_name": "نتفلیکس"
+      "id": 30,
+      "name": "netflix",
+      "persian_name": "نتفلیکس"
     },
     {
-        "id": 31,
-        "name": "applemusic",
-        "persian_name": "اپل موزیک"
+      "id": 31,
+      "name": "applemusic",
+      "persian_name": "اپل موزیک"
     },
     {
-        "id": 32,
-        "name": "skype",
-        "persian_name": "اسکایپ"
+      "id": 32,
+      "name": "skype",
+      "persian_name": "اسکایپ"
     },
     {
-        "id": 33,
-        "name": "nintendo",
-        "persian_name": "نینتندو"
+      "id": 33,
+      "name": "nintendo",
+      "persian_name": "نینتندو"
     },
     {
-        "id": 34,
-        "name": "roblex",
-        "persian_name": "روبلاکس"
+      "id": 34,
+      "name": "roblex",
+      "persian_name": "روبلاکس"
     },
     {
-        "id": 35,
-        "name": "leagueoflegends",
-        "persian_name": "لیگ اف لجندز"
+      "id": 35,
+      "name": "leagueoflegends",
+      "persian_name": "لیگ اف لجندز"
     },
     {
-        "id": 36,
-        "name": "blizard",
-        "persian_name": "بلیزارد"
+      "id": 36,
+      "name": "blizard",
+      "persian_name": "بلیزارد"
     },
     {
-        "id": 37,
-        "name": "warcraft",
-        "persian_name": "وارکرفت"
+      "id": 37,
+      "name": "warcraft",
+      "persian_name": "وارکرفت"
     },
     {
-        "id": 38,
-        "name": "visacard",
-        "persian_name": "ویزا کارت"
+      "id": 38,
+      "name": "visacard",
+      "persian_name": "ویزا کارت"
     },
     {
-        "id": 39,
-        "name": "mastercard",
-        "persian_name": "مستر کارت"
+      "id": 39,
+      "name": "mastercard",
+      "persian_name": "مستر کارت"
     },
     {
-        "id": 40,
-        "name": "razergold",
-        "persian_name": "ریزر گلد"
+      "id": 40,
+      "name": "razergold",
+      "persian_name": "ریزر گلد"
     },
     {
-        "id": 42,
-        "name": "apex",
-        "persian_name": "اپکس"
+      "id": 42,
+      "name": "apex",
+      "persian_name": "اپکس"
     },
     {
-        "id": 43,
-        "name": "pubg",
-        "persian_name": "پابجی"
+      "id": 43,
+      "name": "pubg",
+      "persian_name": "پابجی"
     }
-])
+  ])
   const basket = useSelector((state) => state.order.basket);
   const auth = useSelector(s => s.auth.authenticated)
   const user = useSelector(s => s.auth.user)
   const [full, setFull] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
 
+  const handleClick = () => { }
   const unseen_tickets_count = React.useMemo(() => {
     const x = user?.ticket_set?.filter(i => !i.seen_by_user)
     return x?.length || 0
@@ -150,55 +157,64 @@ function HeaderPublic({ authenticated }) {
           <Offcanvas.Title> گیفت استاپ </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <ul className="menu">
-            <li className="menu-item">
-              <Link href="/"><a onClick={e => setMenuopen(false)}>{" "}
-                <i className="bi bi-house-door-fill"></i>{" "}
-              </a></Link>
-            </li>
-            <li className="menu-item">
-              <Link href="/shop">
-                <a onClick={e => setMenuopen(false)}>گیفت کارت   </a>
-              </Link>
-            </li>
-            <li className="menu-item">
-              <Link href="/contact-us">
-                <a onClick={e => setMenuopen(false)}>تماس با ما</a>
-              </Link>
-            </li>
-            <li className="menu-item menu-item-child">
-              <Link href="/about-us">
-                <a onClick={e => setMenuopen(false)} data-toggle="sub-menu">درباره ما</a>
-              </Link>
-            </li>
+          <List
+            component="nav"
+            aria-labelledby="nested-list-subheader"
 
-            <li className="menu-item menu-item-child">
-              <Link href="/blog">
-                <a onClick={e => setMenuopen(false)} data-toggle="sub-menu">
-                  آموزش - مقالات
-                </a>
-              </Link>
-            </li>
+          >
+            <Link href="/">
+              <ListItem button component={'a'} onClick={e => setMenuopen(false)} >
+                <HomeIcon/>
+                <ListItemText primary="صفحه اصلی" className="text-end pe-4" />
+              </ListItem>
+            </Link>
 
-            {auth ? <><li className="menu-item menu-item-child d-flex">
-              <Link href="/panel/ticket-list">
-                <a onClick={e => setMenuopen(false)}>تیکت ها </a>
-              </Link>
 
-              <Chip label={unseen_tickets_count} className={"me-auto"} />
+            <ListItem button onClick={e => setOpen(o => !o)} >
+              <CategoryIcon />
+              <ListItemText primary="دسته بندی ها" className="text-end pe-4" />
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                {
+                  brands.current.map((brand, idx) => {
+                    return <Link key={brand.id} href={'/shop/'+brand.name}>
+                      <ListItem component={'a'} sx={{ pr: 4 }} role="button">
+                        <ListItemText primary={brand.persian_name} className="text-end pe-4" />
+                      </ListItem>
+                    </Link>
+                  })
+                }
+              </List>
+            </Collapse>
 
-            </li>
-              <li className="menu-item menu-item-child">
-                <Link href="/auth/logout"><a className="" >
-                  خروج
-                </a>
-                </Link>
-              </li></>
-              : null}
-            <hr />
-          </ul>
+            <Link href="/contact-us">
+              <ListItem button component={'a'} onClick={e => setMenuopen(false)}>
+                <CallIcon/>
+                <ListItemText primary="تماس با ما" className="text-end pe-4" />
+              </ListItem>
+            </Link>
+
+            <Link href="/about-us">
+              <ListItem button component={'a'} onClick={e => setMenuopen(false)}>
+                <InfoIcon />
+                <ListItemText primary="درباره ما" className="text-end pe-4" />
+              </ListItem>
+            </Link>
+
+            <Link href="/blogs">
+              <ListItem button component={'a'} onClick={e => setMenuopen(false)}>
+                <NewspaperIcon/>
+                <ListItemText primary="آموزش - مقالات" className="text-end pe-4" />
+              </ListItem>
+            </Link>
+
+
+          </List>
+
           {!auth ? <Link href="/auth">
-            <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-5 justify-content-center" onClick={e => setMenuopen(false)}>
+            <a className="btn primary-gradient rounded d-flex mt-3 w-50 mx-3 justify-content-center" onClick={e => setMenuopen(false)}>
               ورود <span className="mx-1">|</span>عضویت
             </a>
           </Link> : <div className="d-flex align-items-center px-5 mt-3"><Link href="/panel/profile">
@@ -213,7 +229,7 @@ function HeaderPublic({ authenticated }) {
       <div className="main-container">
         <Link href="/">
           <a className="header-image">
-              <Image style={{maxWidth: "100%", height: 'auto'}} src={Logo}  alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' loading="eager"/>
+            <Image style={{ maxWidth: "100%", height: 'auto' }} src={Logo} alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' loading="eager" />
           </a>
         </Link>
         <div className="links">
@@ -228,7 +244,7 @@ function HeaderPublic({ authenticated }) {
               onMouseEnter={(e) => setActive(true)}
               onMouseLeave={(e) => setActive(false)}
             >
-              <Link  href="/shop"><a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a></Link>
+              <Link href="/shop"><a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a></Link>
               <div className={"list-show-menu w-100 bg-white " + (active ? " collapsed " : "")}>
                 <ul
                   className="dropdown-menu mega-menu d-flex flex-wrap container-fluid mx-auto  pe-4"
@@ -272,7 +288,7 @@ function HeaderPublic({ authenticated }) {
           </div>
 
           <Button onClick={e => setFull(true)} className="full-search-button">
-            <SearchIcon  width={17} height={17} />
+            <SearchIcon width={17} height={17} />
           </Button>
           <Link href="/basket">
             <a className="badge-container">

@@ -6,13 +6,11 @@ import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import { useRouter } from 'next/router'
 
 function ShopFilters({
   setFilters,
   brand_name = null,
 }) {
-  const router = useRouter()
   const minDistance = 5;
   const min_value = 1
   const max_value = 300
@@ -22,8 +20,108 @@ function ShopFilters({
   const [selectedCountries, setSelectedCountries] = React.useState([]);
   const [accountType, setAccountType] = React.useState("all")
   const countries = useSelector((state) => state.main.countries);
-  const categories = useSelector((state) => state.main.brands);
-
+  const categories = React.useRef([
+    {
+        "id": 22,
+        "name": "apple",
+        "persian_name": "اپل"
+    },
+    {
+        "id": 24,
+        "name": "googleplay",
+        "persian_name": "گوگل پلی"
+    },
+    {
+        "id": 25,
+        "name": "playstation",
+        "persian_name": "پلی استیشن"
+    },
+    {
+        "id": 26,
+        "name": "steam",
+        "persian_name": "استیم"
+    },
+    {
+        "id": 27,
+        "name": "xbox",
+        "persian_name": "ایکس باکس"
+    },
+    {
+        "id": 28,
+        "name": "amazon",
+        "persian_name": "امازون"
+    },
+    {
+        "id": 29,
+        "name": "spotify",
+        "persian_name": "اسپاتیفای"
+    },
+    {
+        "id": 30,
+        "name": "netflix",
+        "persian_name": "نتفلیکس"
+    },
+    {
+        "id": 31,
+        "name": "applemusic",
+        "persian_name": "اپل موزیک"
+    },
+    {
+        "id": 32,
+        "name": "skype",
+        "persian_name": "اسکایپ"
+    },
+    {
+        "id": 33,
+        "name": "nintendo",
+        "persian_name": "نینتندو"
+    },
+    {
+        "id": 34,
+        "name": "roblex",
+        "persian_name": "روبلاکس"
+    },
+    {
+        "id": 35,
+        "name": "leagueoflegends",
+        "persian_name": "لیگ اف لجندز"
+    },
+    {
+        "id": 36,
+        "name": "blizard",
+        "persian_name": "بلیزارد"
+    },
+    {
+        "id": 37,
+        "name": "warcraft",
+        "persian_name": "وارکرفت"
+    },
+    {
+        "id": 38,
+        "name": "visacard",
+        "persian_name": "ویزا کارت"
+    },
+    {
+        "id": 39,
+        "name": "mastercard",
+        "persian_name": "مستر کارت"
+    },
+    {
+        "id": 40,
+        "name": "razergold",
+        "persian_name": "ریزر گلد"
+    },
+    {
+        "id": 42,
+        "name": "apex",
+        "persian_name": "اپکس"
+    },
+    {
+        "id": 43,
+        "name": "pubg",
+        "persian_name": "پابجی"
+    }
+])
 
 
   const toggleCountry = (symbol) => {
@@ -118,22 +216,21 @@ function ShopFilters({
         <div className="filter filter-category">
           <span className="title">دسته بندی</span>
           <div className="d-flex flex-wrap  ">
-            {categories.map((i, idx) => {
+            {categories.current.map((i, idx) => {
               return (
                 <Link
                   key={idx}
                   component={"button"}
-                  href={"/shop/" + i.slug_name}
+                  href={"/shop/" + i.name}
                 >
                   <a
+                  style={{padding: 8}}
                     className={
                       "btn-transparent category-item " +
-                      (i.slug_name === brand_name ? "active" : "")
+                      (i.name === brand_name ? "active" : "")
                     }
                   >
-                    {/* <Typography sx={{fontSize: "11px"}}> */}
-                    {i.persian_name}
-                    {/* </Typography> */}
+                    {i.persian_name}{" "}
                   </a>
                 </Link>
               );
