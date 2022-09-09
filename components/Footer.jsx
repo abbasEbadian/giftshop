@@ -77,7 +77,7 @@ function Footer() {
           </div>
           <div className="col-12 col-md-4 row">
             <div className="col-4">  
-              <a referrerPolicy="origin"  rel="nofollow noopener" target="_blank" href="https://trustseal.enamad.ir/?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl"><img referrerPolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl" alt="" style={{"cursor":"pointer"}} id="c2wlsvTOBsHuWhbaPdwl"/></a>
+              <a referrerPolicy="origin" aria-label="enamad"  rel="nofollow noopener" target="_blank" href="https://trustseal.enamad.ir/?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl"><img referrerPolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=265392&amp;Code=c2wlsvTOBsHuWhbaPdwl" alt="" style={{"cursor":"pointer"}} id="c2wlsvTOBsHuWhbaPdwl"/></a>
             </div>   
             
             <div className="col-4">  
@@ -104,27 +104,27 @@ function Footer() {
           <div className="col-md-4 col-sm-6 col-xs-12">
             <ul className="social-icons p-0">
               <li>
-                <a className="pt-1 facebook" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.facebook_link?config.contactus.facebook_link: "https://facebook.com"}>
+                <a aria-label="facebook account" className="pt-1 facebook" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.facebook_link?config.contactus.facebook_link: "https://facebook.com"}>
                   <i className="bi fs-4 bi-facebook"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 telegram" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
+                <a aria-label="telegram account" className="pt-1 telegram" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.telegram_link?config.contactus.telegram_link: "https://telegram.org"}>
                   <i className="bi fs-4 bi-telegram"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 whatsapp" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.whatsapp_link?config.contactus.whatsapp_link: "https://whatsapp.org"}>
+                <a aria-label="whatsapp account" className="pt-1 whatsapp" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.whatsapp_link?config.contactus.whatsapp_link: "https://whatsapp.org"}>
                   <i className="bi fs-4 bi-whatsapp"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 twitter" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.twitter_link?config.contactus.twitter_link: "https://twitter.com"}>
+                <a ria-label="twitter account" className="pt-1 twitter" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.twitter_link?config.contactus.twitter_link: "https://twitter.com"}>
                   <i className="bi fs-4 bi-twitter"></i>
                 </a>
               </li>
               <li>
-                <a className="pt-1 instagram" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.instagram_link?config.contactus.instagram_link: "https://instagram.com"}>
+                <a ria-label="instagram account" className="pt-1 instagram" target={"_blank"}  rel="nofollow noopener" href={config&&config.contactus&&config.contactus.instagram_link?config.contactus.instagram_link: "https://instagram.com"}>
                   <i className="bi fs-4 bi-instagram"></i>
                 </a>
               </li>

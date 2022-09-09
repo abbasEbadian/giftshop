@@ -72,7 +72,7 @@ export default function Home() {
             </div>
             <div className="col-md-2 col-0"></div>
             <div className="images col-md-6 col-12" >
-              <Image style={{maxWidth: "100%", height: 'auto'}} src={intro}  alt="خرید انواع گیفت کارت" />
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={intro}  alt="خرید انواع گیفت کارت" loading="eager"/>
             </div>
 
             <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">

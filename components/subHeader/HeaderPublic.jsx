@@ -213,22 +213,22 @@ function HeaderPublic({ authenticated }) {
       <div className="main-container">
         <Link href="/">
           <a className="header-image">
-              <Image style={{maxWidth: "100%", height: 'auto'}} src={Logo}  alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' />
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={Logo}  alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' loading="eager"/>
           </a>
         </Link>
         <div className="links">
           <Link href="/">
-            <a>
+            <a aria-label="Home page">
               <HomIcon></HomIcon>
             </a>
           </Link>
-          <Link href="/shop">
+          <div>
             <div
               className="megamenu-shop"
               onMouseEnter={(e) => setActive(true)}
               onMouseLeave={(e) => setActive(false)}
             >
-              <a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a>
+              <Link  href="/shop"><a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a></Link>
               <div className={"list-show-menu w-100 bg-white " + (active ? " collapsed " : "")}>
                 <ul
                   className="dropdown-menu mega-menu d-flex flex-wrap container-fluid mx-auto  pe-4"
@@ -246,7 +246,7 @@ function HeaderPublic({ authenticated }) {
                 </ul>
               </div>
             </div>
-          </Link>
+          </div>
           <Link href={"/about-us"}>
             <a>درباره ما</a>
           </Link>

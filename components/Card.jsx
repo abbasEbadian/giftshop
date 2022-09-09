@@ -194,7 +194,7 @@ function Card({
           {
             pathname: !hidePrice ? "/product/[slug]" : "/shop/[slug]", query: { slug: !hidePrice ? (gen_path(data)) : data.brand_id?.name }
           }} prefetch={false}>
-          <a rel={`${data.noindex && 'noindex' } ${data.nofollow && 'nofollow' || ''}`}>
+          <a rel={`${data.noindex && 'noindex' } ${data.nofollow && 'nofollow' || ''}`} aria-label={data.full_name_trimmed}>
             <div className="data position-absolute top-0 text-white w-100 h-100 d-flex flex-column  justify-content-between">
               {!hidePrice && (data.real_price > 0 || data.country_id) ?
                 <span dir="ltr" className="price text-center">

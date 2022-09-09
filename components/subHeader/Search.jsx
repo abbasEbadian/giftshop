@@ -104,6 +104,7 @@ export default function CheckboxesTags({ setOpen = false }) {
         <Button
           className='px-0'
           onClick={_search}
+          aria-label='جستجو'
         >
           <SearchIcon width="20" />
         </Button></div>
