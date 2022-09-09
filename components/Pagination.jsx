@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 // import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Pagination from 'react-bootstrap/Pagination';
-import Link from 'next/Link';
+import Link from 'next/link';
 
 export default function PaginationControlled({  page, size=5, countInEachPage = 20, source_url, extra_query={} }) {
   let active = +page;
