@@ -117,7 +117,7 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 				"brand": {
 					"@type": "Organization",
 					"name":  "${brand.persian_name}",
-					"alternateName": "${brand.name} Giftcard",
+					"alternateName": "${brand.name} Giftcard"
 
 				},
 				"itemCondition": "https://schema.org/NewCondition",

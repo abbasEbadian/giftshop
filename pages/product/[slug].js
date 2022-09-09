@@ -106,8 +106,7 @@ function Product({ data, product }) {
 				"brand": {
 					"@type": "Organization",
 					"name":  "${product.brand_id?.persian_name}",
-					"alternateName": "${product.brand_id?.name} Giftcard",
-
+					"alternateName": "${product.brand_id?.name} Giftcard"
 				},
 				"itemCondition": "https://schema.org/NewCondition",
 				"mpn": ${product.id},
