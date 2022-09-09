@@ -190,13 +190,12 @@ function UserLevel() {
     }
     const _national_click = (e) => {
         const d = document.getElementById('contained-button-file2');
-        console.log(d)
         d.focus();
         d.click();
     }
     const _avatar_click = (e) => {
         const d = document.getElementById('contained-button-file1');
-        console.log(d)
+
         d.focus();
     }
     return (

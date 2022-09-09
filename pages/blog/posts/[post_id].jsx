@@ -74,7 +74,7 @@ export async function getServerSideProps({query}) {
       const res = await fetch(e.GET_BLOG(_post_id))
       const blog = await res.json()
       const uri = `/blog/posts/${blog.id}-` + encodeURIComponent(`${blog.title.replace(/[\s]+/g, '-')}`)
-      console.log(blog, uri)
+
       if( short ){
         return {
           redirect: {

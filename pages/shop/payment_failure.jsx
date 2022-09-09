@@ -10,7 +10,6 @@ import Stack from '@mui/material/Stack'
 function PaymentStatus(props) {
     const router = useRouter()
     React.useEffect(()=>{
-        console.log(router)
     }, [])
     return (<>
         <Head><title>پرداخت ناموفق</title></Head>
@@ -44,7 +43,6 @@ function PaymentStatus(props) {
 }
 PaymentStatus.getInitialProps = async ( context ) => {
     let query  = context.query;
-    console.log(query);
     return {query}
   }
 

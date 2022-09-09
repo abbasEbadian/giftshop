@@ -17,7 +17,6 @@ const withAuth = (WrappedComponent, authOnly=true) => {
         Router.replace("/");
         return null;
       }
-      console.log(accessToken , authOnly )
 
       // If this is an accessToken we just render the component that was passed with all its props
 

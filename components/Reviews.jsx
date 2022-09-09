@@ -13,7 +13,6 @@ function Reviews({reviews = []}) {
         return d
 
     }
-    console.log(reviews)
   return <div className="reviews-container pb-5 mt-5">
     {reviews.filter(i=>i.accepted).length? <>
     {/* <div className="reviews-title d-flex align-items-center">

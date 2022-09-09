@@ -62,7 +62,6 @@ app.prepare().then(() => {
   server.post('/gen_code', (req, res) => {
     const URL = req.body.dargah === 'zarinpal' ? ZARINPAL_REQUEST_URL : IRANDARGAH_REQUEST_URL
     const PAYURL = req.body.dargah === 'zarinpal' ? ZARINPAL_PAYMENT_URL : IRANDARGAH_PAYMENT_URL
-    console.log(generate_payload(req.body));
     fetch(URL, {
       method: "POST", 
       headers,
@@ -74,7 +73,6 @@ app.prepare().then(() => {
     })
     .then(r => r.json())
       .then(response => {
-        console.log({URL,response})
         let authority = undefined
         if (req.body.dargah === 'zarinpal')
           authority = response.data?.authority
@@ -105,7 +103,6 @@ app.prepare().then(() => {
         dargah: 'zarinpal',
 
       }
-      console.log(data, _PAY)
       fetch(_PAY, {
         method: "POST",
         headers,
@@ -116,7 +113,6 @@ app.prepare().then(() => {
       })
         .then(r => r.json())
         .then(r => {
-          console.log(r)
           if (r.error === 1) {
             console.log(r)
             return app.render(req, res, '/shop/payment_failure', { "message": r.message })
@@ -139,8 +135,6 @@ app.prepare().then(() => {
   // Iran Dargah calls callback with POST
   server.post("/shop/payment_status", (req, res) => {
     const { authority, code: status, message } = req.body
-    console.log("CAME TO IRAN DARGAH")
-    console.log(authority, status, message)
     if (status == 100) {
       const data = {
         authority,
@@ -149,7 +143,6 @@ app.prepare().then(() => {
         dargah: 'irandargah'
       }
 
-      console.log("FETCH DATA", data)
       axios({
         url: _PAY,
         method: "POST",
@@ -162,7 +155,6 @@ app.prepare().then(() => {
 
       })
         .then(({ data: r }) => {
-          console.log("INSIDE RES")
           if (r.error === 1) {
             console.log(r)
             return app.render(req, res, '/shop/payment_failure', { "message": r.message })

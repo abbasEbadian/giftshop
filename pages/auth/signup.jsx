@@ -39,7 +39,6 @@ function Signup() {
                     router.push('/auth/login')
                 }
                 else {
-                    console.log(message, typeof message, typeof message==="object");
                     if(typeof message === 'object'){
                         Object.keys(message).map(item=>{
                             return message[item]?.map(item2=>{
