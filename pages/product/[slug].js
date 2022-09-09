@@ -73,6 +73,58 @@ function Product({ data, product }) {
       })
   }
   const [open, setOpen] = React.useState(false)
+  console.log({
+    ...data.product,
+    description: ""
+  })
+  const addJsonLd = ({product}) => {
+		if(!product) return {__html: {}}
+		return {
+			__html: `{
+				"@context": "https://schema.org",
+				"@type": "Product",
+				"name": "${product.full_name}",
+				"description": "${product.full_name_trimmed}",
+				"image": [
+					{
+						"@type": "ImageObject",
+						"url": "/card/${product.brand_id?.name}.png"
+					},
+					{
+						"@type": "ImageObject",
+						"url": "https://arsimodir.ir/${product.brand_id.description_image}"
+					}
+				],
+				"url": "/products/${product.id}-  ${product.full_name_trimmed.replace(/\s/g, '-')}",
+				"aggregateRating": {
+					"@type": "AggregateRating",
+					"bestRating": 5,
+					"ratingValue": ${Math.max(4, +product.rate)},
+					"worstRating": 1,
+					"ratingCount":${product.reviews_count}
+				},
+				"brand": {
+					"@type": "Organization",
+					"name":  "${product.brand_id?.persian_name}",
+					"alternateName": "${product.brand_id?.name} Giftcard",
+
+				},
+				"itemCondition": "https://schema.org/NewCondition",
+				"mpn": ${product.id},
+				"offers": {
+					"@type": "AggregateOffer",
+          "url": "/products/${product.id}-${product.full_name_trimmed.replace(/\s/g, '-')}",
+					"availability": "https://schema.org/InStock",
+					"priceCurrency": "IRR",
+					"highPrice": ${product.price_forced *10},
+					"lowPrice": ${product.price_forced *10},
+					"offerCount": 1
+				},
+				"productID": ${product.id},
+				"sku": ${product.id}
+			}`
+		}
+	}
   return (
     
     <div className="container single-product ">
@@ -81,6 +133,11 @@ function Product({ data, product }) {
         <meta name="description" content={data.meta_description ?? (product && product.full_name)} />
         <meta name="keywords" content={data.meta_keywords ?? (product && product.full_name)} />
         {data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
+        <script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={addJsonLd(data)}
+				key="item-jsonld"
+				/>
       </Head>
 
       <div role="presentation" className="shadow-sm rounded mt-4 p-3 px-1 px-md-3" >

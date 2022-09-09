@@ -87,7 +87,6 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 			})
 		}
 	}, [])
-	console.log({data})
 	const addJsonLd = ({brand, review_count, review_rating, size ,max_price, min_price}) => {
 		if(!brand) return {__html: {}}
 		return {
@@ -107,7 +106,7 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 						"url": "https://arsimodir.ir/${brand.description_image}"
 					}
 				],
-				"url": "shop/${brand.name}",
+				"url": "/shop/${brand.name}",
 				"aggregateRating": {
 					"@type": "AggregateRating",
 					"bestRating": 5,
@@ -130,7 +129,7 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 					"priceCurrency": "IRR",
 					"highPrice": ${max_price},
 					"lowPrice": ${min_price},
-					"offerCount": ${size}"
+					"offerCount": ${size}
 				},
 				"productID": ${brand.id},
 				"sku": ${brand.id}
@@ -143,7 +142,8 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 				<title>{data.meta_title ?? (brand_name + " | گیفت استاپ")}</title>
 				<meta name="description" content={data.meta_description ?? "فروشگاه گیفت استاپ " + brand_name} />
 				<meta name="keywords" content={data.meta_keywords ?? "گیفت کارت , گیفت کارت ارزان " + brand_name} />
-				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null} <script
+				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null} 
+				<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={addJsonLd(data)}
 				key="item-jsonld"

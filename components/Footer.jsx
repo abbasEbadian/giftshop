@@ -55,13 +55,6 @@ function Footer() {
                   <a >فروشگاه</a>
                 </Link>
               </li>
-             
-            </ul>
-          </div>
-
-          <div className="col-6 col-md-2">
-            <p className="fs-6">خدمات مشتریان</p>
-            <ul className="footer-links">
               <li>
                 <Link href="/terms">
                   <a>قوانین و مقررات</a>
@@ -71,6 +64,33 @@ function Footer() {
               <li>
                 <Link href="/faq">
                   <a >سوالات متداول</a>
+                </Link>
+              </li>
+             
+            </ul>
+          </div>
+
+          <div className="col-6 col-md-2">
+            <p className="fs-6"> دسته‌بندی های محبوب</p>
+            <ul className="footer-links">
+            <li>
+                <Link href="/shop/apple">
+                  <a> گیفت کارت اپل</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop/playstation">
+                  <a> گیفت کارت پلی استیشن</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop/steam">
+                  <a> گیفت کارت استیم</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop/googleplay">
+                  <a> گیفت کارت گوگل پلی</a>
                 </Link>
               </li>
             </ul>
