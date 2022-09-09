@@ -1,5 +1,5 @@
 import { ChevronLeft } from '@mui/icons-material';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Link from 'next/link';
 import React from 'react'
 import collapse from "../../img/icon/Collapse.png";
@@ -10,7 +10,7 @@ function HomeWhyUs() {
     <div className="whyus secondary-gradient-90 py-4" >
         <div className="mcontainer">
           <h3 className="text-center mb-md-0 mb-5">
-            <Image src={collapse} alt={"collapse"} /> <b className="mx-2">چرا گیفت استاپ؟</b>{" "}
+            <Image style={{maxWidth: "100%", height: 'auto'}} src={collapse} alt={"collapse"} /> <b className="mx-2">چرا گیفت استاپ؟</b>{" "}
           </h3>
           <div className="d-flex align-items-stretch justify-content-between flex-wrap">
             <div className="col-12 col-md-5">
@@ -42,7 +42,7 @@ function HomeWhyUs() {
             </div>
 
             <div className="col-md-6 col-12 mt-md-0 mt-5 position-relative" >
-              <Image src={why} layout="fill" objectFit="contain" alt='various cards' />
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={why}  alt='various cards' />
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image'
+import Image from 'next/future/image';
 import reviewer from '../img/card/reviewer.png'
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
@@ -33,7 +33,7 @@ function Reviews({reviews = []}) {
                 {i.user_id && i.user_id.avatar_image? 
                     <img src={e.BASE_URL + i.user_id.avatar_image} alt="Profile Image" />
                     :
-                    <Image src={reviewer} alt="Profile Image" />}
+                    <Image style={{maxWidth: "100%", height: 'auto'}} src={reviewer} alt="Profile Image" />}
                 <div className="content1 flex-grow-1 px-2 pt-2">
                     <h6>{i.user_id.first_name? i.user_id.first_name + " " + i.user_id.last_name: "کاربر گیفت شاپ" } | <span className="text-black-50">{get_time(i.created)}</span></h6>
                     <p> {i.text} </p>

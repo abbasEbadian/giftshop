@@ -1,8 +1,7 @@
 import  { useEffect, useState} from "react";
 import Head from "next/head";
 import card from "../img/other/Card.png";
-import Image from "next/image";
-import mouse from "../img/icon/Mouse-alt.png";
+import Image from "next/future/image";import mouse from "../img/icon/Mouse-alt.png";
 import arrows from "../img/icon/Arrows.svg";
 import dynamic  from "next/dynamic";
 
@@ -33,6 +32,7 @@ export default function Home() {
   }, [])
 
   return (
+
     <>
       <div className="mcontainer mcontainer-bg pb-5">
         <Head>
@@ -43,17 +43,11 @@ export default function Home() {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
         </Head>
-        <style jsx>{`
-        .bgimage{
-          overflow: hidden;
-          z-index: -1;
-        }
-      `}</style>
         <section id="bg-header-new">
           <main className="main-page flex-wrap">
             <div className="content1 d-flex flex-column justify-content-center col-12 col-md-4 pe-lg-5 p-0">
               <h3 className="fs-2 ">
-                گیفت <Image src={card} width={36} height={24} alt="گیفت کارت" /> کارت های متنوع
+                گیفت <Image style={{maxWidth: "100%", height: 'auto'}} src={card} width={36} height={24} alt="گیفت کارت" /> کارت های متنوع
               </h3>
               <h3 className="fs-3 mt-3 mb-5 text-nowrap">
                 خرید <span className="text-secondary">سریع</span> {" و "}
@@ -77,18 +71,17 @@ export default function Home() {
               </button>
             </div>
             <div className="col-md-2 col-0"></div>
-            <div className="images col-md-6 col-12">
-
-              <Image src={intro} layout="fill" objectFit="contain" alt="خرید انواع گیفت کارت" />
+            <div className="images col-md-6 col-12" >
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={intro}  alt="خرید انواع گیفت کارت" />
             </div>
 
             <div className="col-12 footing d-flex align-items-end justify-content-center mt-auto pb-2">
               <span></span>
               <a href="#scroll-here" className="scroll-down d-flex align-items-center justify-content-center flex-column bg-transparent">
                 <span className="mb-2">
-                  <Image src={mouse} alt="mouse" />
+                  <Image style={{maxWidth: "100%", height: 'auto'}} src={mouse} alt="mouse" />
                 </span>
-                <Image src={arrows} alt="arrows" />
+                <Image style={{maxWidth: "100%", height: 'auto'}} src={arrows} alt="arrows" />
               </a>
 
             </div>
@@ -181,7 +174,4 @@ export default function Home() {
       <HomeWhyUs />
     </>
   );
-}
-export async function getStaticProps({ }) {
-    return { props: {  } }
 }

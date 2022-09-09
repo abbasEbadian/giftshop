@@ -40,7 +40,7 @@ import TURKEY from '../img/flags/TURKEY.webp'
 
 
 
-import Image from "next/image";
+import Image from 'next/future/image';
 import Link from "next/link";
 import StarIcon from "@mui/icons-material/Star";
 import PropTypes from "prop-types";
@@ -176,7 +176,7 @@ function Card({
     if(!brand) return
     const alt = data.image_alt ?? "گیفت کارت"
     const image = brand.image ? (BASE_URL + brand.image): get_image_src(brand?.name)
-    return <Image src={image} alt={alt} layout="fill"  priority/>
+    return <Image style={{maxWidth: "100%", height: 'auto'}} src={image} alt={alt} layout="fill"  priority/>
 
   }
   return (
@@ -202,7 +202,7 @@ function Card({
                     <span>{data.country_id?.currency_id?.symbol ?? "$"} {Number(data.real_price).toLocaleString('fa')}</span>
                   }
                   {data.country_id && <div className="flag-cont">
-                    <Image className="flag" alt={data.country_id.symbol + " flag"} src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
+                    <Image style={{maxWidth: "100%", height: 'auto'}} className="flag" alt={data.country_id.symbol + " flag"} src={get_flag_src(data.country_id.symbol)} width={30} height={20} />
                   </div>}
 
                 </span>
@@ -221,7 +221,7 @@ function Card({
       </div>
       {hidePrice && !addToCard ?
         <h2 className="w-100 text-center">
-          <Typography component="h2" sx={{ fontSize: "clamp(12px, 1.1vw, 14px)" }}>
+          <Typography component="span" sx={{ fontSize: "clamp(12px, 1.1vw, 14px)" }}>
             <span className="">گیفت کارت </span>   {" "}  {data.country_id?.currency_id?.persian_name}  {" "} {data.brand_id?.persian_name}
             {/* {" "} {Number(data.real_price).toLocaleString('fa')} */}
           </Typography>

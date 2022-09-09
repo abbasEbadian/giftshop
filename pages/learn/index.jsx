@@ -5,14 +5,14 @@ import learnimg2 from "../../img/other/image35.png";
 import learnimg3 from "../../img/other/image36.png";
 import learnimg4 from "../../img/other/image37.png";
 import learnimg5 from "../../img/other/image38.png";
-import Image from 'next/image'
+import Image from 'next/future/image';
 function Learn() {
   return (
     <section>
       <div className="container mw-100 w-100">
         <div className="row">
           <div className="aboutimg">
-            <Image src={learnimg}></Image>
+            <Image style={{maxWidth: "100%", height: 'auto'}} src={learnimg}></Image>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@ function Learn() {
                 شود
               </p>
               <div>
-                <Image src={learnimg1}></Image>
+                <Image style={{maxWidth: "100%", height: 'auto'}} src={learnimg1}></Image>
               </div>
               <p>
                 در صورتی که iOS شما از 11 پایین تر است :ابتدا اپل ایدی خود را در
@@ -69,12 +69,12 @@ function Learn() {
                   </p>
                 </div>
                 <div className="col-lg-6 col-6 text-center">
-                  <Image src={learnimg2}></Image>
+                  <Image style={{maxWidth: "100%", height: 'auto'}} src={learnimg2}></Image>
                 </div>
               </div>
               <div className="img-learn-photo">
                 <div className="col-lg-6 col-6 text-center">
-                  <Image src={learnimg3}></Image>
+                  <Image style={{maxWidth: "100%", height: 'auto'}} src={learnimg3}></Image>
                 </div>
                 <div className="col-lg-6 col-6">
                   <p>
@@ -105,14 +105,14 @@ function Learn() {
                 کنید
               </span>
               <div className="text-center py-5">
-                <Image src={learnimg4}></Image>
+                <Image style={{maxWidth: "100%", height: 'auto'}} src={learnimg4}></Image>
               </div>
               <span>
                 رمز عبور اپل ایدی خود را دوباره وارد نمایید و سپس کد گیفت کارت
                 را وارد کرده و بر روی Redeem کلیک نمایید.
               </span>
               <div className="text-center py-5">
-                <Image src={learnimg5}></Image>
+                <Image style={{maxWidth: "100%", height: 'auto'}} src={learnimg5}></Image>
               </div>
             </div>
           </div>

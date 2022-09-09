@@ -2,8 +2,7 @@ import React from "react";
 import ProfileAside from "../../components/ProfileAside";
 import { Dropdown, DropdownButton, Form } from "react-bootstrap";
 import Link from "next/link";
-import Image from "next/image";
-import Head from "next/head";
+import Image from "next/future/image";import Head from "next/head";
 import { Button,Typography , Card  } from "@mui/material";
 import TicketChat from '../../components/subTicket/TicketChat'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';

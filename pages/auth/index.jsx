@@ -1,5 +1,4 @@
-import Image from "next/image";
-import React from "react";
+import Image from "next/future/image";import React from "react";
 import LoginImage from "../../img/login/img-login.png"
 import Link from 'next/link'
 import Head from 'next/head'
@@ -82,7 +81,7 @@ function Login({setRuleOpen}) {
     <Head><title>ورود | گیفت استاپ</title></Head>  
     <div className="login__content">
         <div className="login__img position-relative">
-            <Image src={LoginImage} alt="" layout="fill" height={"100%"} className="m-0 h-100" />
+            <Image style={{maxWidth: "100%", height: 'auto'}} src={LoginImage} alt="" layout="fill" height={"100%"} className="m-0 h-100" />
         </div>
 
         <div className="login__forms login2">

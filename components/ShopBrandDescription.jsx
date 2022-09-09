@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { Box, Rating } from '@mui/material'
-import Image from 'next/image'
+import Image from 'next/future/image';
 import React from 'react'
 import  Card from '../components/Card'
 import { BASE_URL } from '../redux/endpoints'
@@ -22,9 +22,9 @@ const  ShopBrandDescription = React.memo(({ brand } ) => {
     <Desc className='row brand-description mb-4' >
         <hr className='mt-5 bg-black bg-opacity-25' />
         <div className="col-12 col-lg-5" >
-            <Box sx={{paddingTop: '60%', position: 'relative'}} >
+            <Box sx={{ position: 'relative', height: 250}} >
             {brand?.brand?.description_image &&
-                <Image className='rounded' src={BASE_URL +  brand.brand.description_image} loader={()=>BASE_URL +  brand.brand.description_image} alt={ brand.brand.description_image_alt?? brand.brand.name }  layout='fill' />}
+                <Image style={{maxWidth: "100%", height: "100%", objectFit: "contain"}}  fill className='rounded' src={BASE_URL +  brand.brand.description_image} alt={ brand.brand.description_image_alt?? brand.brand.name }  />}
                 
             </Box>
         </div>

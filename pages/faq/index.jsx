@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Image from 'next/image'
+import Image from 'next/future/image';
 import faqsimg from "../../img/other/faq-01.png";
 import abouthelp from "../../img/other/image3.png";
 import Head from "next/head";
@@ -27,7 +27,7 @@ function Faqs() {
         <div className="container mw-100 w-100">
           <div className="row">
             <div className="aboutimg">
-              <Image src={faqsimg}></Image>
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={faqsimg}></Image>
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@ function Faqs() {
         <div className="row">
           <div className="col-12 about-help mt-5">
             <div className="right-section col-lg-4">
-              <Image src={abouthelp} height={260} width={400}/>
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={abouthelp} height={260} width={400}/>
             </div>
             <div className="left-section col-12 col-lg-7 flmd">
               <div className="text-about-info">

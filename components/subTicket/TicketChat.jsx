@@ -121,7 +121,7 @@ export default function TicketChat({order, setOpen, open, color, ticket}) {
                                                     <span className="time_date"> {new Date(item.created).toLocaleDateString("fa")} {" "} {new Date(item.created).toLocaleTimeString("fa", {hour: "numeric", minute: "numeric"})}</span> </div>
                                             </div>
                                         :<div className="incoming_msg">
-                                            {/* <div className="incoming_msg_Image"> <Image src={profilePic} alt="sunil" /> </div> */}
+                                            {/* <div className="incoming_msg_Image"> <Image style={{maxWidth: "100%", height: 'auto'}} src={profilePic} alt="sunil" /> </div> */}
                                             <div className="received_msg">
                                                 <div className="received_withd_msg">
                                                     <p>

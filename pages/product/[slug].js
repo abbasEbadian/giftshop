@@ -5,8 +5,7 @@ import SimilarCards from "../../components/SimilarCards";
 import SendFeedback from "../../components/SendFeedback";
 import Reviews from "../../components/Reviews";
 import LoaderButton from "../../components/LoaderButton";
-import Image from "next/image";
-import logos from "../../img/card/logos.png";
+import Image from "next/future/image";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios'
 import { ADD_TO_CART, GET_CARD } from "../../redux/endpoints";
@@ -192,7 +191,6 @@ function Product({ data, product }) {
         }
       />
       <div className="my-5">
-        <Image src={logos} className="d-none d-md-flex" />
       </div>
 
       <div className="card my-4 p-4">

@@ -2,7 +2,7 @@ import React from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import logo from "../../img/logo/GS-03.png";
 import  Link  from "next/link";
-import Image from 'next/image'
+import Image from 'next/future/image';
 function HeaderUser() {
   const [menuopen, setMenuopen] = React.useState(false);
 
@@ -13,7 +13,7 @@ function HeaderUser() {
           <div className="right-menu">
             <Link href="/" className="brand">
                 <a>
-                    <Image src={logo} />
+                    <Image style={{maxWidth: "100%", height: 'auto'}} src={logo} />
                 </a>
             </Link>
             <button

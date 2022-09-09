@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image'
+import Image from 'next/future/image';
 
 import timer from '../../img/icon/Timer.png'
 import diamond from '../../img/icon/Diamond.png'
@@ -19,7 +19,7 @@ function HomeUtilities() {
       {items.map((item, idx)=>{
         return <div className="col-md-2 col-sm-4 col-4 item" key={idx}>
           <div className="d-flex flex-column align-items-center justify-content-center">
-          <div className="image-container"><Image src={item.image} width={60} height={60} alt={item.alt}/></div>
+          <div className="image-container"><Image style={{maxWidth: "100%", height: 'auto'}} src={item.image} width={60} height={60} alt={item.alt}/></div>
           <span className='mt-auto text-center'>
             <span className="text-secondary">{item.text1}</span><br />
             <span className="">{item.text2}</span>

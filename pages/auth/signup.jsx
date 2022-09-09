@@ -1,5 +1,4 @@
-import Image from "next/image";
-import React from "react";
+import Image from "next/future/image";import React from "react";
 import LoginImage from "../../img/login/img-login.png"
 import Link from 'next/link'
 import withAuth from "../../redux/withAuth";
@@ -63,7 +62,7 @@ function Signup() {
   <div class="login">
   <div class="login__content">
       <div class="login__img">
-          <Image src={LoginImage} alt="" />
+          <Image style={{maxWidth: "100%", height: 'auto'}} src={LoginImage} alt="" />
       </div>
 
       <div class="login__forms register">

@@ -7,7 +7,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import * as e from '../../redux/endpoints'
 import contactimg from '../../img/other/Contact_us.png' 
-import Image from 'next/image'
+import Image from 'next/future/image';
 const Aster = ()=>{
     return  <b className="text-danger mx-2">*</b>
 }
@@ -40,7 +40,7 @@ function ContactUs() {
            
             <div className="container mw-100 w-100">
                 <div className="aboutimg">
-                <Image src={contactimg}></Image>
+                <Image style={{maxWidth: "100%", height: 'auto'}} src={contactimg}></Image>
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-5 contact-us m-auto">

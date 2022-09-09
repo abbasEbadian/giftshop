@@ -4,7 +4,7 @@ import BlogPost from "../../../components/BlogPost";
 import BlogNav from "../../../components/BlogNav";
 import * as e from '../../../redux/endpoints'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/future/image';
 import { Box } from "@mui/system";
 import { useRouter } from "next/router";
 import PaginationControlled from "../../../components/Pagination";
@@ -62,7 +62,7 @@ function Blog({blogs, category_blogs, meta}) {
         </Head>
       <section>
           <div className="position-relative h-100 d-flex justify-content-center mt-4">
-            <Image src={background} alt="blog image" height={250} width={1000}/>
+            <Image style={{maxWidth: "100%", height: 'auto'}} src={background} alt="blog image" height={250} width={1000}/>
           </div>
         <div className="bg-blog" >
           <div className="content-head-blog col-10 col-lg-5 col-md-5 m-auto text-dark">

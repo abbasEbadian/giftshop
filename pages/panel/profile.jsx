@@ -3,7 +3,7 @@ import ProfileAside from "../../components/ProfileAside";
 import { Form } from "react-bootstrap";
 import Link from "next/link";
 import profilePic from "../../img/other/public-avatar.png"
-import Image from 'next/image'
+import Image from 'next/future/image';
 import Head from "next/head";
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -221,7 +221,7 @@ function UserLevel() {
                                             {user && user.avatar_image ?
                                                 <img src={e.BASE_URL + user.avatar_image} alt="Profile Image" />
                                                 :
-                                                <Image src={profilePic} alt="Profile Image" />}
+                                                <Image style={{maxWidth: "100%", height: 'auto'}} src={profilePic} alt="Profile Image" />}
                                         </Badge>
                                     </LoadingButton>
                                 </label>

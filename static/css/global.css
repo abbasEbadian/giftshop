@@ -36,6 +36,10 @@ body a{
     text-decoration: none;
     color: var(--primary-dark);
 }
+body img{
+    height: auto;
+    max-width: 100%;
+}
 .mcontainer{
     padding-inline: clamp(16px, 4vw, 128px);
 }

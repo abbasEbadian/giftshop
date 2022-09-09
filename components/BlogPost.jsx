@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import  {BASE_URL} from "../redux/endpoints"
+import Image from "next/future/image";import  {BASE_URL} from "../redux/endpoints"
 import { Typography } from "@mui/material";
 function BlogPost({ data }) {
   return (

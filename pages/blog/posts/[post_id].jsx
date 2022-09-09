@@ -4,8 +4,7 @@ import BlogNav from "../../../components/BlogNav";
 import * as e from '../../../redux/endpoints'
 import SendFeedback from "../../../components/SendFeedback";
 
-import Image from "next/image";
-import Head from "next/head";
+import Image from "next/future/image";import Head from "next/head";
 import { useRouter } from "next/router";
 import { Typography } from "@mui/material";
 import { urlencoded } from "body-parser";

@@ -1,12 +1,12 @@
 import React from "react";
-import Image from "next/image";
+import Image from 'next/future/image'
 import Link from "next/link";
 import dynamic from 'next/dynamic'
+
 const HomIcon = dynamic(() => import("../../img/icon/HomeIcon"))
 const SearchIcon = dynamic(() => import("../../img/icon/SearchIcon"))
 const ShoppingIcon = dynamic(() => import("../../img/icon/ShoppingIcon"))
 const UserIcon = dynamic(() => import("./UserIcon"))
-
 const Search = dynamic(() => import("./Search"))
 const FullScreenDialog = dynamic(() => import("./FullScreenSearch"))
 
@@ -213,7 +213,7 @@ function HeaderPublic({ authenticated }) {
       <div className="main-container">
         <Link href="/">
           <a className="header-image">
-              <Image src={Logo} layout='fill' alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' />
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={Logo}  alt='گیفت استاپ ، مرجع خرید انواع گیفت کارت' />
           </a>
         </Link>
         <div className="links">

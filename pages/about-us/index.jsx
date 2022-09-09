@@ -1,7 +1,6 @@
 import React from "react";
 import Link  from "next/link";
-import Image  from "next/image";
-
+import Image from "next/future/image";
 import aboutimg from "../../img/other/image2.png";
 import aboutimg1 from "../../img/other/image4.png";
 import aboutimg2 from "../../img/other/image5.png";
@@ -20,7 +19,7 @@ function AboutUs() {
       <div className="container mw-100 w-100">
         <div className="row">
           <div className="aboutimg">
-            <Image src={aboutimg}></Image>
+            <Image style={{maxWidth: "100%", height: 'auto'}} src={aboutimg}></Image>
           </div>
         </div>
       </div>
@@ -39,12 +38,12 @@ function AboutUs() {
           </div>
           <div className="col-12 col-lg-5 col-md-5">
             <div className="img-about">
-              <Image src={aboutimg1}></Image>
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={aboutimg1}></Image>
             </div>
           </div>
           <div className="col-12 col-lg-5 col-md-5">
             <div className="img-about my-3">
-              <Image src={aboutimg2}></Image>
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={aboutimg2}></Image>
             </div>
           </div>
           <div className="col-12 col-lg-5 col-md-6">
@@ -59,7 +58,7 @@ function AboutUs() {
         <div className="row">
           <div className="col-12 about-help mt-5">
             <div className="right-section col-lg-4 my-3">
-              <Image src={abouthelp} height={260} width={400}/>
+              <Image style={{maxWidth: "100%", height: 'auto'}} src={abouthelp} height={260} width={400}/>
             </div>
             <div className="left-section col-12 col-lg-7 flmd">
               <div className="text-about-info">

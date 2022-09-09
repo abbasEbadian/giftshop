@@ -1,6 +1,6 @@
 import React from "react";
 import faqsimg from "../../img/other/terms_conditions-01.png";
-import Image from 'next/image'
+import Image from 'next/future/image';
 import Head from 'next/head'
 import {useSelector} from 'react-redux'
 
@@ -15,7 +15,7 @@ function Terms() {
       <div className="container mw-100 w-100">
         <div className="row">
           <div className="aboutimg">
-            <Image src={faqsimg}></Image>
+            <Image style={{maxWidth: "100%", height: 'auto'}} src={faqsimg}></Image>
           </div>
         </div>
       </div>
