@@ -241,11 +241,11 @@ function HeaderPublic({ authenticated }) {
           <div>
             <div
               className="megamenu-shop"
-              onMouseEnter={(e) => setActive(true)}
-              onMouseLeave={(e) => setActive(false)}
+              // onMouseEnter={(e) => setActive(true)}
+              // onMouseLeave={(e) => setActive(false)}
             >
               <Link href="/shop"><a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a></Link>
-              <div className={"list-show-menu w-100 bg-white " + (active ? " collapsed " : "")}>
+              <div className={"list-show-menu w-100 bg-white "}>
                 <ul
                   className="dropdown-menu mega-menu d-flex flex-wrap container-fluid mx-auto  pe-4"
                 >

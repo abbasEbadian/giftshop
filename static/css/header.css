@@ -501,7 +501,24 @@ header .burger-line:nth-child(4) {
   margin-right: 12px;
 }
 
-.header-public .list-show-menu:not(.collapsed) {
+.megamenu-shop:hover  .list-show-menu {
+  opacity: 1;
+  pointer-events: all;
+  transition: all 0.3s;
+  background-color: white;
+}
+.megamenu-shop .dropdown-menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  left: 0;
+  display: flex;
+  transition: all 0.3s ease-in-out;
+  z-index: 10000000;
+  min-height: 300px;
+  background-color: white;
+}
+.header-public .list-show-menu {
   opacity: 0;
   pointer-events: none;
   display: block;
@@ -509,22 +526,16 @@ header .burger-line:nth-child(4) {
   transition: all 0.3s;
   background-color: white;
 }
-.header-public .list-show-menu.collapsed {
-  opacity: 1;
-  pointer-events: all;
-  transition: all 0.3s;
-  background-color: white;
-}
-.header-public .list-show-menu:not(.collapsed) > ul {
+
+.header-public .list-show-menu > ul {
   transform: translateY(60px);
   transition: 0.3s;
 }
 
-.header-public .list-show-menu.collapsed > ul {
+.megamenu-shop:hover  .list-show-menu> ul {
   transform: translateY(0px);
   transition: 0.3s;
 }
-
 .mega-menu {
   padding: 10px 0px !important;
   width: 540px;
@@ -572,17 +583,6 @@ header .burger-line:nth-child(4) {
   border-bottom: 1px solid #ddd;
 }
 
-.megamenu-shop .dropdown-menu {
-  position: absolute;
-  top: 60px;
-  right: 0;
-  left: 0;
-  display: flex;
-  transition: all 0.3s ease-in-out;
-  z-index: 10000000;
-  min-height: 300px;
-  background-color: white;
-}
 .giftcard-icon {
   cursor: pointer;
 }

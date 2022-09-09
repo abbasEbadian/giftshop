@@ -169,12 +169,9 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 
 				<div className="col-12 col-md-9">
 					<h1 className="text-center line-height-64 mb-3">
-						{brand_name ? <span>
-							{"گیفت کارت  "} <span className="text-danger">{brandName}</span></span>
-							: <>
-								محصولات <span className="text-danger">فروشگاه</span>
-							</>
-						}
+						 <span>
+							{"گیفت کارت  "} <span className="text-danger">{data?.brand?.persian_name}</span>
+						</span>
 					</h1>
 					<ShopCards cards={filteredCards} loading={loading} />
 					<div className="my-4">
