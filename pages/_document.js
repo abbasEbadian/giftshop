@@ -12,9 +12,8 @@ class MyDocument extends Document {
         <Html dir={this.props.locale === 'fa' ? 'rtl' : 'ltr'} lang={this.props.locale}>
             <Head>
 
-                <Script strategy="lazyOnload" src="https://www.googletagmanager.com/gtag/js?id=G-L1YN23M14P"></Script>
-                <Script
-                    strategy="lazyOnload"
+                <script  src="https://www.googletagmanager.com/gtag/js?id=G-L1YN23M14P"></script>
+                <script
                     dangerouslySetInnerHTML={{
                         __html: `
                     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
