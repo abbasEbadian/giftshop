@@ -14,21 +14,14 @@ function Blog({blogs, category_blogs, meta}) {
   const [search, setSearch] = React.useState("")
   const router = useRouter()
   const {word, category, blog_page} = router.query 
-  const [page, setPage] = React.useState(0);
   const countInEachPage = React.useRef(9)
-  const handleChange = (e, page)=>{
-    if(page === 1){
-      router.push('/blog'+ location.search)
-      return
-    }
-    router.push('/blog/page/' + page + location.search)
-    if(typeof window !== "undefined"){
-      window.scrollTo({
-        top: 500, 
-        behavior: "smooth"
-      })
-    }
-  }
+
+  const { page = 1 } = React.useMemo(() => {
+		return router.query
+	}, [router.query])
+
+
+  
   
   const _search = (e)=>{
     e.preventDefault()
@@ -99,7 +92,7 @@ function Blog({blogs, category_blogs, meta}) {
                 );
               }): <div className="alert alert-info w-50 ">موردی یافت نشد</div>}
               <div className="col-12 my-2">
-                {category_blogs.length> 1 ?<PaginationControlled handleChange={handleChange} size={category_blogs.length} page={page} countInEachPage={countInEachPage.current}/>:null}
+                {category_blogs.length> 1 ?<PaginationControlled  size={category_blogs.length} page={+page} countInEachPage={countInEachPage.current} source_url={router.pathname} extra_query={router.query}/>:null}
               </div>
             </div>
           </div>

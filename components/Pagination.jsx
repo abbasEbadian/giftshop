@@ -1,13 +1,25 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
-import Pagination from '@mui/material/Pagination';
+// import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import Pagination from 'react-bootstrap/Pagination';
+import Link from 'next/Link';
 
-export default function PaginationControlled({handleChange, page, size, countInEachPage=20 }) {
-  
+export default function PaginationControlled({  page, size=5, countInEachPage = 20, source_url, extra_query={} }) {
+  let active = +page;
+  let items = [];
+  for (let number = 1; number <= Math.ceil(size / countInEachPage); number++) {
+    items.push(
+          <Link href={{pathname: source_url, query: { ...extra_query, page: number}}} passHref>
+      <Pagination.Item key={number} active={number === active} >
+          {number}
+          {/* <Link ></Link> */}
+        </Pagination.Item>
+      </Link>
+      
+    );
+  }
   return (
-    <Stack spacing={2} sx={{display: "flex", justifyContent: "center"}}>
-      <Pagination count={Math.ceil(size/countInEachPage)} page={page} onChange={handleChange} />
-    </Stack>
-  );
+    <Pagination className='d-flex justify-content-center' dir="ltr">{items}</Pagination>
+    )
 }

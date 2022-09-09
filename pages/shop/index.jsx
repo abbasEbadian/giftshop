@@ -20,10 +20,11 @@ function Shop({ data }) {
 	const [cardsCount, setCardsCount] = React.useState({})
 	const [sortBy, setSortBy] = React.useState("-created")
 	const router = useRouter()
-	const [page, setPage] = React.useState(1);
-	const handleChange = (event, value) => {
-		setPage(value);
-	};
+	
+	const { page = 1 } = React.useMemo(() => {
+		return router.query
+	}, [router.query])
+
 
 	const { brand_name, real_price, country } = router.query
 	React.useEffect(() => {
@@ -89,7 +90,7 @@ function Shop({ data }) {
 					{/* <div className="col-12 col-md-6 col-xl-4"><ShopSortBy value={sortBy} setValue={setSortBy}/></div> */}
 					<ShopCards cards={filteredCards} loading={loading} />
 					<div className="my-4">
-						{cardsCount > 20 ? <PaginationControlled handleChange={handleChange} size={cardsCount} page={page} /> : null}
+						{cardsCount > 20 ? <PaginationControlled  size={cardsCount} page={page} source_url={router.pathname} extra_query={router.query} /> : null}
 					</div>
 
 				</div>

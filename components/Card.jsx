@@ -228,7 +228,7 @@ function Card({
         </h2>
         : null}
       {addToCard ? <>
-        <h5 className="w-100 d-flex  justify-content-between px-2">
+        <div className="w-100 d-flex  justify-content-between px-2">
           <Typography component="h2" sx={{ fontSize: "12px" }}>
             <span>
               {data.full_name_trimmed}
@@ -251,7 +251,7 @@ function Card({
               </>}
 
           </Typography>}
-        </h5>
+        </div>
         <div className="add-to-card-container d-flex justify-content-between align-items-center">
           {data?.no_sell ?<Button  color='error' variant="outlined" className="exclude" fullWidth>ناموجود</Button>:
             data?.ask_me ?<Link href={config?.contactus?.whatsapp_link || "#"}><a className="text-primary w-100"><Button  color='info' variant="outlined" className="exclude" fullWidth>استعلام موجودی</Button></a></Link>:

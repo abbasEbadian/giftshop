@@ -16,7 +16,7 @@ import { Breadcrumbs } from "@mui/material";
 import { Home, NavigateBefore } from "@mui/icons-material";
 import Link from "next/link";
 
-function Shop({ data, cards: initialCards =[], size: initialSize }) {
+function Shop({ data, cards: initialCards = [], size: initialSize }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
 
 	const router = useRouter();
@@ -28,12 +28,9 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 	const [cardsCount, setCardsCount] = React.useState(initialSize)
 	const brands = useSelector(state => state.main.brands)
 	const [brandName, setBrandName] = React.useState()
-	const [page, setPage] = React.useState(1);
-
-	const handleChange = (event, value) => setPage(value);
 
 
-	const { real_price, country } = React.useMemo(() => {
+	const { page = 1 } = React.useMemo(() => {
 		return router.query
 	}, [router.query])
 
@@ -66,11 +63,11 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 	React.useEffect(() => {
 		let f = {}
 		if (brand_name) {
-			f["real_price"] = real_price
-			f["country"] = country
+			f["real_price"] = filters.real_price
+			f["country"] = filters.country
 		}
 		setFilters(f)
-	}, [real_price, country])
+	}, [filters.real_price, filters.country])
 
 	React.useEffect(() => {
 		if (brand_name && brands) {
@@ -87,8 +84,9 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 			})
 		}
 	}, [])
-	const addJsonLd = ({brand, review_count, review_rating, size ,max_price, min_price}) => {
-		if(!brand) return {__html: {}}
+
+	const addJsonLd = ({ brand, review_count, review_rating, size, max_price, min_price }) => {
+		if (!brand) return { __html: {} }
 		return {
 			__html: `{
 				"@context": "https://schema.org",
@@ -142,11 +140,11 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 				<title>{data.meta_title ?? (brand_name + " | گیفت استاپ")}</title>
 				<meta name="description" content={data.meta_description ?? "فروشگاه گیفت استاپ " + brand_name} />
 				<meta name="keywords" content={data.meta_keywords ?? "گیفت کارت , گیفت کارت ارزان " + brand_name} />
-				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null} 
+				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
 				<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={addJsonLd(data)}
-				key="item-jsonld"
+					type="application/ld+json"
+					dangerouslySetInnerHTML={addJsonLd(data)}
+					key="item-jsonld"
 				/>
 			</Head>
 			<div role="presentation" className="shadow-sm rounded mt-3 mb-4 p-3 px-1 px-md-3" >
@@ -156,9 +154,9 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 					</a>
 					</Link>
 					<span>
-					گیفت کارت {" "} {brandName}
+						گیفت کارت {" "} {brandName}
 					</span>
-					
+
 				</Breadcrumbs>
 			</div>
 			<div className="row ">
@@ -180,7 +178,13 @@ function Shop({ data, cards: initialCards =[], size: initialSize }) {
 					</h1>
 					<ShopCards cards={filteredCards} loading={loading} />
 					<div className="my-4">
-						{cardsCount > 20 ? <PaginationControlled handleChange={handleChange} size={cardsCount} page={page} /> : null}
+						{cardsCount > 20 ? <PaginationControlled
+							size={cardsCount}
+							page={+page}
+							source_url={"/shop/" + data.brand?.name}
+							extra_query={router.query}
+						/>
+							: null}
 					</div>
 					<ShopBrandDescription brand={data} />
 				</div>
