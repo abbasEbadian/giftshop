@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import Image from 'next/image'
-import * as _ from 'lodash'
+import  groupBy from 'lodash/groupBy'
+import  sortBy from 'lodash/sortBy'
 import { BASE_URL } from "../redux/endpoints";
 
 function BlogNav({blogs}) {
@@ -10,9 +10,9 @@ function BlogNav({blogs}) {
   const [cats3, setCats3] = React.useState([]);
   React.useEffect(()=>{
     if(blogs){
-      setCats1(_.sortBy(blogs, item=>item.id).reverse())
-      setCats2(_.sortBy(blogs, item=>item.reviews).reverse())
-      let x = _.groupBy(blogs, c => c.category_id?.name)
+      setCats1(sortBy(blogs, item=>item.id).reverse())
+      setCats2(sortBy(blogs, item=>item.reviews).reverse())
+      let x = groupBy(blogs, c => c.category_id?.name)
       x = Object.keys(x).map(key=>{return {
         key,
         value: x[key].length

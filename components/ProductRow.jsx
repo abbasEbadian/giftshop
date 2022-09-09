@@ -1,12 +1,10 @@
 import React from "react";
 import Card from "./Card";
-import LoaderButton from "./LoaderButton";
 import { toast } from "react-toastify";
 import { get_cart} from "../redux/actions";
 import {PATCH_CART} from '../redux/endpoints'
 import axios from "axios";
 import {useDispatch} from 'react-redux'
-import * as _ from 'lodash'
 import CloseIcon from '@mui/icons-material/Close';
 import { Box } from "@mui/material";
 
@@ -101,6 +99,7 @@ function ProductRow({ product , _count}) {
                 <span className="border-bottom mx-2 ">{_count}</span>
                 <span onClick={decreaseCount}>-</span>
               </div>
+              {_.add()}
               <span className="border rounded p-2">
                 {locale(product.price)} {" تومان "}{" "}
               </span>
