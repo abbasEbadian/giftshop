@@ -35,7 +35,6 @@
 }
 
 .login__img img {
-  width: 310px !important;
   margin-top: 1.5rem;
   max-width: 100%;
   min-height: 350px !important;
@@ -207,7 +206,6 @@
   }
 
   .login__img img {
-    width: 390px !important;
     margin-top: 0;
   }
 
