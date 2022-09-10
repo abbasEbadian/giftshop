@@ -9,6 +9,7 @@ import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStore
 import CloseIcon from '@mui/icons-material/Close';
 import {useSelector} from 'react-redux'
 import FullScreenSearch from './subHeader/FullScreenSearch'
+
 function BottomNavigation() {
     const [openFull, setOpenFull] = React.useState(false)
     const size = "28px" 
@@ -41,7 +42,7 @@ function BottomNavigation() {
         </Link>
        
     </div>
-    <FullScreenSearch open={openFull} setOpen={setOpenFull} />
+    <FullScreenSearch open={openFull} setOpen={setOpenFull}  />
   </div>;
 }
 

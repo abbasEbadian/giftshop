@@ -621,6 +621,10 @@ footer{
 #main-searchbox + .MuiAutocomplete-endAdornment {
     display: none;
 }
+.search-dialog .MuiPaper-root{
+  background: #fffb;
+  backdrop-filter: blur(4px);
+}
 header .MuiInput-root{
   padding-right: 0 !important;
   border-radius: 60px;

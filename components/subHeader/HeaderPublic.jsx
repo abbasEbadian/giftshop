@@ -290,18 +290,20 @@ function HeaderPublic({ authenticated }) {
 
         <div className="controls">
           <div className="search-btn">
-            <Search />
+            <Search setFull={setFull} setOpen={setMenuopen}/>
           </div>
 
           <Button onClick={e => setFull(true)} className="full-search-button">
             <SearchIcon width={17} height={17} />
           </Button>
+
           <Link href="/basket">
             <a className="badge-container">
               <span className="basket-badge bg-danger text-white rounded-circle p2">{basket && basket.orderline_set ? basket.orderline_set.length : 0}</span>
               <ShoppingIcon width="20" />
             </a>
           </Link>
+
           {
             !authenticated ?
               <Link href="/auth"><a className="btn primary-gradient rounded d-flex">

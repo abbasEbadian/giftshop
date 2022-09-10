@@ -11,11 +11,12 @@ import * as e from '../../redux/endpoints'
 import Link from 'next/link'
 import Router, { useRouter } from 'next/router';
 import { createFilterOptions } from '@mui/material/Autocomplete';
+import { InputBase } from '@mui/material';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export default function CheckboxesTags({ setOpen = false }) {
+export default function CheckboxesTags({ setOpen, setFull=()=>{} }) {
   const [cats, setCats] = React.useState([])
   const [loading, setLoading] = React.useState(false)
   const [searchValue, setSearchValue] = React.useState([])
@@ -72,7 +73,7 @@ export default function CheckboxesTags({ setOpen = false }) {
 
       <div className="d-flex align-items-center justify-content-center">
 
-        <Autocomplete
+        {/* <Autocomplete
           dir="ltr"
           multiple
           id="main-searchbox"
@@ -100,14 +101,24 @@ export default function CheckboxesTags({ setOpen = false }) {
           renderInput={(params) => (
             <TextField {...params} placeholder="قیمت ، کشور یا دسته بندی" variant="standard" />
           )}
+        /> */}
+        <InputBase
+            sx={{ ml: 1, flex: 1, width: 350}}
+            placeholder="جستجوی کارت، دسته‌‌بندی، کشور..."
+            inputProps={{ 'aria-label': '' }}
+            onClick={ e=> {setFull(1) ; setOpen(false)}}
+            className={"border rounded-pill py-1 px-2"}
+            value={""}
+            onChange={e=>setFull(1)}
         />
-        <Button
+        {/* <Button
           className='px-0'
           onClick={_search}
           aria-label='جستجو'
         >
           <SearchIcon width="20" />
-        </Button></div>
+        </Button> */}
+        </div>
     </>
   );
 }

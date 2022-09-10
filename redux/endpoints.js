@@ -53,6 +53,7 @@ export const ADD_CARD = _("/creditcard/add_card/")
 export const DELETE_CARD = _("/creditcard/delete_card/")
 
 export const SEARCH_OPTIONS = _("/search/options/")
+export const SEARCH_TERM = (term) => _("/search/term/"+term)
 export const CLOSE_TICKET = _("/tickets/close/")
 
 export const APPLY_CODE = _("/orders/apply_code/")
