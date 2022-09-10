@@ -24,7 +24,6 @@ export default function Home() {
   const top_sale_cards = useSelector(s => s.main.top_sale_cards)
   const dispatch = useDispatch()
 
-
   useEffect(() => {
     dispatch(fetch_popular_cards())
     dispatch(fetch_top_sale_cards())

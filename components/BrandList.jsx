@@ -122,7 +122,7 @@ function SimilarCards({  children, title }) {
       <div className="brands-container row  justify-content-between">
           
             {brands?brands.current.map((item, idx)=>{
-                return (!showAll && idx < count || showAll) && <div className="col-6  col-md-4 col-lg-3 ">
+                return (!showAll && idx < count || showAll) && <div className="col-6  col-md-4 col-lg-3 " key={idx}>
                     <Card hidePrice data={{
                     brand_id: item
                 }}/>
@@ -135,7 +135,7 @@ function SimilarCards({  children, title }) {
           <Box sx={{ position: 'relative', height: 72}} className="bgimage   position-relative mx-2">
           </Box>
           <Button  className="btn success-gradient mr-2 " onClick={e=>setShowAll(s=>!s)}>
-                {showAll?"نمایش کمتر":"نمایش همه محصولات" }
+            {showAll?"نمایش کمتر":"نمایش همه محصولات" }
           </Button>
         </div>
     </div>

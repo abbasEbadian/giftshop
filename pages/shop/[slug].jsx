@@ -146,9 +146,31 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 					dangerouslySetInnerHTML={addJsonLd(data)}
 					key="item-jsonld"
 				/>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: 
+						`{
+						  "@context": "https://schema.org",
+						  "@type": "BreadcrumbList",
+						  "name": "Giftsop ${data?.brand?.name}", 
+						  "itemListElement": [{
+							"@type": "ListItem",
+							"position": 1,
+							"name": "صفحه اصلی",
+							"item": "https://giftstop.org"
+						  },{
+							"@type": "ListItem",
+							"position": 2,
+							"name": "گیفت کارت ${data?.brand?.persian_name}"
+						  }]
+						}`
+					}}
+					key="bc-jsonld"
+				/>
 			</Head>
-			<div role="presentation" className="shadow-sm rounded mt-3 mb-4 p-3 px-1 px-md-3" >
-				<Breadcrumbs aria-label="breadcrumb" separator={<NavigateBefore fontSize="small" />} className={"breadcrumbs"}>
+			<div role="presentation" className=" rounded mt-3 mb-4 p-3 px-1 " >
+				<Breadcrumbs aria-label="breadcrumb" separator={<NavigateBefore fontSize="small" />} className={"breadcrumbs"} >
 					<Link href="/"><a underline="hover">
 						<Home sx={{ mr: 0.5 }} />
 					</a>
@@ -169,7 +191,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 
 				<div className="col-12 col-md-9">
 					<h1 className="text-center line-height-64 mb-3">
-						 <span>
+						<span>
 							{"گیفت کارت  "} <span className="text-danger">{data?.brand?.persian_name}</span>
 						</span>
 					</h1>

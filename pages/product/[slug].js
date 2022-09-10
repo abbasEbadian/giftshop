@@ -77,10 +77,10 @@ function Product({ data, product }) {
     ...data.product,
     description: ""
   })
-  const addJsonLd = ({product}) => {
-		if(!product) return {__html: {}}
-		return {
-			__html: `{
+  const addJsonLd = ({ product }) => {
+    if (!product) return { __html: {} }
+    return {
+      __html: `{
 				"@context": "https://schema.org",
 				"@type": "Product",
 				"name": "${product.full_name}",
@@ -115,17 +115,17 @@ function Product({ data, product }) {
           "url": "/products/${product.id}-${product.full_name_trimmed.replace(/\s/g, '-')}",
 					"availability": "https://schema.org/InStock",
 					"priceCurrency": "IRR",
-					"highPrice": ${product.price_forced *10},
-					"lowPrice": ${product.price_forced *10},
+					"highPrice": ${product.price_forced * 10},
+					"lowPrice": ${product.price_forced * 10},
 					"offerCount": 1
 				},
 				"productID": ${product.id},
 				"sku": ${product.id}
 			}`
-		}
-	}
+    }
+  }
   return (
-    
+
     <div className="container single-product ">
       <Head>
         <title>{data.meta_title ?? (product && product.full_name)}</title>
@@ -133,10 +133,37 @@ function Product({ data, product }) {
         <meta name="keywords" content={data.meta_keywords ?? (product && product.full_name)} />
         {data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
         <script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={addJsonLd(data)}
-				key="item-jsonld"
-				/>
+          type="application/ld+json"
+          dangerouslySetInnerHTML={addJsonLd(data)}
+          key="item-jsonld"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              `{
+						  "@context": "https://schema.org",
+						  "@type": "BreadcrumbList",
+						  "name": "${data?.product?.full_name}", 
+						  "itemListElement": [{
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "صفحه اصلی",
+                  "item": "https://giftstop.org"
+                },{
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "گیفت کارت ${data?.product?.brand_id?.persian_name}",
+                  "item": "https://giftstop.org/shop/${data?.product?.brand_id?.name}"
+                },{
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "${data?.product?.full_name}" 
+                }]
+						}`
+          }}
+          key="bc-jsonld"
+        />
       </Head>
 
       <div role="presentation" className="shadow-sm rounded mt-4 p-3 px-1 px-md-3" >
@@ -266,7 +293,7 @@ export async function getServerSideProps({ query }) {
     const data = await res.json()
     return { props: { data, product: data.product } }
   } catch (e) {
-    return { props: { data: {}, product: {}} }
+    return { props: { data: {}, product: {} } }
   }
 }
 export default Product;

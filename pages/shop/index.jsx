@@ -73,6 +73,7 @@ function Shop({ data }) {
 				<title>{data.shop_title ?? "فروشگاه | گیفت استاپ"}</title>
 				<meta name="description" content={data.shop_description ?? "فروشگاه گیفت استاپ"} />
 				<meta name="keywords" content={data.shop_keywords ?? "گیفت کارت , گیفت کارت ارزان"} />
+				<meta rel="canonical" content={"https://giftstop.org/shop"} />
 			</Head>
 
 			<div className="row ">
