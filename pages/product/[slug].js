@@ -86,16 +86,9 @@ function Product({ data, product }) {
 				"name": "${product.full_name}",
 				"description": "${product.full_name_trimmed}",
 				"image": [
-					{
-						"@type": "ImageObject",
-						"url": "/card/${product.brand_id?.name}.png"
-					},
-					{
-						"@type": "ImageObject",
-						"url": "https://arsimodir.ir/${product.brand_id.description_image}"
-					}
+					"https://giftstop.org/card/${product.brand_id?.name}.png"
 				],
-				"url": "/products/${product.id}-  ${product.full_name_trimmed.replace(/\s/g, '-')}",
+				"url": "https://giftstop.org/products/${product.id}-  ${product.full_name_trimmed.replace(/\s/g, '-')}",
 				"aggregateRating": {
 					"@type": "AggregateRating",
 					"bestRating": 5,
@@ -112,7 +105,7 @@ function Product({ data, product }) {
 				"mpn": ${product.id},
 				"offers": {
 					"@type": "AggregateOffer",
-          "url": "/products/${product.id}-${product.full_name_trimmed.replace(/\s/g, '-')}",
+          "url": "https://giftstop.org//products/${product.id}-${product.full_name_trimmed.replace(/\s/g, '-')}",
 					"availability": "https://schema.org/InStock",
 					"priceCurrency": "IRR",
 					"highPrice": ${product.price_forced * 10},

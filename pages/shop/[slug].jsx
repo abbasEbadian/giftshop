@@ -95,16 +95,9 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 				"description": "${brand.meta_description}",
 				"alternateName": "${brand.persian_name}",
 				"image": [
-					{
-						"@type": "ImageObject",
-						"url": "/card/${brand.name}.png"
-					},
-					{
-						"@type": "ImageObject",
-						"url": "https://arsimodir.ir/${brand.description_image}"
-					}
+					"https://giftstop.org/card/${brand.name}.png"
 				],
-				"url": "/shop/${brand.name}",
+				"url": "https://giftstop.org/shop/${brand.name}",
 				"aggregateRating": {
 					"@type": "AggregateRating",
 					"bestRating": 5,
@@ -122,7 +115,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 				"mpn": ${brand.id},
 				"offers": {
 					"@type": "AggregateOffer",
-					"url": "/shop/${brand.name}",
+					"url": "https://giftstop.org/shop/${brand.name}",
 					"availability": "https://schema.org/InStock",
 					"priceCurrency": "IRR",
 					"highPrice": ${max_price},
