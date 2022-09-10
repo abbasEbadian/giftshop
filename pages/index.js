@@ -4,7 +4,7 @@ import card from "../img/other/Card.png";
 import Image from "next/future/image";import mouse from "../img/icon/Mouse-alt.png";
 import arrows from "../img/icon/Arrows.svg";
 import dynamic  from "next/dynamic";
-
+import intro from '../img/icon/giftstop-01.png'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   ChevronLeft,
