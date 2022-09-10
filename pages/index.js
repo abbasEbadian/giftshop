@@ -16,7 +16,6 @@ const HomeWhyUs = dynamic( () => import("../components/subHome/HomeWhyUs"))
 const BrandList = dynamic( () => import("../components/BrandList")) 
 
 import Link from "next/link";
-import intro from '../img/icon/giftstop-01.png'
 import { fetch_popular_cards, fetch_top_sale_cards } from "../redux/actions";
 
 export default function Home() {
@@ -30,7 +29,6 @@ export default function Home() {
     dispatch(fetch_popular_cards())
     dispatch(fetch_top_sale_cards())
   }, [])
-
   return (
 
     <>

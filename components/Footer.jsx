@@ -1,11 +1,6 @@
 import React from "react";
-import eNamad from "../img/license/L-1.png";
-import Trust from "../img/license/L-2.png";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Image from 'next/future/image';
 import Link from 'next/link'
 import { useSelector } from "react-redux";
-import Script from 'next/script'
 function Footer() {
     
   const config = useSelector(s=>s.main.configs)

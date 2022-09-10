@@ -14,10 +14,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 function Shop({ data }) {
 	const isMobile = useMediaQuery('(max-width:768px)');
 
-	const [filteredCards, setFilteredCards] = React.useState([]);
+	const [filteredCards, setFilteredCards] = React.useState(data.cards);
 	const [loading, setLoading] = React.useState(false)
 	const [filters, setFilters] = React.useState({})
-	const [cardsCount, setCardsCount] = React.useState({})
+	const [cardsCount, setCardsCount] = React.useState(data.size)
 	const [sortBy, setSortBy] = React.useState("-created")
 	const router = useRouter()
 	
@@ -66,6 +66,7 @@ function Shop({ data }) {
 			})
 		}
 	}, [])
+	
 	return (
 		<div className="shop-main">
 			<Head>
