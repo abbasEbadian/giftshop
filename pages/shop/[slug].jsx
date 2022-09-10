@@ -169,7 +169,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 					key="bc-jsonld"
 				/>
 			</Head>
-			<div role="presentation" className=" rounded mt-3 mb-4 p-3 px-1 " >
+			<div role="presentation" className=" rounded mt-3 mb-4 py-3 px-1 " >
 				<Breadcrumbs aria-label="breadcrumb" separator={<NavigateBefore fontSize="small" />} className={"breadcrumbs"} >
 					<Link href="/"><a underline="hover">
 						<Home sx={{ mr: 0.5 }} />
@@ -182,14 +182,14 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 				</Breadcrumbs>
 			</div>
 			<div className="row ">
-				<div className="col-12 col-md-3">
+				<div className="col-12 col-lg-3 h-100">
 					<ShopFilters
 						setFilters={setFilters}
 						brand_name={brand_name}
 					/>
 				</div>
 
-				<div className="col-12 col-md-9">
+				<div className="col-12 col-lg-9">
 					<h1 className="text-center line-height-64 mb-3">
 						<span>
 							{"گیفت کارت  "} <span className="text-danger">{data?.brand?.persian_name}</span>

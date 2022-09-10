@@ -77,13 +77,13 @@ function Shop({ data }) {
 			</Head>
 
 			<div className="row ">
-				<div className="col-12 col-md-3">
+				<div className="col-12 col-lg-3 h-100">
 					<ShopFilters
 						setFilters={setFilters}
 					/>
 				</div>
 
-				<div className="col-12 col-md-9">
+				<div className="col-12 col-lg-9">
 					<h1 className="text-center line-height-64 mb-3">
 
 						محصولات <span className="text-danger">فروشگاه</span>

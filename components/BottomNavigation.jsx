@@ -13,7 +13,7 @@ function BottomNavigation() {
     const [openFull, setOpenFull] = React.useState(false)
     const size = "28px" 
     const basket = useSelector(s=>s.order.basket)
-  return <div className='d-md-none d-block bottom-navigation'>
+  return <div className='d-lg-none d-block bottom-navigation'>
     <div className="d-flex align-items-center justify-content-evenly  searcher-box">
         <Link href="/">
             <a aria-label='home page'><OtherHousesOutlinedIcon sx={{width: size, height: size}} color={"primary"} /></a>

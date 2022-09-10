@@ -164,7 +164,7 @@ function HeaderPublic({ authenticated }) {
           >
             <Link href="/">
               <ListItem button component={'a'} onClick={e => setMenuopen(false)} >
-                <HomeIcon/>
+                <HomeIcon />
                 <ListItemText primary="صفحه اصلی" className="text-end pe-4" />
               </ListItem>
             </Link>
@@ -177,10 +177,16 @@ function HeaderPublic({ authenticated }) {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
+                <Link href={'/shop/'}>
+                  <ListItem component={'a'} sx={{ pr: 4 }} role="button" onClick={e => setMenuopen(false)}>
+                    <ListItemText primary={"همه"} className="text-end pe-4" />
+                  </ListItem>
+                </Link>
                 {
+
                   brands.current.map((brand, idx) => {
-                    return <Link key={brand.id} href={'/shop/'+brand.name}>
-                      <ListItem component={'a'} sx={{ pr: 4 }} role="button">
+                    return <Link key={brand.id} href={'/shop/' + brand.name}>
+                      <ListItem component={'a'} sx={{ pr: 4 }} role="button" onClick={e => setMenuopen(false)}>
                         <ListItemText primary={brand.persian_name} className="text-end pe-4" />
                       </ListItem>
                     </Link>
@@ -191,7 +197,7 @@ function HeaderPublic({ authenticated }) {
 
             <Link href="/contact-us">
               <ListItem button component={'a'} onClick={e => setMenuopen(false)}>
-                <CallIcon/>
+                <CallIcon />
                 <ListItemText primary="تماس با ما" className="text-end pe-4" />
               </ListItem>
             </Link>
@@ -205,7 +211,7 @@ function HeaderPublic({ authenticated }) {
 
             <Link href="/blogs">
               <ListItem button component={'a'} onClick={e => setMenuopen(false)}>
-                <NewspaperIcon/>
+                <NewspaperIcon />
                 <ListItemText primary="آموزش - مقالات" className="text-end pe-4" />
               </ListItem>
             </Link>
@@ -241,8 +247,8 @@ function HeaderPublic({ authenticated }) {
           <div>
             <div
               className="megamenu-shop"
-              // onMouseEnter={(e) => setActive(true)}
-              // onMouseLeave={(e) => setActive(false)}
+            // onMouseEnter={(e) => setActive(true)}
+            // onMouseLeave={(e) => setActive(false)}
             >
               <Link href="/shop"><a className="giftcard-icon">گیفت کارت   <KeyboardArrowDownIcon />  </a></Link>
               <div className={"list-show-menu w-100 bg-white "}>
@@ -264,10 +270,10 @@ function HeaderPublic({ authenticated }) {
             </div>
           </div>
           <Link href={"/about-us"}>
-            <a>درباره ما</a>
+            <a onClick={e => setMenuopen(false)}>درباره ما</a>
           </Link>
           <Link href="/contact-us">
-            <a>تماس با ما</a>
+            <a onClick={e => setMenuopen(false)}>تماس با ما</a>
           </Link>
           {auth ? <Badge color="secondary" badgeContent={unseen_tickets_count} showZero>
             <Link href="/panel/ticket-list">

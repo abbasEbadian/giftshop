@@ -148,6 +148,18 @@
   transform: perspective(500px) rotateX(64deg);
   filter: blur(11px);
 } */
+#shop-filter{
+  height: 100%;
+}
+@media (max-width: 992px) {
+  #shop-filter{
+    margin-bottom: 32px;
+  }
+  .toggle-input:not(:checked) + #shop-filter{
+   height: 0;
+   overflow: hidden;
+  }
+}
 
 .single-card .price {
   position: absolute;

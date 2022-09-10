@@ -6,6 +6,7 @@ import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 function ShopFilters({
   setFilters,
@@ -20,109 +21,112 @@ function ShopFilters({
   const [selectedCountries, setSelectedCountries] = React.useState([]);
   const [accountType, setAccountType] = React.useState("all")
   const countries = useSelector((state) => state.main.countries);
+  const [showFilters, setShowFilters] = React.useState(false)
+
+  const toggleFilters = () => setShowFilters(!showFilters)
+
   const categories = React.useRef([
     {
-        "id": 22,
-        "name": "apple",
-        "persian_name": "اپل"
+      "id": 22,
+      "name": "apple",
+      "persian_name": "اپل"
     },
     {
-        "id": 24,
-        "name": "googleplay",
-        "persian_name": "گوگل پلی"
+      "id": 24,
+      "name": "googleplay",
+      "persian_name": "گوگل پلی"
     },
     {
-        "id": 25,
-        "name": "playstation",
-        "persian_name": "پلی استیشن"
+      "id": 25,
+      "name": "playstation",
+      "persian_name": "پلی استیشن"
     },
     {
-        "id": 26,
-        "name": "steam",
-        "persian_name": "استیم"
+      "id": 26,
+      "name": "steam",
+      "persian_name": "استیم"
     },
     {
-        "id": 27,
-        "name": "xbox",
-        "persian_name": "ایکس باکس"
+      "id": 27,
+      "name": "xbox",
+      "persian_name": "ایکس باکس"
     },
     {
-        "id": 28,
-        "name": "amazon",
-        "persian_name": "امازون"
+      "id": 28,
+      "name": "amazon",
+      "persian_name": "امازون"
     },
     {
-        "id": 29,
-        "name": "spotify",
-        "persian_name": "اسپاتیفای"
+      "id": 29,
+      "name": "spotify",
+      "persian_name": "اسپاتیفای"
     },
     {
-        "id": 30,
-        "name": "netflix",
-        "persian_name": "نتفلیکس"
+      "id": 30,
+      "name": "netflix",
+      "persian_name": "نتفلیکس"
     },
     {
-        "id": 31,
-        "name": "applemusic",
-        "persian_name": "اپل موزیک"
+      "id": 31,
+      "name": "applemusic",
+      "persian_name": "اپل موزیک"
     },
     {
-        "id": 32,
-        "name": "skype",
-        "persian_name": "اسکایپ"
+      "id": 32,
+      "name": "skype",
+      "persian_name": "اسکایپ"
     },
     {
-        "id": 33,
-        "name": "nintendo",
-        "persian_name": "نینتندو"
+      "id": 33,
+      "name": "nintendo",
+      "persian_name": "نینتندو"
     },
     {
-        "id": 34,
-        "name": "roblex",
-        "persian_name": "روبلاکس"
+      "id": 34,
+      "name": "roblex",
+      "persian_name": "روبلاکس"
     },
     {
-        "id": 35,
-        "name": "leagueoflegends",
-        "persian_name": "لیگ اف لجندز"
+      "id": 35,
+      "name": "leagueoflegends",
+      "persian_name": "لیگ اف لجندز"
     },
     {
-        "id": 36,
-        "name": "blizard",
-        "persian_name": "بلیزارد"
+      "id": 36,
+      "name": "blizard",
+      "persian_name": "بلیزارد"
     },
     {
-        "id": 37,
-        "name": "warcraft",
-        "persian_name": "وارکرفت"
+      "id": 37,
+      "name": "warcraft",
+      "persian_name": "وارکرفت"
     },
     {
-        "id": 38,
-        "name": "visacard",
-        "persian_name": "ویزا کارت"
+      "id": 38,
+      "name": "visacard",
+      "persian_name": "ویزا کارت"
     },
     {
-        "id": 39,
-        "name": "mastercard",
-        "persian_name": "مستر کارت"
+      "id": 39,
+      "name": "mastercard",
+      "persian_name": "مستر کارت"
     },
     {
-        "id": 40,
-        "name": "razergold",
-        "persian_name": "ریزر گلد"
+      "id": 40,
+      "name": "razergold",
+      "persian_name": "ریزر گلد"
     },
     {
-        "id": 42,
-        "name": "apex",
-        "persian_name": "اپکس"
+      "id": 42,
+      "name": "apex",
+      "persian_name": "اپکس"
     },
     {
-        "id": 43,
-        "name": "pubg",
-        "persian_name": "پابجی"
+      "id": 43,
+      "name": "pubg",
+      "persian_name": "پابجی"
     }
-])
-
+  ])
 
   const toggleCountry = (symbol) => {
     if (selectedCountries.includes(symbol)) {
@@ -152,7 +156,7 @@ function ShopFilters({
 
   React.useEffect(() => {
     let a = [1];
-    
+
     for (let index = 10; index <= 300; index += 10) {
       a.push(index);
     }
@@ -202,125 +206,135 @@ function ShopFilters({
   }, [accountType]);
 
   return (
-    <div>
-      <p className="d-flex align-items-center justify-content-between m-0 mb-3 h-100 line-height-64">
-        <span className="fs-4">فیلترها</span>
-        <small
-          className="text-danger fs-6 cursor-pointer"
-          onClick={resetFilters}
-        >
-          پاک کردن همه
-        </small>
-      </p>
-      <div className="product-list-gift ">
-        <div className="filter filter-category">
-          <span className="title">دسته بندی</span>
-          <div className="d-flex flex-wrap  ">
-            {categories.current.map((i, idx) => {
-              return (
-                <Link
-                  key={idx}
-                  component={"button"}
-                  href={"/shop/" + i.name}
+    <section>
+      <label htmlFor="toggle" className="position-relative d-lg-none">
+        <FilterAltIcon />
+          <i className="px-2"></i>
+          فیلتر ها
+      </label>
+      
+      <input type="checkbox" name='toggle' className="toggle-input hidden-input" hidden />
+
+      <div id='shop-filter' >
+        <p className="d-flex align-items-center justify-content-between m-0 mb-3 h-100 line-height-64">
+          <span className="fs-4">فیلترها</span>
+          <small
+            className="text-danger fs-6 cursor-pointer"
+            onClick={resetFilters}
+          >
+            پاک کردن همه
+          </small>
+        </p>
+        <div className="product-list-gift ">
+          <div className="filter filter-category">
+            <span className="title">دسته بندی</span>
+            <div className="d-flex flex-wrap  ">
+              {categories.current.map((i, idx) => {
+                return (
+                  <Link
+                    key={idx}
+                    component={"button"}
+                    href={"/shop/" + i.name}
+                  >
+                    <a
+                      style={{ padding: 8 }}
+                      className={
+                        "btn-transparent category-item " +
+                        (i.name === brand_name ? "active" : "")
+                      }
+                    >
+                      {i.persian_name}{" "}
+                    </a>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="filter filter-country">
+            <span className="title d-block">نوع کارت</span>
+
+            <div className="d-flex w-100">
+              <RadioGroup
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="controlled-radio-buttons-group"
+                value={accountType}
+                onChange={e => setAccountType(e.target.value)}
+              >
+                <FormControlLabel className="m-0" value="giftcard" control={<Radio />} label="گیفت کارت" />
+                <FormControlLabel className="m-0" value="account" control={<Radio />} label="  اشتراک ماهیانه" />
+                <FormControlLabel className="m-0" value="all" control={<Radio />} label="هردو" />
+              </RadioGroup>
+
+            </div>
+          </div>
+
+          <div className="filter filter-price mt-5">
+            <span className="title">قیمت</span>
+            <div className="drops d-flex align-items-center w-100">
+              <FormControl sx={{ m: 1, flexGrow: 1 }}>
+                <Select
+                  value={value1[0]}
+                  onChange={handleMinPriceChange}
+                  displayEmpty
+                  inputProps={{ "aria-label": "Without label" }}
+                  sx={{ padding: 0 }}
                 >
-                  <a
-                  style={{padding: 8}}
+                  {values.length
+                    ? values.map((i, idx) => {
+                      return (
+                        <MenuItem value={i} key={idx}>
+                          {i}
+                        </MenuItem>
+                      );
+                    })
+                    : undefined}
+                </Select>
+              </FormControl>
+              {" تا "}
+              <FormControl sx={{ m: 1, flexGrow: 1 }}>
+                <Select
+                  value={value1[1]}
+                  onChange={handleMaxPriceChange}
+                  displayEmpty
+                  inputProps={{ "aria-label": "Without label" }}
+                >
+                  {values.length
+                    ? values.map((i, idx) => {
+                      return (
+                        <MenuItem key={idx} value={i}>
+                          {i}
+                        </MenuItem>
+                      );
+                    })
+                    : undefined}
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+          <div className="filter filter-country">
+            <span className="title">کشور</span>
+            <div className="d-flex flex-wrap justify-content-start">
+              {countries.map((i, idx) => {
+                return (
+                  <button
+                    key={idx}
+                    onClick={(e) => toggleCountry(i.symbol)}
                     className={
-                      "btn-transparent category-item " +
-                      (i.name === brand_name ? "active" : "")
+                      "btn-transparent   " +
+                      (selectedCountries.includes(i.symbol) ? "selected" : "")
                     }
                   >
-                    {i.persian_name}{" "}
-                  </a>
-                </Link>
-              );
-            })}
+                    {i.name}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
         </div>
-
-        <div className="filter filter-country">
-          <span className="title d-block">نوع کارت</span>
-
-          <div className="d-flex w-100">
-            <RadioGroup
-              aria-labelledby="demo-controlled-radio-buttons-group"
-              name="controlled-radio-buttons-group"
-              value={accountType}
-              onChange={e => setAccountType(e.target.value)}
-            >
-              <FormControlLabel className="m-0" value="giftcard" control={<Radio />} label="گیفت کارت" />
-              <FormControlLabel className="m-0" value="account" control={<Radio />} label="  اشتراک ماهیانه" />
-              <FormControlLabel className="m-0" value="all" control={<Radio />} label="هردو" />
-            </RadioGroup>
-
-          </div>
-        </div>
-
-        <div className="filter filter-price mt-5">
-          <span className="title">قیمت</span>
-          <div className="drops d-flex align-items-center w-100">
-            <FormControl sx={{ m: 1, flexGrow: 1 }}>
-              <Select
-                value={value1[0]}
-                onChange={handleMinPriceChange}
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-                sx={{ padding: 0 }}
-              >
-                {values.length
-                  ? values.map((i, idx) => {
-                    return (
-                      <MenuItem value={i} key={idx}>
-                        {i}
-                      </MenuItem>
-                    );
-                  })
-                  : undefined}
-              </Select>
-            </FormControl>
-            {" تا "}
-            <FormControl sx={{ m: 1, flexGrow: 1 }}>
-              <Select
-                value={value1[1]}
-                onChange={handleMaxPriceChange}
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-              >
-                {values.length
-                  ? values.map((i, idx) => {
-                    return (
-                      <MenuItem key={idx} value={i}>
-                        {i}
-                      </MenuItem>
-                    );
-                  })
-                  : undefined}
-              </Select>
-            </FormControl>
-          </div>
-        </div>
-        <div className="filter filter-country">
-          <span className="title">کشور</span>
-          <div className="d-flex flex-wrap justify-content-start">
-            {countries.map((i, idx) => {
-              return (
-                <button
-                  key={idx}
-                  onClick={(e) => toggleCountry(i.symbol)}
-                  className={
-                    "btn-transparent   " +
-                    (selectedCountries.includes(i.symbol) ? "selected" : "")
-                  }
-                >
-                  {i.name}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
       </div>
-    </div>
+    </section>
   );
 }
 

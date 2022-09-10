@@ -28,6 +28,7 @@
 
 html{
     font-size: 90%;
+    overflow-x: hidden;
 }
 body {
     font-family: IRANsans , sans-serif;
@@ -64,6 +65,7 @@ button{
 .bottom-navigation .searcher {
     transform: translateY(-30px);
 }
+
 div.bottom-navigation{
     z-index: 10001;
 
@@ -106,9 +108,15 @@ body  .swiper-button-next::after,body  .swiper-button-prev::after{
 .drops .MuiSelect-select{
     text-align: left;
 }
+.hidden-input{
+    left: 0;
+    opacity: 0;
+    z-index: -1;
+    width: 0;
+    height: 0;
+}
 @media (max-width: 576px) {
     .breadcrumbs{
         font-size: 11px;
     }
-    
 }

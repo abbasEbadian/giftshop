@@ -166,7 +166,7 @@ function Product({ data, product }) {
         />
       </Head>
 
-      <div role="presentation" className="shadow-sm rounded mt-4 p-3 px-1 px-md-3" >
+      <div role="presentation" className="rounded mt-4 py-3 px-1 " >
         <Breadcrumbs aria-label="breadcrumb" separator={<NavigateBefore fontSize="small" />} className={"breadcrumbs"}>
           <Link href="/"><a underline="hover">
             <Home sx={{ mr: 0.5 }} />
