@@ -206,14 +206,14 @@ function ShopFilters({
   }, [accountType]);
 
   return (
-    <section>
-      <label htmlFor="toggle" className="position-relative d-lg-none">
+    <section className="position-relative">
+      <label htmlFor="toggle" className="position-relative d-lg-none btn btn-primary">
         <FilterAltIcon />
           <i className="px-2"></i>
           فیلتر ها
       </label>
       
-      <input type="checkbox" name='toggle' className="toggle-input hidden-input" hidden />
+      <input type="checkbox" name='toggle' className="toggle-input" />
 
       <div id='shop-filter' >
         <p className="d-flex align-items-center justify-content-between m-0 mb-3 h-100 line-height-64">

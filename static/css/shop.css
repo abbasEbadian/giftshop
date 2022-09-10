@@ -159,8 +159,17 @@
    height: 0;
    overflow: hidden;
   }
+  
 }
+.toggle-input{
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+  height: 32px;
 
+}
 .single-card .price {
   position: absolute;
   font-size: clamp(18px, 3vw, 24px);
