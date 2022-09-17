@@ -7,11 +7,13 @@ import Radio from '@mui/material/Radio'
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { useRouter } from "next/router";
 
 function ShopFilters({
   setFilters,
   brand_name = null,
 }) {
+  const router = useRouter()
   const minDistance = 5;
   const min_value = 1
   const max_value = 300
@@ -23,7 +25,7 @@ function ShopFilters({
   const countries = useSelector((state) => state.main.countries);
   const [showFilters, setShowFilters] = React.useState(false)
 
-  const toggleFilters = () => setShowFilters(!showFilters)
+  const navigate = (href) => router.replace(href, )
 
   const categories = React.useRef([
     {
@@ -127,7 +129,6 @@ function ShopFilters({
       "persian_name": "پابجی"
     }
   ])
-
   const toggleCountry = (symbol) => {
     if (selectedCountries.includes(symbol)) {
       setSelectedCountries((c) => c.filter((i) => i !== symbol));
@@ -209,10 +210,10 @@ function ShopFilters({
     <section className="position-relative">
       <label htmlFor="toggle" className="position-relative d-lg-none btn btn-primary">
         <FilterAltIcon />
-          <i className="px-2"></i>
-          فیلتر ها
+        <i className="px-2"></i>
+        فیلتر ها
       </label>
-      
+
       <input type="checkbox" name='toggle' className="toggle-input" />
 
       <div id='shop-filter' >
@@ -231,21 +232,20 @@ function ShopFilters({
             <div className="d-flex flex-wrap  ">
               {categories.current.map((i, idx) => {
                 return (
-                  <Link
+                  <React.Fragment
                     key={idx}
-                    component={"button"}
-                    href={"/shop/" + i.name}
                   >
-                    <a
+                    <button
                       style={{ padding: 8 }}
                       className={
-                        "btn-transparent category-item " +
+                        "category-item " +
                         (i.name === brand_name ? "active" : "")
                       }
+                      onClick={() => navigate("/shop/" + i.name)}
                     >
                       {i.persian_name}{" "}
-                    </a>
-                  </Link>
+                    </button>
+                  </React.Fragment>
                 );
               })}
             </div>

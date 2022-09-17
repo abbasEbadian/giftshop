@@ -10,13 +10,7 @@ const Desc = styled.div`
         margin-block: 0;
     }
 `
-const check = (a,b) => {
-    return  a.brand.description_image === b.brand.description_image &&
-      a.review_rating === b.review_rating &&
-      a.brand.description === b.brand.description
-
-}
-const  ShopBrandDescription = React.memo(({ brand } ) => {
+const  ShopBrandDescription = ({ brand } ) => {
   return (
     
     <Desc className='row brand-description mb-4' >
@@ -24,7 +18,7 @@ const  ShopBrandDescription = React.memo(({ brand } ) => {
         <div className="col-12 col-lg-5" >
             <Box sx={{ position: 'relative', height: 250}} >
             {brand?.brand?.description_image &&
-                <Image style={{maxWidth: "100%", height: "100%", objectFit: "contain"}}  fill className='rounded' src={BASE_URL +  brand.brand.description_image} alt={ brand.brand.description_image_alt?? brand.brand.name }  />}
+                <Image style={{maxWidth: "100%", height: "100%", objectFit: "contain"}}  fill className='rounded' src={BASE_URL +  brand.brand?.description_image} alt={ brand.brand.description_image_alt?? brand.brand.name }  />}
                 
             </Box>
         </div>
@@ -40,6 +34,6 @@ const  ShopBrandDescription = React.memo(({ brand } ) => {
         </div>
     </Desc>  
   )
-}, check)
+}
 
 export default ShopBrandDescription

@@ -33,7 +33,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 	const { page = 1 } = React.useMemo(() => {
 		return router.query
 	}, [router.query])
-
+	
 	React.useEffect(() => {
 		if (brand_name) {
 			let params = {}
@@ -74,9 +74,14 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 			const b = brands.filter(i => i.name === brand_name)
 			if (b && b.length > 0) setBrandName(b[0].persian_name)
 		}
+		
 	}, [brand_name, brands])
+	React.useEffect(() => {
+		router.replace(router.asPath, null, {shallow: false})
+	}, [brand_name])
 
 	React.useEffect(() => {
+		
 		if (isMobile && typeof window !== "undefined") {
 			window.scrollTo({
 				top: 1500,
