@@ -1,13 +1,112 @@
-export const cards = [
-    {id: 1,  name: "کارت 1", country: "USA",brand_id:{name: "apple"}, price: "500000", rate: "5", real_price: 2300},
-    {id: 2,  name: "Visa Card (ویزا کارت) ", country: "USA",brand_id:{name: "visa"}, price: "700000", rate: "4", real_price: 2350},
-    {id: 3,  name: "کارت 3", country: "UAE",brand_id:{name: "paypal"}, price: "600000", rate: "3.5", real_price: 2500},
-    {id: 4,  name: "کارت 4", country: "UAE",brand_id:{name: "apple"}, price: "500000", rate: "5", real_price: 2300},
-    {id: 5,  name: "کارت 5", country: "CHINA",brand_id:{name: "visa"}, price: "700000", rate: "4", real_price: 2350},
-    {id: 6,  name: "کارت 6", country: "GERMANY",brand_id:{name: "paypal"}, price: "600000", rate: "3.5", real_price: 2500},
-    {id: 7,  name: "کارت 7", country: "FRANCE",brand_id:{name: "apple"}, price: "500000", rate: "5", real_price: 2300},
-    {id: 8,  name: "کارت 8", country: "FRANCE",brand_id:{name: "visa"}, price: "700000", rate: "4", real_price: 2350},
-    {id: 9,  name: "کارت 9", country: "GERMANY",brand_id:{name: "paypal"}, price: "600000", rate: "3.5", real_price: 2500},
-    {id: 10, name: "کارت 10",  country: "RUSSIA",brand_id:{name: "playstation"}, price: "600000", rate: "3.5", real_price: 2500},
-    {id: 11, name: "کارت 11",  country: "RUSSIA",brand_id:{name: "playstation"}, price: "100000", rate: "3.5", real_price: 500},
+export const BRANDS = [
+    {
+        "id": 22,
+        "name": "apple",
+        "persian_name": "اپل"
+    },
+    {
+        "id": 24,
+        "name": "googleplay",
+        "persian_name": "گوگل پلی"
+    },
+    {
+        "id": 25,
+        "name": "playstation",
+        "persian_name": "پلی استیشن"
+    },
+    {
+        "id": 26,
+        "name": "steam",
+        "persian_name": "استیم"
+    },
+    {
+        "id": 27,
+        "name": "xbox",
+        "persian_name": "ایکس باکس"
+    },
+    {
+        "id": 28,
+        "name": "amazon",
+        "persian_name": "امازون"
+    },
+    {
+        "id": 29,
+        "name": "spotify",
+        "persian_name": "اسپاتیفای"
+    },
+    {
+        "id": 30,
+        "name": "netflix",
+        "persian_name": "نتفلیکس"
+    },
+    {
+        "id": 31,
+        "name": "applemusic",
+        "persian_name": "اپل موزیک"
+    },
+    {
+        "id": 32,
+        "name": "skype",
+        "persian_name": "اسکایپ"
+    },
+    {
+        "id": 33,
+        "name": "nintendo",
+        "persian_name": "نینتندو"
+    },
+    {
+        "id": 34,
+        "name": "roblex",
+        "persian_name": "روبلاکس"
+    },
+    {
+        "id": 35,
+        "name": "leagueoflegends",
+        "persian_name": "لیگ اف لجندز"
+    },
+    {
+        "id": 36,
+        "name": "blizard",
+        "persian_name": "بلیزارد"
+    },
+    {
+        "id": 37,
+        "name": "warcraft",
+        "persian_name": "وارکرفت"
+    },
+    {
+        "id": 38,
+        "name": "visacard",
+        "persian_name": "ویزا کارت"
+    },
+    {
+        "id": 39,
+        "name": "mastercard",
+        "persian_name": "مستر کارت"
+    },
+    {
+        "id": 40,
+        "name": "razergold",
+        "persian_name": "ریزر گلد"
+    },
+    {
+        "id": 42,
+        "name": "apex",
+        "persian_name": "اپکس"
+    },
+    {
+        "id": 43,
+        "name": "pubg",
+        "persian_name": "پابجی"
+    },
+    {
+        "id": 44,
+        "name": "england-card",
+        "persian_name": "گیفت کارت اپل انگلیس"
+    },
+    {
+        "id": 45,
+        "name": "pubg",
+        "persian_name": "پابجی"
+    },
 ]

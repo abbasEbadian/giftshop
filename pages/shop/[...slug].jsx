@@ -22,13 +22,11 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 	const router = useRouter();
 
 	const [filteredCards, setFilteredCards] = React.useState(initialCards);
-	const brand_name = router.query.slug;
+	const [brand_name, country_name] = router.query.slug
 	const [loading, setLoading] = React.useState(false)
 	const [filters, setFilters] = React.useState({ real_price: undefined, country: undefined })
 	const [cardsCount, setCardsCount] = React.useState(initialSize)
 	const brands = useSelector(state => state.main.brands)
-	const [brandName, setBrandName] = React.useState()
-
 
 	const { page = 1 } = React.useMemo(() => {
 		return router.query
@@ -58,7 +56,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 				})
 		}
 
-	}, [filters.brand_name, filters.country, filters.real_price, page, brand_name, filters.accountType])
+	}, [filters.country, filters.real_price, filters.accountType, brand_name])
 
 	React.useEffect(() => {
 		let f = {}
@@ -69,26 +67,14 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 		setFilters(f)
 	}, [filters.real_price, filters.country])
 
-	React.useEffect(() => {
+	const brandName = React.useMemo(() => {
 		if (brand_name && brands) {
 			const b = brands.filter(i => i.name === brand_name)
-			if (b && b.length > 0) setBrandName(b[0].persian_name)
-		}
-		
+			if (b && b.length > 0) return b[0].persian_name
+		} return ""
 	}, [brand_name, brands])
-	React.useEffect(() => {
-		router.replace(router.asPath, null, {shallow: false})
-	}, [brand_name])
 
-	React.useEffect(() => {
-		
-		if (isMobile && typeof window !== "undefined") {
-			window.scrollTo({
-				top: 1500,
-				behavior: "smooth"
-			})
-		}
-	}, [])
+
 
 	const addJsonLd = ({ brand, review_count, review_rating, size, max_price, min_price }) => {
 		if (!brand) return { __html: {} }
@@ -147,8 +133,8 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{
-						__html: 
-						`{
+						__html:
+							`{
 						  "@context": "https://schema.org",
 						  "@type": "BreadcrumbList",
 						  "name": "Giftsop ${data?.brand?.name}", 
@@ -215,8 +201,9 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 
 export async function getServerSideProps({ query }) {
 	try {
-		const brand_name = query.slug
-		const res = await fetch(e.GET_BRAND_TITLE(brand_name))
+		const [brand_name, country_name] = query.slug
+		console.log(query, brand_name, country_name)
+		const res = await fetch(e.GET_BRAND_TITLE(brand_name, country_name))
 		const data = await res.json()
 		const { cards, size } = data
 		return { props: { data, cards, size } }
