@@ -10,7 +10,7 @@ import { Typography } from "@mui/material";
 import { urlencoded } from "body-parser";
 // import ReadMoreBlog from "../pages/ReadMoreBlog";
 
-function BlogPostView({blog, blogs, is_short}) {
+function BlogPostView({blog, blogs, is_short, top_new, top_pop,cats}) {
   const router = useRouter()
 
 
@@ -27,7 +27,7 @@ function BlogPostView({blog, blogs, is_short}) {
         <div className="container-fluid py-5">
           <div className="row align-items-start">
             <div className="col-md-3">
-              <BlogNav blogs={blogs}/>
+              <BlogNav blogs={blogs} top_new={top_new} top_pop={top_pop} cats={cats}/>
             </div>
             <div className="col-md-9 col-12">
             <div className="position-relative h-100 d-flex  my-4 flex-wrap">
@@ -85,7 +85,8 @@ export async function getServerSideProps({query}) {
       }
       const res2 = await fetch(e.GET_BLOGS)
       const blogs = await res2.json()
-      return { props: {blog, blogs: blogs.blogs, is_short: short}}
+      console.log({blogs})
+      return { props: {blog, blogs: blogs.blogs, is_short: short, top_new: blogs.top_new, top_pop: blogs.top_pop, cats: blogs.cats}}
     }catch(e){
       console.log(e)
       return { props: { blog:{}, name: String(e)} } 
