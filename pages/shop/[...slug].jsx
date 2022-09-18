@@ -11,28 +11,26 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import axios from "axios";
 import * as e from '../../redux/endpoints'
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { Breadcrumbs } from "@mui/material";
 import { Home, NavigateBefore } from "@mui/icons-material";
 import Link from "next/link";
 
 function Shop({ data, cards: initialCards = [], size: initialSize }) {
-	const isMobile = useMediaQuery('(max-width:768px)');
 
 	const router = useRouter();
+	const [brand_name, country_name] = router.query.slug
 
 	const [filteredCards, setFilteredCards] = React.useState(initialCards);
-	const [brand_name, country_name] = router.query.slug
 	const [loading, setLoading] = React.useState(false)
 	const [filters, setFilters] = React.useState({ real_price: undefined, country: undefined })
 	const [cardsCount, setCardsCount] = React.useState(initialSize)
-	const brands = useSelector(state => state.main.brands)
 
 	const { page = 1 } = React.useMemo(() => {
 		return router.query
 	}, [router.query])
-	
+
 	React.useEffect(() => {
+		return
 		if (brand_name) {
 			let params = {}
 			Object.keys(filters).map(item => {
@@ -57,22 +55,6 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 		}
 
 	}, [filters.country, filters.real_price, filters.accountType, brand_name])
-
-	React.useEffect(() => {
-		let f = {}
-		if (brand_name) {
-			f["real_price"] = filters.real_price
-			f["country"] = filters.country
-		}
-		setFilters(f)
-	}, [filters.real_price, filters.country])
-
-	const brandName = React.useMemo(() => {
-		if (brand_name && brands) {
-			const b = brands.filter(i => i.name === brand_name)
-			if (b && b.length > 0) return b[0].persian_name
-		} return ""
-	}, [brand_name, brands])
 
 
 
@@ -160,36 +142,38 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 					</a>
 					</Link>
 					<span>
-						گیفت کارت {" "} {brandName}
+						گیفت کارت {" "} {data.brand.persian_name}
 					</span>
 
 				</Breadcrumbs>
 			</div>
 			<div className="row ">
-				<div className="col-12 col-lg-3 h-100">
+				<div className="col-12 col-lg-3 col-xxl-2 h-100">
 					<ShopFilters
 						setFilters={setFilters}
 						brand_name={brand_name}
 					/>
 				</div>
 
-				<div className="col-12 col-lg-9">
-					<h1 className="text-center line-height-64 mb-3">
-						<span>
-							{"گیفت کارت  "} <span className="text-danger">{data?.brand?.persian_name}</span>
-						</span>
-					</h1>
-					<ShopCards cards={filteredCards} loading={loading} />
-					<div className="my-4">
-						{cardsCount > 20 ? <PaginationControlled
-							size={cardsCount}
-							page={+page}
-							source_url={"/shop/" + data.brand?.name}
-							extra_query={router.query}
-						/>
-							: null}
+				<div className="col-12 col-lg-9 col-xxl-10">
+					<div>
+						<h1 className="text-center line-height-64 mb-3">
+							<span>
+								{"گیفت کارت  "} <span className="text-danger">{data?.brand?.persian_name}</span>
+							</span>
+						</h1>
+						<ShopCards cards={filteredCards} loading={loading} />
+						<div className="my-4">
+							{cardsCount > 20 ? <PaginationControlled
+								size={cardsCount}
+								page={+page}
+								source_url={"/shop/" + data.brand?.name}
+								extra_query={router.query}
+							/>
+								: null}
+						</div>
+						<ShopBrandDescription brand={data} />
 					</div>
-					<ShopBrandDescription brand={data} />
 				</div>
 
 			</div>
@@ -202,10 +186,12 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 export async function getServerSideProps({ query }) {
 	try {
 		const [brand_name, country_name] = query.slug
-		console.log(query, brand_name, country_name)
-		const res = await fetch(e.GET_BRAND_TITLE(brand_name, country_name))
+		const url = new URL(e.GET_BRAND_TITLE(brand_name))
+		if (country_name) url.searchParams.set('region', country_name)
+		const res = await fetch(url.toString())
 		const data = await res.json()
 		const { cards, size } = data
+		console.log(size)
 		return { props: { data, cards, size } }
 	} catch (e) {
 		return { props: { data: {} } }

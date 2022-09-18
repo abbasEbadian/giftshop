@@ -4,7 +4,7 @@ import groupBy from 'lodash/groupBy'
 import sortBy from 'lodash/sortBy'
 import { BASE_URL } from "../redux/endpoints";
 
-function BlogNav({ blogs, top_new, top_pop, cats }) {
+const  BlogNav = React.memo(({ blogs, top_new, top_pop, cats }) => {
   const [cats1] = React.useState(top_new);
   const [cats2] = React.useState(top_pop);
   const [cats3] = React.useState(cats);
@@ -74,6 +74,6 @@ function BlogNav({ blogs, top_new, top_pop, cats }) {
       </div>
     </div>
   );
-}
+})
 
 export default BlogNav;

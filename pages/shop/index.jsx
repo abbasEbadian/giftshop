@@ -8,11 +8,9 @@ import { GET_TEMPLATES } from '../../redux/endpoints'
 import PaginationControlled from "../../components/Pagination";
 import { useRouter } from 'next/router'
 import * as e from '../../redux/endpoints'
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 function Shop({ data }) {
-	const isMobile = useMediaQuery('(max-width:768px)');
 
 	const [filteredCards, setFilteredCards] = React.useState(data.cards);
 	const [loading, setLoading] = React.useState(false)
@@ -26,17 +24,16 @@ function Shop({ data }) {
 	}, [router.query])
 
 
-	const { brand_name, real_price, country } = router.query
 	React.useEffect(() => {
-		let params = {}
+		const url = new URL(GET_TEMPLATES)
+		
 
 		Object.keys(filters).map(item => {
-			if (item) params[item] = filters[item]
+			if(filters[item]) url.searchParams.set(item, filters[item])
 		})
-
-		params["page"] = page
+		url.searchParams.set("page", page)
 		setLoading(true)
-		axios.get(GET_TEMPLATES, { params })
+		axios.get(url.toString())
 			.then(res => {
 				const { data } = res
 				setFilteredCards(data.data || [])
@@ -49,23 +46,8 @@ function Shop({ data }) {
 				}, 2000)
 			})
 	}, [filters, page])
-	React.useEffect(() => {
-		let f = {}
-		if (brand_name) {
-			f["brand_name"] = brand_name
-			f["real_price"] = real_price
-			f["country"] = country
-		}
-		setFilters(f)
-	}, [brand_name, real_price, country])
-	React.useEffect(()=>{
-		if(isMobile && typeof window !== "undefined"){
-			window.scrollTo({
-				top: 1500,
-				behavior: "smooth"
-			})
-		}
-	}, [])
+
+
 	
 	return (
 		<div className="shop-main">

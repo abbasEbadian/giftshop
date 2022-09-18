@@ -71,11 +71,11 @@ export default function FullScreenDialog({ open, setOpen }) {
           محصولی با این مشخصات یافت نشد
         </small>}
 
-        <ul class="list-group list-group-flush p-0 mb-3" >
+        <ul className="list-group list-group-flush p-0 mb-3" >
 
           {
             brandOptions && brandOptions.map((option, idx) => {
-              return <li key={idx} class="list-group-item " role="Button">
+              return <li key={idx} className="list-group-item " role="Button">
                 <Link href={option.url}>
                   <a className='w-100 d-flex' onClick={e=>setOpen(false)}>
                     {option.full_name}
@@ -87,11 +87,11 @@ export default function FullScreenDialog({ open, setOpen }) {
           }
 
         </ul>
-        <ul class="list-group list-group-flush p-0" >
+        <ul className="list-group list-group-flush p-0" >
 
           {
             cardOptions && cardOptions.map((option, idx) => {
-              return <li key={idx} class="list-group-item " role="Button">
+              return <li key={idx} className="list-group-item " role="Button">
                 <Link href={option.url}>
                   <a className='w-100 d-flex' onClick={e=>setOpen(false)}>
                     {option.full_name}

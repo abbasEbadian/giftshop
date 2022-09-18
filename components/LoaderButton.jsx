@@ -10,7 +10,7 @@ function LoaderButton({
 
 }) {
   return (
-    <Button  onClick={onClick} sx={{minWidth:"120px", "minHeight" : "38px"}}
+    <Button  onClick={onClick} sx={{minWidth:"100px", "minHeight" : "32px"}}
     classes={{
         root: 'd-flex align-items-center justify-content-center success-gradient ' + className+ " "
     }}

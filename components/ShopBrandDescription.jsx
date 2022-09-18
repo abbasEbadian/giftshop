@@ -10,7 +10,7 @@ const Desc = styled.div`
         margin-block: 0;
     }
 `
-const  ShopBrandDescription = ({ brand } ) => {
+const  ShopBrandDescription = React.memo(({ brand } ) => {
   return (
     
     <Desc className='row brand-description mb-4' >
@@ -34,6 +34,6 @@ const  ShopBrandDescription = ({ brand } ) => {
         </div>
     </Desc>  
   )
-}
+})
 
 export default ShopBrandDescription

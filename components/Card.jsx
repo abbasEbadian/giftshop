@@ -54,9 +54,10 @@ import { configs, get_cart, profile, update_login_modal } from "../redux/actions
 
 import { ADD_TO_CART, TOGGLE_FAVORITES } from '../redux/endpoints'
 import { Button, Typography } from "@mui/material";
-import LoaderButton from "./LoaderButton";
+
 import { ProductionQuantityLimits } from "@mui/icons-material";
 import { BASE_URL } from "../redux/types";
+import AddToCartButton from "./AddToCartButton";
 
 
 function Card({
@@ -68,10 +69,9 @@ function Card({
   ratable = false,
   hidePrice = false
 }) {
-  const [count, setCount] = React.useState(1);
-  const [loading, setLoading] = React.useState(false);
-  const [newRating, setNewRating] = React.useState(data.rate || 1);
+
   const user = useSelector(s => s.auth.user)
+  const basket = useSelector((state) => state.order.basket);
   const config = useSelector(s=>s.main.configs)
 
   const get_image_src = (type) => {
@@ -131,29 +131,7 @@ function Card({
     }
   }
   const dispatch = useDispatch()
-  const _addToCart = () => {
-    setLoading(true)
-    axios.post(ADD_TO_CART, {
-      template_id: data.id,
-      count: count
-    }).then(res => {
-      const { data } = res
 
-      if (data.error === 0)
-        dispatch(get_cart())
-      else if (data.error === 1 && data.message.indexOf('وارد') > -1) {
-        dispatch(update_login_modal(true))
-      }
-      toast(data.message, { type: data.type })
-
-    })
-      .catch(e => {
-        console.log(e)
-      })
-      .finally(e => {
-        setLoading(false)
-      })
-  }
   const toggleFavorite = () => {
     axios.post(TOGGLE_FAVORITES, { template_id: data.id })
       .then(res => {
@@ -229,7 +207,7 @@ function Card({
         : null}
       {addToCard ? <>
         <div className="w-100 d-flex  justify-content-between px-2">
-          <Typography component="h2" sx={{ fontSize: "12px" }}>
+          <Typography component="h2" sx={{ fontSize: "14px" }}>
             <span>
               {data.full_name_trimmed}
             </span>
@@ -238,33 +216,27 @@ function Card({
               <small> <span className="text-danger">{data.date_text} </span></small>
             </> : null}
           </Typography>
-          { (!data.no_sell && !data.ask_me) && <Typography component="span" sx={{ fontSize: "14px" }} className="test">
+          
+        </div>
+        <div className="add-to-card-container d-flex justify-content-between align-items-center w-100">
+          
+        { (!data.no_sell && !data.ask_me) && <Typography component="span" sx={{ fontSize: "14px" }} className="test">
             {data.offcard_set && data.offcard_set.length > 0 ? <>
-              <del>
-                {Number(data.price).toLocaleString('fa')} {" ت "}{" "}
-              </del><br />
-              <span className="special-offer-price text-success">{Number(Number(data.price) / 100 * (100 - data.offcard_set[0].amount)).toLocaleString('fa')}</span> {" ت "}
+              <del className="text-opacity-50 text-danger">
+                {Number(data.price).toLocaleString('fa')} 
+              </del>
+              {" "}
+              <span className="special-offer-price text-success ">{Number(Number(data.price) / 100 * (100 - data.offcard_set[0].amount)).toLocaleString('fa')}</span> <span className="fwl fs-xs">{" تومان "}</span>
             </>
-              : <><span className="text-nowrap">
-                {(Number(data.price)).toLocaleString('fa')} {" ت "}{" "}</span><br />
+              : <><span className="text-nowrap ">
+                {(Number(data.price)).toLocaleString('fa')} <span className="fwl fs-xs">{" تومان "}</span>{" "}</span><br />
                 <span className="special-offer-price text-success"></span>
               </>}
 
           </Typography>}
-        </div>
-        <div className="add-to-card-container d-flex justify-content-between align-items-center">
-          {data?.no_sell ?<Button  color='error' variant="outlined" className="exclude" fullWidth>ناموجود</Button>:
-            data?.ask_me ?<Link href={config?.contactus?.whatsapp_link || "#"}><a className="text-primary w-100"><Button  color='info' variant="outlined" className="exclude" fullWidth>استعلام موجودی</Button></a></Link>:
-            <>
-              <div dir="ltr" className="counter">
-                <span onClick={(e) => setCount((c) => (c += 1))}>+</span>
-                <span className="border-bottom mx-2 ">{count}</span>
-                <span onClick={(e) => setCount((c) => Math.max(1, c - 1))}>-</span>
-              </div>
 
-
-              <LoaderButton text={"افزودن به سبد"} loading={loading} onClick={_addToCart} />
-            </>}
+          <AddToCartButton template={data} whatsappLink={config?.contactus?.whatsapp_link} basket={basket}/>
+          
 
         </div>
       </> : undefined}

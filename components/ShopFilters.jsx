@@ -16,7 +16,7 @@ function ShopFilters({
   const router = useRouter()
   const minDistance = 5;
   const min_value = 1
-  const max_value = 300
+  const max_value = 1000
   const [value1, setValue1] = React.useState([min_value, max_value]);
   const [rateValue, setRateValue] = React.useState([1, 5]);
   const [values, setValues] = React.useState([]);
@@ -161,6 +161,9 @@ function ShopFilters({
     for (let index = 10; index <= 300; index += 10) {
       a.push(index);
     }
+    for (let index = 400; index <= 1000; index += 100) {
+      a.push(index);
+    }
     setValues(a);
   }, []);
 
@@ -269,7 +272,7 @@ function ShopFilters({
             </div>
           </div>
 
-          <div className="filter filter-price mt-5">
+          <div className="filter filter-price ">
             <span className="title">قیمت</span>
             <div className="drops d-flex align-items-center w-100">
               <FormControl sx={{ m: 1, flexGrow: 1 }}>

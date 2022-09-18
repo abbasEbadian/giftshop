@@ -27,7 +27,7 @@ import CallIcon from '@mui/icons-material/Call';
 import InfoIcon from '@mui/icons-material/Info';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import {BRANDS} from '../../data'
-function HeaderPublic({ authenticated }) {
+const HeaderPublic = React.memo(({ authenticated }) =>{
 
   const [menuopen, setMenuopen] = React.useState(false);
   const [active, setActive] = React.useState(false);
@@ -229,6 +229,6 @@ function HeaderPublic({ authenticated }) {
       <FullScreenDialog open={full} setOpen={setFull} />
     </header>
   );
-}
+})
 
 export default HeaderPublic;

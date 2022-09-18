@@ -58,19 +58,19 @@ function Signup() {
     }  
 
   return (
-  <div class="login">
-  <div class="login__content">
-      <div class="login__img">
+  <div className="login">
+  <div className="login__content">
+      <div className="login__img">
           <Image style={{maxWidth: "100%", height: 'auto'}} src={LoginImage} alt="" />
       </div>
 
-      <div class="login__forms register">
-        <form action="" class="login__create " id="login-up" onSubmit={_signup}>
-              <h1 class="login__title">ایجاد حساب کاربری</h1>
+      <div className="login__forms register">
+        <form action="" className="login__create " id="login-up" onSubmit={_signup}>
+              <h1 className="login__title">ایجاد حساب کاربری</h1>
 
               <InputBox
-                    parentClass={"login-box ltr"}
-                    iconClass={"bi-phone login__icon"}
+                    parentclassName={"login-box ltr"}
+                    iconclassName={"bi-phone login__icon"}
                     type="tel"
                     placeholder="شماره همراه"
                     className="login__input" 
@@ -79,8 +79,8 @@ function Signup() {
                     maxlength={11}
                 />
                 <InputBox
-                    parentClass={"login-box ltr"}
-                    iconClass={"bi-shield-lock login__icon"}
+                    parentclassName={"login-box ltr"}
+                    iconclassName={"bi-shield-lock login__icon"}
                     placeholder="رمز عبور"
                     className="login__input" 
                     value={password}
@@ -88,8 +88,8 @@ function Signup() {
                     eye
                 />
                  <InputBox
-                    parentClass={"login-box ltr"}
-                    iconClass={"bi-shield-lock login__icon"}
+                    parentclassName={"login-box ltr"}
+                    iconclassName={"bi-shield-lock login__icon"}
                     placeholder="تکرار رمز عبور"
                     className="login__input" 
                     value={password2}
@@ -102,8 +102,8 @@ function Signup() {
                 </button>
 
               <div>
-                  <span class="login__account">حساب کاربری دارید؟</span>
-                 <Link href="/auth/login"><a><span class="login__signup mx-2" id="sign-in">وارد شوید</span></a></Link>
+                  <span className="login__account">حساب کاربری دارید؟</span>
+                 <Link href="/auth/login"><a><span className="login__signup mx-2" id="sign-in">وارد شوید</span></a></Link>
               </div>
                 <ul className="px-2 mt-4">
 
@@ -111,10 +111,10 @@ function Signup() {
                     return <li className="text-danger text-end " style={{fontSize: "12px"}}><small>{item}</small></li>
                 })}
                 </ul>
-              {/* <div class="login__social">
-                  <a href="#" class="login__social-icon"><i class='bx bxl-facebook' ></i></a>
-                  <a href="#" class="login__social-icon"><i class='bx bxl-twitter' ></i></a>
-                  <a href="#" class="login__social-icon"><i class='bx bxl-google' ></i></a>
+              {/* <div className="login__social">
+                  <a href="#" className="login__social-icon"><i className='bx bxl-facebook' ></i></a>
+                  <a href="#" className="login__social-icon"><i className='bx bxl-twitter' ></i></a>
+                  <a href="#" className="login__social-icon"><i className='bx bxl-google' ></i></a>
               </div> */}
           </form>
       </div>
