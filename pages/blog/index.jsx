@@ -9,8 +9,8 @@ import { Box } from "@mui/system";
 import { useRouter } from "next/router";
 import PaginationControlled from "../../components/Pagination";
 
-function Blog({blogs, category_blogs, meta}) {
-  const [blogPosts, setBLogPosts] = React.useState([]);
+function Blog({blogs, category_blogs, meta, top_new, top_pop, cats}) {
+  const [blogPosts, setBLogPosts] = React.useState(category_blogs);
   const [search, setSearch] = React.useState("")
   const router = useRouter()
   const {word, category} = router.query 
@@ -46,15 +46,17 @@ function Blog({blogs, category_blogs, meta}) {
     const data = await res.json()
     setBLogPosts(data.category_blogs)
   }, [word])
+
   React.useEffect(()=>{
     setBLogPosts(category_blogs)
   }, [category_blogs])
+
   return (
     <>
       <Head>
-          <title>{meta.blog_title??(meta.blog_title + " | گیفت استاپ")}</title>
-          <meta name="description" content={meta.blog_description??"بلاگ گیفت استاپ " }/>
-          <meta name="keywords" content={meta.blog_keywords??"گیفت کارت , گیفت کارت ارزان "}/>
+          <title>{meta?.blog_title??(meta?.blog_title + " | گیفت استاپ")}</title>
+          <meta name="description" content={meta?.blog_description??"بلاگ گیفت استاپ " }/>
+          <meta name="keywords" content={meta?.blog_keywords??"گیفت کارت , گیفت کارت ارزان "}/>
         </Head>
       <section>
           <div className="position-relative h-100 d-flex justify-content-center mt-4">
@@ -84,7 +86,7 @@ function Blog({blogs, category_blogs, meta}) {
         <div className="container-fluid py-5">
           <div className="row align-items-start">
             <div className="col-md-3">
-              <BlogNav  blogs={blogs}/>
+              <BlogNav  blogs={blogs} top_new={top_new} top_pop={top_pop} cats={cats}/>
             </div>
             <div className="col-md-9 flex-blog order-1 justify-content-start">
               {category_blogs.length? blogPosts.map((item, idx) => {
@@ -109,8 +111,17 @@ export async function getServerSideProps({query}) {
     const {category, word}= query
     const res = await fetch(e.GET_BLOGS + ((category? "?category=" + category:"")  + (word? (category? "&word=" : "?word=") + word: ""))??"")
     const data = await res.json()
-    return { props: { blogs:  data.blogs , category_blogs: data.category_blogs, meta: data.meta || {}},  }
-  }catch(e){
+    return { props: { 
+      blogs:  data.blogs,
+      category_blogs: data.category_blogs,
+      meta: data.meta || {},
+      top_new: data.top_new,
+      top_pop: data.top_pop,
+      cats: data.cats
+    },
+  }
+  }catch(BlogIndexServerSideError){
+    console.log({BlogIndexServerSideError})
     return { props: { blogs:[], name: String(e)} } 
   }
 }

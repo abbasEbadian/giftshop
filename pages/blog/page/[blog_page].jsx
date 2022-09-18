@@ -5,62 +5,56 @@ import BlogNav from "../../../components/BlogNav";
 import * as e from '../../../redux/endpoints'
 import Head from 'next/head'
 import Image from 'next/future/image';
-import { Box } from "@mui/system";
 import { useRouter } from "next/router";
 import PaginationControlled from "../../../components/Pagination";
 
-function Blog({blogs, category_blogs, meta}) {
-  const [blogPosts, setBLogPosts] = React.useState([]);
+function Blog({ blogs, category_blogs, meta, top_new, top_pop, cats }) {
+  const [blogPosts, setBLogPosts] = React.useState(category_blogs);
   const [search, setSearch] = React.useState("")
   const router = useRouter()
-  const {word, category, blog_page} = router.query 
+  const { word, category } = router.query
   const countInEachPage = React.useRef(9)
 
-  const { page = 1 } = React.useMemo(() => {
-		return router.query
-	}, [router.query])
+  const { blog_page:page = 1 } = React.useMemo(() => {
+    return router.query
+  }, [router.query])
 
 
-  
-  
-  const _search = (e)=>{
+
+
+  const _search = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    router.push({pathname: "/blog", query: {word: search}}, undefined, { scroll: false })
+    router.push({ pathname: "/blog", query: { word: search } }, undefined, { scroll: false })
   }
-  
-  React.useEffect(async ()=>{
-    const res = await fetch(e.GET_BLOGS +( (category? "?category=" + category:"")  + (word? (category? "&word=" : "?word=") + word: ""))??"")
+
+  React.useEffect(async () => {
+    const res = await fetch(e.GET_BLOGS + ((category ? "?category=" + category : "") + (word ? (category ? "&word=" : "?word=") + word : "")) ?? "")
     const data = await res.json()
     setBLogPosts(data.category_blogs)
   }, [word])
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     setBLogPosts(category_blogs)
   }, [category_blogs])
-  
-  React.useEffect(()=>{
-    if(blog_page == 1){
-      router.push('/blog')
-      return
-    }
-    if(blog_page) setPage(+blog_page)
-  }, [blog_page])
+
+
+
   return (
     <>
       <Head>
-          <title>{meta.blog_title??(meta.blog_title + " | گیفت استاپ")}</title>
-          <meta name="description" content={meta.blog_description??"بلاگ گیفت استاپ " }/>
-          <meta name="keywords" content={meta.blog_keywords??"گیفت کارت , گیفت کارت ارزان "}/>
-        </Head>
+        <title>{meta.blog_title ?? (meta.blog_title + " | گیفت استاپ")}</title>
+        <meta name="description" content={meta.blog_description ?? "بلاگ گیفت استاپ "} />
+        <meta name="keywords" content={meta.blog_keywords ?? "گیفت کارت , گیفت کارت ارزان "} />
+      </Head>
       <section>
-          <div className="position-relative h-100 d-flex justify-content-center mt-4">
-            <Image style={{maxWidth: "100%", height: 'auto'}} src={background} alt="blog image" height={250} width={1000}/>
-          </div>
+        <div className="position-relative h-100 d-flex justify-content-center mt-4">
+          <Image style={{ maxWidth: "100%", height: 'auto' }} src={background} alt="blog image" height={250} width={1000} />
+        </div>
         <div className="bg-blog" >
           <div className="content-head-blog col-10 col-lg-5 col-md-5 m-auto text-dark">
             <h1 className="mb-5">وبلاگ گیفت استاپ</h1>
-            
+
             <div className="w-100">
               <form className="buttonIn" onSubmit={_search}>
                 <input
@@ -69,7 +63,7 @@ function Blog({blogs, category_blogs, meta}) {
                   className="form-control border px-2 fs-5"
                   placeholder="عنوان یا کلمه مورد نظر را وارد کنید..."
                   value={search}
-                  onChange={e=>setSearch(e.target.value)}
+                  onChange={e => setSearch(e.target.value)}
                 />
                 <button id="search" type="submit">جست و جو</button>
               </form>
@@ -81,18 +75,18 @@ function Blog({blogs, category_blogs, meta}) {
         <div className="container-fluid py-5">
           <div className="row align-items-start">
             <div className="col-md-3">
-              <BlogNav  blogs={blogs}/>
+              <BlogNav blogs={blogs} top_new={top_new} top_pop={top_pop} cats={cats}  />
             </div>
             <div className="col-md-9 flex-blog order-1 justify-content-start">
-              {category_blogs.length? blogPosts.map((item, idx) => {
+              {category_blogs.length ? blogPosts.map((item, idx) => {
                 return (
-                  Math.floor(idx / countInEachPage.current ) === (page-1) && <div className="col-md-6 col-lg-4 col-6 p-2 blog-cards" key={idx}>
+                  Math.floor(idx / countInEachPage.current) === (page - 1) && <div className="col-md-6 col-lg-4 col-6 p-2 blog-cards" key={idx}>
                     <BlogPost data={item} />
                   </div>
                 );
-              }): <div className="alert alert-info w-50 ">موردی یافت نشد</div>}
+              }) : <div className="alert alert-info w-50 ">موردی یافت نشد</div>}
               <div className="col-12 my-2">
-                {category_blogs.length> 1 ?<PaginationControlled  size={category_blogs.length} page={+page} countInEachPage={countInEachPage.current} source_url={router.pathname} extra_query={router.query}/>:null}
+                {category_blogs.length > 1 ? <PaginationControlled size={category_blogs.length} page={+page} countInEachPage={countInEachPage.current} source_url={router.pathname} extra_query={router.query} /> : null}
               </div>
             </div>
           </div>
@@ -101,14 +95,36 @@ function Blog({blogs, category_blogs, meta}) {
     </>
   );
 }
-export async function getServerSideProps({query}) {
-  try{
-    const {category, word}= query
-    const res = await fetch(e.GET_BLOGS + ((category? "?category=" + category:"")  + (word? (category? "&word=" : "?word=") + word: ""))??"")
+export async function getServerSideProps({ query }) {
+  try {
+    const { category, word, blog_page } = query
+    let path = ""
+    let next_sign = "?"
+    if (category) {
+      path += next_sign + "category=" + category
+      next_sign = "&"
+    }
+    if (word) {
+      path += next_sign + "word=" + word
+      next_sign = "&"
+    }
+    if (blog_page) path += next_sign + "page=" + blog_page
+
+    const res = await fetch(e.GET_BLOGS + path)
     const data = await res.json()
-    return { props: { blogs:  data.blogs , category_blogs: data.category_blogs, meta: data.meta || {}},  }
-  }catch(e){
-    return { props: { blogs:[], name: String(e)} } 
+    return {
+      props: {
+        blogs: data.blogs,
+        category_blogs: data.category_blogs,
+        meta: data.meta || {},
+        top_new: data.top_new,
+        top_pop: data.top_pop,
+        cats: data.cats
+      }
+    }
+  } catch (BlogDynamicPageServerError) {
+    console.log({BlogDynamicPageServerError})
+    return { props: { blogs: [], name: String(e) } }
   }
 }
 

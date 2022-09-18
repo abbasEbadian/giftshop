@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/future/image";import  {BASE_URL} from "../redux/endpoints"
-import { Typography } from "@mui/material";
+import { Chip, Typography } from "@mui/material";
 function BlogPost({ data }) {
   return (
     <div className="info-blog-post">
@@ -18,9 +18,11 @@ function BlogPost({ data }) {
         {/* {data.summary&&<Typography component="p" >
           
         </Typography>} */}
-        <div className="text-left readMore">
+        <div className="text-left readMore d-flex justify-content-between align-items-center mb-2">
+          <Chip size="small" label={data.category_id?.name} variant="outlined" color="primary" aria-hidden="true"/>
+
           <Link href={`/blog/posts/${data.id}-${data.title.replace(/[\s]+/g, '-')}`}>
-            <a><p>ادامه مطلب...</p></a>
+            <a ><p className="mb-0">ادامه مطلب...</p></a>
           </Link>
         </div>
       </div>
