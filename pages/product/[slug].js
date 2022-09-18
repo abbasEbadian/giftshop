@@ -19,6 +19,7 @@ import * as e from "../../redux/endpoints"
 import { Breadcrumb } from "react-bootstrap";
 import { Breadcrumbs } from "@mui/material";
 import { Home, NavigateBefore, NavigateNext } from "@mui/icons-material";
+import AddToCartButton from "../../components/AddToCartButton";
 const locale = (yeGeimat) => {
   return !isNaN(Number(yeGeimat)) ? Number(yeGeimat).toLocaleString('fa') : yeGeimat
 }
@@ -225,20 +226,8 @@ function Product({ data, product }) {
               </div>
             </div>
 
-            <div className="add-to-card-container product d-flex justify-content-between align-items-center   me-auto ms-0">
-              {product?.no_sell ? <Button color='error' variant="outlined" className="exclude" fullWidth>ناموجود</Button> :
-                product?.ask_me ? <Link href={config?.contactus?.whatsapp_link || "#"}><a className="text-primary w-100"><Button color='info' variant="outlined" className="exclude" fullWidth>استعلام موجودی</Button></a></Link> :
-                  <>
-                    <div dir="ltr" className="counter">
-                      <span onClick={(e) => setCount((c) => (c += 1))}>+</span>
-                      <span className="border-bottom mx-2 ">{count}</span>
-                      <span onClick={(e) => setCount((c) => Math.max(1, c - 1))}>-</span>
-                    </div>
-                    <span className="border rounded p-2">
-                      {locale(product.price)} {" تومان "}{" "}
-                    </span>
-                    <LoaderButton text="افزودن به سبد خرید" className=" px-3" loading={loading1} onClick={_addToCart} />
-                  </>}
+            <div className="d-flex  align-items-center ">
+              <AddToCartButton template={product} />
             </div>
           </div>
         </>

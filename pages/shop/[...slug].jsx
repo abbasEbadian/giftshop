@@ -30,7 +30,6 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 	}, [router.query])
 
 	React.useEffect(() => {
-		return
 		if (brand_name) {
 			let params = {}
 			Object.keys(filters).map(item => {

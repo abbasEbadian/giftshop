@@ -72,7 +72,6 @@ function Card({
 
   const user = useSelector(s => s.auth.user)
   const basket = useSelector((state) => state.order.basket);
-  const config = useSelector(s=>s.main.configs)
 
   const get_image_src = (type) => {
     switch (type) {
@@ -220,7 +219,7 @@ function Card({
         </div>
         <div className="add-to-card-container d-flex justify-content-between align-items-center w-100">
           
-        { (!data.no_sell && !data.ask_me) && <Typography component="span" sx={{ fontSize: "14px" }} className="test">
+        { (!data.no_sell && !data.ask_me) && <Typography component="span" sx={{ fontSize: "14px" }} className="test ms-auto">
             {data.offcard_set && data.offcard_set.length > 0 ? <>
               <del className="text-opacity-50 text-danger">
                 {Number(data.price).toLocaleString('fa')} 
@@ -235,7 +234,7 @@ function Card({
 
           </Typography>}
 
-          <AddToCartButton template={data} whatsappLink={config?.contactus?.whatsapp_link} basket={basket}/>
+          <AddToCartButton template={data} />
           
 
         </div>

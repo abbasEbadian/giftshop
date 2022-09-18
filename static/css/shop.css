@@ -116,6 +116,7 @@
 .shop-main .product-list-gift{
   border-radius: 8px;
   padding-bottom: 0;
+  box-shadow: none;
 }
 .shop-main .card-container:last-of-type {
   border-left-width: 1px;
@@ -212,14 +213,26 @@
   margin-inline: auto;
 }
 .add-to-card-container .counter span {
-  cursor: pointer;
   font-size: 1.1rem;
 }
 .product-list-gift .counter {
   background-color: #f1f2f6;
-  padding: 7px 15px;
-  border-radius: 8px;
+  border-radius: 8px;padding: 0;
+  overflow: hidden;
 }
+.product-list-gift .counter > *{
+  padding: 6px 9px ;
+  display: inline-block;
+  border-left: 1px solid #e2e2e2;
+  transition: 0.2s;
+}
+.product-list-gift .counter > span:first-of-type{
+  border-left: none;
+}
+.product-list-gift .counter :not(:nth-child(2)):hover{
+  background: #ddd;
+}
+
 
 .add-to-card-container button:not(.exclude){
   border: none;
@@ -234,6 +247,7 @@
   align-items: center;
   border-radius: 8px;
   padding: 0 0 0.5rem;
+  box-shadow: 0 0 14px #0002;
 } 
 
 .cursor-pointer {
@@ -262,6 +276,10 @@
 .special-offer-price{
   font-size: 15px;
 }
+.blury,.blury * {
+  cursor: not-allowed !important;
+}
+
 @media (min-width: 1400px) {
   .shop-main .card-container:nth-of-type(4){
     border-top-left-radius: 8px;
