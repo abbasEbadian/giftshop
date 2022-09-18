@@ -174,7 +174,7 @@ function HeaderPublic({ authenticated }) {
           <Link href="/contact-us">
             <a onClick={e => setMenuopen(false)}>تماس با ما</a>
           </Link>
-          {auth ? <Badge color="secondary" badgeContent={unseen_tickets_count} showZero>
+          {auth ? <Badge color="secondary" badgeContent={unseen_tickets_count} showZero className="ticket-badge">
             <Link href="/panel/ticket-list">
               <a onClick={e => setMenuopen(false)}>تیکت ها</a>
             </Link>

@@ -617,6 +617,9 @@ header .burger-line:nth-child(4) {
 .badge-container{
   position: relative;
 }
+.ticket-badge > span {
+  top: 16px;
+}
 .basket-badge {
 	position: absolute;
 	top: -6px;
