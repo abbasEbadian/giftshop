@@ -1,61 +1,40 @@
 import React, { useEffect } from "react";
+
 import dynamic from 'next/dynamic'
 const ShopFilters = dynamic(() => import("../../components/ShopFilters"))
 const ShopCards = dynamic(() => import("../../components/ShopCards"))
 const ShopBrandDescription = dynamic(() => import("../../components/ShopBrandDescription"))
 const PaginationControlled = dynamic(() => import("../../components/Pagination"))
 
-import { useSelector } from 'react-redux'
 
 import { useRouter } from "next/router";
 import Head from "next/head";
-import axios from "axios";
-import * as e from '../../redux/endpoints'
-import { Breadcrumbs } from "@mui/material";
-import { Home, NavigateBefore } from "@mui/icons-material";
 import Link from "next/link";
 
-function Shop({ data, cards: initialCards = [], size: initialSize }) {
+import axios from "axios";
+import * as e from '../../redux/endpoints'
 
+import { Breadcrumbs } from "@mui/material";
+import { Home, NavigateBefore } from "@mui/icons-material";
+import { useMemo } from "react";
+
+
+function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_brand }) {
 	const router = useRouter();
 	const [brand_name, country_name] = router.query.slug
-
-	const [filteredCards, setFilteredCards] = React.useState(initialCards);
 	const [loading, setLoading] = React.useState(false)
-	const [filters, setFilters] = React.useState({ real_price: undefined, country: undefined })
-	const [cardsCount, setCardsCount] = React.useState(initialSize)
 
 	const { page = 1 } = React.useMemo(() => {
 		return router.query
 	}, [router.query])
 
-	React.useEffect(() => {
-		if (brand_name) {
-			let params = {}
-			Object.keys(filters).map(item => {
-				if (item) params[item] = filters[item]
-			})
-			params["brand_name"] = brand_name
-			params["page"] = page
-			setLoading(true)
-			axios.get(e.GET_TEMPLATES, { params })
-				.then(res => {
-					const { data } = res
+	const [filteredCards, cardsCount] = useMemo(() => {
+		return [initialCards, initialSize]
+	}, [initialCards])
 
-					setFilteredCards(data.data || [])
-					setCardsCount(data.size)
-				})
-				.catch(err => console.log(err))
-				.finally(f => {
-					setTimeout(() => {
-						setLoading(false)
-					}, 2000);
-				})
-		}
-
-	}, [filters.country, filters.real_price, filters.accountType, brand_name])
-
-
+	// const [brand, ] = useMemo(() => {
+	// 	return [data]
+	// }, [data])
 
 	const addJsonLd = ({ brand, review_count, review_rating, size, max_price, min_price }) => {
 		if (!brand) return { __html: {} }
@@ -63,13 +42,13 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 			__html: `{
 				"@context": "https://schema.org",
 				"@type": "Product",
-				"name": "${brand.name}  Giftcard",
-				"description": "${brand.meta_description}",
-				"alternateName": "${brand.persian_name}",
+				"name": "${brand?.name}  Giftcard",
+				"description": "${brand?.meta_description}",
+				"alternateName": "${brand?.persian_name}",
 				"image": [
-					"https://giftstop.org/card/${brand.name}.png"
+					"https://giftstop.org/card/${brand?.name}.png"
 				],
-				"url": "https://giftstop.org/shop/${brand.name}",
+				"url": "https://giftstop.org/shop/${brand?.name}",
 				"aggregateRating": {
 					"@type": "AggregateRating",
 					"bestRating": 5,
@@ -79,23 +58,23 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 				},
 				"brand": {
 					"@type": "Organization",
-					"name":  "${brand.persian_name}",
-					"alternateName": "${brand.name} Giftcard"
+					"name":  "${brand?.persian_name}",
+					"alternateName": "${brand?.name} Giftcard"
 
 				},
 				"itemCondition": "https://schema.org/NewCondition",
-				"mpn": ${brand.id},
+				"mpn": ${brand?.id},
 				"offers": {
 					"@type": "AggregateOffer",
-					"url": "https://giftstop.org/shop/${brand.name}",
+					"url": "https://giftstop.org/shop/${brand?.name}",
 					"availability": "https://schema.org/InStock",
 					"priceCurrency": "IRR",
 					"highPrice": ${max_price},
 					"lowPrice": ${min_price},
 					"offerCount": ${size}
 				},
-				"productID": ${brand.id},
-				"sku": ${brand.id}
+				"productID": ${brand?.id},
+				"sku": ${brand?.id}
 			}`
 		}
 	}
@@ -118,7 +97,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 							`{
 						  "@context": "https://schema.org",
 						  "@type": "BreadcrumbList",
-						  "name": "Giftsop ${data?.brand?.name}", 
+						  "name": "Giftsop ${brand?.name}", 
 						  "itemListElement": [{
 							"@type": "ListItem",
 							"position": 1,
@@ -127,7 +106,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 						  },{
 							"@type": "ListItem",
 							"position": 2,
-							"name": "گیفت کارت ${data?.brand?.persian_name}"
+							"name": "گیفت کارت ${brand?.persian_name}"
 						  }]
 						}`
 					}}
@@ -141,7 +120,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 					</a>
 					</Link>
 					<span>
-						گیفت کارت {" "} {data.brand.persian_name}
+						گیفت کارت {" "} {brand?.persian_name}
 					</span>
 
 				</Breadcrumbs>
@@ -149,8 +128,9 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 			<div className="row ">
 				<div className="col-12 col-lg-3 col-xxl-2 h-100">
 					<ShopFilters
-						setFilters={setFilters}
 						brand_name={brand_name}
+						brand={brand}
+						subbrand={sub_brand}
 					/>
 				</div>
 
@@ -158,20 +138,20 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 					<div>
 						<h1 className="text-center line-height-64 mb-3">
 							<span>
-								{"گیفت کارت  "} <span className="text-danger">{data?.brand?.persian_name}</span>
+								{"گیفت کارت  "} <span className="text-danger">{brand?.persian_name}</span>
 							</span>
 						</h1>
-						<ShopCards cards={filteredCards} loading={loading} />
+						<ShopCards cards={filteredCards} loading={loading} key={Math.random()} />
 						<div className="my-4">
 							{cardsCount > 20 ? <PaginationControlled
 								size={cardsCount}
 								page={+page}
-								source_url={"/shop/" + data.brand?.name}
+								source_url={router.asPath}
 								extra_query={router.query}
 							/>
 								: null}
 						</div>
-						<ShopBrandDescription brand={data} />
+						<ShopBrandDescription brand={{...data, brand: (sub_brand && sub_brand.name &&  sub_brand ) || brand}} />
 					</div>
 				</div>
 
@@ -184,15 +164,19 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 
 export async function getServerSideProps({ query }) {
 	try {
-		const [brand_name, country_name] = query.slug
-		const url = new URL(e.GET_BRAND_TITLE(brand_name))
-		if (country_name) url.searchParams.set('region', country_name)
+		const [brand_name, region] = query.slug
+		const {accountType, minPrice, maxPrice, minRate, maxRate, page} = query
+		let url = new URL(e.GET_BRAND_TITLE(brand_name) + (region ??  ""))
+		
+		for(let entry of Object.entries({accountType, minPrice, maxPrice, minRate, maxRate, page})){
+			if (entry[1]) url.searchParams.set(entry[0], entry[1])
+		}
 		const res = await fetch(url.toString())
-		const data = await res.json()
-		const { cards, size } = data
-		console.log(size)
-		return { props: { data, cards, size } }
-	} catch (e) {
+		const d = await res.json()
+		const { cards, size, brand, sub_brand, ...data} = d
+		return { props: { data, cards, size, brand, sub_brand } }
+	} catch (DotsSlugGetServerSideProps) {
+		console.log(DotsSlugGetServerSideProps)
 		return { props: { data: {} } }
 	}
 }

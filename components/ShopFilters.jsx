@@ -1,31 +1,46 @@
-import React from "react";
-import Slider from "@mui/material/Slider";
-import { Select, MenuItem, FormControl, Button, Typography } from "@mui/material";
+import React, { useMemo, useRef } from "react";
+import { Select, MenuItem, FormControl } from "@mui/material";
 import FormControlLabel from '@mui/material/FormControlLabel'
 import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
-import { useSelector } from "react-redux";
 import Link from "next/link";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { useRouter } from "next/router";
+import { ChevronLeft } from "@mui/icons-material";
 
 function ShopFilters({
-  setFilters,
   brand_name = null,
+  brand = {},
+  subbrand = null
 }) {
   const router = useRouter()
   const minDistance = 5;
   const min_value = 1
   const max_value = 1000
   const [value1, setValue1] = React.useState([min_value, max_value]);
-  const [rateValue, setRateValue] = React.useState([1, 5]);
-  const [values, setValues] = React.useState([]);
-  const [selectedCountries, setSelectedCountries] = React.useState([]);
   const [accountType, setAccountType] = React.useState("all")
-  const countries = useSelector((state) => state.main.countries);
-  const [showFilters, setShowFilters] = React.useState(false)
 
-  const navigate = (href) => router.replace(href, )
+  const brand_set = useMemo(() => {
+    const b =  brand?.brand_set || []
+    if(subbrand && Object.keys(subbrand).length > 0) {
+      console.log(subbrand ,  Object.keys(subbrand).length > 0)
+      return b.filter(brand => brand.country_id.id !== subbrand?.country_id?.id)
+    }
+    return b
+  }, [brand, subbrand])
+
+
+  const navigate = (href, options) => {
+    const { slug, ...query } = router.query
+    href = href.split("?")[0]
+    router.push({
+      pathname: href,
+      query: {
+        ...query,
+        ...options
+      }
+    })
+  }
 
   const categories = React.useRef([
     {
@@ -129,85 +144,47 @@ function ShopFilters({
       "persian_name": "پابجی"
     }
   ])
-  const toggleCountry = (symbol) => {
-    if (selectedCountries.includes(symbol)) {
-      setSelectedCountries((c) => c.filter((i) => i !== symbol));
-    } else {
-      setSelectedCountries([...selectedCountries, symbol]);
-    }
-  };
 
-
-
-
+  const handleAccount = (type) => {
+    setAccountType(type)
+    navigate(router.asPath, {
+      accountType: type
+    })
+  }
   const handleMinPriceChange = (e) => {
     let val = e.target.value;
     setValue1([Math.min(val, value1[1] - minDistance), value1[1]]);
+    navigate(router.asPath, {
+      minPrice: Math.min(val, value1[1] - minDistance),
+      maxPrice: value1[1]
+    })
   };
   const handleMaxPriceChange = (e) => {
     let val = e.target.value;
     setValue1([value1[0], Math.max(val, value1[0] + minDistance)]);
+    navigate(router.asPath, {
+      minPrice: value1[0],
+      maxPrice: Math.max(val, value1[0] + minDistance)
+    })
   };
 
   const resetFilters = () => {
-    setSelectedCountries([]);
-    setValue1([1, max_value]);
-    setRateValue([1, 5]);
+    setValue1([1, max_value])
+    router.push(router.asPath.split("?")[0])
   };
 
-  React.useEffect(() => {
+  const values = React.useMemo(() => {
     let a = [1];
-
     for (let index = 10; index <= 300; index += 10) {
       a.push(index);
     }
     for (let index = 400; index <= 1000; index += 100) {
       a.push(index);
     }
-    setValues(a);
+    return a;
   }, []);
 
 
-  React.useEffect(() => {
-    resetFilters()
-  }, [brand_name])
-
-  React.useEffect(() => {
-    setFilters(s => {
-      return {
-        ...s,
-        rate: rateValue[0] + "," + rateValue[1],
-      }
-    })
-  }, [rateValue]);
-
-  React.useEffect(() => {
-
-    setFilters(s => {
-      return {
-        ...s,
-        real_price: value1[0] + "," + value1[1],
-      }
-    })
-  }, [value1]);
-
-  React.useEffect(() => {
-    setFilters(s => {
-      return {
-        ...s,
-        country: selectedCountries.join(','),
-      }
-    })
-  }, [selectedCountries]);
-
-  React.useEffect(() => {
-    setFilters(s => {
-      return {
-        ...s,
-        accountType: accountType,
-      }
-    })
-  }, [accountType]);
 
   return (
     <section className="position-relative">
@@ -229,7 +206,23 @@ function ShopFilters({
             پاک کردن همه
           </small>
         </p>
-        <div className="product-list-gift ">
+        <div className={"product-list-gift " }>
+          <div className={"filter filter-country " + ( (!brand_set || brand_set.length === 0) && 'd-none')}>
+            <span className="title ">کشور </span>
+            <div className="d-flex flex-wrap justify-content-start w-100">
+              <i></i>
+              {brand_set?.map((subbrand, idx) => {
+                const symbol = String(subbrand?.country_id?.symbol).toLowerCase()
+                return <Link href={`/shop/${brand.name}/${symbol}-card`} key={idx} shallow={false} >
+                  <a className="sub-brand-link border p-2 d-flex align-items-center mb-1 w-100 rounded">
+                    <small>گیفت کارت {subbrand?.persian_name}</small>
+                    <ChevronLeft size='small' className="me-auto" />
+                  </a>
+                </Link>
+              })}
+
+            </div>
+          </div>
           <div className="filter filter-category">
             <span className="title">دسته بندی</span>
             <div className="d-flex flex-wrap  ">
@@ -244,7 +237,7 @@ function ShopFilters({
                         "category-item " +
                         (i.name === brand_name ? "active" : "")
                       }
-                      onClick={() => navigate("/shop/" + i.name)}
+                      onClick={() => router.push("/shop/" + i.name)}
                     >
                       {i.persian_name}{" "}
                     </button>
@@ -262,7 +255,7 @@ function ShopFilters({
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
                 value={accountType}
-                onChange={e => setAccountType(e.target.value)}
+                onChange={e => handleAccount(e.target.value)}
               >
                 <FormControlLabel className="m-0" value="giftcard" control={<Radio />} label="گیفت کارت" />
                 <FormControlLabel className="m-0" value="account" control={<Radio />} label="  اشتراک ماهیانه" />
@@ -280,18 +273,9 @@ function ShopFilters({
                   value={value1[0]}
                   onChange={handleMinPriceChange}
                   displayEmpty
-                  inputProps={{ "aria-label": "Without label" }}
-                  sx={{ padding: 0 }}
+                  className="p-0"
                 >
-                  {values.length
-                    ? values.map((i, idx) => {
-                      return (
-                        <MenuItem value={i} key={idx}>
-                          {i}
-                        </MenuItem>
-                      );
-                    })
-                    : undefined}
+                  {values.map((i, idx) => { return <MenuItem value={i} key={idx}> {i} </MenuItem>})}
                 </Select>
               </FormControl>
               {" تا "}
@@ -299,41 +283,13 @@ function ShopFilters({
                 <Select
                   value={value1[1]}
                   onChange={handleMaxPriceChange}
-                  displayEmpty
-                  inputProps={{ "aria-label": "Without label" }}
                 >
-                  {values.length
-                    ? values.map((i, idx) => {
-                      return (
-                        <MenuItem key={idx} value={i}>
-                          {i}
-                        </MenuItem>
-                      );
-                    })
-                    : undefined}
+                    { values.map((i, idx) => { return <MenuItem key={idx} value={i}>{i}</MenuItem>}) }
                 </Select>
               </FormControl>
             </div>
           </div>
-          <div className="filter filter-country">
-            <span className="title">کشور</span>
-            <div className="d-flex flex-wrap justify-content-start">
-              {countries.map((i, idx) => {
-                return (
-                  <button
-                    key={idx}
-                    onClick={(e) => toggleCountry(i.symbol)}
-                    className={
-                      "btn-transparent   " +
-                      (selectedCountries.includes(i.symbol) ? "selected" : "")
-                    }
-                  >
-                    {i.name}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+
 
         </div>
       </div>

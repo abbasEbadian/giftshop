@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "./Card";
 import { TailSpin } from 'react-loader-spinner'
 function ShopCards({ cards, loading = false }) {

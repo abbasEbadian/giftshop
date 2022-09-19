@@ -11,10 +11,9 @@ export default function PaginationControlled({ page, size = 5, countInEachPage =
   const { slug, ...query } = extra_query
   for (let number = 1; number <= Math.ceil(size / countInEachPage); number++) {
     items.push(
-      <Link href={{ pathname: source_url, query: { ...query, page: number } }} passHref key={number}>
+      <Link href={{ pathname: source_url.split("?")[0], query: { ...query, page: number } }} passHref key={number}>
         <Pagination.Item key={number} active={number === active} >
           {number}
-          {/* <Link ></Link> */}
         </Pagination.Item>
       </Link>
 

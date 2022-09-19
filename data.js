@@ -102,11 +102,6 @@ export const BRANDS = [
     {
         "id": 44,
         "name": "england-card",
-        "persian_name": "گیفت کارت اپل انگلیس"
-    },
-    {
-        "id": 45,
-        "name": "pubg",
-        "persian_name": "پابجی"
-    },
+        "persian_name": "اپل انگلیس"
+    }
 ]

@@ -211,6 +211,7 @@
   margin-top: 16px;
   width: 95%;
   margin-inline: auto;
+  height: 40px;
 }
 .add-to-card-container .counter span {
   font-size: 1.1rem;
@@ -279,7 +280,9 @@
 .blury,.blury * {
   cursor: not-allowed !important;
 }
-
+.sub-brand-link{
+  font-size: 14px;
+}
 @media (min-width: 1400px) {
   .shop-main .card-container:nth-of-type(4){
     border-top-left-radius: 8px;
