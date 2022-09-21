@@ -10,8 +10,6 @@ const PaginationControlled = dynamic(() => import("../../components/Pagination")
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
-
-import axios from "axios";
 import * as e from '../../redux/endpoints'
 
 import { Breadcrumbs } from "@mui/material";
@@ -21,7 +19,6 @@ import { useMemo } from "react";
 
 function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_brand }) {
 	const router = useRouter();
-	const [brand_name, country_name] = router.query.slug
 	const [loading, setLoading] = React.useState(false)
 
 	const { page = 1 } = React.useMemo(() => {
@@ -31,10 +28,6 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 	const [filteredCards, cardsCount] = useMemo(() => {
 		return [initialCards, initialSize]
 	}, [initialCards])
-
-	// const [brand, ] = useMemo(() => {
-	// 	return [data]
-	// }, [data])
 
 	const addJsonLd = ({ brand, review_count, review_rating, size, max_price, min_price }) => {
 		if (!brand) return { __html: {} }
@@ -81,9 +74,9 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 	return (
 		<div className="shop-main">
 			<Head>
-				<title>{data.meta_title ?? (brand_name + " | گیفت استاپ")}</title>
-				<meta name="description" content={data.meta_description ?? "فروشگاه گیفت استاپ " + brand_name} />
-				<meta name="keywords" content={data.meta_keywords ?? "گیفت کارت , گیفت کارت ارزان " + brand_name} />
+				<title>{data.meta_title ?? (brand?.name + " | گیفت استاپ")}</title>
+				<meta name="description" content={data.meta_description ?? "فروشگاه گیفت استاپ " + brand?.persian_name} />
+				<meta name="keywords" content={data.meta_keywords ?? "گیفت کارت , گیفت کارت ارزان " + brand?.persian_name} />
 				{data.meta_canonical ? <link rel="canonical" href={data.meta_canonical} /> : null}
 				<script
 					type="application/ld+json"
@@ -128,7 +121,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 			<div className="row ">
 				<div className="col-12 col-lg-3 col-xxl-2 h-100">
 					<ShopFilters
-						brand_name={brand_name}
+						brand_name={brand?.name}
 						brand={brand}
 						subbrand={sub_brand}
 					/>

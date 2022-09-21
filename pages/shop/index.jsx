@@ -1,54 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ShopFilters from "../../components/ShopFilters";
 import ShopCards from "../../components/ShopCards";
-// import ShopSortBy from "../../components/ShopSortBy";
 import Head from "next/head";
-import axios from "axios";
-import { GET_TEMPLATES } from '../../redux/endpoints'
 import PaginationControlled from "../../components/Pagination";
 import { useRouter } from 'next/router'
 import * as e from '../../redux/endpoints'
 
 
-function Shop({ data }) {
+function Shop({ data, cards: initialCards = [], size: initialSize }) {
 
-	const [filteredCards, setFilteredCards] = React.useState(data.cards);
-	const [loading, setLoading] = React.useState(false)
-	const [filters, setFilters] = React.useState({})
-	const [cardsCount, setCardsCount] = React.useState(data.size)
-	const [sortBy, setSortBy] = React.useState("-created")
 	const router = useRouter()
-	
+
 	const { page = 1 } = React.useMemo(() => {
 		return router.query
 	}, [router.query])
 
+	const [filteredCards, cardsCount] = React.useMemo(() => {
+		return [initialCards, initialSize]
+	}, [initialCards])
 
-	React.useEffect(() => {
-		const url = new URL(GET_TEMPLATES)
-		
-
-		Object.keys(filters).map(item => {
-			if(filters[item]) url.searchParams.set(item, filters[item])
-		})
-		url.searchParams.set("page", page)
-		setLoading(true)
-		axios.get(url.toString())
-			.then(res => {
-				const { data } = res
-				setFilteredCards(data.data || [])
-				setCardsCount(data.size)
-			})
-			.catch(err => console.log(err))
-			.finally(f => {
-				setTimeout(() => {
-					setLoading(false)
-				}, 2000)
-			})
-	}, [filters, page])
-
-
-	
 	return (
 		<div className="shop-main">
 			<Head>
@@ -60,9 +30,7 @@ function Shop({ data }) {
 
 			<div className="row ">
 				<div className="col-12 col-lg-3 col-xxl-2 h-100">
-					<ShopFilters
-						setFilters={setFilters}
-					/>
+					<ShopFilters />
 				</div>
 
 				<div className="col-12 col-lg-9 col-xxl-10">
@@ -71,10 +39,13 @@ function Shop({ data }) {
 						محصولات <span className="text-danger">فروشگاه</span>
 
 					</h1>
-					{/* <div className="col-12 col-md-6 col-xl-4"><ShopSortBy value={sortBy} setValue={setSortBy}/></div> */}
-					<ShopCards cards={filteredCards} loading={loading} />
+					<ShopCards cards={filteredCards} />
 					<div className="my-4">
-						{cardsCount > 20 ? <PaginationControlled  size={cardsCount} page={page} source_url={router.pathname} extra_query={router.query} /> : null}
+						{cardsCount > 20 ? <PaginationControlled
+							size={cardsCount}
+							page={+page}
+							source_url={router.asPath}
+							extra_query={router.query} /> : null}
 					</div>
 
 				</div>
@@ -84,11 +55,21 @@ function Shop({ data }) {
 	);
 }
 export async function getServerSideProps({ query }) {
+	const { accountType, minPrice, maxPrice, minRate, maxRate, page } = query
+
+	let url = new URL(e.GET_TITLE)
+	for (let entry of Object.entries({ accountType, minPrice, maxPrice, minRate, maxRate, page })) {
+		if (entry[1]) url.searchParams.set(entry[0], entry[1])
+	}
+	
 	try {
-		const res = await fetch(e.GET_TITLE)
-		const data = await res.json()
-		return { props: { data } }
-	} catch (e) {
+		const res = await fetch(url.toString())
+		const d = await res.json()
+		const { cards, size, ...data} = d
+		console.log({size})
+		return { props: { data, cards, size } }
+	} catch (ShopIndexServerSide) {
+		console.log({ShopIndexServerSide})
 		return { props: { data: {} } }
 	}
 }
