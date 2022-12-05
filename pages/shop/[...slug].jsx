@@ -17,18 +17,16 @@ import { Home, NavigateBefore } from "@mui/icons-material";
 import { useMemo } from "react";
 
 
-function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_brand }) {
+function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_brand, brands}) {
 	const router = useRouter();
 	const [loading, setLoading] = React.useState(false)
-
 	const { page = 1 } = React.useMemo(() => {
 		return router.query
 	}, [router.query])
-
 	const [filteredCards, cardsCount] = useMemo(() => {
 		return [initialCards, initialSize]
 	}, [initialCards])
-
+	
 	const addJsonLd = ({ brand, review_count, review_rating, size, max_price, min_price }) => {
 		if (!brand) return { __html: {} }
 		return {
@@ -167,7 +165,7 @@ export async function getServerSideProps({ query }) {
 		}
 		const res = await fetch(url.toString())
 		const d = await res.json()
-		const { cards, size, brand, sub_brand, ...data} = d
+		const { cards, size, brand, sub_brand={}, ...data} = d
 		return { props: { data, cards, size, brand, sub_brand } }
 	} catch (DotsSlugGetServerSideProps) {
 		console.log(DotsSlugGetServerSideProps)

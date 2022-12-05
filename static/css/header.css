@@ -548,7 +548,7 @@ header .burger-line:nth-child(4) {
 }
 
 .header-public .list-show-menu > ul {
-  transform: translateY(-450px);
+  transform: translateY(-100%);
   transition: 0.3s;
   padding-top: 64px !important;
 }

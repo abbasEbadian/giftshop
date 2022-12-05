@@ -28,6 +28,7 @@ import Head from 'next/head'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Script from 'next/script';
 import { Context, initialRender } from "../context/sse.context";
+import { GET_BRANDS_MINIFIED } from '../redux/endpoints';
 
 Router.onRouteChangeStart = () => {
 	NProgress.start();
@@ -42,11 +43,10 @@ Router.onRouteChangeError = () => {
 };
 
 
-const MyApp = ({ Component, pageProps, ...extra }) => {
+const MyApp = ({ Component, pageProps, ...extra}) => {
 	configure()
 	const store = useStore(pageProps?.initialReduxState || {})
 	const router = useRouter();
-	console.log(extra.brands)
 	React.useEffect(() => {
 		store.dispatch(get_initial_data())
 
@@ -96,7 +96,7 @@ const MyApp = ({ Component, pageProps, ...extra }) => {
 				
 			
 				</Head>
-				<Header brands={extra?.brands || []} /> 
+				<Header brands={ extra?.brands || []} /> 
 				<Component {...pageProps} setRuleOpen={setRuleOpen} />
 				{router.pathname.indexOf("auth") > -1 ? null : <>
 					<Box sx={{ width: "100%" }}>
@@ -119,17 +119,15 @@ const MyApp = ({ Component, pageProps, ...extra }) => {
 };
 
 MyApp.getInitialProps = async (appContext) => {
-	const data = await App.getInitialProps(appContext);
-  
-	const sse = await initialRender(appContext, data);
-	console.log("TESTTTTTTTT", {...sse})
+	const data = await App.getInitialProps(appContext);;
+	const d = await fetch(GET_BRANDS_MINIFIED)
+  	const brands = await d.json()
 	const pageProps = {
+		brands,
 	  ...data.pageProps,
-	  ...sse,
-	  brands: sse.data.brands
 	};
   
-	return {brands: sse.data.brands};
+	return pageProps;
   };
 
 export default MyApp;

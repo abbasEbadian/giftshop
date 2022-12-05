@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import * as e from '../../redux/endpoints'
 
 
-function Shop({ data, cards: initialCards = [], size: initialSize }) {
+function Shop({ data, cards: initialCards = [], size: initialSize}) {
 
 	const router = useRouter()
 
@@ -22,9 +22,9 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 	return (
 		<div className="shop-main">
 			<Head>
-				<title>{data.shop_title ?? "فروشگاه | گیفت استاپ"}</title>
-				<meta name="description" content={data.shop_description ?? "فروشگاه گیفت استاپ"} />
-				<meta name="keywords" content={data.shop_keywords ?? "گیفت کارت , گیفت کارت ارزان"} />
+				<title>{data?.shop_title ?? "فروشگاه | گیفت استاپ"}</title>
+				<meta name="description" content={data?.shop_description ?? "فروشگاه گیفت استاپ"} />
+				<meta name="keywords" content={data?.shop_keywords ?? "گیفت کارت , گیفت کارت ارزان"} />
 				<meta rel="canonical" content={"https://giftstop.org/shop"} />
 			</Head>
 
@@ -54,14 +54,14 @@ function Shop({ data, cards: initialCards = [], size: initialSize }) {
 		</div>
 	);
 }
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({query}) {
+	
 	const { accountType, minPrice, maxPrice, minRate, maxRate, page } = query
 
 	let url = new URL(e.GET_TITLE)
 	for (let entry of Object.entries({ accountType, minPrice, maxPrice, minRate, maxRate, page })) {
 		if (entry[1]) url.searchParams.set(entry[0], entry[1])
 	}
-	
 	try {
 		const res = await fetch(url.toString())
 		const d = await res.json()
