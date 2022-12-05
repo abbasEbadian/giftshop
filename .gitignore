@@ -31,3 +31,4 @@ yarn-error.log*
 uname.exe.stackdump
 sh.exe.stackdump
 *.stackdump
+package-lock.json

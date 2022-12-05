@@ -6,6 +6,7 @@ import '../static/scss/master.scss'
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import App, { AppContext, AppInitialProps, AppProps } from "next/app";
 
 import Box from '@mui/material/Box'
 const Footer = dynamic(() => import('../components/Footer'))
@@ -26,6 +27,7 @@ import Router from 'next/router'
 import Head from 'next/head'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Script from 'next/script';
+import { Context, initialRender } from "../context/sse.context";
 
 Router.onRouteChangeStart = () => {
 	NProgress.start();
@@ -40,11 +42,11 @@ Router.onRouteChangeError = () => {
 };
 
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps, ...extra }) => {
 	configure()
-	const store = useStore(pageProps.initialReduxState)
+	const store = useStore(pageProps?.initialReduxState || {})
 	const router = useRouter();
-
+	console.log(extra.brands)
 	React.useEffect(() => {
 		store.dispatch(get_initial_data())
 
@@ -94,7 +96,7 @@ const MyApp = ({ Component, pageProps }) => {
 				
 			
 				</Head>
-				<Header /> 
+				<Header brands={extra?.brands || []} /> 
 				<Component {...pageProps} setRuleOpen={setRuleOpen} />
 				{router.pathname.indexOf("auth") > -1 ? null : <>
 					<Box sx={{ width: "100%" }}>
@@ -115,4 +117,19 @@ const MyApp = ({ Component, pageProps }) => {
 		</Provider>
 	</>)
 };
+
+MyApp.getInitialProps = async (appContext) => {
+	const data = await App.getInitialProps(appContext);
+  
+	const sse = await initialRender(appContext, data);
+	console.log("TESTTTTTTTT", {...sse})
+	const pageProps = {
+	  ...data.pageProps,
+	  ...sse,
+	  brands: sse.data.brands
+	};
+  
+	return {brands: sse.data.brands};
+  };
+
 export default MyApp;

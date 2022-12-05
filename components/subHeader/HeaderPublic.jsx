@@ -26,8 +26,9 @@ import CategoryIcon from '@mui/icons-material/Category';
 import CallIcon from '@mui/icons-material/Call';
 import InfoIcon from '@mui/icons-material/Info';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import {BRANDS} from '../../data'
-const HeaderPublic = React.memo(({ authenticated }) =>{
+// import {BRANDS} from '../../data'
+import { GET_BRANDS_MINIFIED } from "../../redux/endpoints";
+const HeaderPublic = React.memo(({ authenticated, brands: BRANDS=[] }) =>{
 
   const [menuopen, setMenuopen] = React.useState(false);
   const [active, setActive] = React.useState(false);
@@ -230,5 +231,18 @@ const HeaderPublic = React.memo(({ authenticated }) =>{
     </header>
   );
 })
+
+
+export async function getServerSideProps({  }) {
+  try {
+    
+    const res = await fetch(GET_BRANDS_MINIFIED)
+    const brands = await res.json() || []
+    return { props: { brands } }
+  } catch (HeaderServerSideProps) {
+    console.log({HeaderServerSideProps})
+    return { props: { brands: {} } }
+  }
+}
 
 export default HeaderPublic;
