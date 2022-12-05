@@ -71,6 +71,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 			}`
 		}
 	}
+	const brand_title = sub_brand? (sub_brand.persian_name) : (brand ? (brand.persian_name) : (""))
 	return (
 		<div className="shop-main">
 			<Head>
@@ -99,7 +100,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 						  },{
 							"@type": "ListItem",
 							"position": 2,
-							"name": "گیفت کارت ${brand?.persian_name}"
+							"name": "گیفت کارت ${brand_title}"
 						  }]
 						}`
 					}}
@@ -113,7 +114,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 					</a>
 					</Link>
 					<span>
-						گیفت کارت {" "} {brand?.persian_name}
+						گیفت کارت {" "} {brand_title}
 					</span>
 
 				</Breadcrumbs>
@@ -131,7 +132,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 					<div>
 						<h1 className="text-center line-height-64 mb-3">
 							<span>
-								{"گیفت کارت  "} <span className="text-danger">{brand?.persian_name}</span>
+								{"گیفت کارت  "} <span className="text-danger">{brand_title}</span>
 							</span>
 						</h1>
 						<ShopCards cards={filteredCards} loading={loading} key={Math.random()} />

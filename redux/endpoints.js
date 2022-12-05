@@ -12,6 +12,7 @@ const _ = (url) => {return BASE_URL + "/api/v1"+url}
 
 
 export const GET_BRANDS = _( "/brands/all" ) 
+export const GET_BRANDS_MINIFIED = _( "/brands/all-minified" ) 
 export const GET_CARDS  = _("/cards/all")
 export const GET_POPULAR  = _("/cards/popular/")
 export const GET_TOP_SALE  = _("/cards/top_sale/")

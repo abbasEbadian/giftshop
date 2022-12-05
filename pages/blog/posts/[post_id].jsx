@@ -85,7 +85,6 @@ export async function getServerSideProps({query}) {
       }
       const res2 = await fetch(e.GET_BLOGS)
       const blogs = await res2.json()
-      console.log({blogs})
       return { props: {blog, blogs: blogs.blogs, is_short: short, top_new: blogs.top_new, top_pop: blogs.top_pop, cats: blogs.cats}}
     }catch(e){
       console.log(e)

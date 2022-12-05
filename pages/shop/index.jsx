@@ -66,7 +66,6 @@ export async function getServerSideProps({ query }) {
 		const res = await fetch(url.toString())
 		const d = await res.json()
 		const { cards, size, ...data} = d
-		console.log({size})
 		return { props: { data, cards, size } }
 	} catch (ShopIndexServerSide) {
 		console.log({ShopIndexServerSide})
