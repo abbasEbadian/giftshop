@@ -89,7 +89,7 @@ function Blog({blogs, category_blogs, meta, top_new, top_pop, cats}) {
               <BlogNav  blogs={blogs} top_new={top_new} top_pop={top_pop} cats={cats}/>
             </div>
             <div className="col-md-9 flex-blog order-1 justify-content-start">
-              {category_blogs.length? blogPosts.map((item, idx) => {
+              {category_blogs.length? blogPosts.sort((a,b) => b.id - a.id).map((item, idx) => {
                 return (
                   Math.floor(idx / countInEachPage.current ) === (page-1) && <div className="col-md-6 col-lg-4 col-6 p-2 blog-cards" key={idx}>
                     <BlogPost data={item} />

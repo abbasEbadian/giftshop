@@ -17,13 +17,13 @@ const BrandList = dynamic( () => import("../components/BrandList"))
 
 import Link from "next/link";
 import { fetch_popular_cards, fetch_top_sale_cards } from "../redux/actions";
+import { GET_TITLE_INDEX_ONLY } from "../redux/endpoints";
 
-export default function Home() {
+export default function Home({data}) {
   const [active, setActive] = useState("today");
   const popular_cards = useSelector(s => s.main.popular_cards)
   const top_sale_cards = useSelector(s => s.main.top_sale_cards)
   const dispatch = useDispatch()
-
   useEffect(() => {
     dispatch(fetch_popular_cards())
     dispatch(fetch_top_sale_cards())
@@ -33,9 +33,9 @@ export default function Home() {
     <>
       <div className="mcontainer mcontainer-bg pb-5">
         <Head>
-          <title>{"گیفت استاپ: مرجع فروش گیفت کارت در ایران با گارانتی معتبر"}</title>
-          <meta name="description" content={"گیفت استاپ برای خرید گیفت کارت ارزان ، خرید گیفت کارت اپل آیتونز ، گوگل پلی ، استیم والت ، آمازون ، ایکس باکس، ریزر گلد،گیم پس،نینتندو،نتفلیکس،روبلاکس، پلی استیشن ps4 و مستر کارت ارزان و با تحویل آنی و پشتیبانی 24 ساعته"} />
-          <meta name="keywords" content={"گیفت کارت,خرید گیفت کارت,گیفت کارت استور,گیفت کارت ارزان,گیف کارت,خرید گیفت کارت ارزان,فروش گیفت کارت,قیمت گیفت کارت"} />
+          <title>{data?.index_title ?? "گیفت استاپ: مرجع فروش گیفت کارت در ایران با گارانتی معتبر"}</title>
+          <meta name="description" content={data?.index_description ?? "گیفت استاپ برای خرید گیفت کارت ارزان ، خرید گیفت کارت اپل آیتونز ، گوگل پلی ، استیم والت ، آمازون ، ایکس باکس، ریزر گلد،گیم پس،نینتندو،نتفلیکس،روبلاکس، پلی استیشن ps4 و مستر کارت ارزان و با تحویل آنی و پشتیبانی 24 ساعته"} />
+          <meta name="keywords" content={data.index_keywords ?? "گیفت کارت,خرید گیفت کارت,گیفت کارت استور,گیفت کارت ارزان,گیف کارت,خرید گیفت کارت ارزان,فروش گیفت کارت,قیمت گیفت کارت"} />
           <link rel="icon" href="/fav.png" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
@@ -171,4 +171,19 @@ export default function Home() {
       <HomeWhyUs />
     </>
   );
+}
+
+export async function getServerSideProps({query}) {
+	
+
+	let url = new URL(GET_TITLE_INDEX_ONLY)
+
+	try {
+		const res = await fetch(url.toString())
+		const data = await res.json()
+		return { props: { data } }
+	} catch (ShopIndexServerSide) {
+		console.log({ShopIndexServerSide})
+		return { props: { data: {} } }
+	}
 }

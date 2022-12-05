@@ -63,6 +63,7 @@ export const GENERATE_WALLET_TRANSACRTION = _("/orders/generate_wallet_transacti
 export const SEND_CONTACT_US_MESSAGE = _("/contact-us/send_contact_us_message/")
 
 export const GET_TITLE = _('/configs/meta/index/')
+export const GET_TITLE_INDEX_ONLY = _('/configs/meta/index/only')
 export const GET_BLOGS = _('/blogs/all/')
 export const GET_BLOG= (id) => _('/blogs/'+id+"/")
 export const GET_PRODUCT_TITLE = (id)=>_('/configs/meta/product/'+id)

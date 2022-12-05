@@ -1,5 +1,5 @@
 import React, { useMemo, useRef } from "react";
-import { Select, MenuItem, FormControl } from "@mui/material";
+import { Select, MenuItem, FormControl, Typography } from "@mui/material";
 import FormControlLabel from '@mui/material/FormControlLabel'
 import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
@@ -213,9 +213,9 @@ function ShopFilters({
               <i></i>
               {brand_set?.map((subbrand, idx) => {
                 const symbol = String(subbrand?.country_id?.symbol).toLowerCase()
-                return <Link href={`/shop/${brand.name}/${symbol}-card`} key={idx} shallow={false} >
+                return <Link href={`/shop/${brand.name}/${symbol}-card`} key={idx} shallow={false}>
                   <a className="sub-brand-link border p-2 d-flex align-items-center mb-1 w-100 rounded">
-                    <small>گیفت کارت {subbrand?.persian_name}</small>
+                    <Typography component={"h1"}><small>گیفت کارت {subbrand?.persian_name}</small></Typography>
                     <ChevronLeft size='small' className="me-auto" />
                   </a>
                 </Link>
