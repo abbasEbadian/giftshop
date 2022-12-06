@@ -85,11 +85,20 @@ const HeaderPublic = React.memo(({ authenticated, brands: BRANDS=[] }) =>{
                 {
 
                   brands.current.map((brand, idx) => {
-                    return <Link key={brand.id} href={'/shop/' + brand.name}>
-                      <ListItem component={'a'} sx={{ pr: 4 }} role="button" onClick={e => setMenuopen(false)}>
-                        <ListItemText primary={brand.persian_name} className="text-end pe-4" />
-                      </ListItem>
-                    </Link>
+                    
+                      if(brand.parent_id)
+                          return <Link key={brand.id} href={`/shop/${brand.parent_id.name}/${brand.country_id.symbol.toLowerCase()}-card`}>
+                            <ListItem component={'a'} sx={{ pr: 4 }} role="button" onClick={e => setMenuopen(false)}>
+                              <ListItemText primary={brand.persian_name} className="text-end pe-4" />
+                            </ListItem>
+                        </Link> 
+                      else
+                        return <Link key={brand.id} href={'/shop/' + brand.name}>
+                          <ListItem component={'a'} sx={{ pr: 4 }} role="button" onClick={e => setMenuopen(false)}>
+                            <ListItemText primary={brand.persian_name} className="text-end pe-4" />
+                          </ListItem>
+                      </Link>
+                     
                   })
                 }
               </List>
@@ -159,9 +168,20 @@ const HeaderPublic = React.memo(({ authenticated, brands: BRANDS=[] }) =>{
                     return (
                       <li className="megamenu-item" key={idx}>
                         <ArrowBackIosIcon />
-                        <Link href={"/shop/" + item.name}>
-                          <a className="megamenu-link">گیفت کارت  {item.persian_name}</a>
-                        </Link>
+                        
+                          
+                          {
+                            item.parent_id? 
+                              <Link href={`/shop/${item.parent_id.name}/${item.country_id.symbol.toLowerCase()}-card`}>
+                              <a className="megamenu-link">گیفت کارت  {item.persian_name}</a>
+                            </Link>
+                            :
+                              <Link href={`/shop/${item.name}`}>
+                              <a className="megamenu-link">گیفت کارت  {item.persian_name}</a>
+                            </Link>
+                          }
+                        
+                        
                       </li>
                     );
                   })}

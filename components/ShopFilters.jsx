@@ -215,7 +215,7 @@ function ShopFilters({
                 const symbol = String(subbrand?.country_id?.symbol).toLowerCase()
                 return <Link href={`/shop/${brand.name}/${symbol}-card`} key={idx} shallow={false}>
                   <a className="sub-brand-link border p-2 d-flex align-items-center mb-1 w-100 rounded">
-                    <Typography component={"h1"}><small>گیفت کارت {subbrand?.persian_name}</small></Typography>
+                   <small>گیفت کارت {subbrand?.persian_name}</small>
                     <ChevronLeft size='small' className="me-auto" />
                   </a>
                 </Link>
