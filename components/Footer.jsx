@@ -84,8 +84,8 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/shop/googleplay">
-                  <a> گیفت کارت گوگل پلی</a>
+                <Link href="/shop/xbox">
+                  <a> گیفت کارت ایکس باکس</a>
                 </Link>
               </li>
             </ul>
