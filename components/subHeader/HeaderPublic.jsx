@@ -109,7 +109,7 @@ const HeaderPublic = React.memo(({ authenticated, brands: BRANDS=[] }) =>{
               </ListItem>
             </Link>
 
-            <Link href="/blogs">
+            <Link href="/blog">
               <ListItem button component={'a'} onClick={e => setMenuopen(false)}>
                 <NewspaperIcon />
                 <ListItemText primary="آموزش - مقالات" className="text-end pe-4" />
