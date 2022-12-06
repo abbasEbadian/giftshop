@@ -69,7 +69,7 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 			}`
 		}
 	}
-	const brand_title = sub_brand? (sub_brand.persian_name) : (brand ? (brand.persian_name) : (""))
+	const brand_title = sub_brand?.name ? (sub_brand.persian_name) : ( Object.keys(brand).length >0 ? (brand.persian_name) : (""))
 	return (
 		<div className="shop-main">
 			<Head>
