@@ -23,7 +23,6 @@ function ShopFilters({
   const brand_set = useMemo(() => {
     const b =  brand?.brand_set || []
     if(subbrand && Object.keys(subbrand).length > 0) {
-      console.log(subbrand ,  Object.keys(subbrand).length > 0)
       return b.filter(brand => brand.country_id.id !== subbrand?.country_id?.id)
     }
     return b

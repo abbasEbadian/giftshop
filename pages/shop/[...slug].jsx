@@ -28,8 +28,9 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 	}, [initialCards])
 	
 	const addJsonLd = ({ brand, review_count, review_rating, size, max_price, min_price }) => {
-		if (!brand) return { __html: {} }
-		return {
+		
+		if (!brand) return { __html: `{}` }
+		const json = {
 			__html: `{
 				"@context": "https://schema.org",
 				"@type": "Product",
@@ -68,6 +69,8 @@ function Shop({ data, cards: initialCards = [], size: initialSize, brand, sub_br
 				"sku": ${brand?.id}
 			}`
 		}
+		console.log(json	)
+		return json
 	}
 	const brand_title = sub_brand?.name ? (sub_brand.persian_name) : ( Object.keys(brand).length >0 ? (brand.persian_name) : (""))
 	return (
